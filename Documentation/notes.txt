@@ -1,0 +1,5 @@
+1) model "stance" as enumeration (more legible in source code)
+  - make changes in diagram accordingly (add Enum classifier)
+2) add realistic elements (like "reload" and "current ammo = 0) to restrict player
+   abilities and possibility of exploiting method calls (for example, spamming "shoot")
+3) include layer in diagram
