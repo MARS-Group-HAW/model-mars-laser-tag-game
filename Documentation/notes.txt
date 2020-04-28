@@ -3,3 +3,12 @@
 2) add realistic elements (like "reload" and "current ammo = 0) to restrict player
    abilities and possibility of exploiting method calls (for example, spamming "shoot")
 3) include layer in diagram
+
+
+TODO:
+general:
+- how to change action_points? (in eine Methode auslagern, um zentrale Stelle zu haben?)
+- what type must be kept in enemyList and teamList?
+
+change_stance():
+- if currStance already equal to newStance, then consider not deduct points
