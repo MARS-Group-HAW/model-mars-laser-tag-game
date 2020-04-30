@@ -1,0 +1,12 @@
+D:\eclipse-workspace\lasertag\src-gen\bin\Debug\netcoreapp2.2\lasertag.deps.json
+D:\eclipse-workspace\lasertag\src-gen\bin\Debug\netcoreapp2.2\lasertag.runtimeconfig.json
+D:\eclipse-workspace\lasertag\src-gen\bin\Debug\netcoreapp2.2\lasertag.runtimeconfig.dev.json
+D:\eclipse-workspace\lasertag\src-gen\bin\Debug\netcoreapp2.2\lasertag.dll
+D:\eclipse-workspace\lasertag\src-gen\bin\Debug\netcoreapp2.2\lasertag.pdb
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.csprojAssemblyReference.cache
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.csproj.CoreCompileInputs.cache
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.AssemblyInfoInputs.cache
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.AssemblyInfo.cs
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.dll
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.pdb
+D:\eclipse-workspace\lasertag\src-gen\obj\Debug\netcoreapp2.2\lasertag.genruntimeconfig.cache
