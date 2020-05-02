@@ -4,7 +4,11 @@ This simulation game runs on multi-agent based simulation framework MARS (Multi-
 
 ## Rules
 
+[insert rules and information about game mechanics here...]
+
 ## Interface/Methods
+
+[insert method signatures and specifications here...]
 
 ## Setup
 
