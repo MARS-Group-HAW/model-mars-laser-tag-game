@@ -6,123 +6,128 @@ enum stance {
 	Standing, Kneeling, Lying
 }
 
-agent green on Battleground{
+// Team green
+agent green on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
 	observe var currStance = stance.Standing
-	observe var movementRange : integer = 6 
-	observe var movementPoints : integer = 6 
+	// TODO: is it possible to assign numeric values to enums (if yes, then movementRange becomes obsolete)
+	observe var movementRange : integer = 6
+	observe var movementPoints : integer = 6
 	observe var inGame : bool = true
 	observe var wasTagged : bool = false
 	observe var tagged : bool = false
 	observe var magazineCount : integer = 5
 	observe var visualRange : real = 2
 	observe var visibility : real = 10
-	//TODO: Liste der richtigen Feinde. Benötigen wir verschiedene agents?
-	var enemyList : Tuple<List<red>,[blue],[yellow]>
+	// TODO: fix enemy lists (explore_enemies method)
+	var enemyList : Tuple<List<red>, [blue], [yellow]>
+	// TODO: change syntax to green[]?
 	var teamList : [green]
 	var wallList : List<Tuple<real, real>>
 	var redList = new List<red>
 	
 	initialize {
 		// pos at #(random(battleground.DimensionX),random(battleground.DimensionY)) 
-		pos at #(1,4) 
+		pos at #(1, 4) 
 	}
 	
 	tick {
-		
 		change_stance(stance.Kneeling)
 		move_me("up")	
-		
-		
 		// var tuple : Tuple<integer, integer> = #(2, 3)
 		//enemyList.Add(#(xcor, ycor))
-		
 		//enemy_x = enemyList.Get(0).Item1
 		//enemy_y = enemyList.Get(0).Item2
 		//explore_env()
-		refill_action_points()
+		refill_points()
 	}	
-	def move_me(direction : string) {
-		if (movementPoints > 0) {
-			switch (direction) {
-				case "up" : { 
-					if ((battleground.GetIntegerValue(xcor, ycor+1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 up
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // north
-				case "up-right" : { 
-					if ((battleground.GetIntegerValue(xcor+1, ycor+1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 up-right
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // north-east
-				case "right" : { 
-					if ((battleground.GetIntegerValue(xcor+1, ycor) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 right
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // east
-				case "down-right" : { 
-					if ((battleground.GetIntegerValue(xcor+1, ycor-1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 down-right
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // south-east
-				case "down" : { 
-					if ((battleground.GetIntegerValue(xcor, ycor-1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 down
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // south
-				case "down-left" : { 
-					if ((battleground.GetIntegerValue(xcor-1, ycor-1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 down-left
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // south-west
-				case "left" : { 
-					if ((battleground.GetIntegerValue(xcor-1, ycor) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 left
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // west
-				case "up-left" : { 
-					if ((battleground.GetIntegerValue(xcor-1, ycor+1) === 0)) {
-						battleground.SetIntegerValue(xcor, ycor, 0)
-						move 1 up-left
-						battleground.SetIntegerValue(xcor, ycor, 2)
-						movementPoints = movementPoints -1
-					}
-				} // north-west
-			}
-		
-		}
-	}
 	
-	// TODO: Andere Lösung zum auffüllen der Punkte finden
-	def refill_action_points(){
+	// moves agent, if possible, one grid cell in the direction specified by the input parameter <direction>
+	// TODO: what if agent cannot move in desired location? consider returning a message that allows agent to react?
+	def move_me(direction : string) {
+		if (movementPoints < 1) {
+			return
+		}
+		switch (direction) {
+			case "up" : { 
+				if ((battleground.GetIntegerValue(xcor, ycor + 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 up
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "up-right" : { 
+				if ((battleground.GetIntegerValue(xcor + 1, ycor + 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 up-right
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "right" : { 
+				if ((battleground.GetIntegerValue(xcor + 1, ycor) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 right
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "down-right" : { 
+				if ((battleground.GetIntegerValue(xcor + 1, ycor - 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 down-right
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "down" : { 
+				if ((battleground.GetIntegerValue(xcor, ycor - 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 down
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "down-left" : { 
+				if ((battleground.GetIntegerValue(xcor - 1, ycor - 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 down-left
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "left" : { 
+				if ((battleground.GetIntegerValue(xcor - 1, ycor) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 left
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+			case "up-left" : { 
+				if ((battleground.GetIntegerValue(xcor - 1, ycor + 1) === 0)) {
+					battleground.SetIntegerValue(xcor, ycor, 0)
+					move 1 up-left
+					battleground.SetIntegerValue(xcor, ycor, 2)
+					movementPoints = movementPoints - 1
+				}
+			}
+		}		
+	}
+
+	
+	// refills actionPoints and movementPoints
+	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
+	def refill_points() {
 		actionPoints = 10
 		movementPoints = movementRange
 	}
 	
-	//TODO: Punkte müssen zentral verwaltet werden
-	// Wenn genug Punkte vorhanden wird die Position geändert (Kosten 2 Punkte)
+	// changes currStance to <newStance>
+	// TODO: points needs to be managed at a central location
+	// TODO: if currStance === newStance, don't change stance and don't deduct points
 	def change_stance(newStance : stance) {
 		if (actionPoints < 2) {
 			return
@@ -147,114 +152,146 @@ agent green on Battleground{
 			}
 		}
 	}
+	
+	// exploration of the environment occurs in three phases: 1) team members, 2) walls, 3) enemies
 	def explore_env() {
+		actionPoints = actionPoints - 1
 		explore_team()
-		//explore_enemies()
 		explore_walls()
-		
+		//explore_enemies()
 	}
-	def explore_walls(){
-		// Speichert alle in visualRange befindlichen Wände in wallList
+	
+	// generates a list of coordinates of all team members
+	def explore_team() {
+		teamList = explore green
+	}
+	
+	// generates a list of coordinates within visualRange that contain a wall
+	// TODO: fix exploration so that agent can't detect walls located behind walls (do cost-benefit analysis for this task)
+	def explore_walls() {
 		wallList = new List<Tuple<real, real>>
-		for(var x = xcor - visualRange; x <= xcor + visualRange; x++){
-			for(var y = ycor + visualRange; y >= ycor - visualRange; y--){
+		for(var x = xcor - visualRange; x <= xcor + visualRange; x++) {
+			for(var y = ycor + visualRange; y >= ycor - visualRange; y--) {
 				if (battleground.GetIntegerValue(x,y) === 1) {
 					wallList.Add(#(x,y))
 					println #(x,y)
 				}
-				
 			}
 		}
 	}
-	def explore_team(){
-		// Aktualisiert die Teammitglieder-Liste
-		teamList = explore green
-	}
-	// TODO: Gegnerposition an Team automatisch weitergeben
-	def explore_enemies(){
-		// Agenten werden hinzugefügt wenn sie in Sichtweite sind
+	
+	// generates lists of coordinates of all enemies within visualRange
+	// three conditions for being able to see an enemy:
+		// 1) enemy coordinates are within visualRange
+		// 2) enemy visibility makes enemy visible from my location
+		// 3) there are no walls blocking linear vision between enemy and me
+	// TODO: automatically forward enemy locations to other team members
+	def explore_enemies() {
+		// generate lists with enemies who satisfy conditions 1 and 2
 		var tmpRed = explore red where [x => return (distance x) <= visualRange and (distance x) <= x.GetVisibility]
 		var tmpBlue = explore blue where [x => return (distance x) <= visualRange and (distance x) <= x.GetVisibility]
 		var tmpYellow = explore yellow where [x => return (distance x) <= visualRange and (distance x) <= x.GetVisibility]
-		// TODO: redList = new List<red>()
-		// (Blockiert, meine Stellung, Gegner Stellung)
-		// TODO: Blockierung durch Env. prüfen
+		// redList = new List<red>()
+		
+		// TODO: for each enemy in list, check if condition 3 is is satisfied...
+		// TODO: check whether a wall prevents agent from seeing enemy (implement linear vision)
 		each (red in tmpRed) {
-			// Enemy Vertikal von mir
+			// check if enemy is located vertically relative to me
 			if (xcor === red.GetX) {
-				// Enemy unter mir
+				// check if enemy is below me
 				if (ycor > red.GetY) {
 					each (wall in wallList) {
-						// Keine Wand zwischen enemy und mir
+						// check if no wall between enemy and me
 						if (not(wall.Item1 === xcor and wall.Item2 > red.GetY and wall.Item2 < ycor)) {
 							redList.Add(red)
 						}
 					}
 				}
-				// Enemy über mir
+				// check if enemy is above me
 				if (ycor < red.GetY) {
 					each (wall in wallList) {
-						// Keine Wand zwischen enemy und mir
+						// check if no wall between me and enemy
 						if (not(wall.Item1 === xcor and wall.Item2 < red.GetY and wall.Item2 > ycor)) {
 							redList.Add(red)
 						}
 					}
 				}
-			// Enemy Horizontal von mir
-			}else if (ycor === red.GetY) {
-				// Enemy Links von mir
+			// check if enemy is located horizontally relative to me
+			} else if (ycor === red.GetY) {
+				// check if enemy is located to my left
 				if (xcor > red.GetX) {
 					each (wall in wallList) {
-						// Keine Wand zwischen enemy und mir
+						// check if no wall between enemy and me
 						if (not(wall.Item2 === ycor and wall.Item1 > red.GetX and wall.Item1 < xcor)) {
 							redList.Add(red)
 						}
 					}
 				}
-				// Enemy Rechts von mir
+				// check if enemy is located to my right
 				if (xcor < red.GetX) {
 					each (wall in wallList) {
-						// Keine Wand zwischen enemy und mir
+						// check if no wall between enemy and me
 						if (not(wall.Item2 === ycor and wall.Item1 < red.GetX and wall.Item1 > xcor)) {
 							redList.Add(red)
 						}
 					}
 				}
-				
+			} else if (true) {
+				// TODO: implement linear vision for enemies located diagonally relative to me
 			} else {
-				
+				// TODO: implement linear vision for enemies with coordinates neither exactly vertical,
+				// nor horizontal, nor diagonal relative to me
 			}
 		}
 		enemyList = #(redList, tmpBlue, tmpYellow)
 	}
+
+	// tags at an enemy whose coordinates are in enemyList
+	def tag() {
+		
+	}
+	
+	// refills magazineCount
+	def reload() {
+		
+	}
+	
+	// returns current visibility value to the caller
+	// TODO: 
+	passive GetVisibility() : real {
+		return visibility
+	}
+	
+	// TODO: consider combining GetX and GetY to one method and returning coordinates in a tuple
+	// returns current x-coordinate to the caller
+	passive GetX() : real {
+		return xcor
+	}
+	
+	// returns current y-coordinate to the caller
+	passive GetY() : real {
+		return ycor
+	}
+	
+	// ignore this method for now
 //	def move_me(x_cor : real, y_cor : real) {
-//		// TODO: bei Hindernis Verhalten festlegen
 //		switch (movementRange) {
-//			// im liegenden Zustand
 //			case 1 : { 
 //				if (battleground.GetIntegerValue(x_cor, y_cor) === 0) {
-//					if (not(x_cor < (xcor -1) or x_cor > (xcor +1) or y_cor < (ycor -1) or y_cor > (ycor +1))) {
+//					if (not(x_cor < (xcor - 1) or x_cor > (xcor + 1) or y_cor < (ycor - 1) or y_cor > (ycor + 1))) {
 //						battleground.SetIntegerValue(xcor, ycor, 0)
 //						move me to #(x_cor, y_cor)
 //						battleground.SetIntegerValue(xcor, ycor, 2)
 //					}
 //				}
 //			}
-//			// im knienden Zustand
 //			case 3 : { 
-//				if (not(x_cor < (xcor -3) or x_cor > (xcor +3) or y_cor < (ycor -3) or y_cor > (ycor +3))) {
-//					println "Ziel in Reichweite"
-//					// Ziel ist Vertikal zu mir
+//				if (not(x_cor < (xcor - 3) or x_cor > (xcor + 3) or y_cor < (ycor - 3) or y_cor > (ycor + 3))) {
 //					if (xcor === x_cor) {
-//						println "xcor === x_cor"
-//						// Ziel ist unter mir
 //						if (ycor > y_cor) {
-//							println "ycor > y_cor"
-//							var i = ycor-1
-//							while(i >= y_cor){
-//								println "prüfe: " + xcor + "," + i
-//								if ((battleground.GetIntegerValue(xcor, i) === 1) or (battleground.GetIntegerValue(xcor, i) === 2)){
-//									println "Hindernis auf: " + xcor + "," + i
+//							var i = ycor - 1
+//							while(i >= y_cor) {
+//								if ((battleground.GetIntegerValue(xcor, i) === 1) or (battleground.GetIntegerValue(xcor, i) === 2)) {
 //									battleground.SetIntegerValue(xcor, ycor, 0)
 //									move me i+1 to #(x_cor, y_cor)
 //									battleground.SetIntegerValue(xcor, ycor, 2)
@@ -262,15 +299,13 @@ agent green on Battleground{
 //								}
 //								i--
 //							}
-//							println "Bewege mich nach: " + x_cor + "," + y_cor
 //							battleground.SetIntegerValue(xcor, ycor, 0)
 //							move me movementRange to #(x_cor, y_cor)
 //							battleground.SetIntegerValue(xcor, ycor, 2)
-//						// Ziel ist über mir
-//						}else {
-//							var i = ycor+1
+//						} else {
+//							var i = ycor + 1
 //							while(i <= y_cor){
-//								if ((battleground.GetIntegerValue(xcor, i) === 1) or (battleground.GetIntegerValue(xcor, i) === 2)){
+//								if ((battleground.GetIntegerValue(xcor, i) === 1) or (battleground.GetIntegerValue(xcor, i) === 2)) {
 //									battleground.SetIntegerValue(xcor, ycor, 0)
 //									move me i-1 to #(x_cor, y_cor)
 //									battleground.SetIntegerValue(xcor, ycor, 2)
@@ -283,26 +318,14 @@ agent green on Battleground{
 //							battleground.SetIntegerValue(xcor, ycor, 2)
 //						}
 //					}
-//					
 //				}
 //			}
-//			case 6 : { move 1 right}
+//			case 6 : {move 1 right}
 //		}
 //	}
-	def shoot(){
-		
-	}
-	passive GetVisibility() : real {
-		return visibility
-	}
-	passive GetX() : real {
-		return xcor
-	}
-	passive GetY() : real {
-		return ycor
-	}
 }
 
+// Team red
 agent red on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -313,27 +336,22 @@ agent red on Battleground {
 	observe var magazineCount : integer = 5
 	observe var visualRange : real = 10
 	observe var visibility : real = 10
-	//TODO: Liste der richtigen Feinde. Benötigen wir verschiedene agents?
-	var enemyList : Tuple<[green],[blue],[yellow]> = nil
+	var enemyList : Tuple<[green], [blue], [yellow]> = nil
 	var teamList = new List<red>()
 	observe var targetDistance : real
 	
 	initialize {
-		pos at #(3,1) 
+		pos at #(3, 1) 
 	}
 	
 	tick {
-		//random_walk()	
-		change_stance(stance.Kneeling)	
-		
-		refill_action_points()
-	}	
-	def refill_action_points(){
+	
+	}
+	
+	def refill_points() {
 		actionPoints = 10
 	}
 	
-	//TODO: Punkte müssen zentral verwaltet werden
-	// Wenn genug Punkte vorhanden wird die Position geändert (Kosten 2 Punkte)
 	def change_stance(newStance : stance) {
 		if (actionPoints < 2) {
 			return
@@ -343,27 +361,31 @@ agent red on Battleground {
 	}
 	def random_walk() {
 		switch (random(8)) {
-			case 0 : { move 1 up} // north
-			case 1 : { move 1 up-right} // north-east
-			case 2 : { move 1 right} // east
-			case 3 : { move 1 down-right} // south-east
-			case 4 : { move 1 down} // south
-			case 5 : { move 1 down-left} // south-west
-			case 6 : { move 1 left} // west
-			case 7 : { move 1 up-left} // north-west
+			case 0 : { move 1 up } // north
+			case 1 : { move 1 up-right } // north-east
+			case 2 : { move 1 right } // east
+			case 3 : { move 1 down-right } // south-east
+			case 4 : { move 1 down } // south
+			case 5 : { move 1 down-left } // south-west
+			case 6 : { move 1 left } // west
+			case 7 : { move 1 up-left } // north-west
 		}
 	}
+	
 	passive GetVisibility() : real {
 		return visibility
 	}
+	
 	passive GetX() : real {
 		return xcor
 	}
+	
 	passive GetY() : real {
 		return ycor
 	}
 }
 
+// Team blue
 agent blue on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -374,27 +396,22 @@ agent blue on Battleground {
 	observe var magazineCount : integer = 5
 	observe var visualRange : real = 10
 	observe var visibility : real = 10
-	//TODO: Liste der richtigen Feinde. Benötigen wir verschiedene agents?
-	var enemyList : Tuple<[red],[green],[yellow]> = nil
+	var enemyList : Tuple<[red], [green], [yellow]> = nil
 	var teamList = new List<blue>()
 	observe var targetDistance : real
 	
 	initialize {
-		pos at #(random(battleground.DimensionX),random(battleground.DimensionY)) 
+		pos at #(7, 2) 
 	}
 	
 	tick {
-		random_walk()	
-		change_stance(stance.Kneeling)	
-		
-		refill_action_points()
+	
 	}	
-	def refill_action_points(){
+	
+	def refill_points() {
 		actionPoints = 10
 	}
 	
-	//TODO: Punkte müssen zentral verwaltet werden
-	// Wenn genug Punkte vorhanden wird die Position geändert (Kosten 2 Punkte)
 	def change_stance(newStance : stance) {
 		if (actionPoints < 2) {
 			return
@@ -402,23 +419,26 @@ agent blue on Battleground {
 		currStance = newStance
 		actionPoints = actionPoints - 2
 	}
+
 	def random_walk() {
 		switch (random(8)) {
-			case 0 : { move 1 up} // north
-			case 1 : { move 1 up-right} // north-east
-			case 2 : { move 1 right} // east
-			case 3 : { move 1 down-right} // south-east
-			case 4 : { move 1 down} // south
-			case 5 : { move 1 down-left} // south-west
-			case 6 : { move 1 left} // west
-			case 7 : { move 1 up-left} // north-west
+			case 0 : { move 1 up } // north
+			case 1 : { move 1 up-right } // north-east
+			case 2 : { move 1 right } // east
+			case 3 : { move 1 down-right } // south-east
+			case 4 : { move 1 down } // south
+			case 5 : { move 1 down-left } // south-west
+			case 6 : { move 1 left } // west
+			case 7 : { move 1 up-left } // north-west
 		}
 	}
+
 	passive GetVisibility() : real {
 		return visibility
 	}
 }
 
+// Team yellow
 agent yellow on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -429,27 +449,22 @@ agent yellow on Battleground {
 	observe var magazineCount : integer = 5
 	observe var visualRange : real = 10
 	observe var visibility : real = 10
-	//TODO: Liste der richtigen Feinde. Benötigen wir verschiedene agents?
-	var enemyList : Tuple<[red],[blue],[green]> = nil
+	var enemyList : Tuple<[red], [blue], [green]> = nil
 	var teamList = new List<yellow>()
 	observe var targetDistance : real
 	
 	initialize {
-		pos at #(random(battleground.DimensionX),random(battleground.DimensionY)) 
+		pos at #(7, 1) 
 	}
 	
 	tick {
-		random_walk()	
-		change_stance(stance.Kneeling)	
-		
-		refill_action_points()
-	}	
-	def refill_action_points(){
+	
+	}
+	
+	def refill_points() {
 		actionPoints = 10
 	}
 	
-	//TODO: Punkte müssen zentral verwaltet werden
-	// Wenn genug Punkte vorhanden wird die Position geändert (Kosten 2 Punkte)
 	def change_stance(newStance : stance) {
 		if (actionPoints < 2) {
 			return
@@ -457,18 +472,20 @@ agent yellow on Battleground {
 		currStance = newStance
 		actionPoints = actionPoints - 2
 	}
+	
 	def random_walk() {
 		switch (random(8)) {
-			case 0 : { move 1 up} // north
-			case 1 : { move 1 up-right} // north-east
-			case 2 : { move 1 right} // east
-			case 3 : { move 1 down-right} // south-east
-			case 4 : { move 1 down} // south
-			case 5 : { move 1 down-left} // south-west
-			case 6 : { move 1 left} // west
-			case 7 : { move 1 up-left} // north-west
+			case 0 : { move 1 up } // north
+			case 1 : { move 1 up-right } // north-east
+			case 2 : { move 1 right } // east
+			case 3 : { move 1 down-right } // south-east
+			case 4 : { move 1 down } // south
+			case 5 : { move 1 down-left } // south-west
+			case 6 : { move 1 left } // west
+			case 7 : { move 1 up-left } // north-west
 		}
 	}
+	
 	passive GetVisibility() : real {
 		return visibility
 	}

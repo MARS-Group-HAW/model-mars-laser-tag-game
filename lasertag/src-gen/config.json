@@ -1,0 +1,36 @@
+{
+	"globals": {
+		"steps" : 1,
+		"output": "csv",
+		"options": {
+			"delimiter": ";",
+			"format": "en-EN"
+			}
+	},
+	"layers": [
+		{
+			"name":"Battleground",
+			"file":"Battleground.csv",
+			"dimensionx": 10,
+			"dimensiony": 10
+			}
+	],
+	"agents": [
+		{
+			"name":"green",
+			"count":1,
+			}, 
+		{
+			"name":"red",
+			"count":1,
+			},
+		{
+			"name":"blue",
+			"count":1,
+			},
+		{
+			"name":"yellow",
+			"count":1,
+			}
+	]
+}

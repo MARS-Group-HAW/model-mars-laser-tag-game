@@ -12,3 +12,19 @@ general:
 
 change_stance():
 - if currStance already equal to newStance, then consider not deduct points
+
+
+Issues List (add to issues board):
+Agent:
+- define agent: set variables and implement initialize method
+
+Methods:
+- implement refill_action_points
+- define enum stance and implement change_stance method
+- implement explore_env (not finished)
+- implement explore_walls
+- implement explore_team
+- implement explore_enemies
+- implement move_me
+- implement shoot (not finished)
+- implement passive getter methods: GetVisibility, GetX, GetY
