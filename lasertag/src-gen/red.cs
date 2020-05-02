@@ -139,192 +139,192 @@ namespace lasertag {
 		public void random_walk() 
 		{
 			{
-			int _switch363_11437 = (_Random.Next(8)
+			int _switch363_11434 = (_Random.Next(8)
 			);
-			bool _matched_363_11437 = false;
-			bool _fallthrough_363_11437 = false;
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 0)) {
-					_matched_363_11437 = true;
+			bool _matched_363_11434 = false;
+			bool _fallthrough_363_11434 = false;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 0)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed364_11473 = 1
+						var _speed364_11470 = 1
 					;
 						
-						var _entity364_11473 = this;
+						var _entity364_11470 = this;
 						
-						Func<double[], bool> _predicate364_11473 = null;
+						Func<double[], bool> _predicate364_11470 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity364_11473, Mars.Interfaces.Environment.DirectionType.Up
-						, _speed364_11473);
+						_Battleground._redEnvironment.MoveTowards(_entity364_11470, Mars.Interfaces.Environment.DirectionType.Up
+						, _speed364_11470);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 1)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 1)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed365_11509 = 1
+						var _speed365_11506 = 1
 					;
 						
-						var _entity365_11509 = this;
+						var _entity365_11506 = this;
 						
-						Func<double[], bool> _predicate365_11509 = null;
+						Func<double[], bool> _predicate365_11506 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity365_11509, Mars.Interfaces.Environment.DirectionType.UpRight
-						, _speed365_11509);
+						_Battleground._redEnvironment.MoveTowards(_entity365_11506, Mars.Interfaces.Environment.DirectionType.UpRight
+						, _speed365_11506);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 2)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 2)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed366_11556 = 1
+						var _speed366_11553 = 1
 					;
 						
-						var _entity366_11556 = this;
+						var _entity366_11553 = this;
 						
-						Func<double[], bool> _predicate366_11556 = null;
+						Func<double[], bool> _predicate366_11553 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity366_11556, Mars.Interfaces.Environment.DirectionType.Right
-						, _speed366_11556);
+						_Battleground._redEnvironment.MoveTowards(_entity366_11553, Mars.Interfaces.Environment.DirectionType.Right
+						, _speed366_11553);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 3)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 3)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed367_11594 = 1
+						var _speed367_11591 = 1
 					;
 						
-						var _entity367_11594 = this;
+						var _entity367_11591 = this;
 						
-						Func<double[], bool> _predicate367_11594 = null;
+						Func<double[], bool> _predicate367_11591 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity367_11594, Mars.Interfaces.Environment.DirectionType.DownRight
-						, _speed367_11594);
+						_Battleground._redEnvironment.MoveTowards(_entity367_11591, Mars.Interfaces.Environment.DirectionType.DownRight
+						, _speed367_11591);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 4)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 4)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed368_11643 = 1
+						var _speed368_11640 = 1
 					;
 						
-						var _entity368_11643 = this;
+						var _entity368_11640 = this;
 						
-						Func<double[], bool> _predicate368_11643 = null;
+						Func<double[], bool> _predicate368_11640 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity368_11643, Mars.Interfaces.Environment.DirectionType.Down
-						, _speed368_11643);
+						_Battleground._redEnvironment.MoveTowards(_entity368_11640, Mars.Interfaces.Environment.DirectionType.Down
+						, _speed368_11640);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 5)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 5)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed369_11681 = 1
+						var _speed369_11678 = 1
 					;
 						
-						var _entity369_11681 = this;
+						var _entity369_11678 = this;
 						
-						Func<double[], bool> _predicate369_11681 = null;
+						Func<double[], bool> _predicate369_11678 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity369_11681, Mars.Interfaces.Environment.DirectionType.DownLeft
-						, _speed369_11681);
+						_Battleground._redEnvironment.MoveTowards(_entity369_11678, Mars.Interfaces.Environment.DirectionType.DownLeft
+						, _speed369_11678);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 6)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 6)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed370_11729 = 1
+						var _speed370_11726 = 1
 					;
 						
-						var _entity370_11729 = this;
+						var _entity370_11726 = this;
 						
-						Func<double[], bool> _predicate370_11729 = null;
+						Func<double[], bool> _predicate370_11726 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity370_11729, Mars.Interfaces.Environment.DirectionType.Left
-						, _speed370_11729);
+						_Battleground._redEnvironment.MoveTowards(_entity370_11726, Mars.Interfaces.Environment.DirectionType.Left
+						, _speed370_11726);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
-			if(!_matched_363_11437 || _fallthrough_363_11437) {
-				if(Equals(_switch363_11437, 7)) {
-					_matched_363_11437 = true;
+			if(!_matched_363_11434 || _fallthrough_363_11434) {
+				if(Equals(_switch363_11434, 7)) {
+					_matched_363_11434 = true;
 					{
 					new System.Func<Tuple<double,double>>(() => {
 						
-						var _speed371_11766 = 1
+						var _speed371_11763 = 1
 					;
 						
-						var _entity371_11766 = this;
+						var _entity371_11763 = this;
 						
-						Func<double[], bool> _predicate371_11766 = null;
+						Func<double[], bool> _predicate371_11763 = null;
 						
-						_Battleground._redEnvironment.MoveTowards(_entity371_11766, Mars.Interfaces.Environment.DirectionType.UpLeft
-						, _speed371_11766);
+						_Battleground._redEnvironment.MoveTowards(_entity371_11763, Mars.Interfaces.Environment.DirectionType.UpLeft
+						, _speed371_11763);
 						
 						return new Tuple<double, double>(Position.X, Position.Y);
 					}).Invoke()
 					;}
 				} else {
-					_fallthrough_363_11437 = false;
+					_fallthrough_363_11434 = false;
 				}
 			}
 			;}
@@ -381,12 +381,12 @@ namespace lasertag {
 			{
 			new System.Func<System.Tuple<double,double>>(() => {
 				
-				var _taget344_11168 = new System.Tuple<int,int>(3,1);
+				var _taget344_11165 = new System.Tuple<int,int>(3,1);
 				
-				var _object344_11168 = this;
+				var _object344_11165 = this;
 				
-				_Battleground._redEnvironment.PosAt(_object344_11168, 
-					_taget344_11168.Item1, _taget344_11168.Item2
+				_Battleground._redEnvironment.PosAt(_object344_11165, 
+					_taget344_11165.Item1, _taget344_11165.Item2
 				);
 				return new Tuple<double, double>(Position.X, Position.Y);
 			}).Invoke()

@@ -246,7 +246,7 @@ agent green on Battleground {
 		enemyList = #(redList, tmpBlue, tmpYellow)
 	}
 
-	// tags at an enemy whose coordinates are in enemyList
+	// tags an enemy whose coordinates are in enemyList
 	def tag() {
 		
 	}
