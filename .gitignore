@@ -2,3 +2,5 @@ green.csv
 red.csv
 blue.csv
 yellow.csv
+*.cs
+*.csproj
