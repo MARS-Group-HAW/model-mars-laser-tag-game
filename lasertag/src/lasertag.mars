@@ -2,16 +2,12 @@ model lasertag
 
 grid-layer Battleground as battleground
 
-enum stance {
-	Standing, Kneeling, Lying
-}
-
 // Team green
 agent green on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
-	observe var currStance = stance.Standing
-	// TODO: is it possible to assign numeric values to enums (if yes, then movementRange becomes obsolete)
+	// possible values: standing, kneeling, lying
+	observe var currStance : string = "standing"
 	observe var movementRange : integer = 6
 	observe var movementPoints : integer = 6
 	observe var inGame : bool = true
@@ -33,7 +29,7 @@ agent green on Battleground {
 	}
 	
 	tick {
-		change_stance(stance.Kneeling)
+		change_stance("kneeling")
 		move_me("up")	
 		// var tuple : Tuple<integer, integer> = #(2, 3)
 		//enemyList.Add(#(xcor, ycor))
@@ -44,7 +40,7 @@ agent green on Battleground {
 	}	
 	
 	// moves agent, if possible, one grid cell in the direction specified by the input parameter <direction>
-	// TODO: what if agent cannot move in desired location? consider returning a message that allows agent to react?
+	// TODO: implement a pathfinding algorithm (D*-algorithm?)
 	def move_me(direction : string) {
 		if (movementPoints < 1) {
 			return
@@ -117,7 +113,6 @@ agent green on Battleground {
 		}		
 	}
 
-	
 	// refills actionPoints and movementPoints
 	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
 	def refill_points() {
@@ -126,26 +121,27 @@ agent green on Battleground {
 	}
 	
 	// changes currStance to <newStance>
-	// TODO: points needs to be managed at a central location
-	// TODO: if currStance === newStance, don't change stance and don't deduct points
-	def change_stance(newStance : stance) {
+	def change_stance(newStance : string) {
 		if (actionPoints < 2) {
+			return
+		}
+		if (newStance === currStance) {
 			return
 		}
 		currStance = newStance
 		actionPoints = actionPoints - 2
 		switch (currStance) {
-			case stance.Standing: {
+			case "standing": {
 				visualRange = 10
 				visibility = 10
 				movementRange = 6
 			}
-			case stance.Kneeling: {
+			case "kneeling": {
 				visualRange = 8
 				visibility = 8
 				movementRange = 3
 			}
-			case stance.Lying: {
+			case "lying": {
 				visualRange = 5
 				visibility = 5
 				movementRange = 1
@@ -257,7 +253,6 @@ agent green on Battleground {
 	}
 	
 	// returns current visibility value to the caller
-	// TODO: 
 	passive GetVisibility() : real {
 		return visibility
 	}
@@ -329,7 +324,7 @@ agent green on Battleground {
 agent red on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
-	observe var currStance = stance.Standing
+	observe var currStance : string = "standing"
 	observe var inGame : bool = true
 	observe var wasTagged : bool = false
 	observe var tagged : bool = false
@@ -352,7 +347,7 @@ agent red on Battleground {
 		actionPoints = 10
 	}
 	
-	def change_stance(newStance : stance) {
+	def change_stance(newStance : string) {
 		if (actionPoints < 2) {
 			return
 		}
@@ -389,7 +384,7 @@ agent red on Battleground {
 agent blue on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
-	observe var currStance = stance.Standing
+	observe var currStance : string = "standing"
 	observe var inGame : bool = true
 	observe var wasTagged : bool = false
 	observe var tagged : bool = false
@@ -412,7 +407,7 @@ agent blue on Battleground {
 		actionPoints = 10
 	}
 	
-	def change_stance(newStance : stance) {
+	def change_stance(newStance : string) {
 		if (actionPoints < 2) {
 			return
 		}
@@ -442,7 +437,7 @@ agent blue on Battleground {
 agent yellow on Battleground {
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
-	observe var currStance = stance.Standing
+	observe var currStance : string = "standing"
 	observe var inGame : bool = true
 	observe var wasTagged : bool = false
 	observe var tagged : bool = false
@@ -465,7 +460,7 @@ agent yellow on Battleground {
 		actionPoints = 10
 	}
 	
-	def change_stance(newStance : stance) {
+	def change_stance(newStance : string) {
 		if (actionPoints < 2) {
 			return
 		}
