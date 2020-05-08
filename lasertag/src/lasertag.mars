@@ -25,7 +25,7 @@ agent green on Battleground {
 	
 	initialize {
 		// pos at #(random(battleground.DimensionX),random(battleground.DimensionY)) 
-		pos at #(1, 4) 
+		pos at #(1, 4)
 	}
 	
 	tick {
@@ -38,6 +38,13 @@ agent green on Battleground {
 		//explore_env()
 		refill_points()
 	}	
+	
+	// TODO: implement pathfinding logic to move agent from grid-cell A to grid-cell B
+	// consider doing incremental (grid-by-grid) movements via move_me
+	// consider devising a path of coordinates from point A to point B and storing the coordinates as tuples in a list
+	def pathfinding() {
+		// var path = new List<Tuple>
+	}
 	
 	// moves agent, if possible, one grid cell in the direction specified by the input parameter <direction>
 	// TODO: implement a pathfinding algorithm (D*-algorithm?)
@@ -157,6 +164,7 @@ agent green on Battleground {
 		//explore_enemies()
 	}
 	
+	// TODO: share each other's enemy lists during explore_team()
 	// generates a list of coordinates of all team members
 	def explore_team() {
 		teamList = explore green
