@@ -58,3 +58,199 @@
 [ERROR] 2020-04-30 01:17:38,981 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
 [ERROR] 2020-04-30 01:17:38,981 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Object reference not set to an instance of an object.) 
 [ERROR] 2020-04-30 01:17:38,981 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:33:29,563 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 17:33:29,576 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 17:33:29,576 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 17:33:29,576 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:33:29,576 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 17:33:29,576 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:35:49,465 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 17:35:49,476 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 17:35:49,476 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 17:35:49,476 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:35:49,476 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 17:35:49,476 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:39:41,591 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 17:39:41,602 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 17:39:41,602 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 17:39:41,602 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:39:41,602 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 17:39:41,602 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:41:06,474 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 17:41:06,484 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 17:41:06,484 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 17:41:06,484 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 17:41:06,484 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 17:41:06,484 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:35:05,661 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 18:35:05,670 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 18:35:05,670 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 18:35:05,670 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:35:05,670 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 18:35:05,670 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:36:07,620 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 18:36:07,630 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 18:36:07,630 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 18:36:07,630 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:36:07,630 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 18:36:07,630 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:41:31,029 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 18:41:31,040 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 18:41:31,041 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 18:41:31,041 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:41:31,041 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 18:41:31,041 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:54:27,141 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 18:54:27,149 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 18:54:27,150 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 18:54:27,150 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 18:54:27,150 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 18:54:27,150 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:02:55,507 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:02:55,515 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:02:55,516 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:02:55,516 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:02:55,516 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:02:55,516 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:04:07,976 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:04:07,986 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:04:07,986 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:04:07,986 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:04:07,986 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:04:07,986 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:11:31,586 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:11:31,605 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:11:31,605 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:11:31,605 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:11:31,605 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:11:31,605 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:11:53,097 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:11:53,112 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:11:53,112 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:11:53,112 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:11:53,112 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:11:53,112 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:17:10,352 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:17:10,362 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:17:10,362 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:17:10,362 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:17:10,362 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:17:10,362 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:17:40,391 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:17:40,400 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:17:40,400 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:17:40,400 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:17:40,400 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:17:40,400 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:21:53,845 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:21:53,855 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:21:53,855 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:21:53,855 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:21:53,855 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:21:53,855 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:22:55,962 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:22:55,972 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:22:55,972 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:22:55,972 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:22:55,972 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:22:55,972 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:28:14,840 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:28:14,851 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:28:14,851 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:28:14,851 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:28:14,851 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:28:14,851 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:30:09,444 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:30:09,453 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:30:09,453 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:30:09,453 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:30:09,453 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:30:09,453 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:31:44,759 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:31:44,768 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:31:44,768 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:31:44,768 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:31:44,768 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:31:44,768 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:33:28,103 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:33:28,112 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:33:28,112 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:33:28,112 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:33:28,112 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:33:28,112 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:34:47,905 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:34:47,925 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:34:47,925 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:34:47,925 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:34:47,925 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:34:47,925 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:35:47,563 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:35:47,574 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:35:47,574 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:35:47,574 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:35:47,574 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:35:47,574 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:37:17,499 | Mars.Core.SimulationStepExecutor.Implementation.StepExecutionUseCase - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index 
+[ERROR] 2020-05-29 19:37:17,510 | Mars.Core.SimulationStarter.SimulationStarter - MARS simulation execution crashed by AggregateException 
+[ERROR] 2020-05-29 19:37:17,510 | Mars.Core.SimulationStarter.SimulationStarter - Exception message: 
+[ERROR] 2020-05-29 19:37:17,510 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
+[ERROR] 2020-05-29 19:37:17,510 | Mars.Core.SimulationStarter.SimulationStarter - One or more errors occurred. (Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index) 
+[ERROR] 2020-05-29 19:37:17,510 | Mars.Core.SimulationStarter.SimulationStarter - ######################################################## 
