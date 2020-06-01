@@ -1851,7 +1851,7 @@ agent Red on Battleground {
 agent Blue on Battleground {
 	//	*********************** general attributes ***********************
 	observe var xSpawn : real = 50.0
-	observe var ySpawn : real = 1.0
+	observe var ySpawn : real = 50.0
 	observe var color : string = "blue"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -1947,7 +1947,7 @@ agent Blue on Battleground {
 agent Yellow on Battleground {
 	//	*********************** general attributes ***********************
 	observe var xSpawn : real = 50.0
-	observe var ySpawn : real = 50.0
+	observe var ySpawn : real = 1.0
 	observe var color : string = "yellow"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
