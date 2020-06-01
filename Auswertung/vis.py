@@ -215,8 +215,15 @@ def map_readin(file=""):
         for ix in range(x):
             if l[iy][ix] == "0":
                 m.map[iy][ix].color = "#FFF"
+            # barrier
             elif l[iy][ix] == "1":
                 m.map[iy][ix].color = "#000"
+            # hill
+            elif l[iy][ix] == "2":
+                m.map[iy][ix].color = "#676767"
+            # ditch
+            elif l[iy][ix] == "3":
+                m.map[iy][ix].color = "#60460f"
     return m
 
 
@@ -242,8 +249,8 @@ def agent_readin(file,agent_map):
             columnids["ENGERGY"] = i
         elif "currStance" in x:
             columnids["CURRSTANCE"] = i
-        elif "team" in x:
-            columnids["TEAM"] = i
+        elif "color" in x:
+            columnids["COLOR"] = i
     for row in l[1::]:
         aid = row[columnids["ID"]]
         if not (aid in agents):
@@ -253,18 +260,18 @@ def agent_readin(file,agent_map):
         y = int(row[columnids["Y"]].split(",")[0])
         y = len(agent_map.map)-y
         tick = int(row[columnids["TICK"]].split(".")[0])
-        status = row[columnids["TEAM"]]
+        status = row[columnids["COLOR"]]
         # blue
-        if status == "1":
+        if status == "blue":
             state = AgentState(x,y,tick,1)
         # yellow
-        elif status == "2":
+        elif status == "yellow":
             state = AgentState(x,y,tick,2)
         # red
-        elif status == "3":
+        elif status == "red":
             state = AgentState(x,y,tick,3)
         # green
-        elif status == "4":
+        elif status == "green":
             state = AgentState(x, y, tick, 4)
         else:
             state = AgentState(x,y,tick,0)
@@ -273,7 +280,7 @@ def agent_readin(file,agent_map):
         #bl=[False,False,False,True]
         #state = AgentState(x,y,tick,rnd.choice(bl),rnd.choice(bl))
         #print(agent)
-        state.stage = int(row[columnids["TEAM"]])
+        state.stage = row[columnids["COLOR"]]
         agent.states.append(state)
     return list(agents.values())
 

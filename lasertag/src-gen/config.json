@@ -1,7 +1,7 @@
 {
 	"globals": {
     "startTime": "2019-01-01T10:00:00.000Z",
-    "endTime": "2019-01-01T10:00:01.000Z",
+    "endTime": "2019-01-01T10:00:10.000Z",
     "deltaT": 1,
     "deltaTUnit": "seconds",
     "output": "csv",
@@ -20,47 +20,19 @@
 	],
 	"agents": [ {
       "name":"Blue",
-	  "count":4,
-	  "file":"in_blue.csv",
-	  "mapping": [
-		{
-			"parameter": "team",
-			"value": 1
-		}
-  	]
+	  "count":0
 	},
 	{
 		"name":"Yellow",
-		"count":4,
-		"file":"in_yellow.csv",
-		"mapping": [
-			{
-				"parameter": "team",
-				"value": 2
-			}
-	]
+		"count":0
 	},
 	{
 		"name":"Red",
-		"count":4,
-		"file":"in_red.csv",
-		"mapping": [
-			{
-				"parameter": "team",
-				"value": 3
-			}
-	  ]
+		"count":1
 	},
 	{
 		"name":"Green",
-		"count":1,
-		"file":"in_green.csv",
-		"mapping": [
-			{
-				"parameter": "team",
-				"value": 4
-			}
-	]
+		"count":1
 	},
 	{
 		"name":"Spawner",
