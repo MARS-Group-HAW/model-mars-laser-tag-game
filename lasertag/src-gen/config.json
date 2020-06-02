@@ -1,7 +1,7 @@
 {
 	"globals": {
     "startTime": "2019-01-01T10:00:00.000Z",
-    "endTime": "2019-01-01T10:05:00.000Z",
+    "endTime": "2019-01-01T10:01:00.000Z",
     "deltaT": 1,
     "deltaTUnit": "seconds",
     "output": "csv",
@@ -20,20 +20,24 @@
 	],
 	"agents": [
 		{
-			"name":"Blue",
-			"count":0
+			"name":"Red",
+			"count":3,
+			"file":"in_red.csv"
 		},
 		{
 			"name":"Yellow",
-			"count":0
-		},
-		{
-			"name":"Red",
-			"count":1
+			"count":3,
+			"file":"in_yellow.csv"
 		},
 		{
 			"name":"Green",
-			"count":1
+			"count":3,
+			"file":"in_green.csv"
+		},
+		{
+			"name":"Blue",
+			"count":3,
+			"file":"in_blue.csv"
 		},
 		{
 			"name":"Spawner",
