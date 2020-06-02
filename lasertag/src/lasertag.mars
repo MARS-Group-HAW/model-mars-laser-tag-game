@@ -53,7 +53,7 @@ agent Green on Battleground {
 			goTo(22.0, 22.0)
 			if ((xcor === 22.0) and (ycor === 22.0)) {
 				stage = 1
-				explore_hills()
+				exploreHills()
 				if (hills.Size() > 0) {
 					goTo(hills.Get(0).Item1, hills.Get(0).Item2)
 				}
@@ -62,19 +62,19 @@ agent Green on Battleground {
 		if (stage === 1) {
 			goTo(hills.Get(0).Item1, hills.Get(0).Item2)
 			if ((xcor === hills.Get(0).Item1) and (ycor === hills.Get(0).Item2)) {
-				change_stance("lying")
+				changeStance("lying")
 				stage = 2
 			}
 		}
 		if (stage === 2) {
-			var enemies = explore_enemies()
+			var enemies = exploreEnemies()
 			if (length(enemies.Item1) > 0) {
 				var red = enemies.Item1
 				var r = red[0]
 				tag(r)
 			}
 		}
-		refill_points()
+		refillPoints()
 	}
 
 // **************************************************************************************** 
@@ -83,19 +83,19 @@ agent Green on Battleground {
 	
 	// USER METHOD: exploration of environment
 	// o: "barriers", "hills", "ditches"
-	def explore_env(o : string) {
+	def exploreEnv(o : string) {
 		if (actionPoints < 1) { return }
 		switch (o) {
-			case "barriers" : { explore_barriers() }
-			case "hills" : { explore_hills() }
-			case "ditches" : { explore_ditches() }
+			case "barriers" : { exploreBarriers() }
+			case "hills" : { exploreHills() }
+			case "ditches" : { exploreDitches() }
 		}
 		actionPoints--
 	}
 	
 	// generates a list of coordinates within visualRange that contain a wall
-	def explore_barriers() {
-		var currBarriers = explore Barrier where [b => return ((distance b) <= visualRange and hasBeeLine(xcor, ycor, b.GetX, b.GetY))]
+	def exploreBarriers() {
+		var currBarriers = explore Barrier where [b => return ((distance b) <= visualRange and hasBeeline(xcor, ycor, b.GetX, b.GetY))]
 		each (b in currBarriers) {
 			var inList : bool = false
 			each (e in barriers) {
@@ -105,8 +105,8 @@ agent Green on Battleground {
 		}
 	}
 	
-	def explore_hills() {
-		var currHills = explore Hill where [h => return ((distance h) <= visualRange and hasBeeLine(xcor, ycor, h.GetX, h.GetY))]
+	def exploreHills() {
+		var currHills = explore Hill where [h => return ((distance h) <= visualRange and hasBeeline(xcor, ycor, h.GetX, h.GetY))]
 		each (h in currHills) {
 			var inList : bool = false
 			each (e in hills) {
@@ -116,8 +116,8 @@ agent Green on Battleground {
 		}
 	}
 	
-	def explore_ditches() {
-		var currDitches = explore Ditch where [d => return ((distance d) <= visualRange and hasBeeLine(xcor, ycor, d.GetX, d.GetY))]
+	def exploreDitches() {
+		var currDitches = explore Ditch where [d => return ((distance d) <= visualRange and hasBeeline(xcor, ycor, d.GetX, d.GetY))]
 		each (d in currDitches) {
 			var inList : bool = false
 			each (e in ditches) {
@@ -132,10 +132,10 @@ agent Green on Battleground {
 		// 1) enemy coordinates are within visualRange
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
-	def explore_enemies() : Tuple<Red[], Blue[], Yellow[]> {
-		var enemies = #(explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)]
+	def exploreEnemies() : Tuple<Red[], Blue[], Yellow[]> {
+		var enemies = #(explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
@@ -143,8 +143,8 @@ agent Green on Battleground {
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
 	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
-	def hasBeeLine(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
-	    var hasBeeLine : bool = true
+	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
+	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
 	    var y : integer = y1 as integer
 	    var newX2 : integer = x2 as integer
@@ -172,9 +172,9 @@ agent Green on Battleground {
 	    }
 	    var numerator : integer = longest / 2
 	    for (var i=0; i < longest; i++) {
-	        if (battleground.GetIntegerValue(x as real, y as real) === 1) {
-				hasBeeLine = false
-				return hasBeeLine
+	        if ((battleground.GetIntegerValue(x as real, y as real) === 1) or (battleground.GetIntegerValue(x as real, y as real) === 2)) {
+				hasBeeline = false
+				return hasBeeline
 			}
 	        numerator = numerator + shortest
 	        if (not (numerator < longest)) {
@@ -186,7 +186,7 @@ agent Green on Battleground {
 	            y = y + dy2
 	        }
 	    }
-	    return hasBeeLine
+	    return hasBeeline
 	}
 	
 // **************************************************************************************** 
@@ -198,7 +198,7 @@ agent Green on Battleground {
 	// xGoal: x-coordinate of grid cell Guest wants to move to
 	// yGoal: y-coordinate of grid cell Guest wants to move to
 	// return: boolean states if step was successfully taken
-	// TODO: clean up movement (remove unnecessary logic, code, methods)
+	// TODO: clean up movement (removeFromQueue unnecessary logic, code, methods)
 	def goTo(xGoal : real, yGoal : real) : bool {
 		if (battleground.GetIntegerValue(xGoal, yGoal) === 1) {
 			hasMoved = true
@@ -209,7 +209,7 @@ agent Green on Battleground {
 		if (not pathCalculated) { initPathfinding(xGoal, yGoal) }
 		sStart = findNextCell()
 		var neighsInRouteList = findNeighsInRouteList()
-		var neighsWithChangedCost = ScanCostChanges(neighsInRouteList)
+		var neighsWithChangedCost = scanCostChanges(neighsInRouteList)
 		if (neighsWithChangedCost.Size() !== 0) {
 			// calculation of completely new path
 			var newExpandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>
@@ -222,7 +222,7 @@ agent Green on Battleground {
 			km = 0.0
 			sStart = #(xcor, ycor, g, rhs, battleground.GetIntegerValue(xcor, ycor), 1000.0, 1000.0)
 			sLast = sStart
-			ComputeShortestPath(sStart, km)
+			computeShortestPath(sStart, km)
 			sStart = findNextCell()
 		}
 		if (battleground.GetIntegerValue(sStart.Item1, sStart.Item2) === 2) {
@@ -238,7 +238,7 @@ agent Green on Battleground {
 				return false
 			}
 		}
-		move_me(sStart.Item1, sStart.Item2)
+		moveMe(sStart.Item1, sStart.Item2)
 		if ((xcor === sGoal.Item1) and (ycor === sGoal.Item2)) { pathCalculated = false	}
 		return true
 	}
@@ -256,38 +256,38 @@ agent Green on Battleground {
 		expandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>
 		routeList = new List<Tuple<real, real, integer, integer, integer, real, real>>
 		expandQueue.Add(sGoal)
-		ComputeShortestPath(sStart, km)
+		computeShortestPath(sStart, km)
 		pathCalculated = true
 	}
 	
 	// computes shortest path from current position to goal
 	// sStart: tuple representing grid cell from which Guest starts moving towards goal
 	// km: key modifier value
-	def ComputeShortestPath(sStart : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
-		var u : Tuple<real, real, integer, integer, integer, real, real> = GetTopKey()
-		while ((u.Item6 !== 0.0) and ((u.Item6 < CalcKey1(sStart, km)) or (sStart.Item4 > sStart.Item3))) {
+	def computeShortestPath(sStart : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
+		var u : Tuple<real, real, integer, integer, integer, real, real> = getTopKey()
+		while ((u.Item6 !== 0.0) and ((u.Item6 < calcKey1(sStart, km)) or (sStart.Item4 > sStart.Item3))) {
 			var kOld1 = u.Item6
-			var kNew1 = CalcKey1(u, km)
-			var kNew2 = CalcKey2(u)
+			var kNew1 = calcKey1(u, km)
+			var kNew2 = calcKey2(u)
 			if (kOld1 < kNew1) {
 				var v = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, kNew1, kNew2)
-				UpdateQueue(u, v)
+				updateQueue(u, v)
 			} else if (u.Item3 > u.Item4) {
 				var uNew = #(u.Item1, u.Item2, u.Item4, u.Item4, u.Item5, u.Item6, u.Item7)
 				routeList.Add(uNew)
 				var NeighList = Neigh(uNew)
-				Remove(u)
+				removeFromQueue(u)
 				each (var s in NeighList) {
 					if ((s.Item1 !== sGoal.Item1) or (s.Item2 !== sGoal.Item2)) {
-						var newRHS = RHS(s, uNew)
+						var newRHS = rhs(s, uNew)
 						var sNew = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
-						UpdateVertex(sNew, km)
+						updateVertex(sNew, km)
 					}
 				}
 			} else {
 				var gOld = u.Item3
 				var uNew = #(u.Item1, u.Item2, g, u.Item4, u.Item5, u.Item6, u.Item7)
-				UpdateQueue(u, uNew)
+				updateQueue(u, uNew)
 				var neighList = Neigh(uNew)
 				neighList.Add(uNew)
 				each (var s in neighList) {
@@ -297,14 +297,14 @@ agent Green on Battleground {
 							var neighListTemp = Neigh(s)
 							var newRHS = getMinRHS(s, neighListTemp)
 							var newS = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
-							UpdateVertex(newS, km)
+							updateVertex(newS, km)
 							updated = true
 						}
 					}
-					if (not updated) { UpdateVertex(s, km) }
+					if (not updated) { updateVertex(s, km) }
 				}
 			}
-			u = GetTopKey()
+			u = getTopKey()
 		}
 	}
 	
@@ -314,9 +314,9 @@ agent Green on Battleground {
 		var nextCellCandidates = findNeighsInRouteList()
 		var minNeigh = nextCellCandidates.Get(0)
 		each (var neigh in nextCellCandidates) {
-			if ((Cost(neigh, sStart) + neigh.Item3) < (Cost(minNeigh, sStart) + minNeigh.Item3)) {
+			if ((cost(neigh, sStart) + neigh.Item3) < (cost(minNeigh, sStart) + minNeigh.Item3)) {
 				minNeigh = neigh
-			} else if ((Cost(neigh, sStart) + neigh.Item3) === (Cost(minNeigh, sStart) + minNeigh.Item3)) {
+			} else if ((cost(neigh, sStart) + neigh.Item3) === (cost(minNeigh, sStart) + minNeigh.Item3)) {
 				if ((xcor === neigh.Item1) or (ycor === neigh.Item2)) {
 					minNeigh = neigh
 				}
@@ -330,7 +330,7 @@ agent Green on Battleground {
 	def findNeighsInRouteList() : List<Tuple<real, real, integer, integer, integer, real, real>> {
 		var nextCellCandidates = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each (var s in routeList) {
-			if (Heur(sStart, s) === 1.0) {
+			if (heur(sStart, s) === 1.0) {
 				nextCellCandidates.Add(s)
 			}
 		}
@@ -340,11 +340,11 @@ agent Green on Battleground {
 	// determines for all elements of List if their cost is not equal to 1.
 	// List: neighbors of sStart
 	// return: list with neighbors of sStart that are in routeList and whose cost is not equal to 1
-	def ScanCostChanges(neighsinRouteList : List<Tuple<real, real, integer, integer, integer, real, real>>) : List<Tuple<real, real, integer, integer, integer, real, real>> {
+	def scanCostChanges(neighsinRouteList : List<Tuple<real, real, integer, integer, integer, real, real>>) : List<Tuple<real, real, integer, integer, integer, real, real>> {
 		var currCostNeigh : integer
 		var neighsWithChangedCost = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each(currNeigh in neighsinRouteList){
-			currCostNeigh = Cost(currNeigh, sStart)
+			currCostNeigh = cost(currNeigh, sStart)
 			if (currCostNeigh !== currNeigh.Item5) {
 				neighsWithChangedCost.Add(currNeigh)
 			}
@@ -354,7 +354,7 @@ agent Green on Battleground {
 	
 	// obtains the next cell that should be examined during pathfinding
 	// return: tuple with most favorable key1 and key2
-	def GetTopKey() : Tuple<real, real, integer, integer, integer, real, real> {
+	def getTopKey() : Tuple<real, real, integer, integer, integer, real, real> {
     	var minKey1 : real = expandQueue.Get(0).Item6
     	var minKey2 : real = expandQueue.Get(0).Item7
     	each (currElem in expandQueue) {
@@ -379,31 +379,31 @@ agent Green on Battleground {
 	// s: tuple for which key1 is to be calculated
 	// km: key modifier value
 	// return: key1 value of s
-	def CalcKey1(s : Tuple<real, real, integer, integer, integer, real, real>, km : real) : real {
-		return Math.Min(s.Item3, s.Item4) + Heur(sStart, s) + km
+	def calcKey1(s : Tuple<real, real, integer, integer, integer, real, real>, km : real) : real {
+		return Math.Min(s.Item3, s.Item4) + heur(sStart, s) + km
 	}
 	
 	// heuristic: takes the larger value of the x-range and y-range between two grid cells
 	// s1: tuple representing the first grid cell to be used in heuristic calculation
 	// s2: tuple representing the second grid cell to be used in heuristic calculation
 	// return: result of heuristic calculation
-	def Heur(s1 : Tuple<real, real, integer, integer, integer, real, real>, s2 : Tuple<real, real, integer, integer, integer, real, real>) : real {
+	def heur(s1 : Tuple<real, real, integer, integer, integer, real, real>, s2 : Tuple<real, real, integer, integer, integer, real, real>) : real {
 		return Math.Max(Math.Abs(s1.Item1 - s2.Item1), Math.Abs(s1.Item2 - s2.Item2))
 	}
 	
 	// calculates the second part of the key of a grid cell
 	// s: tuple for which key2 is to be calculated
 	// return: key2 value of s
-	def CalcKey2(s : Tuple<real, real, integer, integer, integer, real, real>) : real {
+	def calcKey2(s : Tuple<real, real, integer, integer, integer, real, real>) : real {
 		var key2 : real = Math.Min(s.Item3, s.Item4)
 		return key2
 	}
 	
-	// updates expandQueue by calling remove method and adding a new tuple
+	// updates expandQueue by calling removeFromQueue method and adding a new tuple
 	// u: tuple to be removed from expandQueue
 	// newU: tuple to be added to expandQueue
-	def UpdateQueue(u : Tuple<real, real, integer, integer, integer, real, real>, newU : Tuple<real, real, integer, integer, integer, real, real>) {
-		Remove(u)
+	def updateQueue(u : Tuple<real, real, integer, integer, integer, real, real>, newU : Tuple<real, real, integer, integer, integer, real, real>) {
+		removeFromQueue(u)
 		expandQueue.Add(newU)
 	}
 	
@@ -424,7 +424,7 @@ agent Green on Battleground {
 	
 	// removes a tuple from expandQueue
 	// u: tuple to be removed from expandQueue
-	def Remove(u : Tuple<real, real, integer, integer, integer, real, real>) {
+	def removeFromQueue(u : Tuple<real, real, integer, integer, integer, real, real>) {
 		var newExpandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each (var s in expandQueue) {
 			if ((s.Item1 !== u.Item1) or ((s.Item2 !== u.Item2))) {
@@ -460,7 +460,7 @@ agent Green on Battleground {
 					}
 					if (not found) {
 						var neigh = #(x, y, g, rhs, 0, 1000.0, 1000.0)
-						var costNeigh = Cost(neigh, s)
+						var costNeigh = cost(neigh, s)
 						if (costNeigh !== 1000) {
 							var newNeigh = #(x, y, g, rhs, costNeigh, 1000.0, 1000.0)
 							NeighList.Add(newNeigh)
@@ -476,11 +476,11 @@ agent Green on Battleground {
 	// s: tuple representing grid cell neighboring u
 	// u: tuple representing grid cell currently being examined
 	// return: updated rhs value
-	def RHS(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+	def rhs(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
 		if ((s.Item1 === sStart.Item1) and (s.Item2 === sStart.Item2)) {
 			return 0
 		} else {
-			var newRHS : integer = Math.Min(s.Item4, (Cost(u, s) + u.Item3))
+			var newRHS : integer = Math.Min(s.Item4, (cost(u, s) + u.Item3))
 			return newRHS
 		}
 	}
@@ -489,19 +489,19 @@ agent Green on Battleground {
 	// u: tuple to be updated
 	// km: key modifier value
 	// TODO: km aus args entfernen?
-	def UpdateVertex(u : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
+	def updateVertex(u : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
 		var isInQueue : bool = inQueue(u)
-		var newKey1 = CalcKey1(u, km)
-		var newKey2 = CalcKey2(u)
+		var newKey1 = calcKey1(u, km)
+		var newKey2 = calcKey2(u)
 		if ((u.Item3 !== u.Item4) and isInQueue) {
 			var uNew = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, newKey1, newKey2)
-			UpdateQueue(u, uNew)
+			updateQueue(u, uNew)
 		} else if ((u.Item3 !== u.Item4) and (not isInQueue)) {
 			var uNew = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, newKey1, newKey2)
 			expandQueue.Add(uNew)
 		} else if ((u.Item3 === u.Item4) and (isInQueue)) {
 			routeList.Add(u)
-			Remove(u)
+			removeFromQueue(u)
 		}
 	}
 	
@@ -533,8 +533,8 @@ agent Green on Battleground {
 	// s: tuple representing the first grid cell to be used in cost calculation
 	// u: tuple representing the second grid cell to be used in cost calculation
 	// return: cost value on s
-	def Cost(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
-		var dist = Heur(s, u)
+	def cost(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+		var dist = heur(s, u)
 		if (dist === 1.0) {
 			if (battleground.GetIntegerValue(s.Item1, s.Item2) === 1) {
 				return 1000
@@ -570,9 +570,9 @@ agent Green on Battleground {
 	// neighListTemp: list of tuples representing grid cells that neighbor s
 	// return: smallest rhs values among neighbors of s
 	def getMinRHS(s : Tuple<real, real, integer, integer, integer, real, real>, neighListTemp: List<Tuple<real, real, integer, integer, integer, real, real>>) : integer {
-		var minRHS = neighListTemp.Get(0).Item3 + Cost(neighListTemp.Get(0), s)
+		var minRHS = neighListTemp.Get(0).Item3 + cost(neighListTemp.Get(0), s)
 		each (var neigh in neighListTemp) {
-			var compRHS : integer = neigh.Item3 + Cost(neigh, s)
+			var compRHS : integer = neigh.Item3 + cost(neigh, s)
 			if (compRHS < minRHS) {
 				minRHS = compRHS
 			}
@@ -590,7 +590,7 @@ agent Green on Battleground {
 
 	// moves agent, if possible, one grid cell in the direction specified by the input parameter <direction>
 	// TODO: implement a pathfinding algorithm (D*-algorithm?)
-	def move_me(x : real, y : real) {
+	def moveMe(x : real, y : real) {
 		// moving away from a hill or ditch
 		switch (battleground.GetIntegerValue(xcor, ycor)) {
 			// hill
@@ -640,7 +640,7 @@ agent Green on Battleground {
 // ****************************************************************************************
 
 	// USER METHOD: changes currStance to <newStance>
-	def change_stance(newStance : string) {
+	def changeStance(newStance : string) {
 		if (actionPoints < 2) {	return }
 		if (newStance === currStance) {	return }
 		switch (currStance) {
@@ -822,9 +822,9 @@ agent Green on Battleground {
 	def tag(x : real, y : real) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
-		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeLine(xcor, ycor, r.GetX, r.GetY)]
-		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeLine(xcor, ycor, b.GetX, b.GetY)]
-		var potentialYellow = explore Yellow where [ye => return (ye.GetX === x) and (ye.GetY === y) and hasBeeLine(xcor, ycor, ye.GetX, ye.GetY)]
+		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeline(xcor, ycor, r.GetX, r.GetY)]
+		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
+		var potentialYellow = explore Yellow where [ye => return (ye.GetX === x) and (ye.GetY === y) and hasBeeline(xcor, ycor, ye.GetX, ye.GetY)]
 		
 		if (length(potentialRed) > 0) { println("green found red") }
 		
@@ -851,7 +851,7 @@ agent Green on Battleground {
 
 	// refills actionPoints and movementPoints
 	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
-	def refill_points() {
+	def refillPoints() {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
@@ -944,7 +944,7 @@ agent Red on Battleground {
 			goTo(26.0, 26.0)
 			if ((xcor === 26.0) and (ycor === 26.0)) {
 				stage = 1
-				explore_ditches()
+				exploreDitches()
 				if (ditches.Size() > 0) {
 					goTo(ditches.Get(0).Item1, ditches.Get(0).Item2)
 				}
@@ -957,33 +957,33 @@ agent Red on Battleground {
 			}
 		}
 		if (stage === 2) {
-			var enemies = explore_enemies()
+			var enemies = exploreEnemies()
 			if (length(enemies.Item1) > 0) {
 				var red = enemies.Item1
 				var r = red[0]
 				tag(r)
 			}
 		}
-		refill_points()
+		refillPoints()
 	}
 	
 // **************************************************************************************** 
 // *************************** EXPLORATION AND VISION BEGIN *******************************
 // ****************************************************************************************
 	
-	def explore_env(o : string) {
+	def exploreEnv(o : string) {
 		if (actionPoints < 1) { return }
 		switch (o) {
-			case "barriers" : { explore_barriers() }
-			case "hills" : { explore_hills() }
-			case "ditches" : { explore_ditches() }
+			case "barriers" : { exploreBarriers() }
+			case "hills" : { exploreHills() }
+			case "ditches" : { exploreDitches() }
 		}
 		actionPoints = actionPoints - 1
 	}
 	
 	// generates a list of coordinates within visualRange that contain a wall
-	def explore_barriers() {
-		var currBarriers = explore Barrier where [b => return ((distance b) <= visualRange and hasBeeLine(xcor, ycor, b.GetX, b.GetY))]
+	def exploreBarriers() {
+		var currBarriers = explore Barrier where [b => return ((distance b) <= visualRange and hasBeeline(xcor, ycor, b.GetX, b.GetY))]
 		each (b in currBarriers) {
 			var isContained : bool = false
 			each (e in barriers) {
@@ -997,8 +997,8 @@ agent Red on Battleground {
 		}
 	}
 	
-	def explore_hills() {
-		var currHills = explore Hill where [h => return ((distance h) <= visualRange and hasBeeLine(xcor, ycor, h.GetX, h.GetY))]
+	def exploreHills() {
+		var currHills = explore Hill where [h => return ((distance h) <= visualRange and hasBeeline(xcor, ycor, h.GetX, h.GetY))]
 		println length(currHills)
 		each (h in currHills) {
 			var isContained : bool = false
@@ -1013,8 +1013,8 @@ agent Red on Battleground {
 		}
 	}
 	
-	def explore_ditches() {
-		var currDitches = explore Ditch where [d => return ((distance d) <= visualRange and hasBeeLine(xcor, ycor, d.GetX, d.GetY))]
+	def exploreDitches() {
+		var currDitches = explore Ditch where [d => return ((distance d) <= visualRange and hasBeeline(xcor, ycor, d.GetX, d.GetY))]
 		each (d in currDitches) {
 			var isContained : bool = false
 			each (e in ditches) {
@@ -1033,10 +1033,10 @@ agent Red on Battleground {
 		// 1) enemy coordinates are within visualRange
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) there are no walls blocking linear vision between enemy and me
-	def explore_enemies() : Tuple<Green[], Blue[], Yellow[]> {
-		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)]
+	def exploreEnemies() : Tuple<Green[], Blue[], Yellow[]> {
+		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) {
 			actionPoints = actionPoints - 1
@@ -1046,8 +1046,8 @@ agent Red on Battleground {
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
 	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
-	def hasBeeLine(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
-	    var hasBeeLine : bool = true
+	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
+	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
 	    var y : integer = y1 as integer
 	    var newX2 : integer = x2 as integer
@@ -1088,8 +1088,8 @@ agent Red on Battleground {
 	    var numerator : integer = longest / 2
 	    for (var i=0; i < longest; i++) {
 	        if (battleground.GetIntegerValue(x as real, y as real) === 1) {
-				hasBeeLine = false
-				return hasBeeLine
+				hasBeeline = false
+				return hasBeeline
 			}
 	        numerator = numerator + shortest
 	        if (not (numerator < longest)) {
@@ -1101,7 +1101,7 @@ agent Red on Battleground {
 	            y = y + dy2
 	        }
 	    }
-	    return hasBeeLine
+	    return hasBeeline
 	}
 
 // **************************************************************************************** 
@@ -1131,7 +1131,7 @@ agent Red on Battleground {
 		}
 		sStart = findNextCell()
 		var neighsInRouteList = findNeighsInRouteList()
-		var neighsWithChangedCost = ScanCostChanges(neighsInRouteList)
+		var neighsWithChangedCost = scanCostChanges(neighsInRouteList)
 		if (neighsWithChangedCost.Size() !== 0) {
 			// calculation of completely new path
 			var newExpandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>
@@ -1144,7 +1144,7 @@ agent Red on Battleground {
 			km = 0.0
 			sStart = #(xcor, ycor, g, rhs, battleground.GetIntegerValue(xcor, ycor), 1000.0, 1000.0)
 			sLast = sStart
-			ComputeShortestPath(sStart, km)
+			computeShortestPath(sStart, km)
 			sStart = findNextCell()
 		}
 		if (battleground.GetIntegerValue(sStart.Item1, sStart.Item2) === 2) {
@@ -1160,7 +1160,7 @@ agent Red on Battleground {
 				return false
 			}
 		}
-		move_me(sStart.Item1, sStart.Item2)
+		moveMe(sStart.Item1, sStart.Item2)
 		if ((xcor === sGoal.Item1) and (ycor === sGoal.Item2)) {
 			pathCalculated = false
 		}
@@ -1180,38 +1180,38 @@ agent Red on Battleground {
 		expandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>
 		routeList = new List<Tuple<real, real, integer, integer, integer, real, real>>
 		expandQueue.Add(sGoal)
-		ComputeShortestPath(sStart, km)
+		computeShortestPath(sStart, km)
 		pathCalculated = true
 	}
 	
 	// computes shortest path from current position to goal
 	// sStart: tuple representing grid cell from which Guest starts moving towards goal
 	// km: key modifier value
-	def ComputeShortestPath(sStart : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
-		var u : Tuple<real, real, integer, integer, integer, real, real> = GetTopKey()
-		while ((u.Item6 !== 0.0) and ((u.Item6 < CalcKey1(sStart, km)) or (sStart.Item4 > sStart.Item3))) {
+	def computeShortestPath(sStart : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
+		var u : Tuple<real, real, integer, integer, integer, real, real> = getTopKey()
+		while ((u.Item6 !== 0.0) and ((u.Item6 < calcKey1(sStart, km)) or (sStart.Item4 > sStart.Item3))) {
 			var kOld1 = u.Item6
-			var kNew1 = CalcKey1(u, km)
-			var kNew2 = CalcKey2(u)
+			var kNew1 = calcKey1(u, km)
+			var kNew2 = calcKey2(u)
 			if (kOld1 < kNew1) {
 				var v = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, kNew1, kNew2)
-				UpdateQueue(u, v)
+				updateQueue(u, v)
 			} else if (u.Item3 > u.Item4) {
 				var uNew = #(u.Item1, u.Item2, u.Item4, u.Item4, u.Item5, u.Item6, u.Item7)
 				routeList.Add(uNew)
 				var NeighList = Neigh(uNew)
-				Remove(u)
+				removeFromQueue(u)
 				each (var s in NeighList) {
 					if ((s.Item1 !== sGoal.Item1) or (s.Item2 !== sGoal.Item2)) {
-						var newRHS = RHS(s, uNew)
+						var newRHS = rhs(s, uNew)
 						var sNew = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
-						UpdateVertex(sNew, km)
+						updateVertex(sNew, km)
 					}
 				}
 			} else {
 				var gOld = u.Item3
 				var uNew = #(u.Item1, u.Item2, g, u.Item4, u.Item5, u.Item6, u.Item7)
-				UpdateQueue(u, uNew)
+				updateQueue(u, uNew)
 				var neighList = Neigh(uNew)
 				neighList.Add(uNew)
 				each (var s in neighList) {
@@ -1221,16 +1221,16 @@ agent Red on Battleground {
 							var neighListTemp = Neigh(s)
 							var newRHS = getMinRHS(s, neighListTemp)
 							var newS = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
-							UpdateVertex(newS, km)
+							updateVertex(newS, km)
 							updated = true
 						}
 					}
 					if (not updated) {
-						UpdateVertex(s, km)
+						updateVertex(s, km)
 					}
 				}
 			}
-			u = GetTopKey()
+			u = getTopKey()
 		}
 	}
 	
@@ -1240,9 +1240,9 @@ agent Red on Battleground {
 		var nextCellCandidates = findNeighsInRouteList()
 		var minNeigh = nextCellCandidates.Get(0)
 		each (var neigh in nextCellCandidates) {
-			if ((Cost(neigh, sStart) + neigh.Item3) < (Cost(minNeigh, sStart) + minNeigh.Item3)) {
+			if ((cost(neigh, sStart) + neigh.Item3) < (cost(minNeigh, sStart) + minNeigh.Item3)) {
 				minNeigh = neigh
-			} else if ((Cost(neigh, sStart) + neigh.Item3) === (Cost(minNeigh, sStart) + minNeigh.Item3)) {
+			} else if ((cost(neigh, sStart) + neigh.Item3) === (cost(minNeigh, sStart) + minNeigh.Item3)) {
 				if ((xcor === neigh.Item1) or (ycor === neigh.Item2)) {
 					minNeigh = neigh
 				}
@@ -1256,7 +1256,7 @@ agent Red on Battleground {
 	def findNeighsInRouteList() : List<Tuple<real, real, integer, integer, integer, real, real>> {
 		var nextCellCandidates = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each (var s in routeList) {
-			if (Heur(sStart, s) === 1.0) {
+			if (heur(sStart, s) === 1.0) {
 				nextCellCandidates.Add(s)
 			}
 		}
@@ -1266,11 +1266,11 @@ agent Red on Battleground {
 	// determines for all elements of List if their cost is not equal to 1.
 	// List: neighbors of sStart
 	// return: list with neighbors of sStart that are in routeList and whose cost is not equal to 1
-	def ScanCostChanges(neighsinRouteList : List<Tuple<real, real, integer, integer, integer, real, real>>) : List<Tuple<real, real, integer, integer, integer, real, real>> {
+	def scanCostChanges(neighsinRouteList : List<Tuple<real, real, integer, integer, integer, real, real>>) : List<Tuple<real, real, integer, integer, integer, real, real>> {
 		var currCostNeigh : integer
 		var neighsWithChangedCost = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each(currNeigh in neighsinRouteList){
-			currCostNeigh = Cost(currNeigh, sStart)
+			currCostNeigh = cost(currNeigh, sStart)
 			if (currCostNeigh !== currNeigh.Item5) {
 				neighsWithChangedCost.Add(currNeigh)
 			}
@@ -1280,7 +1280,7 @@ agent Red on Battleground {
 	
 	// obtains the next cell that should be examined during pathfinding
 	// return: tuple with most favorable key1 and key2
-	def GetTopKey() : Tuple<real, real, integer, integer, integer, real, real> {
+	def getTopKey() : Tuple<real, real, integer, integer, integer, real, real> {
     	var minKey1 : real = expandQueue.Get(0).Item6
     	var minKey2 : real = expandQueue.Get(0).Item7
     	each (currElem in expandQueue) {
@@ -1305,31 +1305,31 @@ agent Red on Battleground {
 	// s: tuple for which key1 is to be calculated
 	// km: key modifier value
 	// return: key1 value of s
-	def CalcKey1(s : Tuple<real, real, integer, integer, integer, real, real>, km : real) : real {
-		return Math.Min(s.Item3, s.Item4) + Heur(sStart, s) + km
+	def calcKey1(s : Tuple<real, real, integer, integer, integer, real, real>, km : real) : real {
+		return Math.Min(s.Item3, s.Item4) + heur(sStart, s) + km
 	}
 	
 	// heuristic: takes the larger value of the x-range and y-range between two grid cells
 	// s1: tuple representing the first grid cell to be used in heuristic calculation
 	// s2: tuple representing the second grid cell to be used in heuristic calculation
 	// return: result of heuristic calculation
-	def Heur(s1 : Tuple<real, real, integer, integer, integer, real, real>, s2 : Tuple<real, real, integer, integer, integer, real, real>) : real {
+	def heur(s1 : Tuple<real, real, integer, integer, integer, real, real>, s2 : Tuple<real, real, integer, integer, integer, real, real>) : real {
 		return Math.Max(Math.Abs(s1.Item1 - s2.Item1), Math.Abs(s1.Item2 - s2.Item2))
 	}
 	
 	// calculates the second part of the key of a grid cell
 	// s: tuple for which key2 is to be calculated
 	// return: key2 value of s
-	def CalcKey2(s : Tuple<real, real, integer, integer, integer, real, real>) : real {
+	def calcKey2(s : Tuple<real, real, integer, integer, integer, real, real>) : real {
 		var key2 : real = Math.Min(s.Item3, s.Item4)
 		return key2
 	}
 	
-	// updates expandQueue by calling remove method and adding a new tuple
+	// updates expandQueue by calling removeFromQueue method and adding a new tuple
 	// u: tuple to be removed from expandQueue
 	// newU: tuple to be added to expandQueue
-	def UpdateQueue(u : Tuple<real, real, integer, integer, integer, real, real>, newU : Tuple<real, real, integer, integer, integer, real, real>) {
-		Remove(u)
+	def updateQueue(u : Tuple<real, real, integer, integer, integer, real, real>, newU : Tuple<real, real, integer, integer, integer, real, real>) {
+		removeFromQueue(u)
 		expandQueue.Add(newU)
 	}
 	
@@ -1350,7 +1350,7 @@ agent Red on Battleground {
 	
 	// removes a tuple from expandQueue
 	// u: tuple to be removed from expandQueue
-	def Remove(u : Tuple<real, real, integer, integer, integer, real, real>) {
+	def removeFromQueue(u : Tuple<real, real, integer, integer, integer, real, real>) {
 		var newExpandQueue = new List<Tuple<real, real, integer, integer, integer, real, real>>()
 		each (var s in expandQueue) {
 			if ((s.Item1 !== u.Item1) or ((s.Item2 !== u.Item2))) {
@@ -1386,7 +1386,7 @@ agent Red on Battleground {
 					}
 					if (not found) {
 						var neigh = #(x, y, g, rhs, 0, 1000.0, 1000.0)
-						var costNeigh = Cost(neigh, s)
+						var costNeigh = cost(neigh, s)
 						if (costNeigh !== 1000) {
 							var newNeigh = #(x, y, g, rhs, costNeigh, 1000.0, 1000.0)
 							NeighList.Add(newNeigh)
@@ -1402,11 +1402,11 @@ agent Red on Battleground {
 	// s: tuple representing grid cell neighboring u
 	// u: tuple representing grid cell currently being examined
 	// return: updated rhs value
-	def RHS(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+	def rhs(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
 		if ((s.Item1 === sStart.Item1) and (s.Item2 === sStart.Item2)) {
 			return 0
 		} else {
-			var newRHS : integer = Math.Min(s.Item4, (Cost(u, s) + u.Item3))
+			var newRHS : integer = Math.Min(s.Item4, (cost(u, s) + u.Item3))
 			return newRHS
 		}
 	}
@@ -1415,19 +1415,19 @@ agent Red on Battleground {
 	// u: tuple to be updated
 	// km: key modifier value
 	// TODO: km aus args entfernen?
-	def UpdateVertex(u : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
+	def updateVertex(u : Tuple<real, real, integer, integer, integer, real, real>, km : real) {
 		var isInQueue : bool = inQueue(u)
-		var newKey1 = CalcKey1(u, km)
-		var newKey2 = CalcKey2(u)
+		var newKey1 = calcKey1(u, km)
+		var newKey2 = calcKey2(u)
 		if ((u.Item3 !== u.Item4) and isInQueue) {
 			var uNew = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, newKey1, newKey2)
-			UpdateQueue(u, uNew)
+			updateQueue(u, uNew)
 		} else if ((u.Item3 !== u.Item4) and (not isInQueue)) {
 			var uNew = #(u.Item1, u.Item2, u.Item3, u.Item4, u.Item5, newKey1, newKey2)
 			expandQueue.Add(uNew)
 		} else if ((u.Item3 === u.Item4) and (isInQueue)) {
 			routeList.Add(u)
-			Remove(u)
+			removeFromQueue(u)
 		}
 	}
 	
@@ -1459,8 +1459,8 @@ agent Red on Battleground {
 	// s: tuple representing the first grid cell to be used in cost calculation
 	// u: tuple representing the second grid cell to be used in cost calculation
 	// return: cost value on s
-	def Cost(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
-		var dist = Heur(s, u)
+	def cost(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+		var dist = heur(s, u)
 		if (dist === 1.0) {
 			if (battleground.GetIntegerValue(s.Item1, s.Item2) === 1) {
 				return 1000
@@ -1496,9 +1496,9 @@ agent Red on Battleground {
 	// neighListTemp: list of tuples representing grid cells that neighbor s
 	// return: smallest rhs values among neighbors of s
 	def getMinRHS(s : Tuple<real, real, integer, integer, integer, real, real>, neighListTemp: List<Tuple<real, real, integer, integer, integer, real, real>>) : integer {
-		var minRHS = neighListTemp.Get(0).Item3 + Cost(neighListTemp.Get(0), s)
+		var minRHS = neighListTemp.Get(0).Item3 + cost(neighListTemp.Get(0), s)
 		each (var neigh in neighListTemp) {
-			var compRHS : integer = neigh.Item3 + Cost(neigh, s)
+			var compRHS : integer = neigh.Item3 + cost(neigh, s)
 			if (compRHS < minRHS) {
 				minRHS = compRHS
 			}
@@ -1516,7 +1516,7 @@ agent Red on Battleground {
 
 	// moves agent, if possible, one grid cell in the direction specified by the input parameter <direction>
 	// TODO: implement a pathfinding algorithm (D*-algorithm?)
-	def move_me(x : real, y : real) {
+	def moveMe(x : real, y : real) {
 		// moving away from a hill or ditch
 		switch (battleground.GetIntegerValue(xcor, ycor)) {
 			// hill
@@ -1570,7 +1570,7 @@ agent Red on Battleground {
 // ****************************************************************************************
 
 	// changes currStance to <newStance>
-	def change_stance(newStance : string) {
+	def changeStance(newStance : string) {
 		if (actionPoints < 2) {	return }
 		if (newStance === currStance) {	return }
 		switch (currStance) {
@@ -1775,9 +1775,9 @@ agent Red on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		
-		var potentialGreen = explore Green where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)]
-		var potentialBlue = explore Blue where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)]
-		var potentialYellow = explore Yellow where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeLine(xcor, ycor, x.GetX, x.GetY)]
+		var potentialGreen = explore Green where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var potentialBlue = explore Blue where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var potentialYellow = explore Yellow where [x => return (x.GetX === xCor) and (x.GetY === yCor) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 		
 		if (length(potentialGreen) > 0) { tag(potentialGreen[0]) }
 		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
@@ -1807,7 +1807,7 @@ agent Red on Battleground {
 
 	// refills actionPoints and movementPoints
 	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
-	def refill_points() {
+	def refillPoints() {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
@@ -1903,7 +1903,7 @@ agent Blue on Battleground {
 
 	// refills actionPoints and movementPoints
 	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
-	def refill_points() {
+	def refillPoints() {
 		actionPoints = 10
 		if (movementDelay > 0) {
 			movementDelay = movementDelay - 1		
@@ -1999,7 +1999,7 @@ agent Yellow on Battleground {
 
 	// refills actionPoints and movementPoints
 	// TODO: consider designing different solution for refilling points (to avoid having to touch tick methods)
-	def refill_points() {
+	def refillPoints() {
 		actionPoints = 10
 		if (movementDelay > 0) {
 			movementDelay = movementDelay - 1		
