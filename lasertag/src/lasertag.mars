@@ -49,31 +49,31 @@ agent Green on Battleground {
 	}
 	
 	tick {
-		if (stage === 0) {
-			goTo(22.0, 22.0)
-			if ((xcor === 22.0) and (ycor === 22.0)) {
-				stage = 1
-				exploreHills()
-				if (hills.Size() > 0) {
-					goTo(hills.Get(0).Item1, hills.Get(0).Item2)
-				}
-			}
-		}
-		if (stage === 1) {
-			goTo(hills.Get(0).Item1, hills.Get(0).Item2)
-			if ((xcor === hills.Get(0).Item1) and (ycor === hills.Get(0).Item2)) {
-				changeStance("lying")
-				stage = 2
-			}
-		}
-		if (stage === 2) {
-			var enemies = exploreEnemies()
-			if (length(enemies.Item1) > 0) {
-				var red = enemies.Item1
-				var r = red[0]
-				tag(r)
-			}
-		}
+//		if (stage === 0) {
+//			goTo(22.0, 22.0)
+//			if ((xcor === 22.0) and (ycor === 22.0)) {
+//				stage = 1
+//				exploreHills()
+//				if (hills.Size() > 0) {
+//					goTo(hills.Get(0).Item1, hills.Get(0).Item2)
+//				}
+//			}
+//		}
+//		if (stage === 1) {
+//			goTo(hills.Get(0).Item1, hills.Get(0).Item2)
+//			if ((xcor === hills.Get(0).Item1) and (ycor === hills.Get(0).Item2)) {
+//				changeStance("lying")
+//				stage = 2
+//			}
+//		}
+//		if (stage === 2) {
+//			var enemies = exploreEnemies()
+//			if (length(enemies.Item1) > 0) {
+//				var red = enemies.Item1
+//				var r = red[0]
+//				tag(r)
+//			}
+//		}
 		refillPoints()
 	}
 
@@ -279,7 +279,7 @@ agent Green on Battleground {
 				removeFromQueue(u)
 				each (var s in NeighList) {
 					if ((s.Item1 !== sGoal.Item1) or (s.Item2 !== sGoal.Item2)) {
-						var newRHS = rhs(s, uNew)
+						var newRHS = RHS(s, uNew)
 						var sNew = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
 						updateVertex(sNew, km)
 					}
@@ -476,7 +476,7 @@ agent Green on Battleground {
 	// s: tuple representing grid cell neighboring u
 	// u: tuple representing grid cell currently being examined
 	// return: updated rhs value
-	def rhs(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+	def RHS(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
 		if ((s.Item1 === sStart.Item1) and (s.Item2 === sStart.Item2)) {
 			return 0
 		} else {
@@ -1203,7 +1203,7 @@ agent Red on Battleground {
 				removeFromQueue(u)
 				each (var s in NeighList) {
 					if ((s.Item1 !== sGoal.Item1) or (s.Item2 !== sGoal.Item2)) {
-						var newRHS = rhs(s, uNew)
+						var newRHS = RHS(s, uNew)
 						var sNew = #(s.Item1, s.Item2, s.Item3, newRHS, s.Item5, s.Item6, s.Item7)
 						updateVertex(sNew, km)
 					}
@@ -1402,7 +1402,7 @@ agent Red on Battleground {
 	// s: tuple representing grid cell neighboring u
 	// u: tuple representing grid cell currently being examined
 	// return: updated rhs value
-	def rhs(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
+	def RHS(s : Tuple<real, real, integer, integer, integer, real, real>, u : Tuple<real, real, integer, integer, integer, real, real>) : integer {
 		if ((s.Item1 === sStart.Item1) and (s.Item2 === sStart.Item2)) {
 			return 0
 		} else {
