@@ -1,6 +1,7 @@
-lasertag/src/gen/bin
-lasertag/src/gen/logs
-lasertag/src/gen/obj
+lasertag/.settings
+lasertag/src-gen/bin
+lasertag/src-gen/logs
+lasertag/src-gen/obj
 Barrier.csv
 BattlegroundDraw.csv
 Ditch.csv
@@ -9,7 +10,14 @@ Green.csv
 Red.csv
 Blue.csv
 Yellow.csv
+Spawner.csv
 map.csv
 agents.csv
 *.cs
 *.csproj
+.project
+.DS_store
+*.xml
+*.iml
+*.pyc
+*.prefs
