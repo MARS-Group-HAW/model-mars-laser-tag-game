@@ -119,7 +119,7 @@ agent Green on Battleground {
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
-	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
+	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
 	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
 	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
@@ -952,7 +952,7 @@ agent Red on Battleground {
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
-	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
+	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
 	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
 	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
@@ -1785,7 +1785,7 @@ agent Blue on Battleground {
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
-	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
+	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
 	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
 	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
@@ -2618,7 +2618,7 @@ agent Yellow on Battleground {
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
-	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
+	// http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
 	def hasBeeline(x1 : real, y1 : real, x2 : real, y2 : real) : bool {
 	    var hasBeeline : bool = true
 	    var x : integer = x1 as integer
@@ -3341,7 +3341,7 @@ agent Yellow on Battleground {
 // ************************************************************************************************
 
 agent Spawner on Battleground {
-	
+		
 	initialize {
 		for(var x = 0; x < battleground.DimensionX; x++) {
 			for(var y = 0; y < battleground.DimensionY; y++) {
@@ -3351,7 +3351,6 @@ agent Spawner on Battleground {
 					case 1 : { spawn Barrier }
 					case 2 : { spawn Hill }
 					case 3 : { spawn Ditch }
-//					case 4 : { spawn Tunnel }
 					default: { }
 				}
 			}
@@ -3411,14 +3410,3 @@ agent Ditch on Battleground {
 	passive Occupy() => free = false
 	
 }
-
-// TODO: define attribute connectionPoint
-//agent Tunnel on Battleground {
-//	
-//	// returns x-coordinate
-//	passive GetX() => return xcor
-//
-//	// returns y-coordinate
-//	passive GetY() => return ycor
-//	
-//}
