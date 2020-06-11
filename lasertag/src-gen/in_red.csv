@@ -1,4 +1,4 @@
-﻿xSpawn;ySpawn
-1;1
-1;2
-2;1
+﻿xSpawn;ySpawn;memberID
+1;1;1
+1;2;2
+2;1;3

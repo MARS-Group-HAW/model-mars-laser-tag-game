@@ -9,6 +9,7 @@ agent Green on Battleground {
 //	*********************** general attributes ***********************
 	external observe var xSpawn : real
 	external observe var ySpawn : real
+	external observe var memberID : integer
 	observe var color : string = "green"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -104,15 +105,22 @@ agent Green on Battleground {
 		}
 	}
 	
+	// USER METHOD: generates an array of team members
+	def exploreTeam() : Green[] {
+		var team = explore Green where [x => return (actionPoints > 0)]
+		if (actionPoints > 0) { actionPoints-- }
+		return team
+	}
+	
 	// USER METHOD: generates arrays of enemies who can be seen
 	// three conditions for being able to see an enemy:
 		// 1) enemy coordinates are within visualRange
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
 	def exploreEnemies() : Tuple<Red[], Blue[], Yellow[]> {
-		var enemies = #(explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var enemies = #(explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
@@ -666,8 +674,7 @@ agent Green on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (red.GetEnergy <= 0) { points = points + 10 }
-			println "A red agent is hit"
-		} else { println "A red agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -677,26 +684,30 @@ agent Green on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch(blue.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2	}
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (blue.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
+				if (random(10) + 1 + enemyStanceVal > 8) {
 					blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
+				if (random(10) + 1 + enemyStanceVal > 6) {
 					blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
+				if (random(10) + 1 + enemyStanceVal > 4) {
 					blue.Tagged
 					tagReturn = true
 				}
@@ -707,8 +718,7 @@ agent Green on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (blue.GetEnergy <= 0) { points = points + 10 }
-			println "A blue agent is hit"
-		} else { println "A blue agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -718,26 +728,30 @@ agent Green on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch (yellow.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2 }
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (yellow.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
+				if (random(10) + 1 + enemyStanceVal > 8) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
+				if (random(10) + 1 + enemyStanceVal > 6) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
+				if (random(10) + 1 + enemyStanceVal > 4) {
 					yellow.Tagged
 					tagReturn = true
 				}
@@ -748,8 +762,7 @@ agent Green on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (yellow.GetEnergy <= 0) { points = points + 10 }
-			println "A yellow agent is hit"
-		} else { println "A yellow agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -775,7 +788,6 @@ agent Green on Battleground {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
 		magazineCount = 5
-		println("Green reloaded")
 	}
 
 // **************************************************************************************** 
@@ -817,7 +829,10 @@ agent Green on Battleground {
 		energy = energy - 10
 		wasTagged = true
 		wasTaggedCounter = 2
-		if (energy <= 0) { resetValues() }
+		if (energy <= 0) {
+			points = points - 10
+			resetValues()
+		}
 	}
 	
 	// returns current visibility range
@@ -842,6 +857,7 @@ agent Red on Battleground {
 //	*********************** general attributes ***********************
 	external observe var xSpawn : real
 	external observe var ySpawn : real
+	external observe var memberID : integer
 	observe var color : string = "red"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -936,6 +952,13 @@ agent Red on Battleground {
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
+
+	// USER METHOD: generates an array of team members
+	def exploreTeam() : Red[] {
+		var team = explore Red where [x => return (actionPoints > 0)]
+		if (actionPoints > 0) { actionPoints-- }
+		return team
+	}
 	
 	// USER METHOD: generates arrays of enemies who can be seen
 	// three conditions for being able to see an enemy:
@@ -943,9 +966,9 @@ agent Red on Battleground {
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
 	def exploreEnemies() : Tuple<Green[], Blue[], Yellow[]> {
-		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
@@ -1460,7 +1483,7 @@ agent Red on Battleground {
 		actionPoints = actionPoints - 2
 	}
 
-	// USER METHOD: tags a red enemy
+	// USER METHOD: tags a green enemy
 	def tag(green : Green) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
@@ -1499,38 +1522,41 @@ agent Red on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (green.GetEnergy <= 0) { points = points + 10 }
-			println "A red agent is hit"
-		} else { println "A red agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
 
 	// USER METHOD: tags a blue enemy
-	def tag(red : Red) {
+	def tag(blue : Blue) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch(red.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2	}
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (blue.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
-					red.Tagged
+				if (random(10) + 1 + enemyStanceVal > 8) {
+					blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
-					red.Tagged
+				if (random(10) + 1 + enemyStanceVal > 6) {
+					blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
-					red.Tagged
+				if (random(10) + 1 + enemyStanceVal > 4) {
+					blue.Tagged
 					tagReturn = true
 				}
 			}
@@ -1539,9 +1565,8 @@ agent Red on Battleground {
 			tagged = true
 			taggedCounter = 2
 			points = points + 10
-			if (red.GetEnergy <= 0) { points = points + 10 }
-			println "A blue agent is hit"
-		} else { println "A blue agent is missed" }
+			if (blue.GetEnergy <= 0) { points = points + 10 }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -1551,26 +1576,30 @@ agent Red on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch (yellow.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2 }
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (yellow.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
+				if (random(10) + 1 + enemyStanceVal > 8) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
+				if (random(10) + 1 + enemyStanceVal > 6) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
+				if (random(10) + 1 + enemyStanceVal > 4) {
 					yellow.Tagged
 					tagReturn = true
 				}
@@ -1581,8 +1610,7 @@ agent Red on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (yellow.GetEnergy <= 0) { points = points + 10 }
-			println "A yellow agent is hit"
-		} else { println "A yellow agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -1592,10 +1620,10 @@ agent Red on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var potentialGreen = explore Green where [g => return (g.GetX === x) and (g.GetY === y) and hasBeeline(xcor, ycor, g.GetX, g.GetY)]
-		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeline(xcor, ycor, r.GetX, r.GetY)]
+		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
 		var potentialYellow = explore Yellow where [ye => return (ye.GetX === x) and (ye.GetY === y) and hasBeeline(xcor, ycor, ye.GetX, ye.GetY)]
 		if (length(potentialGreen) > 0) { tag(potentialGreen[0]) }
-		else if (length(potentialRed) > 0) { tag(potentialRed[0]) }
+		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
 		else if (length(potentialYellow) > 0) { tag(potentialYellow[0]) }
 		else {
 			magazineCount--
@@ -1608,7 +1636,6 @@ agent Red on Battleground {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
 		magazineCount = 5
-		println("Green reloaded")
 	}
 
 // **************************************************************************************** 
@@ -1650,7 +1677,10 @@ agent Red on Battleground {
 		energy = energy - 10
 		wasTagged = true
 		wasTaggedCounter = 2
-		if (energy <= 0) { resetValues() }
+		if (energy <= 0) {
+			points = points - 10
+			resetValues()
+		}
 	}
 	
 	// returns current visibility range
@@ -1675,6 +1705,7 @@ agent Blue on Battleground {
 //	*********************** general attributes ***********************
 	external observe var xSpawn : real
 	external observe var ySpawn : real
+	external observe var memberID : integer
 	observe var color : string = "blue"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -1769,6 +1800,13 @@ agent Blue on Battleground {
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
+
+	// USER METHOD: generates an array of team members
+	def exploreTeam() : Blue[] {
+		var team = explore Blue where [x => return (actionPoints > 0)]
+		if (actionPoints > 0) { actionPoints-- }
+		return team
+	}
 	
 	// USER METHOD: generates arrays of enemies who can be seen
 	// three conditions for being able to see an enemy:
@@ -1776,9 +1814,9 @@ agent Blue on Battleground {
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
 	def exploreEnemies() : Tuple<Green[], Red[], Yellow[]> {
-		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
@@ -2293,7 +2331,7 @@ agent Blue on Battleground {
 		actionPoints = actionPoints - 2
 	}
 
-	// USER METHOD: tags a red enemy
+	// USER METHOD: tags a green enemy
 	def tag(green : Green) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
@@ -2332,38 +2370,41 @@ agent Blue on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (green.GetEnergy <= 0) { points = points + 10 }
-			println "A red agent is hit"
-		} else { println "A red agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
 
-	// USER METHOD: tags a blue enemy
-	def tag(blue : Blue) {
+	// USER METHOD: tags a red enemy
+	def tag(red : Red) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch(blue.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2	}
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(red.GetX, red.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(red.GetX, red.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (red.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
-					blue.Tagged
+				if (random(10) + 1 + enemyStanceVal > 8) {
+					red.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
-					blue.Tagged
+				if (random(10) + 1 + enemyStanceVal > 6) {
+					red.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
-					blue.Tagged
+				if (random(10) + 1 + enemyStanceVal > 4) {
+					red.Tagged
 					tagReturn = true
 				}
 			}
@@ -2372,9 +2413,8 @@ agent Blue on Battleground {
 			tagged = true
 			taggedCounter = 2
 			points = points + 10
-			if (blue.GetEnergy <= 0) { points = points + 10 }
-			println "A blue agent is hit"
-		} else { println "A blue agent is missed" }
+			if (red.GetEnergy <= 0) { points = points + 10 }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -2384,26 +2424,30 @@ agent Blue on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch (yellow.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2 }
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (yellow.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
+				if (random(10) + 1 + enemyStanceVal > 8) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
+				if (random(10) + 1 + enemyStanceVal > 6) {
 					yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
+				if (random(10) + 1 + enemyStanceVal > 4) {
 					yellow.Tagged
 					tagReturn = true
 				}
@@ -2414,8 +2458,7 @@ agent Blue on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (yellow.GetEnergy <= 0) { points = points + 10 }
-			println "A yellow agent is hit"
-		} else { println "A yellow agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -2425,10 +2468,10 @@ agent Blue on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var potentialGreen = explore Green where [g => return (g.GetX === x) and (g.GetY === y) and hasBeeline(xcor, ycor, g.GetX, g.GetY)]
-		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
+		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeline(xcor, ycor, r.GetX, r.GetY)]
 		var potentialYellow = explore Yellow where [ye => return (ye.GetX === x) and (ye.GetY === y) and hasBeeline(xcor, ycor, ye.GetX, ye.GetY)]
 		if (length(potentialGreen) > 0) { tag(potentialGreen[0]) }
-		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
+		else if (length(potentialRed) > 0) { tag(potentialRed[0]) }
 		else if (length(potentialYellow) > 0) { tag(potentialYellow[0]) }
 		else {
 			magazineCount--
@@ -2441,7 +2484,6 @@ agent Blue on Battleground {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
 		magazineCount = 5
-		println("Green reloaded")
 	}
 
 // **************************************************************************************** 
@@ -2483,7 +2525,10 @@ agent Blue on Battleground {
 		energy = energy - 10
 		wasTagged = true
 		wasTaggedCounter = 2
-		if (energy <= 0) { resetValues() }
+		if (energy <= 0) {
+			points = points - 10
+			resetValues()
+		}
 	}
 	
 	// returns current visibility range
@@ -2508,6 +2553,7 @@ agent Yellow on Battleground {
 //	*********************** general attributes ***********************
 	external observe var xSpawn : real
 	external observe var ySpawn : real
+	external observe var memberID : integer
 	observe var color : string = "yellow"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
@@ -2602,6 +2648,13 @@ agent Yellow on Battleground {
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
+
+	// USER METHOD: generates an array of team members
+	def exploreTeam() : Yellow[] {
+		var team = explore Yellow where [x => return (actionPoints > 0)]
+		if (actionPoints > 0) { actionPoints-- }
+		return team
+	}
 	
 	// USER METHOD: generates arrays of enemies who can be seen
 	// three conditions for being able to see an enemy:
@@ -2609,9 +2662,9 @@ agent Yellow on Battleground {
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
 	def exploreEnemies() : Tuple<Green[], Red[], Blue[]> {
-		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
@@ -3126,7 +3179,7 @@ agent Yellow on Battleground {
 		actionPoints = actionPoints - 2
 	}
 
-	// USER METHOD: tags a red enemy
+	// USER METHOD: tags a green enemy
 	def tag(green : Green) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
@@ -3165,78 +3218,40 @@ agent Yellow on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (green.GetEnergy <= 0) { points = points + 10 }
-			println "A red agent is hit"
-		} else { println "A red agent is missed" }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
 
-	// USER METHOD: tags a blue enemy
-	def tag(blue : Blue) {
-		if (magazineCount < 1) { reload() }
-		if (actionPoints < 5) { return }
-		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch(blue.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2	}
-		}
-		switch (currStance) {
-			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
-					blue.Tagged
-					tagReturn = true
-				}
-			}
-			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
-					blue.Tagged
-					tagReturn = true
-				}
-			}
-			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
-					blue.Tagged
-					tagReturn = true
-				}
-			}
-		}
-		if (tagReturn) {
-			tagged = true
-			taggedCounter = 2
-			points = points + 10
-			if (blue.GetEnergy <= 0) { points = points + 10 }
-			println "A blue agent is hit"
-		} else { println "A blue agent is missed" }
-		magazineCount--
-		actionPoints = actionPoints - 5
-	}
-
-	// USER METHOD: tags a yellow enemy
+	// USER METHOD: tags a red enemy
 	def tag(red : Red) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
-		var enemyStanceVal : integer = 0
-		switch (red.GetStance) {
-			case "kneeling" : {	enemyStanceVal = 1 }
-			case "lying" : { enemyStanceVal = 2 }
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(red.GetX, red.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(red.GetX, red.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (red.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
 		}
 		switch (currStance) {
 			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 2) {
+				if (random(10) + 1 + enemyStanceVal > 8) {
 					red.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
+				if (random(10) + 1 + enemyStanceVal > 6) {
 					red.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
+				if (random(10) + 1 + enemyStanceVal > 4) {
 					red.Tagged
 					tagReturn = true
 				}
@@ -3247,8 +3262,51 @@ agent Yellow on Battleground {
 			taggedCounter = 2
 			points = points + 10
 			if (red.GetEnergy <= 0) { points = points + 10 }
-			println "A yellow agent is hit"
-		} else { println "A yellow agent is missed" }
+		}
+		magazineCount--
+		actionPoints = actionPoints - 5
+	}
+
+	// USER METHOD: tags a blue enemy
+	def tag(blue : Blue) {
+		if (magazineCount < 1) { reload() }
+		if (actionPoints < 5) { return }
+		var tagReturn : bool = false
+		var enemyStanceVal : integer = 2
+		if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (blue.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
+		}
+		switch (currStance) {
+			case "standing" : {
+				if (random(10) + 1 + enemyStanceVal > 8) {
+					blue.Tagged
+					tagReturn = true
+				}
+			}
+			case "kneeling" : {
+				if (random(10) + 1 + enemyStanceVal > 6) {
+					blue.Tagged
+					tagReturn = true
+				}
+			}
+			case "lying" : {
+				if (random(10) + 1 + enemyStanceVal > 4) {
+					blue.Tagged
+					tagReturn = true
+				}
+			}
+		}
+		if (tagReturn) {
+			tagged = true
+			taggedCounter = 2
+			points = points + 10
+			if (blue.GetEnergy <= 0) { points = points + 10 }
+		}
 		magazineCount--
 		actionPoints = actionPoints - 5
 	}
@@ -3258,11 +3316,11 @@ agent Yellow on Battleground {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
 		var potentialGreen = explore Green where [g => return (g.GetX === x) and (g.GetY === y) and hasBeeline(xcor, ycor, g.GetX, g.GetY)]
-		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
 		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeline(xcor, ycor, r.GetX, r.GetY)]
+		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
 		if (length(potentialGreen) > 0) { tag(potentialGreen[0]) }
-		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
 		else if (length(potentialRed) > 0) { tag(potentialRed[0]) }
+		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
 		else {
 			magazineCount--
 			actionPoints = actionPoints - 5
@@ -3274,7 +3332,6 @@ agent Yellow on Battleground {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
 		magazineCount = 5
-		println("Green reloaded")
 	}
 
 // **************************************************************************************** 
@@ -3316,7 +3373,10 @@ agent Yellow on Battleground {
 		energy = energy - 10
 		wasTagged = true
 		wasTaggedCounter = 2
-		if (energy <= 0) { resetValues() }
+		if (energy <= 0) {
+			points = points - 10
+			resetValues()
+		}
 	}
 	
 	// returns current visibility range
