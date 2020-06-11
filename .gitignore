@@ -21,3 +21,4 @@ agents.csv
 *.iml
 *.pyc
 *.prefs
+Analysis/*.csv
