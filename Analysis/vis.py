@@ -259,7 +259,7 @@ def agent_readin(file,agent_map):
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
         y = len(agent_map.map)-y
-        tick = int(row[columnids["TICK"]].split(".")[0])
+        tick = int(row[columnids["TICK"]])
         status = row[columnids["COLOR"]]
         # blue
         if status == "blue":
