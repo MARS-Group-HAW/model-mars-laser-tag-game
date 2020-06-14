@@ -783,7 +783,7 @@ agent Green on Battleground {
 		}
 	}
 	
-	// refills magazineCount
+	// USER METHOD: refills magazineCount
 	def reload() {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
@@ -1631,7 +1631,7 @@ agent Red on Battleground {
 		}
 	}
 	
-	// refills magazineCount
+	// USER METHOD: refills magazineCount
 	def reload() {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
@@ -2479,7 +2479,7 @@ agent Blue on Battleground {
 		}
 	}
 	
-	// refills magazineCount
+	// USER METHOD: refills magazineCount
 	def reload() {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
@@ -3327,7 +3327,7 @@ agent Yellow on Battleground {
 		}
 	}
 	
-	// refills magazineCount
+	// USER METHOD: refills magazineCount
 	def reload() {
 		if (actionPoints < 3) {	return }
 		actionPoints = actionPoints - 3
