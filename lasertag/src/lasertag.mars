@@ -620,7 +620,7 @@ agent Green on Battleground {
 				switch (newStance) {
 					case "standing" : {
 						visualRange = visualRange + 5
-						visibilityRange = visibilityRange + 2
+						visibilityRange = visibilityRange + 5
 						movementDelay = 0
 					}
 					case "kneeling" : {
@@ -1468,7 +1468,7 @@ agent Red on Battleground {
 				switch (newStance) {
 					case "standing" : {
 						visualRange = visualRange + 5
-						visibilityRange = visibilityRange + 2
+						visibilityRange = visibilityRange + 5
 						movementDelay = 0
 					}
 					case "kneeling" : {
@@ -2316,7 +2316,7 @@ agent Blue on Battleground {
 				switch (newStance) {
 					case "standing" : {
 						visualRange = visualRange + 5
-						visibilityRange = visibilityRange + 2
+						visibilityRange = visibilityRange + 5
 						movementDelay = 0
 					}
 					case "kneeling" : {
@@ -3164,7 +3164,7 @@ agent Yellow on Battleground {
 				switch (newStance) {
 					case "standing" : {
 						visualRange = visualRange + 5
-						visibilityRange = visibilityRange + 2
+						visibilityRange = visibilityRange + 5
 						movementDelay = 0
 					}
 					case "kneeling" : {
