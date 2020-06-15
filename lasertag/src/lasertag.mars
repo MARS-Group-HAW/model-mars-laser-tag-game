@@ -26,6 +26,7 @@ agent Green on Battleground {
 	var barriers = new List<Tuple<real, real>>
 	var hills = new List<Tuple<real, real>>
 	var ditches = new List<Tuple<real, real>>
+	var enemiesFromTeam = new List<Tuple<real, real>>
 //	*********************** tagging attributes ***********************
 	observe var magazineCount : integer = 5
 	observe var wasTagged : bool = false
@@ -52,6 +53,7 @@ agent Green on Battleground {
 	
 	tick {
 		// TODO: your AI here
+		goTo(25.0, 25.4)
 		refillPoints()
 	}
 
@@ -81,6 +83,18 @@ agent Green on Battleground {
 			}			
 			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
 		}
+		var teamArray = explore Green
+		each (a in teamArray) { a.ForwardBarriers(currBarriers) }
+	}
+	
+	passive ForwardBarriers(newBarriers : Barrier[]) {
+		each (b in newBarriers) {
+			var inList : bool = false
+			each (e in barriers) {
+				if ((e.Item1 === b.GetX) and (e.Item2 === b.GetY)) { inList = true }
+			}			
+			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
+		}
 	}
 	
 	def exploreHills() {
@@ -92,6 +106,18 @@ agent Green on Battleground {
 			}
 			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
 		}
+		var teamArray = explore Green
+		each (a in teamArray) { a.ForwardHills(currHills) }
+	}
+	
+	passive ForwardHills(newHills : Hill[]) {
+		each (h in newHills) {
+			var inList : bool = false
+			each (e in hills) {
+				if ((e.Item1 === h.GetX) and (e.Item2 === h.GetY)) { inList = true }
+			}			
+			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
+		}
 	}
 	
 	def exploreDitches() {
@@ -101,6 +127,18 @@ agent Green on Battleground {
 			each (e in ditches) {
 				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
 			}
+			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
+		}
+		var teamArray = explore Green
+		each (a in teamArray) { a.ForwardDitches(currDitches) }
+	}
+	
+	passive ForwardDitches(newDitches : Ditch[]) {
+		each (d in newDitches) {
+			var inList : bool = false
+			each (e in ditches) {
+				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
+			}			
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
@@ -122,8 +160,21 @@ agent Green on Battleground {
 						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
 						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
+		var teamArray = explore Green
+		each (a in teamArray) { a.ForwardEnemies(enemies) }
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
+	}
+	
+	passive ForwardEnemies(enemies : Tuple<Red[], Blue[], Yellow[]>) {
+		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+	}
+	
+	// USER METHOD: interface for checking if the line of sight between agent and (x, y) is blocked
+	def hasBeeline(x : real, y : real) : bool {
+		return hasBeeline(xcor, ycor, x, y)
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
@@ -183,7 +234,9 @@ agent Green on Battleground {
 	// xGoal: x-coordinate of grid cell Guest wants to move to
 	// yGoal: y-coordinate of grid cell Guest wants to move to
 	// return: boolean states if step was successfully taken
-	def goTo(xGoal : real, yGoal : real) : bool {
+	def goTo(inXGoal : real, inYGoal : real) : bool {
+		var xGoal : real = Math.Floor(inXGoal)
+		var yGoal : real = Math.Floor(inYGoal)
 		if (battleground.GetIntegerValue(xGoal, yGoal) === 1) {
 			hasMoved = true
 			return false
@@ -799,7 +852,10 @@ agent Green on Battleground {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
+		else { tagged = false }
 		if (wasTaggedCounter > 0) { wasTaggedCounter-- }
+		else { wasTagged = false }
+		enemiesFromTeam = new List<Tuple<real, real>>
 		hasMoved = false
 	}
 	
@@ -812,7 +868,10 @@ agent Green on Battleground {
 			ditch.Free
 		}
 		energy = 100
-		changeStance("standing")
+		currStance = "standing"
+		visualRange = 10
+		visibilityRange = 10
+		movementDelay = 0
 		actionPoints = 10
 		wasTagged = false
 		wasTaggedCounter = 0
@@ -874,6 +933,7 @@ agent Red on Battleground {
 	var barriers = new List<Tuple<real, real>>
 	var hills = new List<Tuple<real, real>>
 	var ditches = new List<Tuple<real, real>>
+	var enemiesFromTeam = new List<Tuple<real, real>>
 //	*********************** tagging attributes ***********************
 	observe var magazineCount : integer = 5
 	observe var wasTagged : bool = false
@@ -929,6 +989,18 @@ agent Red on Battleground {
 			}			
 			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
 		}
+		var teamArray = explore Red
+		each (a in teamArray) { a.ForwardBarriers(currBarriers) }
+	}
+	
+	passive ForwardBarriers(newBarriers : Barrier[]) {
+		each (b in newBarriers) {
+			var inList : bool = false
+			each (e in barriers) {
+				if ((e.Item1 === b.GetX) and (e.Item2 === b.GetY)) { inList = true }
+			}			
+			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
+		}
 	}
 	
 	def exploreHills() {
@@ -940,6 +1012,18 @@ agent Red on Battleground {
 			}
 			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
 		}
+		var teamArray = explore Red
+		each (a in teamArray) { a.ForwardHills(currHills) }
+	}
+	
+	passive ForwardHills(newHills : Hill[]) {
+		each (h in newHills) {
+			var inList : bool = false
+			each (e in hills) {
+				if ((e.Item1 === h.GetX) and (e.Item2 === h.GetY)) { inList = true }
+			}			
+			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
+		}
 	}
 	
 	def exploreDitches() {
@@ -949,6 +1033,18 @@ agent Red on Battleground {
 			each (e in ditches) {
 				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
 			}
+			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
+		}
+		var teamArray = explore Red
+		each (a in teamArray) { a.ForwardDitches(currDitches) }
+	}
+	
+	passive ForwardDitches(newDitches : Ditch[]) {
+		each (d in newDitches) {
+			var inList : bool = false
+			each (e in ditches) {
+				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
+			}			
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
@@ -970,8 +1066,21 @@ agent Red on Battleground {
 						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
 						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
+		var teamArray = explore Red
+		each (a in teamArray) { a.ForwardEnemies(enemies) }
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
+	}
+	
+	passive ForwardEnemies(enemies : Tuple<Green[], Blue[], Yellow[]>) {
+		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+	}
+	
+	// USER METHOD: interface for checking if the line of sight between agent and (x, y) is blocked
+	def hasBeeline(x : real, y : real) : bool {
+		return hasBeeline(xcor, ycor, x, y)
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
@@ -1031,7 +1140,9 @@ agent Red on Battleground {
 	// xGoal: x-coordinate of grid cell Guest wants to move to
 	// yGoal: y-coordinate of grid cell Guest wants to move to
 	// return: boolean states if step was successfully taken
-	def goTo(xGoal : real, yGoal : real) : bool {
+	def goTo(inXGoal : real, inYGoal : real) : bool {
+		var xGoal : real = Math.Floor(inXGoal)
+		var yGoal : real = Math.Floor(inYGoal)
 		if (battleground.GetIntegerValue(xGoal, yGoal) === 1) {
 			hasMoved = true
 			return false
@@ -1647,7 +1758,10 @@ agent Red on Battleground {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
+		else { tagged = false }
 		if (wasTaggedCounter > 0) { wasTaggedCounter-- }
+		else { wasTagged = false }
+		enemiesFromTeam = new List<Tuple<real, real>>
 		hasMoved = false
 	}
 	
@@ -1660,7 +1774,10 @@ agent Red on Battleground {
 			ditch.Free
 		}
 		energy = 100
-		changeStance("standing")
+		currStance = "standing"
+		visualRange = 10
+		visibilityRange = 10
+		movementDelay = 0
 		actionPoints = 10
 		wasTagged = false
 		wasTaggedCounter = 0
@@ -1722,6 +1839,7 @@ agent Blue on Battleground {
 	var barriers = new List<Tuple<real, real>>
 	var hills = new List<Tuple<real, real>>
 	var ditches = new List<Tuple<real, real>>
+	var enemiesFromTeam = new List<Tuple<real, real>>
 //	*********************** tagging attributes ***********************
 	observe var magazineCount : integer = 5
 	observe var wasTagged : bool = false
@@ -1777,6 +1895,18 @@ agent Blue on Battleground {
 			}			
 			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
 		}
+		var teamArray = explore Blue
+		each (a in teamArray) {	a.ForwardBarriers(currBarriers) }
+	}
+	
+	passive ForwardBarriers(newBarriers : Barrier[]) {
+		each (b in newBarriers) {
+			var inList : bool = false
+			each (e in barriers) {
+				if ((e.Item1 === b.GetX) and (e.Item2 === b.GetY)) { inList = true }
+			}			
+			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
+		}
 	}
 	
 	def exploreHills() {
@@ -1788,6 +1918,18 @@ agent Blue on Battleground {
 			}
 			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
 		}
+		var teamArray = explore Blue
+		each (a in teamArray) { a.ForwardHills(currHills) }
+	}
+	
+	passive ForwardHills(newHills : Hill[]) {
+		each (h in newHills) {
+			var inList : bool = false
+			each (e in hills) {
+				if ((e.Item1 === h.GetX) and (e.Item2 === h.GetY)) { inList = true }
+			}			
+			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
+		}
 	}
 	
 	def exploreDitches() {
@@ -1797,6 +1939,18 @@ agent Blue on Battleground {
 			each (e in ditches) {
 				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
 			}
+			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
+		}
+		var teamArray = explore Blue
+		each (a in teamArray) { a.ForwardDitches(currDitches) }
+	}
+	
+	passive ForwardDitches(newDitches : Ditch[]) {
+		each (d in newDitches) {
+			var inList : bool = false
+			each (e in ditches) {
+				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
+			}			
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
@@ -1818,8 +1972,21 @@ agent Blue on Battleground {
 						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
 						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
+		var teamArray = explore Blue
+		each (a in teamArray) { a.ForwardEnemies(enemies) }
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
+	}
+	
+	passive ForwardEnemies(enemies : Tuple<Green[], Red[], Yellow[]>) {
+		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+	}
+	
+	// USER METHOD: interface for checking if the line of sight between agent and (x, y) is blocked
+	def hasBeeline(x : real, y : real) : bool {
+		return hasBeeline(xcor, ycor, x, y)
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
@@ -1879,7 +2046,9 @@ agent Blue on Battleground {
 	// xGoal: x-coordinate of grid cell Guest wants to move to
 	// yGoal: y-coordinate of grid cell Guest wants to move to
 	// return: boolean states if step was successfully taken
-	def goTo(xGoal : real, yGoal : real) : bool {
+	def goTo(inXGoal : real, inYGoal : real) : bool {
+		var xGoal : real = Math.Floor(inXGoal)
+		var yGoal : real = Math.Floor(inYGoal)
 		if (battleground.GetIntegerValue(xGoal, yGoal) === 1) {
 			hasMoved = true
 			return false
@@ -2495,7 +2664,10 @@ agent Blue on Battleground {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
+		else { tagged = false }
 		if (wasTaggedCounter > 0) { wasTaggedCounter-- }
+		else { wasTagged = false }
+		enemiesFromTeam = new List<Tuple<real, real>>
 		hasMoved = false
 	}
 	
@@ -2508,7 +2680,10 @@ agent Blue on Battleground {
 			ditch.Free
 		}
 		energy = 100
-		changeStance("standing")
+		currStance = "standing"
+		visualRange = 10
+		visibilityRange = 10
+		movementDelay = 0
 		actionPoints = 10
 		wasTagged = false
 		wasTaggedCounter = 0
@@ -2570,6 +2745,7 @@ agent Yellow on Battleground {
 	var barriers = new List<Tuple<real, real>>
 	var hills = new List<Tuple<real, real>>
 	var ditches = new List<Tuple<real, real>>
+	var enemiesFromTeam = new List<Tuple<real, real>>
 //	*********************** tagging attributes ***********************
 	observe var magazineCount : integer = 5
 	observe var wasTagged : bool = false
@@ -2625,6 +2801,18 @@ agent Yellow on Battleground {
 			}			
 			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
 		}
+		var teamArray = explore Yellow
+		each (a in teamArray) { a.ForwardBarriers(currBarriers) }
+	}
+	
+	passive ForwardBarriers(newBarriers : Barrier[]) {
+		each (b in newBarriers) {
+			var inList : bool = false
+			each (e in barriers) {
+				if ((e.Item1 === b.GetX) and (e.Item2 === b.GetY)) { inList = true }
+			}			
+			if (not inList) { barriers.Add(#(b.GetX, b.GetY)) }
+		}
 	}
 	
 	def exploreHills() {
@@ -2636,6 +2824,18 @@ agent Yellow on Battleground {
 			}
 			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
 		}
+		var teamArray = explore Yellow
+		each (a in teamArray) { a.ForwardHills(currHills) }
+	}
+	
+	passive ForwardHills(newHills : Hill[]) {
+		each (h in newHills) {
+			var inList : bool = false
+			each (e in hills) {
+				if ((e.Item1 === h.GetX) and (e.Item2 === h.GetY)) { inList = true }
+			}			
+			if (not inList) { hills.Add(#(h.GetX, h.GetY)) }
+		}
 	}
 	
 	def exploreDitches() {
@@ -2645,6 +2845,18 @@ agent Yellow on Battleground {
 			each (e in ditches) {
 				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
 			}
+			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
+		}
+		var teamArray = explore Yellow
+		each (a in teamArray) { a.ForwardDitches(currDitches) }
+	}
+	
+	passive ForwardDitches(newDitches : Ditch[]) {
+		each (d in newDitches) {
+			var inList : bool = false
+			each (e in ditches) {
+				if ((e.Item1 === d.GetX) and (e.Item2 === d.GetY)) { inList = true }
+			}			
 			if (not inList) { ditches.Add(#(d.GetX, d.GetY)) }
 		}
 	}
@@ -2666,8 +2878,21 @@ agent Yellow on Battleground {
 						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
 						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
+		var teamArray = explore Yellow
+		each (a in teamArray) { a.ForwardEnemies(enemies) }
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
+	}
+	
+	passive ForwardEnemies(enemies : Tuple<Green[], Red[], Blue[]>) {
+		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+	}
+	
+	// USER METHOD: interface for checking if the line of sight between agent and (x, y) is blocked
+	def hasBeeline(x : real, y : real) : bool {
+		return hasBeeline(xcor, ycor, x, y)
 	}
 	
 	// implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
@@ -2727,7 +2952,9 @@ agent Yellow on Battleground {
 	// xGoal: x-coordinate of grid cell Guest wants to move to
 	// yGoal: y-coordinate of grid cell Guest wants to move to
 	// return: boolean states if step was successfully taken
-	def goTo(xGoal : real, yGoal : real) : bool {
+	def goTo(inXGoal : real, inYGoal : real) : bool {
+		var xGoal : real = Math.Floor(inXGoal)
+		var yGoal : real = Math.Floor(inYGoal)
 		if (battleground.GetIntegerValue(xGoal, yGoal) === 1) {
 			hasMoved = true
 			return false
@@ -3343,7 +3570,10 @@ agent Yellow on Battleground {
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }
+		else { tagged = false }
 		if (wasTaggedCounter > 0) { wasTaggedCounter-- }
+		else { wasTagged = false }
+		enemiesFromTeam = new List<Tuple<real, real>>
 		hasMoved = false
 	}
 	
@@ -3356,7 +3586,10 @@ agent Yellow on Battleground {
 			ditch.Free
 		}
 		energy = 100
-		changeStance("standing")
+		currStance = "standing"
+		visualRange = 10
+		visibilityRange = 10
+		movementDelay = 0
 		actionPoints = 10
 		wasTagged = false
 		wasTaggedCounter = 0
