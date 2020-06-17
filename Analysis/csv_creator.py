@@ -1,8 +1,6 @@
 import os
 
 import pandas as pd
-import glob
-
 
 def load_csv():
 
