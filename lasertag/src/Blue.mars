@@ -132,7 +132,7 @@ agent Blue on Battleground {
 		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
 		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
 	}
-	
+		
 	// USER METHOD: gets barriers, hills, or ditches list from team member a, based on value of o
 	def getInfoFromTeam(o : string, a : Blue) : List<Tuple<real, real>> {
 		switch (o) {
@@ -911,10 +911,10 @@ agent Blue on Battleground {
 	// returns current visibility range
 	passive GetVisibility() => return visibilityRange
 	
-	// returns current stance
+	// USER METHOD: returns current stance
 	passive GetStance() => return currStance
 	
-	// returns energy value
+	// returns current energy value
 	passive GetEnergy() => return energy
 	
 	// returns current x-coordinate

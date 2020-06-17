@@ -910,7 +910,7 @@ agent Green on Battleground {
 	// returns current visibility range
 	passive GetVisibility() => return visibilityRange
 	
-	// returns current stance
+	// USER METHOD: returns current stance
 	passive GetStance() => return currStance
 	
 	// returns current energy value
