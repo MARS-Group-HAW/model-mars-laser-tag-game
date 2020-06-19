@@ -46,6 +46,7 @@ agent Green on Battleground {
 		var x : real = xSpawn
 		var y : real = ySpawn
 		pos at #(x, y)
+		sGoal = #(x, y, g, rhs, 0, 0.0, 0.0)
 	}
 	
 	tick {
@@ -248,6 +249,7 @@ agent Green on Battleground {
 			return false
 		}
 		if ((movementDelay > 0) or hasMoved or ((xGoal === xcor) and (yGoal === ycor))) { return false }
+		if (xGoal !== sGoal.Item1 or yGoal !== sGoal.Item2) { pathCalculated = false }
 		if (not pathCalculated) { initPathfinding(xGoal, yGoal) }
 		if (not pathCalculated) { return false }
 		sStart = findNextCell()
