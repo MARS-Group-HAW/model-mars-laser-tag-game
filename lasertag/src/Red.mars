@@ -702,6 +702,7 @@ agent Red on Battleground {
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
 		var enemyStanceVal : integer = 2
+		var energyZero : bool = false
 		if (battleground.GetIntegerValue(green.GetX, green.GetY) === 2) { enemyStanceVal = 2 }
 		else if (battleground.GetIntegerValue(green.GetX, green.GetY) === 3) { enemyStanceVal = 0 }
 		else {
@@ -713,19 +714,19 @@ agent Red on Battleground {
 		switch (currStance) {
 			case "standing" : {
 				if (random(10) + 1 + enemyStanceVal > 8) {
-					green.Tagged
+					energyZero = green.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
 				if (random(10) + 1 + enemyStanceVal > 6) {
-					green.Tagged
+					energyZero = green.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
 				if (random(10) + 1 + enemyStanceVal > 4) {
-					green.Tagged
+					energyZero = green.Tagged
 					tagReturn = true
 				}
 			}
@@ -733,8 +734,8 @@ agent Red on Battleground {
 		if (tagReturn) {
 			tagged = true
 			taggedCounter = 2
-			points = points + 10
-			if (green.GetEnergy <= 0) { points = points + 10 }
+			if (green.GetEnergy >= 0) { points = points + 10 }
+			if (energyZero) { points = points + 10 }
 		}
 		magazineCount--
 		actionPoints = actionPoints - 5
@@ -746,6 +747,7 @@ agent Red on Battleground {
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
 		var enemyStanceVal : integer = 2
+		var energyZero : bool = false
 		if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 2) { enemyStanceVal = 2 }
 		else if (battleground.GetIntegerValue(blue.GetX, blue.GetY) === 3) { enemyStanceVal = 0 }
 		else {
@@ -757,19 +759,19 @@ agent Red on Battleground {
 		switch (currStance) {
 			case "standing" : {
 				if (random(10) + 1 + enemyStanceVal > 8) {
-					blue.Tagged
+					energyZero = blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
 				if (random(10) + 1 + enemyStanceVal > 6) {
-					blue.Tagged
+					energyZero = blue.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
 				if (random(10) + 1 + enemyStanceVal > 4) {
-					blue.Tagged
+					energyZero = blue.Tagged
 					tagReturn = true
 				}
 			}
@@ -777,8 +779,8 @@ agent Red on Battleground {
 		if (tagReturn) {
 			tagged = true
 			taggedCounter = 2
-			points = points + 10
-			if (blue.GetEnergy <= 0) { points = points + 10 }
+			if (blue.GetEnergy >= 0) { points = points + 10 }
+			if (energyZero) { points = points + 10 }
 		}
 		magazineCount--
 		actionPoints = actionPoints - 5
@@ -790,6 +792,7 @@ agent Red on Battleground {
 		if (actionPoints < 5) { return }
 		var tagReturn : bool = false
 		var enemyStanceVal : integer = 2
+		var energyZero : bool = false
 		if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 2) { enemyStanceVal = 2 }
 		else if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 3) { enemyStanceVal = 0 }
 		else {
@@ -801,19 +804,19 @@ agent Red on Battleground {
 		switch (currStance) {
 			case "standing" : {
 				if (random(10) + 1 + enemyStanceVal > 8) {
-					yellow.Tagged
+					energyZero = yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "kneeling" : {
 				if (random(10) + 1 + enemyStanceVal > 6) {
-					yellow.Tagged
+					energyZero = yellow.Tagged
 					tagReturn = true
 				}
 			}
 			case "lying" : {
 				if (random(10) + 1 + enemyStanceVal > 4) {
-					yellow.Tagged
+					energyZero = yellow.Tagged
 					tagReturn = true
 				}
 			}
@@ -821,8 +824,8 @@ agent Red on Battleground {
 		if (tagReturn) {
 			tagged = true
 			taggedCounter = 2
-			points = points + 10
-			if (yellow.GetEnergy <= 0) { points = points + 10 }
+			if (yellow.GetEnergy >= 0) { points = points + 10 }
+			if (energyZero) { points = points + 10 }
 		}
 		magazineCount--
 		actionPoints = actionPoints - 5
@@ -899,14 +902,17 @@ agent Red on Battleground {
 	}
 	
 	// agent got tagged
-	passive Tagged() {
+	passive Tagged() : bool {
+		var energyZero = false
 		energy = energy - 10
 		wasTagged = true
 		wasTaggedCounter = 2
-		if (energy <= 0) {
+		if (energy === 0) {
 			points = points - 10
 			resetValues()
+			energyZero = true
 		}
+		return energyZero
 	}
 	
 	// returns current visibility range

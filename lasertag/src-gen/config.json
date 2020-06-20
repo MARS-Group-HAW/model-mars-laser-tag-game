@@ -15,8 +15,8 @@
 		{
 			"name":"Battleground",
 			"file":"Battleground.csv",
-			"dimensionx": 52,
-			"dimensiony": 52
+			"dimensionx": 51,
+			"dimensiony": 51
 		}
 	],
 	"agents": [
