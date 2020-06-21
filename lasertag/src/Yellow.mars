@@ -122,15 +122,34 @@ agent Yellow on Battleground {
 						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
 		var teamArray = explore Yellow
-		each (a in teamArray) { a.ForwardEnemies(enemies) }
+		for (var i = 0; i <= length(teamArray); i++) {
+			var a = teamArray[i]
+			a.ForwardEnemies(enemies)
+		}
+//		each (a in teamArray) { a.ForwardEnemies(enemies) }
 		if (actionPoints > 0) { actionPoints-- }
 		return enemies
 	}
 	
 	passive ForwardEnemies(enemies : Tuple<Green[], Red[], Blue[]>) {
-		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
-		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
-		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+		for (var i = 0; i <= length(enemies.Item1); i++) {
+			var green = enemies.Item1
+			var a = green[i]
+			enemiesFromTeam.Add(#(a.GetX, a.GetY))
+		}
+		for (var i = 0; i <= length(enemies.Item2); i++) {
+			var red = enemies.Item2
+			var a = red[i]
+			enemiesFromTeam.Add(#(a.GetX, a.GetY))
+		}
+		for (var i = 0; i <= length(enemies.Item3); i++) {
+			var blue = enemies.Item3
+			var a = blue[i]
+			enemiesFromTeam.Add(#(a.GetX, a.GetY))
+		}
+//		each (a in enemies.Item1) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+//		each (a in enemies.Item2) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
+//		each (a in enemies.Item3) { enemiesFromTeam.Add(#(a.GetX, a.GetY)) }
 	}
 	
 	// USER METHOD: gets barriers, hills, or ditches list from team member a, based on value of o
@@ -277,8 +296,8 @@ agent Yellow on Battleground {
 				return false
 			}
 		} else if (battleground.GetIntegerValue(sStart.Item1, sStart.Item2) === 3) {
-			var ditch = nearest Ditch where [d => return (d.GetX === sStart.Item1) and (d.GetY === sStart.Item2)]
-			if (not ditch.IsFree) {
+			var ditch = explore Ditch where [d => return (d.GetX === sStart.Item1) and (d.GetY === sStart.Item2)]
+			if (not ditch[0].IsFree) {
 				pathCalculated = false
 				return false
 			}
@@ -924,10 +943,10 @@ agent Yellow on Battleground {
 	// returns current energy value
 	passive GetEnergy() => return energy
 	
-	// returns current x-coordinate
+	// USER METHOD: returns current x-coordinate
 	passive GetX() => return xcor
 	
-	// returns current y-coordinate
+	// USER METHOD: returns current y-coordinate
 	passive GetY() => return ycor
 	
 	// returns memberID
