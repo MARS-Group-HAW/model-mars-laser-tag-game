@@ -48,19 +48,19 @@ agent Hill on Battleground {
 			var blueTeam = explore Blue
 			var yellowTeam = explore Yellow
 			var freeMe : bool = true
-			for (var i = 0; i <= length(greenTeam); i++) {
+			for (var i = 0; i < length(greenTeam); i++) {
 				var green = greenTeam[i]
 				if ((green.GetX === xcor) and (green.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(redTeam); i++) {
+			for (var i = 0; i < length(redTeam); i++) {
 				var red = redTeam[i]
 				if ((red.GetX === xcor) and (red.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(blueTeam); i++) {
+			for (var i = 0; i < length(blueTeam); i++) {
 				var blue = blueTeam[i]
 				if ((blue.GetX === xcor) and (blue.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(yellowTeam); i++) {
+			for (var i = 0; i < length(yellowTeam); i++) {
 				var yellow = yellowTeam[i]
 				if ((yellow.GetX === xcor) and (yellow.GetY === ycor)) { freeMe = false }
 			}
@@ -96,19 +96,19 @@ agent Ditch on Battleground {
 			var blueTeam = explore Blue
 			var yellowTeam = explore Yellow
 			var freeMe : bool = true
-			for (var i = 0; i <= length(greenTeam); i++) {
+			for (var i = 0; i < length(greenTeam); i++) {
 				var green = greenTeam[i]
 				if ((green.GetX === xcor) and (green.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(redTeam); i++) {
+			for (var i = 0; i < length(redTeam); i++) {
 				var red = redTeam[i]
 				if ((red.GetX === xcor) and (red.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(blueTeam); i++) {
+			for (var i = 0; i < length(blueTeam); i++) {
 				var blue = blueTeam[i]
 				if ((blue.GetX === xcor) and (blue.GetY === ycor)) { freeMe = false }
 			}
-			for (var i = 0; i <= length(yellowTeam); i++) {
+			for (var i = 0; i < length(yellowTeam); i++) {
 				var yellow = yellowTeam[i]
 				if ((yellow.GetX === xcor) and (yellow.GetY === ycor)) { freeMe = false }
 			}
