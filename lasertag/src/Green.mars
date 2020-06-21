@@ -51,7 +51,208 @@ agent Green on Battleground {
 	
 	tick {
 		// TODO: your AI here
-		refillPoints()
+		var enemies = exploreEnemies()
+		var e1 = enemies.Item1
+		var e2 = enemies.Item2
+		var e3 = enemies.Item3
+		
+		if (length(e1) > 0 or length(e2) > 0 or length(e3) > 0) {
+			changeStance("lying")
+			each (e in e1){
+				if (e.GetEnergy === 10) { tag(e) }
+			}
+			each (e in e2){
+				if (e.GetEnergy === 10) { tag(e) }
+			}
+			each (e in e3){
+				if (e.GetEnergy === 10) { tag(e) }
+			}
+			each (e in e1){
+				if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+			}
+			each (e in e2){
+				if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+			}
+			each (e in e3){
+				if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+			}
+			each (e in e1){
+				if (e.GetStance === "standing") { tag(e) }
+			}
+			each (e in e2){
+				if (e.GetStance === "standing") { tag(e) }
+			}
+			each (e in e3){
+				if (e.GetStance === "standing") { tag(e) }
+			}
+			each (e in e1){
+				if (e.GetStance === "kneeling") { tag(e) }
+			}
+			each (e in e2){
+				if (e.GetStance === "kneeling") { tag(e) }
+			}
+			each (e in e3){
+				if (e.GetStance === "kneeling") { tag(e) }
+			}			
+			each (e in e1){
+				if (e.GetEnergy < 40) { tag(e) }
+			}
+			each (e in e2){
+				if (e.GetEnergy < 40) { tag(e) }
+			}
+			each (e in e3){
+				if (e.GetEnergy < 40) { tag(e) }
+			}
+			each (e in e1) {
+				tag(e)
+			}
+			each (e in e2) {
+				tag(e)
+			}
+			each (e in e3) {
+				tag(e)
+			}
+		}
+
+		if (length(e1) < 1 and length(e2) < 1 and length(e2) < 1) {
+			changeStance("standing")
+			
+			if(color === "yellow") {
+				if(stage === 1) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 2) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 3) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 0)  {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 + 8)}
+				
+				if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 0}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 1}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 2}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 3}
+			}
+			else if(color === "green") {
+				if(stage === 1) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 2) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 3) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 0)  {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 + 8)}
+				
+				if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 0}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 1}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 2}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 3}
+			}
+			else if(color === "blue") {
+				if(stage === 1) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 2) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 3) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 0)  {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 - 8)}
+				
+				if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 0}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 1}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 2}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 3}
+			}
+			else if(color === "red") {
+				if(stage === 1) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 2) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 + 8)}
+				else if(stage === 3) {goTo(battleground.DimensionX / 2 + 8, battleground.DimensionY / 2 - 8)}
+				else if(stage === 0) {goTo(battleground.DimensionX / 2 - 8, battleground.DimensionY / 2 - 8)}
+				
+				if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 0}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 - 8 - ycor) < 3) {stage = 1}
+				else if(Math.Abs(battleground.DimensionX / 2 - 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 2}
+				else if(Math.Abs(battleground.DimensionX / 2 + 8 - xcor) < 3 and Math.Abs(battleground.DimensionY / 2 + 8 - ycor) < 3) {stage = 3}
+			}
+		}
+		
+		if (actionPoints > 5) {
+			enemies = exploreEnemies()
+			e1 = enemies.Item1
+			e2 = enemies.Item2
+			e3 = enemies.Item3
+		
+			if (length(e1) > 0 or length(e2) > 0 or length(e3) > 0) {
+				if (actionPoints > 6) { changeStance("lying") }
+				each (e in e1){
+					if (e.GetEnergy === 10) { tag(e) }
+				}
+				each (e in e2){
+					if (e.GetEnergy === 10) { tag(e) }
+				}
+				each (e in e3){
+					if (e.GetEnergy === 10) { tag(e) }
+				}
+				each (e in e1){
+					if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+				}
+				each (e in e2){
+					if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+				}
+				each (e in e3){
+					if (battleground.GetIntegerValue(e.GetX(), e.GetY()) === 2) { tag(e) }
+				}
+				each (e in e1){
+					if (e.GetStance === "standing") { tag(e) }
+				}
+				each (e in e2){
+					if (e.GetStance === "standing") { tag(e) }
+				}
+				each (e in e3){
+					if (e.GetStance === "standing") { tag(e) }
+				}
+				each (e in e1){
+					if (e.GetStance === "kneeling") { tag(e) }
+				}
+				each (e in e2){
+					if (e.GetStance === "kneeling") { tag(e) }
+				}
+				each (e in e3){
+					if (e.GetStance === "kneeling") { tag(e) }
+				}
+				each (e in e1){
+					if (e.GetEnergy < 40) { tag(e) }
+				}
+				each (e in e2){
+					if (e.GetEnergy < 40) { tag(e) }
+				}
+				each (e in e3){
+					if (e.GetEnergy < 40) { tag(e) }
+				}
+				each (e in e1) {
+					tag(e)
+				}
+				each (e in e2) {
+					tag(e)
+				}
+				each (e in e3) {
+					tag(e)
+				}
+			}
+		}
+		
+		if (enemiesFromTeam.Size > 0) {
+			if (actionPoints > 6) { changeStance("lying") }
+			tag(enemiesFromTeam.Get(0).Item1, enemiesFromTeam.Get(0).Item2)
+		}
+		
+		if (actionPoints > 0) {
+			var team = exploreTeam
+			var possibleMate1 = team[0]
+			var possibleMate2 = team[1]
+			var possibleMate3 = team[2]
+			var mate1 : Green
+			var mate2 : Green
+			if (me === possibleMate1) {mate1 = possibleMate2; mate2 = possibleMate3}
+			if (me === possibleMate2) {mate1 = possibleMate1; mate2 = possibleMate3}
+			if (me === possibleMate3) {mate1 = possibleMate1; mate2 = possibleMate2}
+			
+			if (getDistance(mate1) > 5) {
+				stage = 0
+			} else if (getDistance(mate2) > 5) {
+				stage = 0
+			}
+		}
+		
+		reload
+		refillPoints
 	}
 
 // **************************************************************************************** 
@@ -879,6 +1080,12 @@ agent Green on Battleground {
 
 	// refills actionPoints and movementPoints
 	def refillPoints() {
+		if (battleground.GetIntegerValue(xcor, ycor) === 1) {
+			var x : real = xSpawn
+			var y : real = ySpawn
+			pos at #(x, y)
+			pathCalculated = false
+		}
 		actionPoints = 10
 		if (movementDelay > 0) { movementDelay-- }
 		if (taggedCounter > 0) { taggedCounter-- }

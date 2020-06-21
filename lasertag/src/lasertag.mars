@@ -25,6 +25,10 @@ agent Spawner on Battleground {
 		}
 	}
 	
+	tick {
+		if (simtime % 20 === 0) { println("Current tick: " + simtime) }
+	}
+	
 }
 
 agent Barrier on Battleground {
