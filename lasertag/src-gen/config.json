@@ -21,6 +21,11 @@
 	],
 	"agents": [
 		{
+			"name":"Green",
+			"count":3,
+			"file":"in_green.csv"
+		},
+		{
 			"name":"Red",
 			"count":3,
 			"file":"in_red.csv"
@@ -29,11 +34,6 @@
 			"name":"Yellow",
 			"count":3,
 			"file":"in_yellow.csv"
-		},
-		{
-			"name":"Green",
-			"count":3,
-			"file":"in_green.csv"
 		},
 		{
 			"name":"Blue",

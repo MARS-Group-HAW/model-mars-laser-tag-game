@@ -51,6 +51,7 @@ agent Green on Battleground {
 	
 	tick {
 		// TODO: your AI here
+
 		refillPoints()
 	}
 
