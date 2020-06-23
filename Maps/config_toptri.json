@@ -1,7 +1,7 @@
 {
 	"globals": {
     "startTime": "2019-01-01T10:00:00.000Z",
-    "endTime": "2019-01-01T10:30:00.000Z",
+    "endTime": "2019-01-01T10:01:00.000Z",
     "deltaT": 1,
     "deltaTUnit": "seconds",
     "output": "csv",
@@ -20,11 +20,6 @@
 		}
 	],
 	"agents": [
-		{
-			"name":"Green",
-			"count":3,
-			"file":"in_green.csv"
-		},
 		{
 			"name":"Red",
 			"count":3,

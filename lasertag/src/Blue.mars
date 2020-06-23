@@ -49,8 +49,8 @@ agent Blue on Battleground {
 		sGoal = #(x, y, g, rhs, 0, 0.0, 0.0)
 	}
 	
-    tick {
-		// TODO: your AI here
+	tick {
+		// TODO: your AI here eee
 		
 		refillPoints()
 	}
