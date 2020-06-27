@@ -2,12 +2,12 @@ model lasertag
 
 use Mars
 
-agent Green on Battleground {
+agent Yellow on Battleground {
 //	*********************** general attributes ***********************
 	external observe var xSpawn : real
 	external observe var ySpawn : real
 	external observe var memberID : integer
-	observe var color : string = "green"
+	observe var color : string = "yellow"
 	observe var energy : integer = 100
 	observe var actionPoints : integer = 10
 	observe var stage : integer = 0
@@ -48,203 +48,386 @@ agent Green on Battleground {
 		pos at #(x, y)
 		sGoal = #(x, y, g, rhs, 0, 0.0, 0.0)
 	}
-
+	
 	tick {
-		var oldStage : integer = 0
-		var moved : bool = false
-		var enemyInSight : bool = false
-		var encounteredEnemies : bool = wasTagged 
-		var hasGoal : bool = (stage !== 0 and sGoal != nil and sGoal.Item1() !== xcor and sGoal.Item2() !== ycor)
-		var strategy : integer = 0
-		var pois : List<Tuple<real, real>> = new List<Tuple<real, real>>
-		var poi : Tuple<real, real>
-		var isRectangle : bool = false
-		var flee : bool = false
-		var rememberedX = -1
-		var rememberedY = -1
-		
-		if(stage === 0){
-			hasGoal = true
-			isRectangle = goTo(50,26)
-		}
-		
-		if(stage >= 200000000){ // not >= 100000000 so that negative values remain possible
-			isRectangle = true
-			stage = stage - 1000000000
-		}
-		
-		changeStance("standing")
-		
-		if(stage === 0 or stage === 77){
-			stage = 1 // since sGoal does not get reset at respawn
-		} else if (stage < 0) {
-			changeStance("standing")
-			goTo(xSpawn, ySpawn)
-			stage = stage + 1
-			hasGoal = true
-			changeStance("lying")
-		}
+		// TODO: your AI here
+        var xLoc: real = 2
+        var yLoc: real = 2
+        var tri: bool = false
+            if(battleground.GetIntegerValue(1,1) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(1,battleground.DimensionY-2) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(battleground.DimensionX-2,1) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(battleground.DimensionX-2,battleground.DimensionY-2) === 1){
+                tri = true
+            }
+        if(tri){
 
+            var corner: bool = true
+            if(xSpawn>(battleground.DimensionX/4) and xSpawn < (battleground.DimensionX-(battleground.DimensionX/4))){
+                corner = false
+            }
+// Member 1 Tri =======================================================
+            if(memberID === 1){
+                if(corner){
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = battleground.DimensionX/2
+                }else{
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = 1
+                }
+// Member 2 Tri =======================================================
+            }else if (memberID === 2){
+                if(corner){
+                    if(xSpawn < (battleground.DimensionX/3)){
+                        xLoc = battleground.DimensionX - 2
+                    }
+                }else{
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = battleground.DimensionX - 2
+                }
+// Member 3 Tri =======================================================
+            }else{
+                yLoc = battleground.DimensionY/2
+                xLoc = battleground.DimensionX/2
+                var xory: integer = 0
+                while(battleground.GetIntegerValue(xLoc,yLoc)===1){
+                    if(xory%2 === 0){
+                        xLoc++
+                    }else{
+                        yLoc++
+                    }
+                    xory++
+                }
+            }
+        }else{
+// Member 1 =======================================================
+            if(memberID === 1){
+                if(ySpawn < (battleground.DimensionY/2)){
+                    yLoc = battleground.DimensionY - 2
+                }
+                xLoc = xSpawn
+// Member 2 =======================================================
+            }else if (memberID === 2){
+                if(xSpawn < (battleground.DimensionX/2)){
+                    xLoc = battleground.DimensionX - 2
+                }
+                yLoc = ySpawn
+// Member 3 =======================================================
+            }else{
+                if(ySpawn < (battleground.DimensionY/2)){
+                    yLoc = battleground.DimensionY - 2
+                }
+                if(xSpawn < (battleground.DimensionX/2)){
+                    xLoc = battleground.DimensionX - 2
+                }
+            }
+        }
+// Movement State ================================================================================================
+        var blocked:bool = false
+        var below: bool = false
+    	if(stage>99){
+    		below = true
+    		stage = stage-100
+    	}
 
-		// where are the enemies?
-		var enemies = exploreEnemies()
-		enemyInSight = (length(enemies.Item1()) > 0 or length(enemies.Item2()) > 0 or length(enemies.Item3()) > 0)
-		var enemyInTeamsSight = enemiesFromTeam.Size > 0
-		var enemyEncountered = enemyInTeamsSight or enemyInSight or wasTagged
+        if(stage===99){
+        	var x = battleground.DimensionX/2
+        	var y = battleground.DimensionY/2
+        	var prev = 0
+        	while(battleground.GetIntegerValue(x,y)===1 and prev>25){
+                x = x + random(3)-1
+                y = y + random(3)-1
+                prev++
+            }
+            if(prev<=25){
+            	xLoc = x
+            	yLoc = y
+            	stage = 0
+            	blocked = true
+            }
+        }
+        if(energy>20 or stage>99){
+            var distGoal: real = 0
+            if((wasTaggedCounter > 0) and energy<70){stage = 30}
+            if(stage === 0){
+                distGoal = getDistance(xLoc, yLoc)
+            }
+            if((distGoal < 6) and (distGoal>=0) and stage === 0){
+                stage = 1
+            }
+            if(stage === 0){
+                goTo(xLoc,yLoc)
+            }else if(stage === 1){
+                exploreEnv("barriers")
+                stage = 10
+            }
+            if(stage > 10 and stage < 30){
+                if(Math::Sqrt((xLoc-xcor)*(xLoc-xcor) + (yLoc-ycor)*(yLoc-ycor))>11){
+                    stage = 0
+                }
+                var helpX: real = xcor + random(3)-1
+                var helpY: real = ycor + random(3)-1
+                while(battleground.GetIntegerValue(helpX,helpY)===1){
+                    helpX = xcor + random(3)-1
+                    helpY = ycor + random(3)-1
+                }
+                var changed: bool = false
+                var found: bool = true
+                each(b in barriers){
+                    var tempX: real
+                    var goFurther: bool = false
+                    if(Math::Abs(b.Item1-xcor)<10 and Math::Abs(b.Item2-ycor)<10 and not found){
+                        if(barriers.Exists([bar => return ((bar.Item1-b.Item1) === 1)])){
+                            tempX = b.Item1+1
+                            goFurther = true
+                        }else if(barriers.Exists([bar => return ((bar.Item1-b.Item1) === -1)])){
+                            tempX = b.Item1-1
+                            goFurther = true
+                        }
+                        if(barriers.Exists([bar => return ((bar.Item2-b.Item2) === 1)]) and goFurther){
+                            helpX = tempX
+                            helpY = b.Item2+1
+                            changed = true
+                        }else if(barriers.Exists([bar => return ((bar.Item2-b.Item2) === -1)]) and goFurther){
+                            helpX = tempX
+                            helpY = b.Item2-1
+                            changed = true
+                        }
+                    }
+                    if(changed){
+                        found = (battleground.GetIntegerValue(helpX,helpY) !== 1)
+                        if(not found){
+                        	changed = false
+                        }
+                    }
+                }
+                if(not changed){stage = 1}
+                goTo(helpX, helpY)
+            }
+            if(stage >= 30){		//Emergency Stage
+                if(stage > 42){
+                    changeStance("standing")
+                    stage = 0
+                }else{
+                    changeStance("standing")
+                    if(ditches.Size()<1){
+                        exploreEnv("ditches")
+                    }else{
+                        goTo(ditches.Get(ditches.Size()-1).Item1, ditches.Get(ditches.Size()-1).Item2)
+                    }
+                    if(ditches.Size()<1){
+                        var myTeam = exploreTeam()
+                        goTo(myTeam[0].GetX, myTeam[0].GetY)
+                    }else{
+                        goTo(ditches.Get(ditches.Size()-1).Item1, ditches.Get(ditches.Size()-1).Item2)
+                    }
+                    stage++
+                    changeStance("lying")
+                }
+            }
+            if(below and blocked and stage > 0){
+            	stage = stage + 100
+            	if(wasTagged){stage=40}
+            }else if(below and blocked){
+            	stage = 199
+            	if(wasTagged){stage=40}
+            }else if(below){
+            	stage = stage + 100
+            	if(wasTagged){stage=40}
+            }else if(blocked and stage>0){
+            	stage = stage
+            }else if(blocked){
+            	stage = 99
+            }else if(stage>9 and stage<30){
+            	stage++
+            	if(stage>=30){stage = 99}
+            }
+        }else{
+            if(stage < 40) {stage = 40}
+            if(battleground.GetIntegerValue(xcor,ycor) < 3){
+                exploreEnv("ditches")				// -1
+                if(ditches.Size() > 0){
+                    var closestDitch = ditches.Get(ditches.Size()-1)
+                    each(d in ditches){
+                        var distCD = getDistance(closestDitch.Item1, closestDitch.Item2)
+                        var distND = getDistance(d.Item1, d.Item2)
+                        if((distCD > distND)){
+                            closestDitch = d
+                        }
+                    }
+                    goTo(closestDitch.Item1, closestDitch.Item2)
+                }else{
+                    var myTeam = exploreTeam()		// -1
+                    var closestMate = myTeam[0]
+                    each(d in myTeam){
+                        var cX: real = closestMate.GetX
+                        var cY: real = closestMate.GetY
+                        var dX: real = d.GetX
+                        var dY: real = d.GetY
+                        var distCM: real = Math.Max(Math.Abs(xcor - cX), Math.Abs(ycor - cY))
+                        var distNM: real = Math.Max(Math.Abs(xcor - dX), Math.Abs(ycor - dY))
+                        if((distCM > distNM)){
+                            closestMate = d
+                        }
+                    }
+                    goTo(closestMate.GetX, closestMate.GetY)
+                }
+            }
+            if(not tagged or not hasMoved){
+                stage++
+            }else{
+                stage = 40
+            }
+            if(stage>55){
+                stage = 100
+            }
+        }
+        // Action State ================================================================================================
+        if(actionPoints>9 and magazineCount>1 and enemiesFromTeam.Size()>0){
+        	var posTar1: Tuple<real, real> = nil
+        	var posTar2: Tuple<real, real> = nil
+        	var eFromTeam = enemiesFromTeam
+        	if(eFromTeam.Exists([e => return (hasBeeline(e.Item1, e.Item2))])){
+        		for (var i = 0; i < eFromTeam.Size(); i++) {
+					if(posTar1 === nil and hasBeeline(eFromTeam.Get(i).Item1, eFromTeam.Get(i).Item2)){
+        				posTar1 = eFromTeam.Get(i)
+        			}else if(hasBeeline(eFromTeam.Get(i).Item1, eFromTeam.Get(i).Item2)){
+        				posTar2 = eFromTeam.Get(i)
+        			}
+        		}
+        		if(posTar1 !== nil and posTar2 !== nil){
+        			tag(posTar1.Item1, posTar1.Item2)
+        			tag(posTar2.Item1, posTar2.Item2)
+        		}else if(posTar1 !== nil){
+        			tag(posTar1.Item1, posTar1.Item2)
+        			tag(posTar1.Item1, posTar1.Item2)
+        		}else if(posTar2 !== nil){
+        			tag(posTar2.Item1, posTar2.Item2)
+        			tag(posTar2.Item1, posTar2.Item2)
+        		}
+        	}
+        }
 
-		//explore and choose strategy
-		if(not enemyEncountered){
-			// recall "short-term memory"
-			if(stage > 100000000){
-				var fromMemoryY: real = stage % 10000
-				var fromMemoryX: real = ((stage - fromMemoryY) / 10000) % 10000
-				poi = #(fromMemoryX, fromMemoryY)
-				stage = 1
-				moved = goTo(fromMemoryX, fromMemoryY)
+        if(magazineCount < 1){
+            reload()
+        }
 
-			} else if(not hasGoal){
-			// choosing strategy
-			
-				strategy = (random(3) + 1) * 10 // 10,20, 30 
-							
-				if(strategy === 10) {
-					exploreEnv("ditches")
-					pois = ditches
-				}
-				if(strategy === 20) {
-					exploreEnv("hills")
-					pois = hills
-				}
-				if(pois.Size > 0){
-					var randNum = random(pois.Size - 1)
-					poi = pois.Get(randNum)
-				} else {
-					strategy = 30
-				}
-				if(strategy === 30) {
-					var randX : real = random(battleground.DimensionX-2) + 1
-					var randY : real = random(battleground.DimensionY-2) + 1
-					poi = #(randX, randY)
-				}
-				moved = goTo(poi.Item1(), poi.Item2())
-			} else {
-				// pursue goal
-				poi = #(sGoal.Item1(), sGoal.Item2())
-				moved = goTo(poi.Item1(), poi.Item2())
-				if(not moved){
-					stage = 77
-				}
-			}
-			
-			// shoot at occupied POI
-			var poiIsOccupied = (not moved and hasMoved and strategy !== 30)
-			if(poiIsOccupied and hasBeeline(poi.Item1, poi.Item2)){
-				tag(poi.Item1, poi.Item2)
-			}
-		}
+        var enemies: Tuple<Green[], Red[], Blue[]>
+        var explored: bool = false
+        if(actionPoints > 9){
+        	if(currStance !== "standing"){
+                changeStance("standing")			// -2
+            }
+            enemies = exploreEnemies()			// -1
+            explored = true
+        }else if(actionPoints>5){
+        	enemies = exploreEnemies()			// -1
+            explored = true
+        }
+        if(actionPoints > 6  and explored){
+            if(length(enemies.Item1) > 0 or length(enemies.Item2) > 0 or length(enemies.Item3) > 0){
+            	if(currStance !== "lying"){
+                	changeStance("lying")
+            	}
+            }
+            if(length(enemies.Item1) > 0) {
+                var e = enemies.Item1
+                var en = e[0]
+                each(target in enemies.Item1){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }else if(length(enemies.Item2) > 0) {	// -5
+                var e = enemies.Item2
+                var en = e[0]
+                each(target in enemies.Item2){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }else if(length(enemies.Item3) > 0) {	//
+                var e = enemies.Item3
+                var en = e[0]
+                each(target in enemies.Item3){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }
+        }
+        if(actionPoints > 4 and explored){
+            if(length(enemies.Item1) > 0) {			//
+                var e = enemies.Item1
+                var en = e[0]
+                each(target in enemies.Item1){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)						//
+            }else if(length(enemies.Item2) > 0) {	// -5
+                var e = enemies.Item2
+                var en = e[0]
+                each(target in enemies.Item2){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)							//
+            }else if(length(enemies.Item3) > 0) {	//
+                var e = enemies.Item3
+                var en = e[0]
+                each(target in enemies.Item3){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }
+        }
+        if(actionPoints > 4){
+            var target: Tuple<real, real> = nil
+            var e2FromTeam = enemiesFromTeam
+        	for (var i = 0; i < e2FromTeam.Size(); i++) {
+				if(hasBeeline(e2FromTeam.Get(i).Item1, e2FromTeam.Get(i).Item2)){
+    				target = e2FromTeam.Get(i)
+    			}
+        	}
+            if(target !== nil){
+            	tag(target.Item1, target.Item2)
+            }
+        }
 
-		
-		// war mode
-		if(enemyInSight) {
-			if((length(enemies.Item1()) + length(enemies.Item2()) + length(enemies.Item3()) > enemiesFromTeam.Size) and not hasMoved and stage >= 0){
-				// fight only if majority is likely
-				flee = true
-			} else {
-				changeStance("lying")
-				each(enemy in enemies.Item1()){ tag(enemy) }
-				each(enemy in enemies.Item2()){ tag(enemy) }
-				each(enemy in enemies.Item3()){ tag(enemy) }
-				// stand up only if no enemies in sight or if we must flee; otherwise, we might stand again when enemy shoots
-			}
-		} else if(enemyInTeamsSight){
-			var myEnemies : List<Tuple<real, real>> = new List<Tuple<real, real>>
-			var enemyPosition : Tuple<real, real>
-			var shoot : bool
-			// explore all enemies within sight
-			for(var i = 0;i < enemiesFromTeam.Size; i++){
-				enemyPosition = enemiesFromTeam.Get(i)
-				if(hasBeeline(enemyPosition.Item1(), enemyPosition.Item2())){
-					myEnemies.Add(enemyPosition)
-				}
-			}
-			if(myEnemies.Size > 0){
-				// enemy in line of sight -> shoot
-				shoot = true
-			} else {
-				// enemy not in line of sight
-				shoot = false
-				for(var i = 0; i < enemiesFromTeam.Size; i++){
-					enemyPosition = enemiesFromTeam.Get(i)
-					myEnemies.Add(enemyPosition)
-				}
-			}
-			// who is next?
-			var distanceToCurrentEnemy : real
-			var closestEnemy : Tuple<real, real> = myEnemies.Get(0)
-			var distanceToClosestEnemy = Math.Sqrt((closestEnemy.Item1() - xcor)**2 + (closestEnemy.Item2() - ycor)**2)
-			each (enemy in myEnemies){
-				distanceToCurrentEnemy = Math.Sqrt((enemy.Item1() - xcor)**2 + (enemy.Item2() - ycor)**2)
-				if(distanceToCurrentEnemy < distanceToClosestEnemy){
-					closestEnemy = enemy
-					distanceToClosestEnemy = distanceToCurrentEnemy
-				}
-			}
-			
-			if(shoot){
-				tag(closestEnemy.Item1(), closestEnemy.Item2())
-				tag(closestEnemy.Item1(), closestEnemy.Item2())
-			} else {
-				// Probieren einen Schritt schräg auf den Gegner zu zugehen und dann zu schießen
-				var newX = 1
-				var newY = 1 
-				if((xcor - closestEnemy.Item1()) === 0) {
-					if(random(1) > 0){ newX = newX*(-1) }
-				}
-				if((ycor - closestEnemy.Item2()) === 0) {
-					if(random(1) > 0){ newY = newY*(-1) }
-				}
-				if((xcor - closestEnemy.Item1()) !== 0 and (ycor - closestEnemy.Item2()) !== 0) {
-					if(random(1) > 0){
-						newX = 0
-						if(random(1) > 0){ newY = newY*(-1) }
-					} else {
-						newY = 0
-						if(random(1) > 0){ newX = newX*(-1) }
-					}
-				}
-				goTo(xcor+newX, ycor+newY)
-				tag(closestEnemy.Item1(), closestEnemy.Item2())
-			}
-			// fill up "short-term memory"
-			rememberedX = closestEnemy.Item1() as integer
-			rememberedY = closestEnemy.Item2() as integer
-		}
-		
-		// Get to da choppa
-		// flee if 'flee' was previously set to true of if we get attacked and don't see anyone
-		if(stage >= 0 and (flee or (wasTagged and not enemyInSight and not enemyInTeamsSight))){
-			if(not hasMoved){
-				goTo(xSpawn, ySpawn)
-				changeStance("lying")
-				stage = -10
-			} else {
-				changeStance("lying")
-				stage = -10
-			}
-		}
-		
-		if(rememberedX !== -1){
-			stage = 100000000 + (rememberedX * 10000) + rememberedY
-		}
-
+        if((actionPoints > 2) and (magazineCount < 3)){
+            reload()
+        }
+        while(actionPoints > 0){
+            var rand = random(3)
+            if((currStance !== "lying") and (actionPoints > 1) and (stage !== 0)){
+                changeStance("lying")				// -2
+            }else if(rand === 0){
+                exploreEnv("barriers")
+            }else if(rand === 1){
+                exploreEnv("ditches")
+            }else{
+                exploreEnv("hills")
+            }
+        }
 		refillPoints()
 	}
-
-//    tick {
-//		// TODO: your AI here
-//		
-//		refillPoints()
-//	}
 
 // **************************************************************************************** 
 // ****************************** EXPLORATION AND VISION **********************************
@@ -297,8 +480,8 @@ agent Green on Battleground {
 	}
 
 	// USER METHOD: generates an array of team members
-	def exploreTeam() : Green[] {
-		var team = explore Green where [x => return (actionPoints > 0)]
+	def exploreTeam() : Yellow[] {
+		var team = explore Yellow where [x => return (actionPoints > 0)]
 		if (actionPoints > 0) { actionPoints-- }
 		return team
 	}
@@ -308,12 +491,12 @@ agent Green on Battleground {
 		// 1) enemy coordinates are within visualRange
 		// 2) enemy visibility makes enemy visible from my location
 		// 3) no walls blocking linear vision between enemy and me
-	def exploreEnemies() : Tuple<Red[], Blue[], Yellow[]> {
-		var enemies = #(explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
-						explore Yellow where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
+	def exploreEnemies() : Tuple<Green[], Red[], Blue[]> {
+		var enemies = #(explore Green where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Red where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)],
+						explore Blue where [x => return (actionPoints > 0) and (((distance x) <= visualRange)) and (((distance x) <= x.GetVisibility) or (battleground.GetIntegerValue(xcor, ycor) === 2) or (battleground.GetIntegerValue(xcor, ycor) === 3)) and hasBeeline(xcor, ycor, x.GetX, x.GetY)]
 						)
-		var teamArray = explore Green
+		var teamArray = explore Yellow
 		for (var i = 0; i < length(teamArray); i++) {
 			var a = teamArray[i]
 			a.ForwardEnemies(enemies)
@@ -322,26 +505,26 @@ agent Green on Battleground {
 		return enemies
 	}
 	
-	passive ForwardEnemies(enemies : Tuple<Red[], Blue[], Yellow[]>) {
+	passive ForwardEnemies(enemies : Tuple<Green[], Red[], Blue[]>) {
 		for (var i = 0; i < length(enemies.Item1); i++) {
-			var red = enemies.Item1
-			var a = red[i]
+			var green = enemies.Item1
+			var a = green[i]
 			enemiesFromTeam.Add(#(a.GetX, a.GetY))
 		}
 		for (var i = 0; i < length(enemies.Item2); i++) {
-			var blue = enemies.Item2
-			var a = blue[i]
+			var red = enemies.Item2
+			var a = red[i]
 			enemiesFromTeam.Add(#(a.GetX, a.GetY))
 		}
 		for (var i = 0; i < length(enemies.Item3); i++) {
-			var yellow = enemies.Item3
-			var a = yellow[i]
+			var blue = enemies.Item3
+			var a = blue[i]
 			enemiesFromTeam.Add(#(a.GetX, a.GetY))
 		}
 	}
 	
 	// USER METHOD: gets barriers, hills, or ditches list from team member a, based on value of o
-	def getInfoFromTeam(o : string, a : Green) : List<Tuple<real, real>> {
+	def getInfoFromTeam(o : string, a : Yellow) : List<Tuple<real, real>> {
 		switch (o) {
 			case "barriers" : { return a.GetBarriers }
 			case "hills" : { return a.GetHills }
@@ -406,10 +589,8 @@ agent Green on Battleground {
 	// return: distance OR -1.0 if distance cannot be determined
 	def getDistance(x : real, y : real) : real {
 		var isInList : bool = false
-		if (enemiesFromTeam.Size() > 0) {
-			for (var i = 0; i < enemiesFromTeam.Size(); i++) {
-				if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }			
-			}
+		for (var i = 0; i < enemiesFromTeam.Size(); i++) {
+			if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }
 		}
 		if (hasBeeline(x, y) or hills.Exists([h => return h === #(x, y)]) or ditches.Exists([d => return d === #(x, y)]) or barriers.Exists([b => return b === #(x, y)]) or isInList) {
 			return Math.Max(Math.Abs(xcor - x), Math.Abs(ycor - y))
@@ -906,7 +1087,52 @@ agent Green on Battleground {
 			}
 		}
 		currStance = newStance
-		actionPoints = actionPoints - 2	
+		actionPoints = actionPoints - 2
+	}
+
+	// USER METHOD: tags a green enemy
+	def tag(green : Green) {
+		if (magazineCount < 1) { reload() }
+		if (actionPoints < 5) { return }
+		var tagReturn : bool = false
+		var enemyStanceVal : integer = 2
+		var energyZero : bool = false
+		if (battleground.GetIntegerValue(green.GetX, green.GetY) === 2) { enemyStanceVal = 2 }
+		else if (battleground.GetIntegerValue(green.GetX, green.GetY) === 3) { enemyStanceVal = 0 }
+		else {
+			switch (green.GetStance) {
+				case "kneeling" : {	enemyStanceVal = 1 }
+				case "lying" : { enemyStanceVal = 0	}
+			}
+		}
+		switch (currStance) {
+			case "standing" : {
+				if (random(10) + 1 + enemyStanceVal > 8) {
+					energyZero = green.Tagged
+					tagReturn = true
+				}
+			}
+			case "kneeling" : {
+				if (random(10) + 1 + enemyStanceVal > 6) {
+					energyZero = green.Tagged
+					tagReturn = true
+				}
+			}
+			case "lying" : {
+				if (random(10) + 1 + enemyStanceVal > 4) {
+					energyZero = green.Tagged
+					tagReturn = true
+				}
+			}
+		}
+		if (tagReturn) {
+			tagged = true
+			taggedCounter = 2
+			if (green.GetEnergy >= 0) { points = points + 10 }
+			if (energyZero) { points = points + 10 }
+		}
+		magazineCount--
+		actionPoints = actionPoints - 5
 	}
 
 	// USER METHOD: tags a red enemy
@@ -999,61 +1225,16 @@ agent Green on Battleground {
 		actionPoints = actionPoints - 5
 	}
 	
-	// USER METHOD: tags a yellow enemy
-	def tag(yellow : Yellow) {
-		if (magazineCount < 1) { reload() }
-		if (actionPoints < 5) { return }
-		var tagReturn : bool = false
-		var enemyStanceVal : integer = 2
-		var energyZero : bool = false
-		if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 2) { enemyStanceVal = 2 }
-		else if (battleground.GetIntegerValue(yellow.GetX, yellow.GetY) === 3) { enemyStanceVal = 0 }
-		else {
-			switch (yellow.GetStance) {
-				case "kneeling" : {	enemyStanceVal = 1 }
-				case "lying" : { enemyStanceVal = 0	}
-			}
-		}
-		switch (currStance) {
-			case "standing" : {
-				if (random(10) + 1 + enemyStanceVal > 8) {
-					energyZero = yellow.Tagged
-					tagReturn = true
-				}
-			}
-			case "kneeling" : {
-				if (random(10) + 1 + enemyStanceVal > 6) {
-					energyZero = yellow.Tagged
-					tagReturn = true
-				}
-			}
-			case "lying" : {
-				if (random(10) + 1 + enemyStanceVal > 4) {
-					energyZero = yellow.Tagged
-					tagReturn = true
-				}
-			}
-		}
-		if (tagReturn) {
-			tagged = true
-			taggedCounter = 2
-			if (yellow.GetEnergy >= 0) { points = points + 10 }
-			if (energyZero) { points = points + 10 }
-		}
-		magazineCount--
-		actionPoints = actionPoints - 5
-	}
-	
 	// USER METHOD: checks if an enemy is located at (x, y) and, if so, attempts to tag that enemy
 	def tag(x : real, y : real) {
 		if (magazineCount < 1) { reload() }
 		if (actionPoints < 5) { return }
+		var potentialGreen = explore Green where [g => return (g.GetX === x) and (g.GetY === y) and hasBeeline(xcor, ycor, g.GetX, g.GetY)]
 		var potentialRed = explore Red where [r => return (r.GetX === x) and (r.GetY === y) and hasBeeline(xcor, ycor, r.GetX, r.GetY)]
 		var potentialBlue = explore Blue where [b => return (b.GetX === x) and (b.GetY === y) and hasBeeline(xcor, ycor, b.GetX, b.GetY)]
-		var potentialYellow = explore Yellow where [ye => return (ye.GetX === x) and (ye.GetY === y) and hasBeeline(xcor, ycor, ye.GetX, ye.GetY)]
-		if (length(potentialRed) > 0) { tag(potentialRed[0]) }
+		if (length(potentialGreen) > 0) { tag(potentialGreen[0]) }
+		else if (length(potentialRed) > 0) { tag(potentialRed[0]) }
 		else if (length(potentialBlue) > 0) { tag(potentialBlue[0]) }
-		else if (length(potentialYellow) > 0) { tag(potentialYellow[0]) }
 		else {
 			magazineCount--
 			actionPoints = actionPoints - 5
@@ -1116,7 +1297,7 @@ agent Green on Battleground {
 	}
 	
 	// USER METHOD: gets agent's memberID
-	def getMemberID(a : Green) : integer {
+	def getMemberID(a : Yellow) : integer {
 		return a.GetMemberID
 	}
 	

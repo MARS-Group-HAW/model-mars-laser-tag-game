@@ -48,8 +48,9 @@ agent Green on Battleground {
 		pos at #(x, y)
 		sGoal = #(x, y, g, rhs, 0, 0.0, 0.0)
 	}
-
+	
 	tick {
+		// TODO: your AI here
 		var oldStage : integer = 0
 		var moved : bool = false
 		var enemyInSight : bool = false
@@ -68,7 +69,7 @@ agent Green on Battleground {
 			isRectangle = goTo(50,26)
 		}
 		
-		if(stage >= 200000000){ // not >= 100000000 so that negative values remain possible
+		if(stage >= 200000000){ // damit negative werte weiterhin möglich sind nicht >= 100000000
 			isRectangle = true
 			stage = stage - 1000000000
 		}
@@ -76,7 +77,7 @@ agent Green on Battleground {
 		changeStance("standing")
 		
 		if(stage === 0 or stage === 77){
-			stage = 1 // since sGoal does not get reset at respawn
+			stage = 1 // da sGoal nicht reseted wird bei respawn
 		} else if (stage < 0) {
 			changeStance("standing")
 			goTo(xSpawn, ySpawn)
@@ -86,15 +87,15 @@ agent Green on Battleground {
 		}
 
 
-		// where are the enemies?
+		// Wo sind die Gegners?
 		var enemies = exploreEnemies()
 		enemyInSight = (length(enemies.Item1()) > 0 or length(enemies.Item2()) > 0 or length(enemies.Item3()) > 0)
 		var enemyInTeamsSight = enemiesFromTeam.Size > 0
 		var enemyEncountered = enemyInTeamsSight or enemyInSight or wasTagged
 
-		//explore and choose strategy
+		//Erkunden und Strategie wählen
 		if(not enemyEncountered){
-			// recall "short-term memory"
+			//"Kurzeitgedächtnis" abrufen
 			if(stage > 100000000){
 				var fromMemoryY: real = stage % 10000
 				var fromMemoryX: real = ((stage - fromMemoryY) / 10000) % 10000
@@ -103,10 +104,11 @@ agent Green on Battleground {
 				moved = goTo(fromMemoryX, fromMemoryY)
 
 			} else if(not hasGoal){
-			// choosing strategy
+			// Strategie Auswahl
 			
 				strategy = (random(3) + 1) * 10 // 10,20, 30 
-							
+				
+				//TODO Aktion durchführen an POIs			
 				if(strategy === 10) {
 					exploreEnv("ditches")
 					pois = ditches
@@ -128,7 +130,7 @@ agent Green on Battleground {
 				}
 				moved = goTo(poi.Item1(), poi.Item2())
 			} else {
-				// pursue goal
+				// Ziel verfolgen
 				poi = #(sGoal.Item1(), sGoal.Item2())
 				moved = goTo(poi.Item1(), poi.Item2())
 				if(not moved){
@@ -136,7 +138,7 @@ agent Green on Battleground {
 				}
 			}
 			
-			// shoot at occupied POI
+			// Auf besetzte Pois schießen
 			var poiIsOccupied = (not moved and hasMoved and strategy !== 30)
 			if(poiIsOccupied and hasBeeline(poi.Item1, poi.Item2)){
 				tag(poi.Item1, poi.Item2)
@@ -144,23 +146,31 @@ agent Green on Battleground {
 		}
 
 		
-		// war mode
+		// Krieg-Modus
 		if(enemyInSight) {
 			if((length(enemies.Item1()) + length(enemies.Item2()) + length(enemies.Item3()) > enemiesFromTeam.Size) and not hasMoved and stage >= 0){
-				// fight only if majority is likely
+				// Nur Kämpfen wenn überzahl wahrscheinlich ist
+				// TODO ggf. Entscheidung abhängig ob Gegner aus unterschiedlichen Teams sind -> lass sie gegeneinander kämpfen
 				flee = true
 			} else {
 				changeStance("lying")
-				each(enemy in enemies.Item1()){ tag(enemy) }
-				each(enemy in enemies.Item2()){ tag(enemy) }
-				each(enemy in enemies.Item3()){ tag(enemy) }
-				// stand up only if no enemies in sight or if we must flee; otherwise, we might stand again when enemy shoots
+			
+				each(enemy in enemies.Item1()){
+					tag(enemy)
+				}
+				each(enemy in enemies.Item2()){
+					tag(enemy) 
+				}
+				each(enemy in enemies.Item3()){
+					tag(enemy)
+				}
+				// Aufstehen nur, wenn keine Gegner in Sicht oder wir fliehen müssen, sonst steht man evtl. wieder, wenn der Gegner schießt	
 			}
 		} else if(enemyInTeamsSight){
 			var myEnemies : List<Tuple<real, real>> = new List<Tuple<real, real>>
 			var enemyPosition : Tuple<real, real>
 			var shoot : bool
-			// explore all enemies within sight
+			// Alle Gegner in Sicht einsammeln
 			for(var i = 0;i < enemiesFromTeam.Size; i++){
 				enemyPosition = enemiesFromTeam.Get(i)
 				if(hasBeeline(enemyPosition.Item1(), enemyPosition.Item2())){
@@ -168,17 +178,17 @@ agent Green on Battleground {
 				}
 			}
 			if(myEnemies.Size > 0){
-				// enemy in line of sight -> shoot
+				// Gegner Sichtlinie -> Schießen
 				shoot = true
 			} else {
-				// enemy not in line of sight
+				// Gegner nicht in Sicht
 				shoot = false
 				for(var i = 0; i < enemiesFromTeam.Size; i++){
 					enemyPosition = enemiesFromTeam.Get(i)
 					myEnemies.Add(enemyPosition)
 				}
 			}
-			// who is next?
+			// Welcher ist am nächsten dran?
 			var distanceToCurrentEnemy : real
 			var closestEnemy : Tuple<real, real> = myEnemies.Get(0)
 			var distanceToClosestEnemy = Math.Sqrt((closestEnemy.Item1() - xcor)**2 + (closestEnemy.Item2() - ycor)**2)
@@ -190,6 +200,7 @@ agent Green on Battleground {
 				}
 			}
 			
+
 			if(shoot){
 				tag(closestEnemy.Item1(), closestEnemy.Item2())
 				tag(closestEnemy.Item1(), closestEnemy.Item2())
@@ -198,53 +209,56 @@ agent Green on Battleground {
 				var newX = 1
 				var newY = 1 
 				if((xcor - closestEnemy.Item1()) === 0) {
-					if(random(1) > 0){ newX = newX*(-1) }
+					if(random(1) > 0){
+						newX = newX*(-1)
+					}
 				}
 				if((ycor - closestEnemy.Item2()) === 0) {
-					if(random(1) > 0){ newY = newY*(-1) }
+					if(random(1) > 0){
+						newY = newY*(-1)
+					}
 				}
 				if((xcor - closestEnemy.Item1()) !== 0 and (ycor - closestEnemy.Item2()) !== 0) {
 					if(random(1) > 0){
 						newX = 0
-						if(random(1) > 0){ newY = newY*(-1) }
+						if(random(1) > 0){
+							newY = newY*(-1)
+						}
 					} else {
 						newY = 0
-						if(random(1) > 0){ newX = newX*(-1) }
+						if(random(1) > 0){
+							newX = newX*(-1)
+						}
 					}
 				}
 				goTo(xcor+newX, ycor+newY)
 				tag(closestEnemy.Item1(), closestEnemy.Item2())
 			}
-			// fill up "short-term memory"
+			//"Kurzeitgedächtnis" auffüllen
 			rememberedX = closestEnemy.Item1() as integer
 			rememberedY = closestEnemy.Item2() as integer
 		}
 		
 		// Get to da choppa
-		// flee if 'flee' was previously set to true of if we get attacked and don't see anyone
+		//Flüchten wenn flee vorher gesetzt oder wenn Angriff ohne dass wir jemanden sehen
 		if(stage >= 0 and (flee or (wasTagged and not enemyInSight and not enemyInTeamsSight))){
 			if(not hasMoved){
 				goTo(xSpawn, ySpawn)
 				changeStance("lying")
 				stage = -10
+				// println("Abort Mission!!!")
 			} else {
 				changeStance("lying")
 				stage = -10
+				// println("Abort Mission!!!")
 			}
 		}
 		
 		if(rememberedX !== -1){
 			stage = 100000000 + (rememberedX * 10000) + rememberedY
 		}
-
 		refillPoints()
 	}
-
-//    tick {
-//		// TODO: your AI here
-//		
-//		refillPoints()
-//	}
 
 // **************************************************************************************** 
 // ****************************** EXPLORATION AND VISION **********************************
@@ -406,10 +420,8 @@ agent Green on Battleground {
 	// return: distance OR -1.0 if distance cannot be determined
 	def getDistance(x : real, y : real) : real {
 		var isInList : bool = false
-		if (enemiesFromTeam.Size() > 0) {
-			for (var i = 0; i < enemiesFromTeam.Size(); i++) {
-				if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }			
-			}
+		for (var i = 0; i < enemiesFromTeam.Size(); i++) {
+			if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }
 		}
 		if (hasBeeline(x, y) or hills.Exists([h => return h === #(x, y)]) or ditches.Exists([d => return d === #(x, y)]) or barriers.Exists([b => return b === #(x, y)]) or isInList) {
 			return Math.Max(Math.Abs(xcor - x), Math.Abs(ycor - y))

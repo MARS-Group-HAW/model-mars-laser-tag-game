@@ -1,9 +1,16 @@
-AIs
-Tournament/Results
+# IDE and compilation files
 lasertag/.settings
 lasertag/src-gen/bin
 lasertag/src-gen/logs
 lasertag/src-gen/obj
+*.cs
+*.csproj
+.project
+.DS_store
+*.xml
+*.iml
+
+# agent output files
 Barrier.csv
 BattlegroundDraw.csv
 Ditch.csv
@@ -13,14 +20,10 @@ Red.csv
 Blue.csv
 Yellow.csv
 Spawner.csv
+
+# Analysis and Visualization files (Python)
 map.csv
 agents.csv
-*.cs
-*.csproj
-.project
-.DS_store
-*.xml
-*.iml
 *.pyc
 *.prefs
 Analysis/*.csv

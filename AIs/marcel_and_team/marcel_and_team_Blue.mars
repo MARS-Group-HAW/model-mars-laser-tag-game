@@ -1,0 +1,127 @@
+	tick {
+		//Explore Env
+		if(simtime<=1) {
+			exploreEnv("barriers")
+			exploreEnv("ditches")
+			exploreEnv("hills")
+		} else if(simtime%2 === 0) {
+			exploreEnv("barriers")
+			exploreEnv("ditches")
+		} else {
+			exploreEnv("barriers")
+			exploreEnv("hills")
+		}
+		
+		//Explore Enemies
+		var enemies = exploreEnemies()
+		
+		// ajust if inserted into other agent
+		var closestEnemyOne : Green
+		var closestEnemyTwo : Red
+		var closestEnemyThree : Yellow
+		
+		var distanceToClosestEnemyOne :real = visualRange
+		var distanceToClosestEnemyTwo :real = visualRange
+		var distanceToClosestEnemyThree :real = visualRange
+		
+		var green : integer = length(enemies.Item1)
+		if(green>0){
+			each(var one in enemies.Item1) {
+				var distanceToEnemy :real
+				distanceToEnemy = getDistance(one)
+				if(distanceToEnemy<distanceToClosestEnemyOne){
+					distanceToClosestEnemyOne = distanceToEnemy
+					closestEnemyOne = one
+				}
+			}
+		} 
+		var red : integer = length(enemies.Item2)
+		if(red>0){
+			each(var two in enemies.Item2) {
+				var distanceToEnemy :real
+				distanceToEnemy = getDistance(two)
+				if(distanceToEnemy<distanceToClosestEnemyTwo){
+					distanceToClosestEnemyTwo = distanceToEnemy
+					closestEnemyTwo = two
+				}
+			}
+		}
+		var yellow : integer = length(enemies.Item3)
+		if(yellow>0){
+			each(var three in enemies.Item3) {
+				var distanceToEnemy :real
+				distanceToEnemy = getDistance(three)
+				if(distanceToEnemy<distanceToClosestEnemyThree){
+					distanceToClosestEnemyThree = distanceToEnemy
+					closestEnemyThree = three
+				}
+			}
+		}
+		if(not (closestEnemyOne === nil)) {
+			if(not (closestEnemyTwo === nil) and distanceToClosestEnemyOne>distanceToClosestEnemyTwo) {
+				if(not (closestEnemyThree===nil) and distanceToClosestEnemyTwo>distanceToClosestEnemyThree) {
+					tag(closestEnemyThree)
+				} else {tag(closestEnemyTwo)}
+			} else if(not (closestEnemyThree===nil) and distanceToClosestEnemyOne>distanceToClosestEnemyThree) {
+				tag(closestEnemyThree)
+			} else {tag(closestEnemyOne)}		
+		} else if(not(closestEnemyTwo===nil)) {
+			if(not (closestEnemyThree===nil) and distanceToClosestEnemyTwo>distanceToClosestEnemyThree) {
+					tag(closestEnemyThree)
+				} else {tag(closestEnemyTwo)}
+		} else if(not(closestEnemyThree===nil)) {tag(closestEnemyThree)}
+		
+		
+	
+		//random shot at hills
+		each(var hill in hills) {
+			if(hasBeeline(hill.Item1, hill.Item2)) {
+				if(not tagged) {
+					tag(hill.Item1,hill.Item2)
+				}
+			}
+		}
+		
+		//Movement in Combat
+		if(not(closestEnemyOne===nil) or not(closestEnemyTwo===nil) or not(closestEnemyThree===nil)) {
+			changeStance("lying")
+			if(not(sGoal===nil)){
+				if(goTo(sGoal.Item1,sGoal.Item2)){}
+				else{goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+			}
+			else{goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+		}
+		// Movement Explore
+		else if(hills.Size > 0) {
+			var lastFoundHill: Tuple<real, real> = hills.Get(hills.Size-1)
+			changeStance("standing")
+			if(not(sGoal===nil)){
+				if(goTo(sGoal.Item1,sGoal.Item2)){}
+				else if(goTo(lastFoundHill.Item1,lastFoundHill.Item2)) {}
+				else if(hills.Size>1 and goTo(hills.Get(hills.Size-2).Item1,hills.Get(hills.Size-2).Item2)){}
+				else{goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+			} else if(goTo(lastFoundHill.Item1,lastFoundHill.Item2)){}
+			else{goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+			
+		} else if(ditches.Size > 0) {
+			var lastFoundDitch: Tuple<real, real> = ditches.Get(ditches.Size-1)
+			changeStance("standing")
+			if(not(sGoal===nil)){
+				if(goTo(sGoal.Item1,sGoal.Item2)){}
+				else if(goTo(lastFoundDitch.Item1,lastFoundDitch.Item2)){}
+				else if(ditches.Size>1 and goTo(ditches.Get(ditches.Size -2).Item1,ditches.Get(ditches.Size-2).Item2)){}
+				else{goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+			} else if(goTo(lastFoundDitch.Item1,lastFoundDitch.Item2)){}
+			else {goTo(random(battleground.DimensionX),random(battleground.DimensionY))}
+			
+		} else {
+			changeStance("standing")
+			if(not(sGoal===nil)){
+				if(goTo(sGoal.Item1,sGoal.Item2)){}
+				else if(goTo(random(battleground.DimensionX),random(battleground.DimensionY))){}
+			} else if(goTo(random(battleground.DimensionX),random(battleground.DimensionY))){}
+		}
+		
+		
+		refillPoints()
+	}

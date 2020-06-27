@@ -55,8 +55,6 @@ agent Yellow on Battleground {
 		refillPoints()
 	}
 
-
-
 // **************************************************************************************** 
 // ****************************** EXPLORATION AND VISION **********************************
 // ****************************************************************************************
@@ -217,8 +215,10 @@ agent Yellow on Battleground {
 	// return: distance OR -1.0 if distance cannot be determined
 	def getDistance(x : real, y : real) : real {
 		var isInList : bool = false
-		for (var i = 0; i < enemiesFromTeam.Size(); i++) {
-			if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }
+		if (enemiesFromTeam.Size() > 0) {
+			for (var i = 0; i < enemiesFromTeam.Size(); i++) {
+				if ((enemiesFromTeam.Get(i).Item1 === x) and (enemiesFromTeam.Get(i).Item2 === y)) { isInList = true }			
+			}
 		}
 		if (hasBeeline(x, y) or hills.Exists([h => return h === #(x, y)]) or ditches.Exists([d => return d === #(x, y)]) or barriers.Exists([b => return b === #(x, y)]) or isInList) {
 			return Math.Max(Math.Abs(xcor - x), Math.Abs(ycor - y))

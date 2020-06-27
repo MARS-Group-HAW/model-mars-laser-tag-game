@@ -1,0 +1,387 @@
+	tick {
+        var xLoc: real = 2
+        var yLoc: real = 2
+        var tri: bool = false
+            if(battleground.GetIntegerValue(1,1) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(1,battleground.DimensionY-2) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(battleground.DimensionX-2,1) === 1){
+                tri = true
+            }else if(battleground.GetIntegerValue(battleground.DimensionX-2,battleground.DimensionY-2) === 1){
+                tri = true
+            }
+        if(tri){
+
+            var corner: bool = true
+            if(xSpawn>(battleground.DimensionX/4) and xSpawn < (battleground.DimensionX-(battleground.DimensionX/4))){
+                corner = false
+            }
+// Member 1 Tri =======================================================
+            if(memberID === 1){
+                if(corner){
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = battleground.DimensionX/2
+                }else{
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = 1
+                }
+// Member 2 Tri =======================================================
+            }else if (memberID === 2){
+                if(corner){
+                    if(xSpawn < (battleground.DimensionX/3)){
+                        xLoc = battleground.DimensionX - 2
+                    }
+                }else{
+                    if(ySpawn < (battleground.DimensionY/3)){
+                        yLoc = battleground.DimensionY - 2
+                    }
+                    xLoc = battleground.DimensionX - 2
+                }
+// Member 3 Tri =======================================================
+            }else{
+                yLoc = battleground.DimensionY/2
+                xLoc = battleground.DimensionX/2
+                var xory: integer = 0
+                while(battleground.GetIntegerValue(xLoc,yLoc)===1){
+                    if(xory%2 === 0){
+                        xLoc++
+                    }else{
+                        yLoc++
+                    }
+                    xory++
+                }
+            }
+        }else{
+// Member 1 =======================================================
+            if(memberID === 1){
+                if(ySpawn < (battleground.DimensionY/2)){
+                    yLoc = battleground.DimensionY - 2
+                }
+                xLoc = xSpawn
+// Member 2 =======================================================
+            }else if (memberID === 2){
+                if(xSpawn < (battleground.DimensionX/2)){
+                    xLoc = battleground.DimensionX - 2
+                }
+                yLoc = ySpawn
+// Member 3 =======================================================
+            }else{
+                if(ySpawn < (battleground.DimensionY/2)){
+                    yLoc = battleground.DimensionY - 2
+                }
+                if(xSpawn < (battleground.DimensionX/2)){
+                    xLoc = battleground.DimensionX - 2
+                }
+            }
+        }
+// Movement State ================================================================================================
+        var blocked:bool = false
+        var below: bool = false
+    	if(stage>99){
+    		below = true
+    	}
+
+        if(stage===99 or stage===199){
+        	var x = battleground.DimensionX/2
+        	var y = battleground.DimensionY/2
+        	var prev = 0
+        	while(battleground.GetIntegerValue(x,y)===1 and prev<45){
+                x = x + random(3)-1
+                y = y + random(3)-1
+                prev++
+            }
+            if(prev<45){
+            	xLoc = x
+            	yLoc = y
+            	stage = 0
+            	blocked = true
+            }
+        }
+        if(energy>20 or stage>99){
+        	if(below){stage = stage-100}
+            var distGoal: real = 0
+            if((wasTaggedCounter > 0) and energy<70){stage = 30}
+            if(stage === 0){
+                distGoal = getDistance(xLoc, yLoc)
+            }
+            if((distGoal < 6) and (distGoal>=0) and stage === 0){
+                stage = 1
+            }
+            if(stage === 0){
+            	changeStance("standing")
+                goTo(xLoc,yLoc)
+            }else if(stage === 1){
+                exploreEnv("barriers")
+                stage = 10
+            }
+            if(stage >= 10 and stage < 30){
+                var helpX: real = xcor + random(3)-1
+                var helpY: real = ycor + random(3)-1
+                while(battleground.GetIntegerValue(helpX,helpY)===1){
+                    helpX = xcor + random(3)-1
+                    helpY = ycor + random(3)-1
+                }
+                var changed: bool = false
+                var found: bool = true
+                each(b in barriers){
+                    var tempX: real
+                    var goFurther: bool = false
+                    if(Math::Abs(b.Item1-xcor)<10 and Math::Abs(b.Item2-ycor)<10 and not found){
+                        if(barriers.Exists([bar => return ((bar.Item1-b.Item1) === 1)])){
+                            tempX = b.Item1+1
+                            goFurther = true
+                        }else if(barriers.Exists([bar => return ((bar.Item1-b.Item1) === -1)])){
+                            tempX = b.Item1-1
+                            goFurther = true
+                        }
+                        if(barriers.Exists([bar => return ((bar.Item2-b.Item2) === 1)]) and goFurther){
+                            helpX = tempX
+                            helpY = b.Item2+1
+                            changed = true
+                        }else if(barriers.Exists([bar => return ((bar.Item2-b.Item2) === -1)]) and goFurther){
+                            helpX = tempX
+                            helpY = b.Item2-1
+                            changed = true
+                        }
+                    }
+                    if(changed){
+                        found = (battleground.GetIntegerValue(helpX,helpY) !== 1)
+                        if(not found){
+                        	changed = false
+                        }
+                    }
+                }
+                if(not changed){stage = 1}
+                goTo(helpX, helpY)
+                if(Math::Sqrt((xLoc-xcor)*(xLoc-xcor) + (yLoc-ycor)*(yLoc-ycor))>11){
+                    stage = 0
+                }
+            }
+            if(stage >= 30){		//Emergency Stage
+                if(stage > 42){
+                    changeStance("standing")
+                    stage = 0
+                }else{
+                    changeStance("standing")
+                    if(ditches.Size()<1){
+                        exploreEnv("ditches")
+                    }else{
+                        goTo(ditches.Get(ditches.Size()-1).Item1, ditches.Get(ditches.Size()-1).Item2)
+                    }
+                    if(ditches.Size()<1){
+                        var myTeam = exploreTeam()
+                        goTo(myTeam[0].GetX, myTeam[0].GetY)
+                    }else{
+                        goTo(ditches.Get(ditches.Size()-1).Item1, ditches.Get(ditches.Size()-1).Item2)
+                    }
+                    stage++
+                    changeStance("lying")
+                }
+            }
+            if(below and blocked and stage > 0){
+            	stage = stage + 100
+            	if(wasTagged){stage=50}
+            }else if(below and blocked){
+            	stage = 199
+            	if(wasTagged){stage=50}
+            }else if(blocked and stage>0){
+            	stage = stage
+            }else if(blocked){
+            	stage = 99
+            }else if(stage>9 and stage<30){
+            	stage++
+            	if(stage>=30){stage = 99}
+            }
+            if(below and stage<100){
+            	stage = stage + 100
+            	if(wasTagged){stage=50}
+            }
+        }else{
+            if(stage < 50) {stage = 50}
+            if(battleground.GetIntegerValue(xcor,ycor) < 3){
+                exploreEnv("ditches")				// -1
+                if(ditches.Size() > 0){
+                    var closestDitch = ditches.Get(ditches.Size()-1)
+                    each(d in ditches){
+                        var distCD = getDistance(closestDitch.Item1, closestDitch.Item2)
+                        var distND = getDistance(d.Item1, d.Item2)
+                        if((distCD > distND)){
+                            closestDitch = d
+                        }
+                    }
+                    goTo(closestDitch.Item1, closestDitch.Item2)
+                }else{
+                    var myTeam = exploreTeam()		// -1
+                    var closestMate = myTeam[0]
+                    each(d in myTeam){
+                        var cX: real = closestMate.GetX
+                        var cY: real = closestMate.GetY
+                        var dX: real = d.GetX
+                        var dY: real = d.GetY
+                        var distCM: real = Math.Max(Math.Abs(xcor - cX), Math.Abs(ycor - cY))
+                        var distNM: real = Math.Max(Math.Abs(xcor - dX), Math.Abs(ycor - dY))
+                        if((distCM > distNM)){
+                            closestMate = d
+                        }
+                    }
+                    goTo(closestMate.GetX, closestMate.GetY)
+                }
+            }
+            if(not tagged or not hasMoved){
+                stage++
+            }else{
+                stage = 50
+            }
+            if(stage>65){
+                stage = 100
+            }
+        }
+// Action State ================================================================================================
+        if(actionPoints>9 and magazineCount>1 and enemiesFromTeam.Size()>0){
+        	var posTar1: Tuple<real, real> = nil
+        	var posTar2: Tuple<real, real> = nil
+        	var eFromTeam = enemiesFromTeam
+        	var canSee:bool = false
+        	for(var i = 0; i < eFromTeam.Size(); i++){
+        		if(hasBeeline(eFromTeam.Get(i).Item1,eFromTeam.Get(i).Item2) === true){
+        			canSee = true
+        		}
+        	}
+        	if(canSee){
+        		for (var i = 0; i < eFromTeam.Size(); i++) {
+					if(posTar1 === nil and hasBeeline(eFromTeam.Get(i).Item1, eFromTeam.Get(i).Item2)){
+        				posTar1 = eFromTeam.Get(i)
+        			}else if(hasBeeline(eFromTeam.Get(i).Item1, eFromTeam.Get(i).Item2)){
+        				posTar2 = eFromTeam.Get(i)
+        			}
+        		}
+        		if(posTar1 !== nil and posTar2 !== nil){
+        			tag(posTar1.Item1, posTar1.Item2)
+        			tag(posTar2.Item1, posTar2.Item2)
+        		}else if(posTar1 !== nil){
+        			tag(posTar1.Item1, posTar1.Item2)
+        			tag(posTar1.Item1, posTar1.Item2)
+        		}else if(posTar2 !== nil){
+        			tag(posTar2.Item1, posTar2.Item2)
+        			tag(posTar2.Item1, posTar2.Item2)
+        		}
+        	}
+        }
+
+        if(magazineCount < 1){
+            reload()
+        }
+
+        var enemies: Tuple<Green[], Red[], Yellow[]>
+        var explored: bool = false
+        if(actionPoints > 9){
+        	if(currStance !== "standing"){
+                changeStance("standing")			// -2
+            }
+            enemies = exploreEnemies()			// -1
+            explored = true
+        }else if(actionPoints>5){
+        	enemies = exploreEnemies()			// -1
+            explored = true
+        }
+        if(actionPoints > 6  and explored){
+            if(length(enemies.Item1) > 0 or length(enemies.Item2) > 0 or length(enemies.Item3) > 0){
+            	if(currStance !== "lying"){
+                	changeStance("lying")
+            	}
+            }
+            if(length(enemies.Item1) > 0) {
+                var e = enemies.Item1
+                var en = e[0]
+                each(target in enemies.Item1){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }else if(length(enemies.Item2) > 0) {	// -5
+                var e = enemies.Item2
+                var en = e[0]
+                each(target in enemies.Item2){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }else if(length(enemies.Item3) > 0) {	//
+                var e = enemies.Item3
+                var en = e[0]
+                each(target in enemies.Item3){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }
+        }
+        if(actionPoints > 4 and explored){
+            if(length(enemies.Item1) > 0) {			//
+                var e = enemies.Item1
+                var en = e[0]
+                each(target in enemies.Item1){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)						//
+            }else if(length(enemies.Item2) > 0) {	// -5
+                var e = enemies.Item2
+                var en = e[0]
+                each(target in enemies.Item2){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)							//
+            }else if(length(enemies.Item3) > 0) {	//
+                var e = enemies.Item3
+                var en = e[0]
+                each(target in enemies.Item3){
+                	var stand = target.GetStance
+                	if(en.GetStance === "lying" and (stand !== "lying")){en = target}
+                	else if(en.GetStance === "kneeling" and target.GetStance === "standing"){en = target}
+                }
+                tag(en)
+            }
+        }
+        if(actionPoints > 4){
+            var target: Tuple<real, real> = nil
+            var e2FromTeam = enemiesFromTeam
+        	for (var i = 0; i < e2FromTeam.Size(); i++) {
+				if(hasBeeline(e2FromTeam.Get(i).Item1, e2FromTeam.Get(i).Item2)){
+    				target = e2FromTeam.Get(i)
+    			}
+        	}
+            if(target !== nil){
+            	tag(target.Item1, target.Item2)
+            }
+        }
+
+        if((actionPoints > 2) and (magazineCount < 3)){
+            reload()
+        }
+        while(actionPoints > 0){
+            var rand = random(3)
+            if((currStance !== "lying") and (actionPoints > 1) and (stage !== 0)){
+                changeStance("lying")				// -2
+            }else if(rand === 0){
+                exploreEnv("barriers")
+            }else if(rand === 1){
+                exploreEnv("ditches")
+            }else{
+                exploreEnv("hills")
+            }
+        }
+        refillPoints()
+        //println "Finished " + color + memberID + " in time: " + simtime + "Stage: " + stage
+    }
