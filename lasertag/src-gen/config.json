@@ -42,7 +42,13 @@
 		},
 		{
 			"name":"Spawner",
-			"count":1
+			"count":1,
+			"outputFrequency":-1
+		},
+		{
+			"name":"Barrier",
+			"count":0,
+			"outputFrequency":-1
 		}
 	]
 }
