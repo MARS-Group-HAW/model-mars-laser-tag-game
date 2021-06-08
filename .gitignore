@@ -3,12 +3,13 @@ lasertag/.settings
 lasertag/src-gen/bin
 lasertag/src-gen/logs
 lasertag/src-gen/obj
-*.cs
-*.csproj
 .project
 .DS_store
 *.xml
 *.iml
+LaserTagBox/bin
+LaserTagBox/obj
+.metadata
 
 # agent output files
 Barrier.csv

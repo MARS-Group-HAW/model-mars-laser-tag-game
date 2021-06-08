@@ -1,0 +1,48 @@
+{
+	"globals": {
+    "startTime": "2021-01-01T10:00:00.000Z",
+    "endTime": "2021-01-01T10:30:00.000Z",
+    "deltaT": 1,
+    "deltaTUnit": "seconds",
+    "output": "csv",
+		"options": {
+			"delimiter": ";",
+			"numberFormat": "G",
+			"culture": "en-EN"
+		}
+	},
+	"layers": [
+		{
+			"name":"PlayerBodyLayer",
+			"file":"Resources/Battleground.csv",
+			"dimensionx": 51,
+			"dimensiony": 51
+		}
+	],
+	"agents": [
+		{
+			"name":"Green",
+			"count":3,
+			"file":"Resources/in_green.csv"
+		},
+		{
+			"name":"Red",
+			"count":3,
+			"file":"Resources/in_red.csv"
+		},
+		{
+			"name":"Yellow",
+			"count":3,
+			"file":"Resources/in_yellow.csv"
+		},
+		{
+			"name":"Blue",
+			"count":3,
+			"file":"Resources/in_blue.csv"
+		},
+		{
+			"name":"Barrier",
+			"outputFrequency":-1
+		}
+	]
+}
