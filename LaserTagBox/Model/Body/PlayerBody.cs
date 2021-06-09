@@ -14,7 +14,8 @@ namespace LaserTagBox.Model.Body
 
         public override void Tick()
         {
-            //do nothing, the mind handles everything
+            RefillPoints();
+            //TODO check if already refilled this turn
         }
 
         //	*********************** core attributes ***********************
@@ -140,5 +141,35 @@ namespace LaserTagBox.Model.Body
             (int) Distance.Chebyshev(Position.PositionArray, position.PositionArray);
 
         public int RemainingShots { get; private set; }
+        
+        
+        private void RefillPoints()
+        {
+            ActionPoints = 10;
+            if (MovementDelay > 0) MovementDelay--;
+
+            // if (TaggedCounter > 0) TaggedCounter--;
+            // else Tagged = false;
+            //
+            // if (WasTaggedCounter > 0)
+            //     WasTaggedCounter--;
+            else
+            {
+                WasTagged = false;
+            }
+            HasMoved = false;
+        }
+        
+        private void ResetValues()
+        {
+            Energy = 100;
+            MovementDelay = 0;
+            ActionPoints = 10;
+            WasTagged = false;
+            // WasTaggedCounter = 0;
+            // Tagged = false;
+            // TaggedCounter = 0;
+            pathCalculated = false;
+        }
     }
 }

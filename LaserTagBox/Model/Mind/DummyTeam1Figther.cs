@@ -24,6 +24,7 @@ namespace LaserTagBox.Model.Mind
             }
             Body.GoTo(_goal);
             
+            Console.WriteLine(Body.Position);
             // var exploreHills1 = Body.ExploreHills1();
             // if (exploreHills1 != null && exploreHills1.Any())
             // {

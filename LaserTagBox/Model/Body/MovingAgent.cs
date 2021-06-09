@@ -92,16 +92,20 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        private double MovementDelay =>
-            Stance switch
-            {
-                Stance.Standing => 0,
-                Stance.Kneeling => 2,
-                Stance.Lying => 3,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+        protected double MovementDelay
+        {
+            get =>
+                Stance switch
+                {
+                    Stance.Standing => 0,
+                    Stance.Kneeling => 2,
+                    Stance.Lying => 3,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            set => throw new NotImplementedException();
+        }
 
-        private bool HasMoved { get; set; }
+        protected bool HasMoved { get; set; }
 
         public Position Position { get; set; }
 
@@ -124,7 +128,7 @@ namespace LaserTagBox.Model.Body
         private List<Tuple<double, double, int, int, int, double, double>> _expandQueue =
             new List<Tuple<double, double, int, int, int, double, double>>();
 
-        private bool pathCalculated = false;
+        protected bool pathCalculated = false;
 
 
         // USER METHOD: gets distance between agent&& #(x, y), if possible
