@@ -1,7 +1,7 @@
 using System;
 using Mars.Interfaces.Environments;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Shared
 {
     public readonly struct EnemyFighter
     {

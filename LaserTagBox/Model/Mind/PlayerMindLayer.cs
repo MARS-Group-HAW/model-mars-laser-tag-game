@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mars.Core.Data;
+using LaserTagBox.Model.Body;
+using Mars.Components.Services;
 using Mars.Interfaces;
 using Mars.Interfaces.Data;
 using Mars.Interfaces.Layers;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Mind
 {
     public class PlayerMindLayer : ILayer
     {
         private readonly PlayerBodyLayer _battleground;
         private ISimulationContext _simulationContext;
         private bool _initialized;
-        private Dictionary<Guid, PlayerMind> _minds;
 
         public PlayerMindLayer(PlayerBodyLayer battleground)
         {
@@ -28,15 +28,20 @@ namespace LaserTagBox.Model
 
             _simulationContext = layerInitData.Context;
 
-            _minds = new Dictionary<Guid, PlayerMind>();
-            var agentManager = layerInitData.Container.Resolve<IAgentManager>();
+            using var bodies = _battleground.Bodies.Values.GetEnumerator();
 
-            var enumerator = layerInitData.AgentInitConfigs.GetEnumerator();
-            //TODO init different agent types
-            foreach (var body in _battleground.Bodies.Values)
+            foreach (var mapping in layerInitData.AgentInitConfigs)
             {
-                var mind = agentManager.Spawn<PlayerMind, PlayerMindLayer>(null, mind => mind.Body = body).Take(1).First();
-                _minds.Add(mind.ID, mind);
+                for (var i = 0; i < 3; i++)
+                {
+                    bodies.MoveNext();
+
+                    var agent = (PlayerMind) AgentManager.SpawnAgents(mapping, registerAgentHandle,
+                        unregisterAgentHandle,
+                        new List<ILayer> {this}, null, 1).First().Value;
+                    agent.Body = bodies.Current;
+                    agent.Init(this);
+                }
             }
 
             return true;

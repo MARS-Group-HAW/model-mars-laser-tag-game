@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Mars.Interfaces.Environments;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Shared
 {
     public interface IPlayerBody : IPositionable
     {
@@ -25,10 +24,18 @@ namespace LaserTagBox.Model
 
         bool HasBeeline(Position position);
 
-        int GetDistance(Position position); //chebyshef diganoal = 1, manhatten diagonal = 2
+        int GetDistance(Position position); //chebyshef diagonal = 1, manhatten diagonal = 2
 
         int RemainingShots { get; }
+        
         Stance Stance { get; }
+        
         Position Position { get; }
+        
+        int ActionPoints { get; }
+        
+        int Energy { get; }
+        
+        int GamePoints { get; }
     }
 }

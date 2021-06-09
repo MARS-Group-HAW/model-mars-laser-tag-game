@@ -1,8 +1,9 @@
 using System;
+using LaserTagBox.Model.Body;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Environments;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Spots
 {
     public abstract class Spot : IAgent<PlayerBodyLayer>, IPositionable
     {

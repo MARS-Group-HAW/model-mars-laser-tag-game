@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LaserTagBox.Model.Shared;
+using LaserTagBox.Model.Spots;
 using Mars.Interfaces.Environments;
 using Mars.Numerics;
 using Mars.Numerics.Statistics;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Body
 {
     public class PlayerBody : MovingAgent, IPlayerBody
     {
+
         public override void Tick()
         {
             //do nothing, the mind handles everything
@@ -17,12 +20,11 @@ namespace LaserTagBox.Model
         //	*********************** core attributes ***********************
         public int ActionPoints { get; private set; } = 1;
         public int Energy { get; private set; } = 100;
-        public int Points { get; private set; }
+        public int GamePoints { get; private set; }
 
 
         //	*********************** tagging attributes ***********************
-        public int MagazineCount = 5;
-        private readonly double _visualRange;
+        public int magazineCount = 5;
         public bool WasTagged { get; set; }
 
 
@@ -34,7 +36,7 @@ namespace LaserTagBox.Model
 
         private List<Position> ExploreSpots(Type type)
         {
-            return Battleground.SpotEnv
+            return battleground.SpotEnv
                 .Explore(Position, VisualRange, -1, spot => spot.GetType() == type && HasBeeline(spot))
                 .Select(spot => Position.CreatePosition(spot.Position.X, spot.Position.Y)).ToList();
         }
@@ -42,7 +44,7 @@ namespace LaserTagBox.Model
         public List<EnemyFighter> ExploreEnemies1()
         {
             if (ActionPoints-- < 1) return null;
-            return Battleground.FigtherEnv
+            return battleground.FigtherEnv
                 .Explore(Position, VisualRange, -1, player => player.Color != Color && HasBeeline(player))
                 .Select(player => new EnemyFighter(player.ID, player.Color, player.Stance, player.Position))
                 .ToList();
@@ -57,16 +59,16 @@ namespace LaserTagBox.Model
 
         public void Tag5(Position position)
         {
-            if (MagazineCount < 1) Reload3();
+            if (magazineCount < 1) Reload3();
 
             if (ActionPoints < 5) return;
             ActionPoints -= 5;
 
             var enemyStanceVal = 2;
 
-            var enemy = Battleground.GetAgentOn(Position);
+            var enemy = battleground.GetAgentOn(Position);
 
-            var fieldType = Battleground.GetintValue(position);
+            var fieldType = battleground.GetIntValue(position);
             enemyStanceVal = fieldType switch
             {
                 2 => 2,
@@ -89,51 +91,45 @@ namespace LaserTagBox.Model
             if (RandomHelper.Random.Next(10) + 1 + enemyStanceVal > stanceValue)
             {
                 enemy.WasTagged = true;
-                Points += 10;
-                if (enemy.Energy <= 0) Points += 10;
+                GamePoints += 10;
+                if (enemy.Energy <= 0) GamePoints += 10;
             }
 
-            MagazineCount--;
+            magazineCount--;
         }
 
         public void Reload3()
         {
             if (ActionPoints < 3) return;
             ActionPoints -= 3;
-            MagazineCount = 5;
+            magazineCount = 5;
         }
 
         public List<IPlayerBody> ExploreTeam()
         {
-            return new List<IPlayerBody>(Battleground.FigtherEnv
+            return new List<IPlayerBody>(battleground.FigtherEnv
                 .Entities.Where(body => body.Color == Color)
                 .ToList());
         }
 
-        public bool GoTo(Position position)
-        {
-            throw new System.NotImplementedException();
-        }
-
         protected override Position MoveToPosition(Position position)
         {
-            return Battleground.FigtherEnv.PosAt(this, position.PositionArray);
+            return battleground.FigtherEnv.PosAt(this, position.PositionArray);
         }
 
         private bool HasBeeline(IPositionable other)
         {
-            return Battleground.HasBeeline(Position.X, Position.Y, other.Position.X, other.Position.Y);
+            return battleground.HasBeeline(Position.X, Position.Y, other.Position.X, other.Position.Y);
         }
 
         public bool HasBeeline(Position other)
         {
-            return Battleground.HasBeeline(Position.X, Position.Y, other.X, other.Y);
+            return battleground.HasBeeline(Position.X, Position.Y, other.X, other.Y);
         }
 
         public int GetDistance(Position position) =>
             (int) Distance.Chebyshev(Position.PositionArray, position.PositionArray);
 
         public int RemainingShots { get; private set; }
-        public Color Color { get; private set; }
     }
 }

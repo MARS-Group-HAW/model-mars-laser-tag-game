@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LaserTagBox.Model.Shared;
+using LaserTagBox.Model.Spots;
 using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Core.Data;
@@ -8,7 +10,7 @@ using Mars.Interfaces.Data;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Body
 {
     public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     {
@@ -38,13 +40,7 @@ namespace LaserTagBox.Model
             SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) {CheckBoundaries = true};
             AgentManager = layerInitData.Container.Resolve<IAgentManager>();
 
-            // AgentManager.Spawn<Blue, Battleground>().ToList();
-            // AgentManager.Spawn<Red, Battleground>().ToList();
-            // AgentManager.Spawn<Green, Battleground>().ToList();
-            // AgentManager.Spawn<Yellow, Battleground>().ToList();
-
-            //TODO spawn different teams in dependence to the 
-            Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().Take(3).ToDictionary(body => body.ID);
+            Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().ToDictionary(body => body.ID);
 
             for (var x = 0; x < Width; x++)
             {
@@ -52,7 +48,7 @@ namespace LaserTagBox.Model
                 {
                     var type = this[x, y];
                     var position = Position.CreatePosition(x, y);
-                    var spot = CreatePassiveAgent(type, position);
+                    var spot = CreateSpots(type, position);
                     SpotEnv.Insert(spot);
                 }
             }
@@ -60,7 +56,7 @@ namespace LaserTagBox.Model
             return true;
         }
 
-        private Spot CreatePassiveAgent(double type, Position position)
+        private Spot CreateSpots(double type, Position position)
         {
             return type switch
             {
@@ -86,8 +82,7 @@ namespace LaserTagBox.Model
             return (Barrier) SpotEnv.Explore(position, -1, 1, spot => spot.GetType() == typeof(Barrier))
                 .FirstOrDefault();
         }
-
-
+        
         public void Tick()
         {
             if (Context.CurrentTick % 20 == 0)
@@ -104,16 +99,19 @@ namespace LaserTagBox.Model
             //do nothing
         }
 
-        public int GetintValue(double x, double y)
+        public int GetIntValue(double x, double y)
         {
             return (int) this[x, y];
         }
 
-        public int GetintValue(Position position)
+        public int GetIntValue(Position position)
         {
             return (int) this[position.X, position.Y];
         }
-
+        
+        public PlayerBody GetAgentOn(Position position) =>
+            FigtherEnv.Entities.FirstOrDefault(body => body.Position.Equals(position));
+        
         public List<PlayerBody> GetAll(Color color)
         {
             return FigtherEnv.Entities.Where(fighter => fighter.Color == color).ToList();
@@ -182,8 +180,8 @@ namespace LaserTagBox.Model
             var numerator = longest / 2;
             for (var i = 0; i < longest; i++)
             {
-                if ((GetintValue(x, y) == 1) || (
-                    GetintValue(x, y) == 2))
+                if ((GetIntValue(x, y) == 1) || (
+                    GetIntValue(x, y) == 2))
                 {
                     hasBeeline = false;
                     return hasBeeline;
@@ -205,8 +203,5 @@ namespace LaserTagBox.Model
 
             return hasBeeline;
         }
-
-        public PlayerBody GetAgentOn(Position position) =>
-            FigtherEnv.Entities.FirstOrDefault(body => body.Position.Equals(position));
     }
 }

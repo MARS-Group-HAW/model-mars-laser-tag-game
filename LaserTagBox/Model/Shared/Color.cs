@@ -1,4 +1,4 @@
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Shared
 {
     public enum Color
     {

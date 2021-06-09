@@ -1,0 +1,13 @@
+﻿memberId;xSpawn;ySpawn;team
+1;1;1;Red
+2;1;2;Red
+3;2;1;Red
+4;1;49;Yellow
+5;1;50;Yellow
+6;2;50;Yellow
+7;50;2;Blue
+8;49;1;Blue
+9;50;1;Blue
+10;49;50;Green
+11;50;50;Green
+12;50;49;Green

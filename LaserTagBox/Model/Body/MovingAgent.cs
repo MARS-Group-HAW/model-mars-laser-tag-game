@@ -1,19 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LaserTagBox.Model.Shared;
+using LaserTagBox.Model.Spots;
 using Mars.Interfaces.Agents;
+using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Body
 {
     public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
     {
+        [PropertyDescription(Name = "memberId")]
+        public int MemberId { get; set; }
+
+        [PropertyDescription(Name = "xSpawn")]
+        public int XSpawn { get; set; }
+
+        [PropertyDescription(Name = "ySpawn")]
+        public int YSpawn { get; set; }
+
+        [PropertyDescription(Name = "team")]
+        public Color Color { get; set; }
+
         public void Init(PlayerBodyLayer layer)
         {
             if (_initialized) throw new NotSupportedException();
             _initialized = true;
 
-            Battleground = layer;
+            battleground = layer;
         }
 
         public virtual void Tick()
@@ -23,12 +38,13 @@ namespace LaserTagBox.Model
 
         private OccupiableSpot FindCurrentSpot()
         {
-            return (OccupiableSpot) Battleground.SpotEnv.Entities.FirstOrDefault(spot => spot.Position.Equals(Position));
+            return (OccupiableSpot) battleground.SpotEnv.Entities.FirstOrDefault(spot =>
+                spot.Position.Equals(Position));
         }
 
         public Guid ID { get; set; }
         private bool _initialized;
-        protected PlayerBodyLayer Battleground;
+        protected PlayerBodyLayer battleground;
 
         //	*********************** movement attributes ***********************
         // values: standing, kneeling, lying
@@ -45,7 +61,7 @@ namespace LaserTagBox.Model
                 _ => 0
             };
 
-        public double VisualRange =>
+        protected double VisualRange =>
             VisualRangePenalty + Stance switch
             {
                 Stance.Standing => 10,
@@ -72,7 +88,7 @@ namespace LaserTagBox.Model
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        public double MovementDelay =>
+        private double MovementDelay =>
             Stance switch
             {
                 Stance.Standing => 0,
@@ -81,7 +97,7 @@ namespace LaserTagBox.Model
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        public bool hasMoved { get; set; }
+        private bool HasMoved { get; set; }
 
         public Position Position { get; set; }
 
@@ -89,22 +105,22 @@ namespace LaserTagBox.Model
         private double Ycor => Position.Y;
 
         //	*********************** pathfinding attributes ***********************
-        public int g = 1000;
-        public int rhs = 1000;
-        public double km = 0.0;
+        private const int G = 1000;
+        private const int Rhs = 1000;
+        private double _km = 0.0;
 
         // tuple values: (<x>, <y>, <g>, <rhs>, <cost> <key1>, <key2>)
-        public Tuple<double, double, int, int, int, double, double> sStart;
-        public Tuple<double, double, int, int, int, double, double> sGoal;
-        public Tuple<double, double, int, int, int, double, double> sLast;
+        private Tuple<double, double, int, int, int, double, double> _sStart;
+        private Tuple<double, double, int, int, int, double, double> _sGoal;
+        private Tuple<double, double, int, int, int, double, double> _sLast;
 
-        public List<Tuple<double, double, int, int, int, double, double>> routeList =
+        private List<Tuple<double, double, int, int, int, double, double>> _routeList =
             new List<Tuple<double, double, int, int, int, double, double>>();
 
-        public List<Tuple<double, double, int, int, int, double, double>> expandQueue =
+        private List<Tuple<double, double, int, int, int, double, double>> _expandQueue =
             new List<Tuple<double, double, int, int, int, double, double>>();
 
-        public bool pathCalculated = false;
+        private bool pathCalculated = false;
 
 
         // USER METHOD: gets distance between agent&& #(x, y), if possible
@@ -140,22 +156,22 @@ namespace LaserTagBox.Model
         // xGoal: x-coordinate of grid cell Guest wants to move to
         // yGoal: y-coordinate of grid cell Guest wants to move to
         // return: boolean states if step was successfully taken
-        private bool goTo(double inXGoal, double inYGoal)
+        public bool GoTo(Position goal)
         {
-            var xGoal = Math.Floor(inXGoal);
-            var yGoal = Math.Floor(inYGoal);
-            if ((int) Battleground[xGoal, yGoal] == 1)
+            var xGoal = Math.Floor(goal.X);
+            var yGoal = Math.Floor(goal.Y);
+            if ((int) battleground[xGoal, yGoal] == 1)
             {
-                hasMoved = true;
+                HasMoved = true;
                 return false;
             }
 
-            if ((MovementDelay > 0) || hasMoved || ((xGoal == Position.X) && (yGoal == Position.Y)))
+            if ((MovementDelay > 0) || HasMoved || ((xGoal == Position.X) && (yGoal == Position.Y)))
             {
                 return false;
             }
 
-            if (xGoal != sGoal.Item1 || yGoal != sGoal.Item2)
+            if (xGoal != _sGoal.Item1 || yGoal != _sGoal.Item2)
             {
                 pathCalculated = false;
             }
@@ -170,41 +186,41 @@ namespace LaserTagBox.Model
                 return false;
             }
 
-            sStart = findNextCell();
+            _sStart = findNextCell();
             var neighsInRouteList = findNeighsInRouteList();
             var neighsWithChangedCost = scanCostChanges(neighsInRouteList);
             if (neighsWithChangedCost.Count != 0)
             {
                 // calculation of completely new path
                 var newExpandQueue = new List<Tuple<double, double, int, int, int, double, double>>();
-                expandQueue = newExpandQueue;
+                _expandQueue = newExpandQueue;
                 var newRouteList = new List<Tuple<double, double, int, int, int, double, double>>();
-                routeList = newRouteList;
+                _routeList = newRouteList;
                 var keyInit = Math.Max(Math.Abs(Xcor - xGoal), Math.Abs(Ycor - yGoal));
-                sGoal = new Tuple<double, double, int, int, int, double, double>(xGoal, yGoal, g, 0,
-                    Battleground.GetintValue(xGoal, yGoal), keyInit, 0.0);
-                expandQueue.Add(sGoal);
-                km = 0.0;
-                sStart = new Tuple<double, double, int, int, int, double, double>(Xcor, Ycor, g, rhs,
-                    (int) Battleground[Position.X, Position.Y], 1000.0, 1000.0);
-                sLast = sStart;
-                computeShortestPath(sStart, km);
-                sStart = findNextCell();
+                _sGoal = new Tuple<double, double, int, int, int, double, double>(xGoal, yGoal, G, 0,
+                    battleground.GetIntValue(xGoal, yGoal), keyInit, 0.0);
+                _expandQueue.Add(_sGoal);
+                _km = 0.0;
+                _sStart = new Tuple<double, double, int, int, int, double, double>(Xcor, Ycor, G, Rhs,
+                    (int) battleground[Position.X, Position.Y], 1000.0, 1000.0);
+                _sLast = _sStart;
+                computeShortestPath(_sStart, _km);
+                _sStart = findNextCell();
             }
 
-            var position = Position.CreatePosition(sStart.Item1, sStart.Item2);
-            if (Battleground.GetintValue(sStart.Item1, sStart.Item2) == 2)
+            var position = Position.CreatePosition(_sStart.Item1, _sStart.Item2);
+            if (battleground.GetIntValue(_sStart.Item1, _sStart.Item2) == 2)
             {
-                var hill = Battleground.NearestHill(position);
+                var hill = battleground.NearestHill(position);
                 if (!hill.Free)
                 {
                     pathCalculated = false;
                     return false;
                 }
             }
-            else if (Battleground.GetintValue(sStart.Item1, sStart.Item2) == 3)
+            else if (battleground.GetIntValue(_sStart.Item1, _sStart.Item2) == 3)
             {
-                var ditch = Battleground.NearestDitch(position);
+                var ditch = battleground.NearestDitch(position);
                 if (!ditch.Free)
                 {
                     pathCalculated = false;
@@ -212,8 +228,8 @@ namespace LaserTagBox.Model
                 }
             }
 
-            moveMe(sStart.Item1, sStart.Item2);
-            if ((Xcor == sGoal.Item1) && (Ycor == sGoal.Item2))
+            moveMe(_sStart.Item1, _sStart.Item2);
+            if ((Xcor == _sGoal.Item1) && (Ycor == _sGoal.Item2))
             {
                 pathCalculated = false;
             }
@@ -226,19 +242,19 @@ namespace LaserTagBox.Model
         // yGoal: y-coordinate of grid cell Guest wants to move to
         private void initPathfinding(double xGoal, double yGoal)
         {
-            var costSStart = (int) Battleground[Position.X, Position.Y];
-            sStart = new Tuple<double, double, int, int, int, double, double>(Xcor, Ycor, g, rhs, costSStart, 1000.0,
+            var costSStart = (int) battleground[Position.X, Position.Y];
+            _sStart = new Tuple<double, double, int, int, int, double, double>(Xcor, Ycor, G, Rhs, costSStart, 1000.0,
                 1000.0);
-            sLast = sStart;
+            _sLast = _sStart;
             var keyInit = Math.Max(Math.Abs(Xcor - xGoal), Math.Abs(Ycor - yGoal));
-            var costSGoal = Battleground.GetintValue(xGoal, yGoal);
-            sGoal = new Tuple<double, double, int, int, int, double, double>(xGoal, yGoal, g, 0, costSGoal, keyInit,
+            var costSGoal = battleground.GetIntValue(xGoal, yGoal);
+            _sGoal = new Tuple<double, double, int, int, int, double, double>(xGoal, yGoal, G, 0, costSGoal, keyInit,
                 0.0);
-            expandQueue = new List<Tuple<double, double, int, int, int, double, double>>();
-            routeList = new List<Tuple<double, double, int, int, int, double, double>>();
-            expandQueue.Add(sGoal);
+            _expandQueue = new List<Tuple<double, double, int, int, int, double, double>>();
+            _routeList = new List<Tuple<double, double, int, int, int, double, double>>();
+            _expandQueue.Add(_sGoal);
             pathCalculated = true;
-            computeShortestPath(sStart, km);
+            computeShortestPath(_sStart, _km);
         }
 
         // computes shortest path from current position to goal
@@ -263,13 +279,13 @@ namespace LaserTagBox.Model
                 {
                     var uNew = new Tuple<double, double, int, int, int, double, double>(u.Item1, u.Item2, u.Item4,
                         u.Item4, u.Item5, u.Item6, u.Item7);
-                    routeList.Add(uNew);
+                    _routeList.Add(uNew);
                     var NeighList = Neigh(uNew);
                     removeFromQueue(u);
 
                     foreach (var s in NeighList)
                     {
-                        if ((s.Item1 != sGoal.Item1) || (s.Item2 != sGoal.Item2))
+                        if ((s.Item1 != _sGoal.Item1) || (s.Item2 != _sGoal.Item2))
                         {
                             var newRHS = RHS(s, uNew);
                             var sNew = new Tuple<double, double, int, int, int, double, double>(s.Item1, s.Item2,
@@ -281,7 +297,7 @@ namespace LaserTagBox.Model
                 else
                 {
                     var gOld = u.Item3;
-                    var uNew = new Tuple<double, double, int, int, int, double, double>(u.Item1, u.Item2, g, u.Item4,
+                    var uNew = new Tuple<double, double, int, int, int, double, double>(u.Item1, u.Item2, G, u.Item4,
                         u.Item5, u.Item6, u.Item7);
                     updateQueue(u, uNew);
                     var neighList = Neigh(uNew);
@@ -291,7 +307,7 @@ namespace LaserTagBox.Model
                         var updated = false;
                         if (s.Item4 == (u.Item5 + gOld))
                         {
-                            if ((s.Item1 != sGoal.Item1) || (s.Item2 != sGoal.Item2))
+                            if ((s.Item1 != _sGoal.Item1) || (s.Item2 != _sGoal.Item2))
                             {
                                 var neighListTemp = Neigh(s);
                                 var newRHS = getMinRHS(s, neighListTemp);
@@ -325,11 +341,11 @@ namespace LaserTagBox.Model
             var minNeigh = nextCellCandidates[0];
             foreach (var neigh in nextCellCandidates)
             {
-                if ((cost(neigh, sStart) + neigh.Item3) < (cost(minNeigh, sStart) + minNeigh.Item3))
+                if ((cost(neigh, _sStart) + neigh.Item3) < (cost(minNeigh, _sStart) + minNeigh.Item3))
                 {
                     minNeigh = neigh;
                 }
-                else if ((cost(neigh, sStart) + neigh.Item3) == (cost(minNeigh, sStart) + minNeigh.Item3))
+                else if ((cost(neigh, _sStart) + neigh.Item3) == (cost(minNeigh, _sStart) + minNeigh.Item3))
                 {
                     if ((Xcor == neigh.Item1) || (Ycor == neigh.Item2))
                     {
@@ -346,9 +362,9 @@ namespace LaserTagBox.Model
         private List<Tuple<double, double, int, int, int, double, double>> findNeighsInRouteList()
         {
             var nextCellCandidates = new List<Tuple<double, double, int, int, int, double, double>>();
-            foreach (var s in routeList)
+            foreach (var s in _routeList)
             {
-                if (heur(sStart, s) == 1.0)
+                if (heur(_sStart, s) == 1.0)
                 {
                     nextCellCandidates.Add(s);
                 }
@@ -367,7 +383,7 @@ namespace LaserTagBox.Model
             var neighsWithChangedCost = new List<Tuple<double, double, int, int, int, double, double>>();
             foreach (var currNeigh in neighsinRouteList)
             {
-                currCostNeigh = cost(currNeigh, sStart);
+                currCostNeigh = cost(currNeigh, _sStart);
                 if (currCostNeigh != currNeigh.Item5)
                 {
                     neighsWithChangedCost.Add(currNeigh);
@@ -381,15 +397,15 @@ namespace LaserTagBox.Model
         // return: tuple with most favorable key1&& key2
         private Tuple<double, double, int, int, int, double, double> getTopKey()
         {
-            if (expandQueue.Count == 0)
+            if (_expandQueue.Count == 0)
             {
                 pathCalculated = false;
                 return new Tuple<double, double, int, int, int, double, double>(-1.0, -1.0, 0, 0, 0, 0.0, 0.0);
             }
 
-            var minKey1 = expandQueue[0].Item6;
-            var minKey2 = expandQueue[0].Item7;
-            foreach (var currElem in expandQueue)
+            var minKey1 = _expandQueue[0].Item6;
+            var minKey2 = _expandQueue[0].Item7;
+            foreach (var currElem in _expandQueue)
             {
                 if (currElem.Item6 < minKey1)
                 {
@@ -403,12 +419,12 @@ namespace LaserTagBox.Model
             }
 
             Tuple<double, double, int, int, int, double, double> minKeyTuple = null;
-            for (var i = 0; i < expandQueue.Count; i++)
+            for (var i = 0; i < _expandQueue.Count; i++)
             {
-                if ((expandQueue[i].Item6 == minKey1) && (expandQueue[i].Item7 == minKey2))
+                if ((_expandQueue[i].Item6 == minKey1) && (_expandQueue[i].Item7 == minKey2))
                 {
-                    minKeyTuple = expandQueue[i];
-                    i = expandQueue.Count;
+                    minKeyTuple = _expandQueue[i];
+                    i = _expandQueue.Count;
                 }
             }
 
@@ -421,7 +437,7 @@ namespace LaserTagBox.Model
         // return: key1 value of s
         private double calcKey1(Tuple<double, double, int, int, int, double, double> s, double km)
         {
-            return Math.Min(s.Item3, s.Item4) + heur(sStart, s) + km;
+            return Math.Min(s.Item3, s.Item4) + heur(_sStart, s) + km;
         }
 
         // heuristic: takes the larger value of the x-range&& y-range between two grid cells
@@ -449,7 +465,7 @@ namespace LaserTagBox.Model
             Tuple<double, double, int, int, int, double, double> newU)
         {
             removeFromQueue(u);
-            expandQueue.Add(newU);
+            _expandQueue.Add(newU);
         }
 
         // updates routeList by creating a copy&& adding s&& all entries from old routeList unequal to s to it
@@ -457,7 +473,7 @@ namespace LaserTagBox.Model
         private void updateRouteList(Tuple<double, double, int, int, int, double, double> s)
         {
             var newRouteList = new List<Tuple<double, double, int, int, int, double, double>>();
-            foreach (var entry in routeList)
+            foreach (var entry in _routeList)
             {
                 if ((entry.Item1 != s.Item1) || (entry.Item2 != s.Item2))
                 {
@@ -470,7 +486,7 @@ namespace LaserTagBox.Model
                 }
             }
 
-            routeList = newRouteList;
+            _routeList = newRouteList;
         }
 
         // removes a tuple from expandQueue
@@ -478,7 +494,7 @@ namespace LaserTagBox.Model
         private void removeFromQueue(Tuple<double, double, int, int, int, double, double> u)
         {
             var newExpandQueue = new List<Tuple<double, double, int, int, int, double, double>>();
-            foreach (var s in expandQueue)
+            foreach (var s in _expandQueue)
             {
                 if ((s.Item1 != u.Item1) || ((s.Item2 != u.Item2)))
                 {
@@ -486,7 +502,7 @@ namespace LaserTagBox.Model
                 }
             }
 
-            expandQueue = newExpandQueue;
+            _expandQueue = newExpandQueue;
         }
 
         // finds all grid cells neighboring s (and whether they have representative tuples in routeList|| expandQueue)
@@ -505,7 +521,7 @@ namespace LaserTagBox.Model
                     if ((x != s.Item1) || (y != s.Item2))
                     {
                         var found = false;
-                        foreach (var r in routeList)
+                        foreach (var r in _routeList)
                         {
                             if ((r.Item1 == x) && (r.Item2 == y))
                             {
@@ -514,7 +530,7 @@ namespace LaserTagBox.Model
                             }
                         }
 
-                        foreach (var e in expandQueue)
+                        foreach (var e in _expandQueue)
                         {
                             if ((e.Item1 == x) && (e.Item2 == y))
                             {
@@ -525,13 +541,13 @@ namespace LaserTagBox.Model
 
                         if (!found)
                         {
-                            var neigh = new Tuple<double, double, int, int, int, double, double>(x, y, g, rhs, 0,
+                            var neigh = new Tuple<double, double, int, int, int, double, double>(x, y, G, Rhs, 0,
                                 1000.0, 1000.0);
                             var costNeigh = cost(neigh, s);
                             if (costNeigh != 1000)
                             {
                                 var newNeigh =
-                                    new Tuple<double, double, int, int, int, double, double>(x, y, g, rhs, costNeigh,
+                                    new Tuple<double, double, int, int, int, double, double>(x, y, G, Rhs, costNeigh,
                                         1000.0, 1000.0);
                                 NeighList.Add(newNeigh);
                             }
@@ -550,7 +566,7 @@ namespace LaserTagBox.Model
         private int RHS(Tuple<double, double, int, int, int, double, double> s,
             Tuple<double, double, int, int, int, double, double> u)
         {
-            if ((s.Item1 == sStart.Item1) && (s.Item2 == sStart.Item2))
+            if ((s.Item1 == _sStart.Item1) && (s.Item2 == _sStart.Item2))
             {
                 return 0;
             }
@@ -576,11 +592,11 @@ namespace LaserTagBox.Model
             {
                 var uNew = new Tuple<double, double, int, int, int, double, double>(u.Item1, u.Item2, u.Item3, u.Item4,
                     u.Item5, newKey1, newKey2);
-                expandQueue.Add(uNew);
+                _expandQueue.Add(uNew);
             }
             else if ((u.Item3 == u.Item4) && (isInQueue))
             {
-                routeList.Add(u);
+                _routeList.Add(u);
                 removeFromQueue(u);
             }
         }
@@ -590,7 +606,7 @@ namespace LaserTagBox.Model
         // return: boolean
         private bool inQueue(Tuple<double, double, int, int, int, double, double> u)
         {
-            foreach (var element in expandQueue)
+            foreach (var element in _expandQueue)
             {
                 if ((element.Item1 == u.Item1) && (element.Item2 == u.Item2))
                 {
@@ -606,7 +622,7 @@ namespace LaserTagBox.Model
         // return: boolean
         private bool inRouteList(Tuple<double, double, int, int, int, double, double> u)
         {
-            foreach (var element in routeList)
+            foreach (var element in _routeList)
             {
                 if ((element.Item1 == u.Item1) && (element.Item2 == u.Item2))
                 {
@@ -627,11 +643,11 @@ namespace LaserTagBox.Model
             var dist = heur(s, u);
             if (dist == 1.0)
             {
-                if (Battleground[s.Item1, s.Item2] == 1)
+                if (battleground[s.Item1, s.Item2] == 1)
                 {
                     return 1000;
                 }
-                else if ((Battleground[s.Item1, s.Item2] == 2) || (Battleground[s.Item1, s.Item2] == 3))
+                else if ((battleground[s.Item1, s.Item2] == 2) || (battleground[s.Item1, s.Item2] == 3))
                 {
                     return 100;
                 }
@@ -691,10 +707,10 @@ namespace LaserTagBox.Model
             Position = MoveToPosition(Position.CreatePosition(x, y));
 
             var newSpot = FindCurrentSpot();
-            if(newSpot != null)
+            if (newSpot != null)
                 newSpot.Free = false;
-            
-            hasMoved = true;
+
+            HasMoved = true;
         }
 
         protected abstract Position MoveToPosition(Position position);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
-using LaserTagBox.Model;
+using LaserTagBox.Model.Body;
+using LaserTagBox.Model.Mind;
+using LaserTagBox.Model.Spots;
 using Mars.Components.Starter;
 using Mars.Interfaces.Model;
 
@@ -18,11 +20,8 @@ namespace LaserTagBox
             description.AddAgent<Ditch, PlayerBodyLayer>();
             description.AddAgent<Barrier, PlayerBodyLayer>();
             
-            // description.AddAgent<Blue, Battleground>();
-            // description.AddAgent<Red, Battleground>();
-            // description.AddAgent<Yellow, Battleground>();
-            // description.AddAgent<Green, Battleground>();
             description.AddAgent<PlayerMind, PlayerMindLayer>();
+            description.AddAgent<FigtherTeam2, PlayerMindLayer>();
             description.AddAgent<PlayerBody, PlayerBodyLayer>();
             
             var file = File.ReadAllText("config.json");

@@ -1,8 +1,6 @@
-using System;
-using Mars.Interfaces.Agents;
-using Mars.Interfaces.Environments;
+using LaserTagBox.Model.Body;
 
-namespace LaserTagBox.Model
+namespace LaserTagBox.Model.Spots
 {
     public class Barrier : Spot
     {
