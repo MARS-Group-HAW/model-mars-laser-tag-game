@@ -41,12 +41,12 @@ namespace LaserTagBox.Model.Body
                 .Select(spot => Position.CreatePosition(spot.Position.X, spot.Position.Y)).ToList();
         }
 
-        public List<EnemyFighter> ExploreEnemies1()
+        public List<EnemySnapshot> ExploreEnemies1()
         {
             if (ActionPoints-- < 1) return null;
             return battleground.FigtherEnv
                 .Explore(Position, VisualRange, -1, player => player.Color != Color && HasBeeline(player))
-                .Select(player => new EnemyFighter(player.ID, player.Color, player.Stance, player.Position))
+                .Select(player => new EnemySnapshot(player.ID, player.Color, player.Stance, player.Position))
                 .ToList();
         }
 

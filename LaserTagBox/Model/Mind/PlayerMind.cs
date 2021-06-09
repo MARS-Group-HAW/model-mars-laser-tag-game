@@ -4,20 +4,14 @@ using Mars.Interfaces.Agents;
 
 namespace LaserTagBox.Model.Mind
 {
-    public class PlayerMind : IAgent<PlayerMindLayer>
+    public abstract class PlayerMind : IAgent<PlayerMindLayer>
     {
         public Guid ID { get; set; }
         public IPlayerBody Body { get; set; }
 
-        public virtual void Init(PlayerMindLayer mindLayer)
-        {
-            
-        }
+        public abstract void Init(PlayerMindLayer mindLayer);
 
-        public virtual void Tick()
-        {
-            
-        }
+        public abstract void Tick();
 
     }
 }

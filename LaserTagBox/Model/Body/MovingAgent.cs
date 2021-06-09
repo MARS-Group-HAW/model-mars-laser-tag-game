@@ -228,7 +228,7 @@ namespace LaserTagBox.Model.Body
                 }
             }
 
-            moveMe(_sStart.Item1, _sStart.Item2);
+            MoveMe(_sStart.Item1, _sStart.Item2);
             if ((Xcor == _sGoal.Item1) && (Ycor == _sGoal.Item2))
             {
                 pathCalculated = false;
@@ -310,7 +310,7 @@ namespace LaserTagBox.Model.Body
                             if ((s.Item1 != _sGoal.Item1) || (s.Item2 != _sGoal.Item2))
                             {
                                 var neighListTemp = Neigh(s);
-                                var newRHS = getMinRHS(s, neighListTemp);
+                                var newRHS = GetMinRhs(s, neighListTemp);
                                 var newS = new Tuple<double, double, int, int, int, double, double>(s.Item1, s.Item2,
                                     s.Item3, newRHS, s.Item5, s.Item6, s.Item7);
                                 updateVertex(newS, km);
@@ -341,11 +341,11 @@ namespace LaserTagBox.Model.Body
             var minNeigh = nextCellCandidates[0];
             foreach (var neigh in nextCellCandidates)
             {
-                if ((cost(neigh, _sStart) + neigh.Item3) < (cost(minNeigh, _sStart) + minNeigh.Item3))
+                if ((Cost(neigh, _sStart) + neigh.Item3) < (Cost(minNeigh, _sStart) + minNeigh.Item3))
                 {
                     minNeigh = neigh;
                 }
-                else if ((cost(neigh, _sStart) + neigh.Item3) == (cost(minNeigh, _sStart) + minNeigh.Item3))
+                else if ((Cost(neigh, _sStart) + neigh.Item3) == (Cost(minNeigh, _sStart) + minNeigh.Item3))
                 {
                     if ((Xcor == neigh.Item1) || (Ycor == neigh.Item2))
                     {
@@ -383,7 +383,7 @@ namespace LaserTagBox.Model.Body
             var neighsWithChangedCost = new List<Tuple<double, double, int, int, int, double, double>>();
             foreach (var currNeigh in neighsinRouteList)
             {
-                currCostNeigh = cost(currNeigh, _sStart);
+                currCostNeigh = Cost(currNeigh, _sStart);
                 if (currCostNeigh != currNeigh.Item5)
                 {
                     neighsWithChangedCost.Add(currNeigh);
@@ -543,7 +543,7 @@ namespace LaserTagBox.Model.Body
                         {
                             var neigh = new Tuple<double, double, int, int, int, double, double>(x, y, G, Rhs, 0,
                                 1000.0, 1000.0);
-                            var costNeigh = cost(neigh, s);
+                            var costNeigh = Cost(neigh, s);
                             if (costNeigh != 1000)
                             {
                                 var newNeigh =
@@ -571,7 +571,7 @@ namespace LaserTagBox.Model.Body
                 return 0;
             }
 
-            return Math.Min(s.Item4, (cost(u, s) + u.Item3));
+            return Math.Min(s.Item4, (Cost(u, s) + u.Item3));
         }
 
         // updates tuple u by adding it to|| removing it from expandQueue|| changing its information
@@ -637,7 +637,7 @@ namespace LaserTagBox.Model.Body
         // s: tuple representing the first grid cell to be used in cost calculation
         // u: tuple representing the second grid cell to be used in cost calculation
         // return: cost value on s
-        private int cost(Tuple<double, double, int, int, int, double, double> s,
+        private int Cost(Tuple<double, double, int, int, int, double, double> s,
             Tuple<double, double, int, int, int, double, double> u)
         {
             var dist = heur(s, u);
@@ -672,13 +672,13 @@ namespace LaserTagBox.Model.Body
         // s: tuple representing grid cell whose neighbors minimum rhs value is to be determined
         // neighListTemp: list of tuples representing grid cells that neighbor s
         // return: smallest rhs values among neighbors of s
-        private int getMinRHS(Tuple<double, double, int, int, int, double, double> s, List<
+        private int GetMinRhs(Tuple<double, double, int, int, int, double, double> s, List<
             Tuple<double, double, int, int, int, double, double>> neighListTemp)
         {
-            var minRHS = neighListTemp[0].Item3 + cost(neighListTemp[0], s);
+            var minRHS = neighListTemp[0].Item3 + Cost(neighListTemp[0], s);
             foreach (var neigh in neighListTemp)
             {
-                var compRHS = neigh.Item3 + cost(neigh, s);
+                var compRHS = neigh.Item3 + Cost(neigh, s);
                 if (compRHS < minRHS)
                 {
                     minRHS = compRHS;
@@ -690,7 +690,7 @@ namespace LaserTagBox.Model.Body
 
         // prints a list of tuples
         // list: list of tuples to be printed
-        private void printQueue(List<Tuple<double, double, int, int, int, double, double>> list)
+        private void PrintQueue(List<Tuple<double, double, int, int, int, double, double>> list)
         {
             foreach (var tuple in list)
             {
@@ -699,7 +699,7 @@ namespace LaserTagBox.Model.Body
         }
 
         // moves agent, if possible, onto the grid cell with coordinates (x, y)
-        private void moveMe(double x, double y)
+        private void MoveMe(double x, double y)
         {
             if (CurrentSpot != null)
                 CurrentSpot.Free = true;

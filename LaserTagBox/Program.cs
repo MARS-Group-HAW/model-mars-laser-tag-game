@@ -21,7 +21,7 @@ namespace LaserTagBox
             description.AddAgent<Barrier, PlayerBodyLayer>();
             
             description.AddAgent<PlayerMind, PlayerMindLayer>();
-            description.AddAgent<FigtherTeam2, PlayerMindLayer>();
+            description.AddAgent<DummyTeam1Figther, PlayerMindLayer>();
             description.AddAgent<PlayerBody, PlayerBodyLayer>();
             
             var file = File.ReadAllText("config.json");

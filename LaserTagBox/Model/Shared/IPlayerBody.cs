@@ -9,7 +9,7 @@ namespace LaserTagBox.Model.Shared
         List<Position> ExploreHills1(); //within sight
         List<Position> ExploreBarriers1();
         List<Position> ExploreDitches1();
-        List<EnemyFighter> ExploreEnemies1();
+        List<EnemySnapshot> ExploreEnemies1();
 
         void ChangeStance2(Stance newStance);
 
