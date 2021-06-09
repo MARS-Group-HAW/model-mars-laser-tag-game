@@ -29,6 +29,7 @@ namespace LaserTagBox.Model.Body
             _initialized = true;
 
             battleground = layer;
+            Position = Position.CreatePosition(XSpawn, YSpawn);
         }
 
         public virtual void Tick()
