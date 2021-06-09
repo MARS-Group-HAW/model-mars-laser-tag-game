@@ -3,7 +3,6 @@ import os
 import pandas as pd
 
 def load_csv():
-
     path = '../lasertag/src-gen/'
     all_filenames = [path+'Yellow.csv', path+'Green.csv', path+'Blue.csv', path+'Red.csv']
 

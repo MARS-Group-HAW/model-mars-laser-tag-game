@@ -1,10 +1,15 @@
+using System;
 using System.Linq;
+using Mars.Components.Services.Planning;
 using Mars.Interfaces.Environments;
+using Mars.Numerics.Statistics;
 
 namespace LaserTagBox.Model.Mind
 {
-    public class DummyTeam1Figther : PlayerMind
+    public class DummyTeam1Figther : AbstractPlayerMind
     {
+        private Position _goal;
+
         public override void Init(PlayerMindLayer mindLayer)
         {
             //do something
@@ -12,14 +17,19 @@ namespace LaserTagBox.Model.Mind
 
         public override void Tick()
         {
-            Body.GoTo(Position.CreatePosition(4, 4));
-            
-            var exploreHills1 = Body.ExploreHills1();
-            if (exploreHills1 != null && exploreHills1.Any())
+            if (_goal == null || Body.GetDistance(_goal) < 4)
             {
-                var position = exploreHills1.First();
-                Body.GoTo(position);
+                _goal = Position.CreatePosition(RandomHelper.Random.Next(50), RandomHelper.Random.Next(50));
+                Console.WriteLine("new goal "+_goal);
             }
+            Body.GoTo(_goal);
+            
+            // var exploreHills1 = Body.ExploreHills1();
+            // if (exploreHills1 != null && exploreHills1.Any())
+            // {
+            //     var position = exploreHills1.First();
+            //     Body.GoTo(position);
+            // }
         }
     }
 }

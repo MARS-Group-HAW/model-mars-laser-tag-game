@@ -239,17 +239,17 @@ def agent_readin(file,agent_map):
         x = l[0][i]
         if "ID" in x:
             columnids["ID"] = i
-        elif "0_Position" in x:
+        elif "X" in x:
             columnids["X"] = i
-        elif "1_Position" in x:
+        elif "Y" in x:
             columnids["Y"] = i
         elif "Tick" in x:
             columnids["TICK"] = i
-        elif "energy" in x:
+        elif "Energy" in x:
             columnids["ENGERGY"] = i
-        elif "currStance" in x:
+        elif "Stance" in x:
             columnids["CURRSTANCE"] = i
-        elif "color" in x:
+        elif "Color" in x:
             columnids["COLOR"] = i
     for row in l[1::]:
         aid = row[columnids["ID"]]
@@ -288,7 +288,9 @@ def agent_readin(file,agent_map):
 def main():
     am = map_readin("map.csv")
     #print(len(am.map[0]),len(am.map))
-    a = agent_readin("agents.csv",am)
+    path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
+    #a = agent_readin("agents.csv",am)
+    a = agent_readin(path,am)
     #am = AgentMap(20, 20)
     gui.main(a, am)
 

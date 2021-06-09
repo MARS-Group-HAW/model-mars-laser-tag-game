@@ -57,18 +57,19 @@ namespace LaserTagBox.Model.Body
             Stance = newStance;
         }
 
-        public void Tag5(Position position)
+        public bool Tag5(Position aimedPosition)
         {
             if (magazineCount < 1) Reload3();
 
-            if (ActionPoints < 5) return;
+            if (ActionPoints < 5) return false;
             ActionPoints -= 5;
+            magazineCount--;
 
             var enemyStanceVal = 2;
 
             var enemy = battleground.GetAgentOn(Position);
 
-            var fieldType = battleground.GetIntValue(position);
+            var fieldType = battleground.GetIntValue(aimedPosition);
             enemyStanceVal = fieldType switch
             {
                 2 => 2,
@@ -93,9 +94,11 @@ namespace LaserTagBox.Model.Body
                 enemy.WasTagged = true;
                 GamePoints += 10;
                 if (enemy.Energy <= 0) GamePoints += 10;
+                
+                return true;
             }
 
-            magazineCount--;
+            return false;
         }
 
         public void Reload3()
@@ -110,6 +113,12 @@ namespace LaserTagBox.Model.Body
             return new List<IPlayerBody>(battleground.FigtherEnv
                 .Entities.Where(body => body.Color == Color)
                 .ToList());
+        }
+
+
+        protected override void InsertIntoEnv()
+        {
+            battleground.FigtherEnv.Insert(this);
         }
 
         protected override Position MoveToPosition(Position position)

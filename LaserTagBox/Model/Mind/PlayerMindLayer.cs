@@ -36,7 +36,7 @@ namespace LaserTagBox.Model.Mind
                 {
                     bodies.MoveNext();
 
-                    var agent = (PlayerMind) AgentManager.SpawnAgents(mapping, registerAgentHandle,
+                    var agent = (AbstractPlayerMind) AgentManager.SpawnAgents(mapping, registerAgentHandle,
                         unregisterAgentHandle,
                         new List<ILayer> {this}, null, 1).First().Value;
                     agent.Body = bodies.Current;
