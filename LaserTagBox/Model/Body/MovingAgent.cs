@@ -12,16 +12,54 @@ namespace LaserTagBox.Model.Body
     public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
     {
         [PropertyDescription(Name = "memberId")]
-        public int MemberId { get; set; }
+        public int MemberId
+        {
+            get => _memberId;
+            set
+            {
+                if (_initialized) throw new NotSupportedException();
+                _memberId = value;
+            }
+        }
 
         [PropertyDescription(Name = "xSpawn")]
-        public int XSpawn { get; set; }
+        public int XSpawn
+        {
+            get => _xSpawn;
+            set
+            {
+                if (_initialized) throw new NotSupportedException();
+                _xSpawn = value;
+            }
+        }
 
         [PropertyDescription(Name = "ySpawn")]
-        public int YSpawn { get; set; }
+        public int YSpawn
+        {
+            get => _ySpawn;
+            set
+            {
+                if (_initialized) throw new NotSupportedException();
+                _ySpawn = value;
+            }
+        }
 
         [PropertyDescription(Name = "team")]
-        public Color Color { get; set; }
+        public Color Color
+        {
+            get => _color;
+            set
+            {
+                if (_initialized) throw new NotSupportedException();
+                _color = value;
+            }
+        }
+
+        private bool _initialized;
+        private int _memberId;
+        private int _xSpawn;
+        private int _ySpawn;
+        private Color _color;
 
         public void Init(PlayerBodyLayer layer)
         {
@@ -47,7 +85,6 @@ namespace LaserTagBox.Model.Body
         }
 
         public Guid ID { get; set; }
-        private bool _initialized;
         protected PlayerBodyLayer battleground;
 
         //	*********************** movement attributes ***********************
@@ -65,7 +102,7 @@ namespace LaserTagBox.Model.Body
                 _ => 0
             };
 
-        protected double VisualRange =>
+        public double VisualRange =>
             VisualRangePenalty + Stance switch
             {
                 Stance.Standing => 10,

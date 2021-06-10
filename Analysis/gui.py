@@ -86,9 +86,7 @@ class Visualizer(GUIFrame):
         try:
             h, w = AGENT_MAP.get_canvas_dimension()
             self.canvas = tk.Canvas(canvasframe, bg="#AAA", height=h, width=w)
-            #self.canvas.config(width=800,height=800)
-            #self.canvas.config(width=3000,height=1000)
-            self.canvas.config(width=1400,height=900)
+            self.canvas.config(width=1070,height=1070)
             self.canvas.config(scrollregion=(0,0,h,w))
         except:
             self.canvas = tk.Canvas(canvasframe, bg="#F00", height=500, width=500)
@@ -139,26 +137,6 @@ class Visualizer(GUIFrame):
         self.fpsslider.grid(row=0, column=0)
         self.fpsslider.set(50)
 
-        graphframe = tk.LabelFrame(infoframe, text="Graph")
-        graphframe.grid(row=1, column=0)
-        graphframeinfo = tk.Frame(graphframe)
-        graphframeinfo.pack(side=tk.TOP,expand=True,fill=tk.BOTH)
-        self.graph_lable_uinf = tk.Label(graphframeinfo,text = "Uninfected : ??? % |")
-        self.graph_lable_uinf.grid(row=0, column=0)
-        self.graph_lable_inf = tk.Label(graphframeinfo,text = "Infected : ??? % |")
-        self.graph_lable_inf.grid(row=0, column=1)
-        self.graph_lable_immun = tk.Label(graphframeinfo,text = "Immun : ??? % |")
-        self.graph_lable_immun.grid(row=0, column=2)
-        self.graph_lable_guests = tk.Label(graphframeinfo,text = " ( Gäste : ????? ) ")
-        self.graph_lable_guests.grid(row=0, column=3)
-        self.canvas_graph = tk.Canvas(graphframe, bg="#000", height=250, width=400)
-        self.canvas_graph.config(scrollregion=(0,0,0,0))
-        hbar = tk.Scrollbar(graphframe,orient=tk.HORIZONTAL)
-        hbar.pack(side=tk.BOTTOM,fill=tk.X)
-        hbar.config(command=self.canvas_graph.xview)
-        self.canvas_graph_hbar = hbar
-        self.canvas_graph.config(xscrollcommand=hbar.set)
-        self.canvas_graph.pack(side=tk.LEFT,expand=True,fill=tk.BOTH)
 
     def init_gui_menu(self):
         menubar = tk.Menu(self.root)
@@ -174,113 +152,10 @@ class Visualizer(GUIFrame):
     def post_init_gui(self):
         self._end()
         self._start()
-        #self.rnd_graphdata()
-        self.agent_graphdata()
 
     def NextFrame(self, frame_type):
         self.play_running = False
         return super().NextFrame(frame_type)
-
-    def rnd_graphdata(self):
-        l = []
-        for i in range(600):
-            x3 = rnd.randint(0,20)
-            x2 = rnd.randint(0,40)
-            x1 = rnd.randint(20,40)
-            l.append((x1,x2,x3))
-        self._update_graphdata(l)
-
-    def agent_graphdata1(self):
-        datarow = []
-        agentstaterows = []
-        imax = 0
-        for agent in self.agents:
-            ar = agent.get_staterow()
-            imax = max(list(ar.keys())+[imax])
-            agentstaterows.append(ar)
-        datamax = 0
-        for i in range(imax+1):
-            data = [0]*3
-            for x in agentstaterows:
-                if i in x:
-                    data[x[i]] += 1
-            datarow.append(data)
-            datamax = max(data+[datamax])
-        #normalize
-        datarownormalized = np.array(datarow)
-        datarownormalized = datarownormalized*100/datamax
-        self._update_graphdata(datarownormalized)
-        
-    def agent_graphdata(self):
-        datarow = []
-        agentstaterows = []
-        imax = 0
-        for agent in self.agents:
-            ar = agent.get_staterow()
-            if len(ar.keys()) > 0:
-                imax = max(list(ar.keys())+[imax])
-                agentstaterows.append(ar)
-        datamax = len(agentstaterows)
-        for i in range(imax+1):
-            data = list((0,0,0))
-            for x in agentstaterows:
-                if i in x:
-                    data[x[i]] += 1
-            l = []
-            for x in data:
-                l.append(x/datamax*100)
-            l.append(sum(data))
-            datarow.append(l)
-        #normalize
-        self._update_graphdata(datarow)
-
-    def _update_graphdata(self,data):
-        """list of 3tuple normalized(0-100)
-1:Uninfected
-2:Infected
-3:Immun"""
-        self.canvas_graph_data = data
-        xdistance = 10
-        self.canvas_graph.delete(tk.ALL)
-        self.canvas_graph.config(scrollregion=(-1*xdistance,0,(len(data)+1)*xdistance,0))
-        points = [(len(data)-1)*xdistance + xdistance//2,250,xdistance//2,250]
-        for x in range(len(data)):
-            y = 250 - (data[x][0] + data[x][1] + data[x][2])*2
-            points.append(x*xdistance + xdistance//2)
-            points.append(int(y))
-        self.canvas_graph.create_polygon(points, outline="#00F", fill="#77F", width=4)
-        points = [(len(data)-1)*xdistance + xdistance//2,250,xdistance//2,250]
-        for x in range(len(data)):
-            y = 250 - (data[x][1] + data[x][2])*2
-            points.append(x*xdistance + xdistance//2)
-            points.append(int(y))
-        self.canvas_graph.create_polygon(points, outline="#F00", fill="#F77", width=4)
-        points = [(len(data)-1)*xdistance + xdistance//2,250,xdistance//2,250]
-        for x in range(len(data)):
-            y = 250 - data[x][2]*2
-            points.append(x*xdistance + xdistance//2)
-            points.append(int(y))
-        self.canvas_graph.create_polygon(points, outline="#0F0", fill="#7F7", width=4)
-        self.canvas_graph.create_line(-1*xdistance,50,(len(data)+1)*xdistance,50, fill="#FFF", width=1)
-        self.canvas_graph.create_line(-1*xdistance,100,(len(data)+1)*xdistance,100, fill="#AAA", width=1)
-        self.canvas_graph.create_line(-1*xdistance,150,(len(data)+1)*xdistance,150, fill="#AAA", width=1)
-        self.canvas_graph.create_line(-1*xdistance,200,(len(data)+1)*xdistance,200, fill="#AAA", width=1)
-        self._update_graph_cursor()
-
-    def _update_graph_cursor(self,step=0):
-        self.canvas_graph_cursor = step
-        self.canvas_graph.delete(self.canvas_graph_cursor_id)
-        xdistance = 10
-        x = xdistance * step + xdistance//2
-        self.canvas_graph_cursor_id = self.canvas_graph.create_line(x,0,x,250, fill="#FFF", width=2)
-        self._update_graph_labels(step)
-
-    def _update_graph_labels(self,step=0):
-        x0,x1,x2,xsum = self.canvas_graph_data[step]
-        self.graph_lable_uinf.config(text="Uninfected : " + str(int(x0)).zfill(3)+" % |")
-        self.graph_lable_inf.config(text="Infected : " + str(int(x1)).zfill(3)+" % |")
-        self.graph_lable_immun.config(text="Immun : " + str(int(x2)).zfill(3)+" %")
-        self.graph_lable_guests.config(text=" ( Gäste : " + str(int(xsum)).zfill(5)+" ) ")
 
     def _update_fps(self, e):
         self.fps = int(self.fpsslider.get())
@@ -292,7 +167,6 @@ class Visualizer(GUIFrame):
         AGENT_MAP.update(self.canvas, int(e))
         for agent in self.agents:
             agent.update(self.canvas, int(e), AGENT_MAP)
-        self._update_graph_cursor(int(e))
 
     def _update(self):
         mt = threading.main_thread()
@@ -315,22 +189,18 @@ class Visualizer(GUIFrame):
                 if tt >= t+fpssec:
                     fps = round(tdticks/(tt-t),2)
                     fpsrow.append(fps)
-                    #print("FPS :",fps)
                     fpsdif = self.fps - statistics.median(fpsrow)
                     fpsdifdelta = fpsdif * 0.2
                     if -0.1 < fpsdif < 0.1:
                         fpsdifdelta = 0
                     else:
                         self.playdelaydelta += fpsdifdelta
-                    #print("FPS :",fps," | ",self.playdelay,self.playdelaydelta,fpsdif,fpsdifdelta)
                     print("FPS :",fps," | ",self.fps,round(self.fps  + self.playdelaydelta,4))
                     self.fpslable.config(text="FPS : "+str(fps))
                     self.playdelay = fpssec / max((self.fps  + self.playdelaydelta),fpssec)
                     fpsrow = fpsrow[-4::]
                     t = time.time()
                     tdticks = 0
-                #time.sleep(self.playdelay / 1000.0)
-                #time.sleep(1/self.fps)
                 time.sleep(self.playdelay)
         except:
             pass
@@ -376,7 +246,7 @@ def main(agents=[], agent_map=None):
     AGENTS = agents
     AGENT_MAP = agent_map
     root = tk.Tk()
-    root.title("Virus Visualizer")
+    root.title("Laser Tag")
     app = Main(root)
     root.mainloop()
 

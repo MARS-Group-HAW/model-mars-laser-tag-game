@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using LaserTagBox.Model.Body;
 using LaserTagBox.Model.Mind;
 using LaserTagBox.Model.Spots;
@@ -20,9 +19,13 @@ namespace LaserTagBox
             description.AddAgent<Hill, PlayerBodyLayer>();
             description.AddAgent<Ditch, PlayerBodyLayer>();
             description.AddAgent<Barrier, PlayerBodyLayer>();
-
-            description.AddAgent<DummyTeam1Figther, PlayerMindLayer>();
             description.AddAgent<PlayerBody, PlayerBodyLayer>();
+            
+            // add the AIs
+            description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
+            // description.AddAgent<YourPlayerMindPleaseRename2, PlayerMindLayer>();
+            // description.AddAgent<YourPlayerMindPleaseRename3, PlayerMindLayer>();
+            // description.AddAgent<YourPlayerMindPleaseRename4, PlayerMindLayer>();
 
             var file = File.ReadAllText("config.json");
             var config = SimulationConfig.Deserialize(file);
@@ -31,12 +34,6 @@ namespace LaserTagBox
             var handle = starter.Run();
             Console.WriteLine("Successfully executed iterations: " + handle.Iterations);
             starter.Dispose();
-
-            foreach (var type in description.AgentTypeMappings.Where(type =>
-                type.Key != typeof(PlayerBody) && !typeof(Spot).IsAssignableFrom(type.Key)))
-            {
-                Console.WriteLine(type.Key);
-            }
         }
     }
 }

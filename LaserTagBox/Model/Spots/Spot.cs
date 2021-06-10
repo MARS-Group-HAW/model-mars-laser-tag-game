@@ -11,9 +11,10 @@ namespace LaserTagBox.Model.Spots
         {
             Battleground = battleground;
         }
+        
+        protected PlayerBodyLayer Battleground { get; private set; }
 
         public Position Position { get; set; }
-        protected PlayerBodyLayer Battleground { get; private set; }
         public Guid ID { get; set; }
 
         public virtual void Tick()

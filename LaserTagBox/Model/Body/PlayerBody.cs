@@ -11,11 +11,15 @@ namespace LaserTagBox.Model.Body
 {
     public class PlayerBody : MovingAgent, IPlayerBody
     {
+        private long _currentTick = -1;
 
         public override void Tick()
         {
+            if (_currentTick == battleground.GetCurrentTick())
+                throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
+
+            _currentTick = battleground.GetCurrentTick();
             RefillPoints();
-            //TODO check if already refilled this turn
         }
 
         //	*********************** core attributes ***********************
@@ -25,18 +29,21 @@ namespace LaserTagBox.Model.Body
 
 
         //	*********************** tagging attributes ***********************
-        public int magazineCount = 5;
-        public bool WasTagged { get; set; }
+        private int _magazineCount = 5;
+        public bool WasTaggedLastTick => _currentTick - 1 == _tickWhenLastTagged;
 
+        private long _tickWhenLastTagged = -100;
 
-        public List<Position> ExploreHills1() => ActionPoints-- < 1 ? null : ExploreSpots(typeof(Hill));
+        public List<Position> ExploreHills1() => ExploreSpots(typeof(Hill));
 
-        public List<Position> ExploreBarriers1() => ActionPoints-- < 1 ? null : ExploreSpots(typeof(Barrier));
+        public List<Position> ExploreBarriers1() => ExploreSpots(typeof(Barrier));
 
-        public List<Position> ExploreDitches1() => ActionPoints-- < 1 ? null : ExploreSpots(typeof(Ditch));
+        public List<Position> ExploreDitches1() => ExploreSpots(typeof(Ditch));
 
         private List<Position> ExploreSpots(Type type)
         {
+            if (ActionPoints < 1) return null;
+            ActionPoints -= 1;
             return battleground.SpotEnv
                 .Explore(Position, VisualRange, -1, spot => spot.GetType() == type && HasBeeline(spot))
                 .Select(spot => Position.CreatePosition(spot.Position.X, spot.Position.Y)).ToList();
@@ -44,7 +51,8 @@ namespace LaserTagBox.Model.Body
 
         public List<EnemySnapshot> ExploreEnemies1()
         {
-            if (ActionPoints-- < 1) return null;
+            if (ActionPoints < 1) return null;
+            ActionPoints -= 1;
             return battleground.FigtherEnv
                 .Explore(Position, VisualRange, -1, player => player.Color != Color && HasBeeline(player))
                 .Select(player => new EnemySnapshot(player.ID, player.Color, player.Stance, player.Position))
@@ -60,11 +68,11 @@ namespace LaserTagBox.Model.Body
 
         public bool Tag5(Position aimedPosition)
         {
-            if (magazineCount < 1) Reload3();
+            if (_magazineCount < 1) Reload3();
 
             if (ActionPoints < 5) return false;
             ActionPoints -= 5;
-            magazineCount--;
+            _magazineCount--;
 
             var enemyStanceVal = 2;
 
@@ -92,9 +100,26 @@ namespace LaserTagBox.Model.Body
 
             if (RandomHelper.Random.Next(10) + 1 + enemyStanceVal > stanceValue)
             {
-                enemy.WasTagged = true;
                 GamePoints += 10;
-                if (enemy.Energy <= 0) GamePoints += 10;
+                if (enemy.Tagged()) GamePoints += 10; // bonus points
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     Is called when a tag was successfully executed. Handles the consequences.
+        /// </summary>
+        /// <returns>true if the player has below 0 energy, false otherwise</returns>
+        private bool Tagged()
+        {
+            _tickWhenLastTagged = _currentTick;
+            Energy -= 10;
+            if (Energy < 0)
+            {
+                //TODO die?
+                battleground.FigtherEnv.Remove(this);
                 
                 return true;
             }
@@ -106,7 +131,7 @@ namespace LaserTagBox.Model.Body
         {
             if (ActionPoints < 3) return;
             ActionPoints -= 3;
-            magazineCount = 5;
+            _magazineCount = 5;
         }
 
         public List<IPlayerBody> ExploreTeam()
@@ -138,37 +163,25 @@ namespace LaserTagBox.Model.Body
         }
 
         public int GetDistance(Position position) =>
-            (int) Distance.Chebyshev(Position.PositionArray, position.PositionArray);
+            (int) Distance.Manhattan(Position.PositionArray, position.PositionArray);
 
         public int RemainingShots { get; private set; }
-        
-        
+
+
         private void RefillPoints()
         {
             ActionPoints = 10;
             if (MovementDelay > 0) MovementDelay--;
-
-            // if (TaggedCounter > 0) TaggedCounter--;
-            // else Tagged = false;
-            //
-            // if (WasTaggedCounter > 0)
-            //     WasTaggedCounter--;
-            else
-            {
-                WasTagged = false;
-            }
             HasMoved = false;
         }
-        
+
         private void ResetValues()
         {
+            //TODO respawn at starting position
+
             Energy = 100;
             MovementDelay = 0;
             ActionPoints = 10;
-            WasTagged = false;
-            // WasTaggedCounter = 0;
-            // Tagged = false;
-            // TaggedCounter = 0;
             pathCalculated = false;
         }
     }

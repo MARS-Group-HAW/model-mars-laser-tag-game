@@ -9,7 +9,7 @@ BITMAPS = ["error", "gray75", "gray50", "gray25", "gray12",
 
 
 class AgentState(object):
-    def __init__(self, x, y, tick, status = 0):
+    def __init__(self, x, y, tick, status=0):
         self.x = x
         self.y = y
         self.tick = tick
@@ -17,6 +17,7 @@ class AgentState(object):
         self.fg = "#444"
         self._update_color()
         self.stage = 0
+
     # TODO: update colors
     def _update_color(self):
         if self.status == 1:
@@ -27,19 +28,26 @@ class AgentState(object):
             self.fg = "#FF0000"
         elif self.status == 4:
             self.fg = "#01DF01"
+
     def infected(self):
         return 1 < self.status < 4
+
     def immun(self):
         return self.status == 4
-    def __eq__(self,other):
+
+    def __eq__(self, other):
         return self.tick == other.tick
-    def __lt__(self,other):
+
+    def __lt__(self, other):
         return self.tick < other.tick
-    def __le__(self,other):
+
+    def __le__(self, other):
         return self < other or self == other
-    def __gt__(self,other):
+
+    def __gt__(self, other):
         return self.tick > other.tick
-    def __ge__(self,other):
+
+    def __ge__(self, other):
         return self > other or self == other
 
 
@@ -72,7 +80,7 @@ class Agent(object):
     def draw(self, canvas, step=0, agent_map=None):
         state = self.get_state(step)
         try:
-            xy = agent_map.get_position(state.x, state.y-1)
+            xy = agent_map.get_position(state.x, state.y - 1)
         except:
             xy = (0, 0)
         if not state and len(self.states) > 0:
@@ -82,8 +90,10 @@ class Agent(object):
         else:
             cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
         self._canvas_id = cid
+
     def delete(self, canvas, step=0, agent_map=None):
         canvas.delete(self._canvas_id)
+
     def update(self, canvas, step=0, agent_map=None):
         if self._updateneeded:
             self.delete(canvas, step, agent_map)
@@ -96,19 +106,19 @@ class AgentMap(object):
         self.y = y_size
         self.boarder = 10
         self.box_size = 20
-        #self.color = "#FFF"
+        # self.color = "#FFF"
 
     def get_canvas_dimension(self):
-        return (self.x*self.box_size+self.boarder*2, self.y*self.box_size+self.boarder*2)
+        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
 
     def get_position(self, x, y, delta=True):
         dx = 0
         dy = 0
         if delta:
-            dx = self.box_size//2
-            dy = self.box_size//2
-        newx = self.boarder + x*self.box_size + dx
-        newy = self.boarder + y*self.box_size + dy
+            dx = self.box_size // 2
+            dy = self.box_size // 2
+        newx = self.boarder + x * self.box_size + dx
+        newy = self.boarder + y * self.box_size + dy
         return (newx, newy)
 
     def draw(self, canvas, step=0):
@@ -116,7 +126,7 @@ class AgentMap(object):
         for i in range(self.x):
             for j in range(self.y):
                 x1, y1 = self.get_position(i, j, False)
-                x2, y2 = self.get_position(i+1, j+1, False)
+                x2, y2 = self.get_position(i + 1, j + 1, False)
                 if d == step:
                     canvas.create_rectangle((x1, y1, x2, y2), fill="#F00")
                 else:
@@ -124,9 +134,10 @@ class AgentMap(object):
                 d += 1
                 d = 0
 
+
 class AdvancedAgentMapField(object):
-    def __init__(self,x1,y1,x2,y2,color="#FFF"):
-        self.fieldpos = (x1,y1,x2,y2)
+    def __init__(self, x1, y1, x2, y2, color="#FFF"):
+        self.fieldpos = (x1, y1, x2, y2)
         self.color = color
         self._updateneeded = True
         self._canvas_id = None
@@ -135,13 +146,16 @@ class AdvancedAgentMapField(object):
         x = canvas.create_rectangle(self.fieldpos, fill=self.color)
         self._canvas_id = x
         return x
+
     def delete(self, canvas, step=0):
         canvas.delete(self._canvas_id)
+
     def update(self, canvas, step=0):
         if self._updateneeded:
             self._updateneeded = False
-            self.delete(canvas,step)
-            self.draw(canvas,step)
+            self.delete(canvas, step)
+            self.draw(canvas, step)
+
 
 class AdvancedAgentMap(object):
     def __init__(self, x_size, y_size, color="#FFF"):
@@ -155,42 +169,44 @@ class AdvancedAgentMap(object):
             l = []
             for x in range(self.x):
                 x1, y1 = self.get_position(y, x, False)
-                x2, y2 = self.get_position(y+1, x+1, False)
-                l.append(AdvancedAgentMapField(y1,x1,y2,x2,self.color))
+                x2, y2 = self.get_position(y + 1, x + 1, False)
+                l.append(AdvancedAgentMapField(y1, x1, y2, x2, self.color))
             self.map.append(l)
 
     def get_canvas_dimension(self):
-        return (self.x*self.box_size+self.boarder*2, self.y*self.box_size+self.boarder*2)
+        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
 
     def get_position(self, x, y, delta=True):
         dx = 0
         dy = 0
         if delta:
-            dx = self.box_size//2
-            dy = self.box_size//2
-        newx = self.boarder + x*self.box_size + dx
-        newy = self.boarder + y*self.box_size + dy
+            dx = self.box_size // 2
+            dy = self.box_size // 2
+        newx = self.boarder + x * self.box_size + dx
+        newy = self.boarder + y * self.box_size + dy
         return (newx, newy)
 
     def draw(self, canvas, step=0):
         for y in self.map:
             for x in y:
                 try:
-                    x.draw(canvas,step)
+                    x.draw(canvas, step)
                 except Exception as e:
                     pass
+
     def delete(self, canvas, step=0):
         for y in self.map:
             for x in y:
                 try:
-                    x.delete(canvas,step)
+                    x.delete(canvas, step)
                 except Exception as e:
                     pass
+
     def update(self, canvas, step=0):
         for y in self.map:
             for x in y:
                 try:
-                    x.update(canvas,step)
+                    x.update(canvas, step)
                 except Exception as e:
                     pass
 
@@ -203,13 +219,13 @@ def map_readin(file=""):
     x = 0
     y = 0
     l = []
-    with open(file,"r") as f:
+    with open(file, "r") as f:
         reader = csv.reader(f, delimiter=";")
         for row in reader:
             y += 1
-            x = max(x,len(row))
+            x = max(x, len(row))
             l.append(row)
-    m = AdvancedAgentMap(x,y)
+    m = AdvancedAgentMap(x, y)
     # colors of grid cells
     for iy in range(y):
         for ix in range(x):
@@ -227,10 +243,10 @@ def map_readin(file=""):
     return m
 
 
-def agent_readin(file,agent_map):
+def agent_readin(file, agent_map):
     agents = {}
     l = []
-    with open(file,"r") as f:
+    with open(file, "r") as f:
         reader = csv.reader(f, delimiter=";")
         for row in reader:
             l.append(row)
@@ -243,7 +259,7 @@ def agent_readin(file,agent_map):
             columnids["X"] = i
         elif "Y" in x:
             columnids["Y"] = i
-        elif "Tick" in x:
+        elif "Step" in x:
             columnids["TICK"] = i
         elif "Energy" in x:
             columnids["ENGERGY"] = i
@@ -258,40 +274,40 @@ def agent_readin(file,agent_map):
         agent = agents[aid]
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
-        y = len(agent_map.map)-y
+        y = len(agent_map.map) - y
         tick = int(row[columnids["TICK"]])
         status = row[columnids["COLOR"]]
         # blue
-        if status == "blue":
-            state = AgentState(x,y,tick,1)
+        if status == "Blue":
+            state = AgentState(x, y, tick, 1)
         # yellow
-        elif status == "yellow":
-            state = AgentState(x,y,tick,2)
+        elif status == "Yellow":
+            state = AgentState(x, y, tick, 2)
         # red
-        elif status == "red":
-            state = AgentState(x,y,tick,3)
+        elif status == "Red":
+            state = AgentState(x, y, tick, 3)
         # green
-        elif status == "green":
+        elif status == "Green":
             state = AgentState(x, y, tick, 4)
         else:
-            state = AgentState(x,y,tick,0)
-        #state = AgentState(x,y,tick)
-        #TEST
-        #bl=[False,False,False,True]
-        #state = AgentState(x,y,tick,rnd.choice(bl),rnd.choice(bl))
-        #print(agent)
+            state = AgentState(x, y, tick, 0)
+        # state = AgentState(x,y,tick)
+        # TEST
+        # bl=[False,False,False,True]
+        # state = AgentState(x,y,tick,rnd.choice(bl),rnd.choice(bl))
+        # print(agent)
         state.stage = row[columnids["COLOR"]]
         agent.states.append(state)
     return list(agents.values())
 
 
 def main():
-    am = map_readin("map.csv")
-    #print(len(am.map[0]),len(am.map))
+    am = map_readin("../LaserTagBox/Resources/map.csv")
+    # print(len(am.map[0]),len(am.map))
     path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
-    #a = agent_readin("agents.csv",am)
-    a = agent_readin(path,am)
-    #am = AgentMap(20, 20)
+    # a = agent_readin("agents.csv",am)
+    a = agent_readin(path, am)
+    # am = AgentMap(20, 20)
     gui.main(a, am)
 
 

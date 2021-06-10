@@ -32,7 +32,7 @@ namespace LaserTagBox.Model.Mind
 
             foreach (var mapping in layerInitData.AgentInitConfigs)
             {
-                // for (var i = 0; i < 3; i++)
+                for (var i = 0; i < 3; i++)
                 {
                     bodies.MoveNext();
 
@@ -47,10 +47,7 @@ namespace LaserTagBox.Model.Mind
             return true;
         }
 
-        public long GetCurrentTick()
-        {
-            return _simulationContext.CurrentTick;
-        }
+        public long GetCurrentTick() => _simulationContext.CurrentTick;
 
         public void SetCurrentTick(long currentStep)
         {

@@ -1,3 +1,4 @@
+using System.Linq;
 using LaserTagBox.Model.Body;
 
 namespace LaserTagBox.Model.Spots
@@ -21,28 +22,18 @@ namespace LaserTagBox.Model.Spots
         public override void Init(PlayerBodyLayer battleground)
         {
             base.Init(battleground);
-
             Free = true;
         }
 
         public override void Tick()
         {
-            if (!Free)
+            if (Free) return;
+            
+            // clean up, if necessary
+            var bodies = Battleground.FigtherEnv.Entities;
+            if (bodies.Any(agent => agent.Position.Equals(Position)))
             {
-                var greenTeam = Battleground.FigtherEnv.Entities;
-
-                var freeMe = true;
-
-                foreach (var agent in greenTeam)
-                    if (agent.Position.Equals(Position))
-                        freeMe = false;
-
-                //TODO do this for all 4 teams
-
-                if (freeMe)
-                {
-                    Free = true;
-                }
+                Free = false;
             }
         }
     }

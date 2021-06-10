@@ -55,7 +55,7 @@ namespace LaserTagBox.Model.Shared
         bool Tag5(Position aimedPosition); //treffe den ersten, wenn mehrere auf dem selbem Feld
 
 
-        //******************** free or charge ********************
+        //******************** free of charge ********************
 
         /// <summary>
         ///     Provides all <code>IPlayerBody</code>s of the same team.
@@ -119,5 +119,20 @@ namespace LaserTagBox.Model.Shared
         ///     Indicates to witch team the agent belongs.
         /// </summary>
         Color Color { get; }
+
+        /// <summary>
+        ///     Provides a metric on the distance for exploring.
+        /// </summary>
+        double VisualRange { get; }
+
+        /// <summary>
+        ///     Provides a metric on how visible the agent is for enemies.
+        /// </summary>
+        double VisibilityRange { get; }
+
+        /// <summary>
+        ///     Indicates if the agent was tagged in the last tick.
+        /// </summary>
+        bool WasTaggedLastTick { get; }
     }
 }
