@@ -8,7 +8,7 @@ namespace LaserTagBox.Model.Shared
     ///     Use it to explore and interact (with) the battleground.
     /// </summary>
     public interface IPlayerBody : IPositionable
-    {
+    {   //TODO split in Properties and Acting
         //******************** costly ********************
 
         /// <summary>
@@ -29,10 +29,10 @@ namespace LaserTagBox.Model.Shared
         /// <returns>A list of the ditches positions.</returns>
         List<Position> ExploreDitches1();
 
-        /// <summary>
-        ///     Explores all <code>Hill</code>s in sight of the agent. Costs 1 action point.
+        /// <summary> 
+        ///     Explores all enemies in sight of the agent. Costs 1 action point.
         /// </summary>
-        /// <returns>A list of the hills positions.</returns>
+        /// <returns>A list of the enemies information.</returns>
         List<EnemySnapshot> ExploreEnemies1();
 
         /// <summary>
@@ -53,15 +53,22 @@ namespace LaserTagBox.Model.Shared
         /// <param name="aimedPosition">The position that is aimed on.</param>
         /// <returns>true if an enemy was tagged, false otherwise or if not enough action points are available</returns>
         bool Tag5(Position aimedPosition); //treffe den ersten, wenn mehrere auf dem selbem Feld
-
-
+        
+        /// <summary>
+        ///     Indicates if there is a connecting line between given position and the agents position without any
+        ///     obstacle in the way. Costs 1 action points.
+        /// </summary>
+        /// <param name="position">That is tested.</param>
+        /// <returns>true if a beeline exists, false otherwise</returns>
+        bool HasBeeline1(Position position);
+        
         //******************** free of charge ********************
 
         /// <summary>
         ///     Provides all <code>IPlayerBody</code>s of the same team.
         /// </summary>
         /// <returns>A list of the teams player bodies.</returns>
-        List<IPlayerBody> ExploreTeam();
+        List<IPlayerBody> ExploreTeam(); //TODO split into info and interaction part
 
         /// <summary>
         ///     Moves towards given position by using a D*-algorithm. The algorithm automatically moves around obstacles.
@@ -71,12 +78,6 @@ namespace LaserTagBox.Model.Shared
         /// <returns>true if the movement was successful, false otherwise.</returns>
         bool GoTo(Position goal); //pro Tick 1 Feld bewegen (liegend nur alle 3 Ticks 1 Feld)
 
-        /// <summary>
-        ///     Indicates if there is a connecting line between given position and the agents position without any obstacle in the way. 
-        /// </summary>
-        /// <param name="position">That is tested.</param>
-        /// <returns>true if a beeline exists, false otherwise</returns>
-        bool HasBeeline(Position position);
 
         /// <summary>
         ///     Provides the distance between given position and the agents position.

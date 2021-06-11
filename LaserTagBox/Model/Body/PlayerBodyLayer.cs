@@ -121,7 +121,6 @@ namespace LaserTagBox.Model.Body
         // http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
         public bool HasBeeline(double x1, double y1, double x2, double y2)
         {
-            var hasBeeline = true;
             var x = (int) x1;
             var y = (int) y1;
             var newX2 = (int) x2;
@@ -180,11 +179,10 @@ namespace LaserTagBox.Model.Body
             var numerator = longest / 2;
             for (var i = 0; i < longest; i++)
             {
-                if ((GetIntValue(x, y) == 1) || (
-                    GetIntValue(x, y) == 2))
+                var intValue = GetIntValue(x, y);
+                if (intValue == 1 || intValue == 2)
                 {
-                    hasBeeline = false;
-                    return hasBeeline;
+                    return false;
                 }
 
                 numerator = numerator + shortest;
@@ -201,7 +199,7 @@ namespace LaserTagBox.Model.Body
                 }
             }
 
-            return hasBeeline;
+            return true;
         }
     }
 }

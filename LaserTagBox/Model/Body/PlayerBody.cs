@@ -74,9 +74,12 @@ namespace LaserTagBox.Model.Body
             ActionPoints -= 5;
             _magazineCount--;
 
+            if (!HasBeeline(aimedPosition)) return false;
+            
             var enemyStanceVal = 2;
 
-            var enemy = battleground.GetAgentOn(Position);
+            var enemy = battleground.GetAgentOn(aimedPosition);
+            if (enemy == null) return false;
 
             var fieldType = battleground.GetIntValue(aimedPosition);
             enemyStanceVal = fieldType switch
@@ -98,6 +101,7 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
+            //TODO more distance = lower chance
             if (RandomHelper.Random.Next(10) + 1 + enemyStanceVal > stanceValue)
             {
                 GamePoints += 10;
@@ -140,8 +144,7 @@ namespace LaserTagBox.Model.Body
                 .Entities.Where(body => body.Color == Color)
                 .ToList());
         }
-
-
+        
         protected override void InsertIntoEnv()
         {
             battleground.FigtherEnv.Insert(this);
@@ -157,7 +160,15 @@ namespace LaserTagBox.Model.Body
             return battleground.HasBeeline(Position.X, Position.Y, other.Position.X, other.Position.Y);
         }
 
-        public bool HasBeeline(Position other)
+        public bool HasBeeline1(Position other)
+        {
+            if (ActionPoints < 1) return false;
+            ActionPoints -= 1;
+            
+            return HasBeeline(other);
+        }
+
+        private bool HasBeeline(Position other)
         {
             return battleground.HasBeeline(Position.X, Position.Y, other.X, other.Y);
         }
