@@ -4,16 +4,19 @@ using Mars.Interfaces.Environments;
 namespace LaserTagBox.Model.Shared
 {
     /// <summary>
-    ///     Provides information about an explored enemy. 
+    ///     Provides information about other team members. 
     /// </summary>
-    public readonly struct EnemySnapshot
+    public  struct FriendSnapshot
     {
-        public EnemySnapshot(Guid id, Color team, Stance stance, Position position)
+        public FriendSnapshot(Guid id, Color team, Stance stance, Position position, int energy, double visualRange, double visibilityRange)
         {
             Id = id;
             Team = team;
             Stance = stance;
             Position = position;
+            Energy = energy;
+            VisualRange = visualRange;
+            VisibilityRange = visibilityRange;
         }
         
         /// <summary>
@@ -35,5 +38,20 @@ namespace LaserTagBox.Model.Shared
         ///     Current position of the agent on the grid.
         /// </summary>
         public Position Position { get; }
+        
+        /// <summary>
+        ///     Remaining energy of the agent.
+        /// </summary>
+        public int Energy { get; }
+        
+        /// <summary>
+        ///     Provides a metric on the distance for exploring.
+        /// </summary>
+        public double VisualRange { get; }
+
+        /// <summary>
+        ///     Provides a metric on how visible the agent is for enemies.
+        /// </summary>
+        public double VisibilityRange { get; }
     }
 }

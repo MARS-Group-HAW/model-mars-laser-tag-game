@@ -8,7 +8,7 @@ namespace LaserTagBox.Model.Shared
     ///     Use it to explore and interact (with) the battleground.
     /// </summary>
     public interface IPlayerBody : IPositionable
-    {   //TODO split in Properties and Acting
+    {   
         //******************** costly ********************
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace LaserTagBox.Model.Shared
         /// </summary>
         /// <param name="aimedPosition">The position that is aimed on.</param>
         /// <returns>true if an enemy was tagged, false otherwise or if not enough action points are available</returns>
-        bool Tag5(Position aimedPosition); //treffe den ersten, wenn mehrere auf dem selbem Feld
+        bool Tag5(Position aimedPosition);
         
         /// <summary>
         ///     Indicates if there is a connecting line between given position and the agents position without any
@@ -68,16 +68,16 @@ namespace LaserTagBox.Model.Shared
         ///     Provides all <code>IPlayerBody</code>s of the same team.
         /// </summary>
         /// <returns>A list of the teams player bodies.</returns>
-        List<IPlayerBody> ExploreTeam(); //TODO split into info and interaction part
+        List<FriendSnapshot> ExploreTeam(); //TODO split into info and interaction part
 
         /// <summary>
         ///     Moves towards given position by using a D*-algorithm. The algorithm automatically moves around obstacles.
         ///     Always moves only one cell a tick. Can therefore only called once a tick for an agent.
+        ///     If the agent is in another stance the moving delays (lying: 3 ticks/cell, kneeling 2 ticks/cell).
         /// </summary>
         /// <param name="goal">The position that should be reached.</param>
         /// <returns>true if the movement was successful, false otherwise.</returns>
-        bool GoTo(Position goal); //pro Tick 1 Feld bewegen (liegend nur alle 3 Ticks 1 Feld)
-
+        bool GoTo(Position goal);
 
         /// <summary>
         ///     Provides the distance between given position and the agents position.

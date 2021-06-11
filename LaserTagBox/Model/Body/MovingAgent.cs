@@ -129,18 +129,7 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        protected double MovementDelay
-        {
-            get =>
-                Stance switch
-                {
-                    Stance.Standing => 0,
-                    Stance.Kneeling => 2,
-                    Stance.Lying => 3,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-            set => throw new NotImplementedException();
-        }
+        protected double MovementDelay { get; set; }
 
         protected bool HasMoved { get; set; }
 

@@ -64,6 +64,14 @@ namespace LaserTagBox.Model.Body
             if (ActionPoints < 2) return;
             ActionPoints -= 2;
             Stance = newStance;
+
+            MovementDelay = Stance switch
+            {
+                Stance.Standing => 0,
+                Stance.Kneeling => 2,
+                Stance.Lying => 3,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         public bool Tag5(Position aimedPosition)
@@ -75,7 +83,7 @@ namespace LaserTagBox.Model.Body
             _magazineCount--;
 
             if (!HasBeeline(aimedPosition)) return false;
-            
+
             var enemyStanceVal = 2;
 
             var enemy = battleground.GetAgentOn(aimedPosition);
@@ -124,7 +132,7 @@ namespace LaserTagBox.Model.Body
             {
                 //TODO die?
                 battleground.FigtherEnv.Remove(this);
-                
+
                 return true;
             }
 
@@ -138,13 +146,14 @@ namespace LaserTagBox.Model.Body
             _magazineCount = 5;
         }
 
-        public List<IPlayerBody> ExploreTeam()
+        public List<FriendSnapshot> ExploreTeam()
         {
-            return new List<IPlayerBody>(battleground.FigtherEnv
-                .Entities.Where(body => body.Color == Color)
+            return new List<FriendSnapshot>(battleground.FigtherEnv
+                .Entities.Where(body => body.Color == Color && body != this).Select(b =>
+                    new FriendSnapshot(b.ID, b.Color, b.Stance, b.Position, b.Energy, b.VisualRange, b.VisibilityRange))
                 .ToList());
         }
-        
+
         protected override void InsertIntoEnv()
         {
             battleground.FigtherEnv.Insert(this);
@@ -164,7 +173,7 @@ namespace LaserTagBox.Model.Body
         {
             if (ActionPoints < 1) return false;
             ActionPoints -= 1;
-            
+
             return HasBeeline(other);
         }
 
