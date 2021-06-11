@@ -11,20 +11,7 @@ LaserTagBox/bin
 LaserTagBox/obj
 .metadata
 
-# agent output files
-Barrier.csv
-BattlegroundDraw.csv
-Ditch.csv
-Hill.csv
-Green.csv
-Red.csv
-Blue.csv
-Yellow.csv
-Spawner.csv
 
 # Analysis and Visualization files (Python)
-map.csv
-agents.csv
 *.pyc
 *.prefs
-Analysis/*.csv

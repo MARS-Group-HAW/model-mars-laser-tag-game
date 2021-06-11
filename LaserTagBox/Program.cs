@@ -8,7 +8,7 @@ using Mars.Interfaces.Model;
 
 namespace LaserTagBox
 {
-    class Program
+    internal static class Program
     {
         private static void Main()
         {

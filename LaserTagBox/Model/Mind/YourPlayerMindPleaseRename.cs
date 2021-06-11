@@ -1,4 +1,6 @@
 using System;
+using LaserTagBox.Model.Body;
+using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using Mars.Numerics.Statistics;
 
@@ -6,6 +8,7 @@ namespace LaserTagBox.Model.Mind
 {
     public class YourPlayerMindPleaseRename : AbstractPlayerMind
     {
+
         private Position _goal;
 
         public override void Init(PlayerMindLayer mindLayer)
