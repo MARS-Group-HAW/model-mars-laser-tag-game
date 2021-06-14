@@ -11,15 +11,24 @@ namespace LaserTagBox.Model.Body
 {
     public class PlayerBody : MovingAgent, IPlayerBody
     {
+        public static int RespawningDelayInTicks = 10;
         private long _currentTick = -1;
 
         public override void Tick()
         {
             if (_currentTick == battleground.GetCurrentTick())
                 throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
-
             _currentTick = battleground.GetCurrentTick();
-            RefillPoints();
+
+            if (Energy >= 0)
+            {
+                RefillPoints();
+            }
+            else
+            {
+                if (_respawnDelay <= 0) Respawn();
+                else _respawnDelay--;
+            }
         }
 
         //	*********************** core attributes ***********************
@@ -33,6 +42,7 @@ namespace LaserTagBox.Model.Body
         public bool WasTaggedLastTick => _currentTick - 1 == _tickWhenLastTagged;
 
         private long _tickWhenLastTagged = -100;
+        private int _respawnDelay;
 
         public List<Position> ExploreHills1() => ExploreSpots(typeof(Hill));
 
@@ -54,15 +64,21 @@ namespace LaserTagBox.Model.Body
             if (ActionPoints < 1) return null;
             ActionPoints -= 1;
             return battleground.FigtherEnv
-                .Explore(Position, VisualRange, -1, player => player.Color != Color && HasBeeline(player))
+                .Explore(Position, VisualRange, -1,
+                    player => IsEnemy(player) && HasBeeline(player) && IsVisible(player))
                 .Select(player => new EnemySnapshot(player.ID, player.Color, player.Stance, player.Position))
                 .ToList();
         }
+
+        private bool IsEnemy(PlayerBody enemy) => enemy.Color != Color;
+
+        private bool IsVisible(PlayerBody enemy) => enemy.VisibilityRange >= GetDistance(enemy.Position);
 
         public void ChangeStance2(Stance newStance)
         {
             if (ActionPoints < 2) return;
             ActionPoints -= 2;
+
             Stance = newStance;
 
             MovementDelay = Stance switch
@@ -76,31 +92,32 @@ namespace LaserTagBox.Model.Body
 
         public bool Tag5(Position aimedPosition)
         {
-            if (_magazineCount < 1) Reload3();
-
             if (ActionPoints < 5) return false;
             ActionPoints -= 5;
+
+            if (_magazineCount < 1) return false;
             _magazineCount--;
 
             if (!HasBeeline(aimedPosition)) return false;
-
-            var enemyStanceVal = 2;
 
             var enemy = battleground.GetAgentOn(aimedPosition);
             if (enemy == null) return false;
 
             var fieldType = battleground.GetIntValue(aimedPosition);
-            enemyStanceVal = fieldType switch
+            var enemySpot = fieldType switch
             {
-                2 => 2,
-                3 => 0,
-                _ => enemy.Stance switch
-                {
-                    Stance.Kneeling => 1,
-                    Stance.Lying => 0,
-                    _ => enemyStanceVal
-                }
+                3 => 0, // in ditch
+                2 => 2, // on hill
+                _ => 1 // on normal ground
             };
+            var enemyStance = enemy.Stance switch
+            {
+                Stance.Standing => 2,
+                Stance.Kneeling => 1,
+                Stance.Lying => 0,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
             var stanceValue = Stance switch
             {
                 Stance.Standing => 8,
@@ -109,8 +126,9 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            //TODO more distance = lower chance
-            if (RandomHelper.Random.Next(10) + 1 + enemyStanceVal > stanceValue)
+            //TODO greater distance = lower chance? too complicated!
+            var success = RandomHelper.Random.Next(10) + enemyStance + enemySpot > stanceValue;
+            if (success)
             {
                 GamePoints += 10;
                 if (enemy.Tagged()) GamePoints += 10; // bonus points
@@ -128,15 +146,33 @@ namespace LaserTagBox.Model.Body
         {
             _tickWhenLastTagged = _currentTick;
             Energy -= 10;
-            if (Energy < 0)
-            {
-                //TODO die?
-                battleground.FigtherEnv.Remove(this);
+            if (Energy >= 0) return false;
 
-                return true;
-            }
+            RespawnPenaltyActivated();
+            return true;
+        }
 
-            return false;
+        private void RespawnPenaltyActivated()
+        {
+            _respawnDelay = RespawningDelayInTicks;
+            battleground.FigtherEnv.Remove(this);
+            Position = Position.CreatePosition(XSpawn, YSpawn);
+            ActionPoints = 0;
+        }
+
+        private void Respawn()
+        {
+            Energy = 100;
+            ActionPoints = 10;
+
+            MovementDelay = 0;
+            HasMoved = false;
+            pathCalculated = false;
+
+            Stance = Stance.Standing;
+            _magazineCount = 5;
+
+            InsertIntoEnv();
         }
 
         public void Reload3()
@@ -193,16 +229,6 @@ namespace LaserTagBox.Model.Body
             ActionPoints = 10;
             if (MovementDelay > 0) MovementDelay--;
             HasMoved = false;
-        }
-
-        private void ResetValues()
-        {
-            //TODO respawn at starting position
-
-            Energy = 100;
-            MovementDelay = 0;
-            ActionPoints = 10;
-            pathCalculated = false;
         }
     }
 }
