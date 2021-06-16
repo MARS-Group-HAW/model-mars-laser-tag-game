@@ -11,13 +11,13 @@ namespace LaserTagBox.Model.Mind
 {
     public class PlayerMindLayer : ILayer
     {
-        private readonly PlayerBodyLayer _battleground;
+        private readonly PlayerBodyLayer _playerBodyLayer;
         private ISimulationContext _simulationContext;
         private bool _initialized;
 
-        public PlayerMindLayer(PlayerBodyLayer battleground)
+        public PlayerMindLayer(PlayerBodyLayer playerBodyLayer)
         {
-            _battleground = battleground;
+            _playerBodyLayer = playerBodyLayer;
         }
 
         public bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null,
@@ -28,7 +28,7 @@ namespace LaserTagBox.Model.Mind
 
             _simulationContext = layerInitData.Context;
 
-            using var bodies = _battleground.Bodies.Values.GetEnumerator();
+            using var bodies = _playerBodyLayer.Bodies.Values.GetEnumerator();
 
             foreach (var mapping in layerInitData.AgentInitConfigs)
             {

@@ -11,24 +11,16 @@ namespace LaserTagBox.Model.Body
 {
     public class PlayerBody : MovingAgent, IPlayerBody
     {
-        public static int RespawningDelayInTicks = 10;
         private long _currentTick = -1;
 
         public override void Tick()
         {
+            if (!Alive) return;
             if (_currentTick == battleground.GetCurrentTick())
                 throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
             _currentTick = battleground.GetCurrentTick();
 
-            if (Energy >= 0)
-            {
-                RefillPoints();
-            }
-            else
-            {
-                if (_respawnDelay <= 0) Respawn();
-                else _respawnDelay--;
-            }
+            RefillPoints();
         }
 
         //	*********************** core attributes ***********************
@@ -38,11 +30,9 @@ namespace LaserTagBox.Model.Body
 
 
         //	*********************** tagging attributes ***********************
-        private int _magazineCount = 5;
         public bool WasTaggedLastTick => _currentTick - 1 == _tickWhenLastTagged;
 
         private long _tickWhenLastTagged = -100;
-        private int _respawnDelay;
 
         public List<Position> ExploreHills1() => ExploreSpots(typeof(Hill));
 
@@ -95,8 +85,8 @@ namespace LaserTagBox.Model.Body
             if (ActionPoints < 5) return false;
             ActionPoints -= 5;
 
-            if (_magazineCount < 1) return false;
-            _magazineCount--;
+            if (RemainingShots < 1) return false;
+            RemainingShots--;
 
             if (!HasBeeline(aimedPosition)) return false;
 
@@ -126,7 +116,6 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            //TODO greater distance = lower chance? too complicated!
             var success = RandomHelper.Random.Next(10) + enemyStance + enemySpot > stanceValue;
             if (success)
             {
@@ -141,45 +130,33 @@ namespace LaserTagBox.Model.Body
         /// <summary>
         ///     Is called when a tag was successfully executed. Handles the consequences.
         /// </summary>
-        /// <returns>true if the player has below 0 energy, false otherwise</returns>
+        /// <returns>true if the player has below 0 energy and therefore dies, false otherwise</returns>
         private bool Tagged()
         {
             _tickWhenLastTagged = _currentTick;
             Energy -= 10;
             if (Energy >= 0) return false;
 
-            RespawnPenaltyActivated();
+            Die();
             return true;
         }
 
-        private void RespawnPenaltyActivated()
+        public bool Alive { get; private set; } = true;
+        
+        private void Die()
         {
-            _respawnDelay = RespawningDelayInTicks;
             battleground.FigtherEnv.Remove(this);
-            Position = Position.CreatePosition(XSpawn, YSpawn);
+            //do not remove it from tick-cycle for evaluation purposes
+            
             ActionPoints = 0;
-        }
-
-        private void Respawn()
-        {
-            Energy = 100;
-            ActionPoints = 10;
-
-            MovementDelay = 0;
-            HasMoved = false;
-            pathCalculated = false;
-
-            Stance = Stance.Standing;
-            _magazineCount = 5;
-
-            InsertIntoEnv();
+            Alive = false;
         }
 
         public void Reload3()
         {
             if (ActionPoints < 3) return;
             ActionPoints -= 3;
-            _magazineCount = 5;
+            RemainingShots = 5;
         }
 
         public List<FriendSnapshot> ExploreTeam()
@@ -221,7 +198,7 @@ namespace LaserTagBox.Model.Body
         public int GetDistance(Position position) =>
             (int) Distance.Manhattan(Position.PositionArray, position.PositionArray);
 
-        public int RemainingShots { get; private set; }
+        public int RemainingShots { get; private set; } = 5;
 
 
         private void RefillPoints()

@@ -13,7 +13,7 @@ namespace LaserTagBox.Model.Shared
             Id = id;
             Team = team;
             Stance = stance;
-            Position = position;
+            Position = Position.CreatePosition(position.X, position.Y);
             Energy = energy;
             VisualRange = visualRange;
             VisibilityRange = visibilityRange;

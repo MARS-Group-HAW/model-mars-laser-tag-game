@@ -135,5 +135,10 @@ namespace LaserTagBox.Model.Shared
         ///     Indicates if the agent was tagged in the last tick.
         /// </summary>
         bool WasTaggedLastTick { get; }
+
+        /// <summary>
+        ///     Indicates if the agent is alive and can therefore act.
+        /// </summary>
+        bool Alive { get; }
     }
 }
