@@ -35,6 +35,10 @@ namespace LaserTagBox.Model.Spots
             {
                 Free = false;
             }
+            else
+            {
+                Free = true;
+            }
         }
     }
 }
