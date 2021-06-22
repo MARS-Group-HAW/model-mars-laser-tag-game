@@ -20,11 +20,19 @@ namespace LaserTagBox.Model.Mind
         {
             if (_goal == null || Body.GetDistance(_goal) < 4)
             {
-                _goal = Position.CreatePosition(RandomHelper.Random.Next(50), RandomHelper.Random.Next(50));
+                _goal = Position.CreatePosition(48, 48);
                 Console.WriteLine("new goal "+_goal);
             }
 
             Body.GoTo(_goal);
+            if (Body.Position.Equals(_goal))
+            {
+                if (Body.RemainingShots == 0)
+                {
+                    Body.Reload3();
+                }
+                Body.Tag5(Position.CreatePosition(50, 50));
+            }
             Console.WriteLine(Body.Position);
         }
     }

@@ -206,6 +206,15 @@ namespace LaserTagBox.Model.Body
             ActionPoints = 10;
             if (MovementDelay > 0) MovementDelay--;
             HasMoved = false;
+            RegenerateEnergy();
+        }
+
+        private void RegenerateEnergy()
+        {
+            if (Alive && Energy < 100)
+            {
+                Energy += 1;
+            }
         }
     }
 }

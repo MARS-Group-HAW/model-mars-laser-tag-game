@@ -9,10 +9,11 @@ BITMAPS = ["error", "gray75", "gray50", "gray25", "gray12",
 
 
 class AgentState(object):
-    def __init__(self, x, y, tick, status=0):
+    def __init__(self, x, y, tick, alive, status=0):
         self.x = x
         self.y = y
         self.tick = tick
+        self.alive = alive
         self.status = status
         self.fg = "#444"
         self._update_color()
@@ -86,9 +87,13 @@ class Agent(object):
         if not state and len(self.states) > 0:
             state = self.states[-1]
             xy = agent_map.get_position(state.x, state.y)
+
             cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
         else:
-            cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
+            if state.alive == 'True':
+                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
+            else:
+                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
         self._canvas_id = cid
 
     def delete(self, canvas, step=0, agent_map=None):
@@ -255,6 +260,8 @@ def agent_readin(file, agent_map):
         x = l[0][i]
         if "ID" in x:
             columnids["ID"] = i
+        elif "Alive" in x:
+            columnids["ALIVE"] = i
         elif "X" in x:
             columnids["X"] = i
         elif "Y" in x:
@@ -275,22 +282,23 @@ def agent_readin(file, agent_map):
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
         y = len(agent_map.map) - y
+        alive = row[columnids["ALIVE"]]
         tick = int(row[columnids["TICK"]])
         status = row[columnids["COLOR"]]
         # blue
         if status == "Blue":
-            state = AgentState(x, y, tick, 1)
+            state = AgentState(x, y, tick, alive, 1)
         # yellow
         elif status == "Yellow":
-            state = AgentState(x, y, tick, 2)
+            state = AgentState(x, y, tick, alive, 2)
         # red
         elif status == "Red":
-            state = AgentState(x, y, tick, 3)
+            state = AgentState(x, y, tick, alive, 3)
         # green
         elif status == "Green":
-            state = AgentState(x, y, tick, 4)
+            state = AgentState(x, y, tick, alive, 4)
         else:
-            state = AgentState(x, y, tick, 0)
+            state = AgentState(x, y, tick, alive, 0)
         # state = AgentState(x,y,tick)
         # TEST
         # bl=[False,False,False,True]
