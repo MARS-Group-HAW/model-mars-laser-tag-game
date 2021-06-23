@@ -167,7 +167,7 @@ class AdvancedAgentMap(object):
         self.x = x_size
         self.y = y_size
         self.boarder = 10
-        self.box_size = 20
+        self.box_size = 15
         self.color = color
         self.map = []
         for y in range(self.y):

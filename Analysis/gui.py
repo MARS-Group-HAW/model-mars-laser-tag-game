@@ -86,7 +86,7 @@ class Visualizer(GUIFrame):
         try:
             h, w = AGENT_MAP.get_canvas_dimension()
             self.canvas = tk.Canvas(canvasframe, bg="#AAA", height=h, width=w)
-            self.canvas.config(width=1070,height=1070)
+            self.canvas.config(width=800,height=800)
             self.canvas.config(scrollregion=(0,0,h,w))
         except:
             self.canvas = tk.Canvas(canvasframe, bg="#F00", height=500, width=500)
