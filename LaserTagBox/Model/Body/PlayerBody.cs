@@ -70,14 +70,7 @@ namespace LaserTagBox.Model.Body
             ActionPoints -= 2;
 
             Stance = newStance;
-
-            MovementDelay = Stance switch
-            {
-                Stance.Standing => 0,
-                Stance.Kneeling => 2,
-                Stance.Lying => 3,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+            MovementDelayCounter = MovementDelayPenalty;
         }
 
         public bool Tag5(Position aimedPosition)
@@ -204,7 +197,7 @@ namespace LaserTagBox.Model.Body
         private void RefillPoints()
         {
             ActionPoints = 10;
-            if (MovementDelay > 0) MovementDelay--;
+            if (MovementDelayCounter > 0) MovementDelayCounter--;
             HasMoved = false;
             RegenerateEnergy();
         }

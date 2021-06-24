@@ -129,7 +129,15 @@ namespace LaserTagBox.Model.Body
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        protected double MovementDelay { get; set; }
+        protected double MovementDelayPenalty => Stance switch
+        {
+            Stance.Standing => 0,
+            Stance.Kneeling => 2,
+            Stance.Lying => 3,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        protected double MovementDelayCounter { get; set; }
 
         protected bool HasMoved { get; set; }
 
@@ -200,10 +208,12 @@ namespace LaserTagBox.Model.Body
                 return false;
             }
 
-            if ((MovementDelay > 0) || HasMoved || ((xGoal == Position.X) && (yGoal == Position.Y)))
+            if ((MovementDelayCounter > 0) || HasMoved || ((xGoal == Position.X) && (yGoal == Position.Y)))
             {
                 return false;
             }
+
+            MovementDelayCounter = MovementDelayPenalty;
 
             if (xGoal != _sGoal.Item1 || yGoal != _sGoal.Item2)
             {
