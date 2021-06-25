@@ -24,7 +24,7 @@ namespace LaserTagBox.Model.Body
         }
 
         //	*********************** core attributes ***********************
-        public int ActionPoints { get; private set; } = 1;
+        public int ActionPoints { get; private set; } = 10;
         public int Energy { get; private set; } = 100;
         public int GamePoints { get; private set; }
 
