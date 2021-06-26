@@ -85,6 +85,7 @@ namespace LaserTagBox.Model.Body
 
             var enemy = battleground.GetAgentOn(aimedPosition);
             if (enemy == null) return false;
+            if (enemy.Color == Color) return false;
 
             var fieldType = battleground.GetIntValue(aimedPosition);
             var enemySpot = fieldType switch

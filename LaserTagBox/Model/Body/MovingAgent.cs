@@ -198,7 +198,7 @@ namespace LaserTagBox.Model.Body
         // xGoal: x-coordinate of grid cell Guest wants to move to
         // yGoal: y-coordinate of grid cell Guest wants to move to
         // return: boolean states if step was successfully taken
-        public bool GoTo(Position goal)
+        public bool GoTo(Position goal) //TODO return type provides information about result
         {
             var xGoal = Math.Floor(goal.X);
             var yGoal = Math.Floor(goal.Y);
