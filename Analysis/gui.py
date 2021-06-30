@@ -98,11 +98,6 @@ class Visualizer(GUIFrame):
         vbar.config(command=self.canvas.yview)
         self.canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
         self.canvas.pack(side=tk.LEFT,expand=True,fill=tk.BOTH)
-        #self.canvas.grid(row=0, column=0)
-        #self.canvas.create_arc((10,10,200,200), start=0, extent=359, fill="red")
-        #self.canvas.create_oval((10,10,20,20), fill="red")
-        # self.canvas.create_bitmap((100,100), bitmap="questhead")#, foreground="red")
-        # self.canvas.create_rectangle((90,90,110,110))
 
         infoframe = tk.Frame(self.main_frame)
         infoframe.grid(row=0, column=1)
@@ -111,7 +106,6 @@ class Visualizer(GUIFrame):
         mediaframe.grid(row=0, column=0)
         self.stepslider = tk.Scale(mediaframe, from_=self.playframe_min, to=self.playframe_max,
                                    orient=tk.HORIZONTAL, length=400, command=self._canvas_update)
-        #self.stepslider.bind('<<RangeChanged>>', self._canvas_update)
         self.stepslider.grid(row=0, column=0)
         
         mediaframeactionblock = tk.Frame(mediaframe)
@@ -136,6 +130,36 @@ class Visualizer(GUIFrame):
         self.fpsslider = tk.Scale(advancedmediaframeactionblock, from_=1, to=200,orient=tk.HORIZONTAL, length=400, command=self._update_fps)
         self.fpsslider.grid(row=0, column=0)
         self.fpsslider.set(50)
+
+        red = "N/A"
+        blue = "N/A"
+        yellow = "N/A"
+        green = "N/A"
+
+        for agent in self.agents:
+            for state in agent.states:
+                if state.stage == "Red":
+                    red = state.team
+                if state.stage == "Blue":
+                    blue = state.team
+                if state.stage == "Green":
+                    green = state.team
+                if state.stage == "Yellow":
+                    yellow = state.team
+
+
+        graphframe = tk.LabelFrame(infoframe, text="Stats")
+        graphframe.grid(row=4, column=0)
+        graphframeinfo = tk.Frame(graphframe)
+        graphframeinfo.pack(side=tk.TOP, expand=True, fill=tk.BOTH)
+        self.graph_lable_red = tk.Label(graphframeinfo, bg="red", fg="white", text=red)
+        self.graph_lable_red.grid(row=0, column=0)
+        self.graph_lable_blue = tk.Label(graphframeinfo,bg="blue", fg="white", text=blue)
+        self.graph_lable_blue.grid(row=1, column=0)
+        self.graph_lable_yellow = tk.Label(graphframeinfo, bg="yellow", fg="black", text=yellow)
+        self.graph_lable_yellow.grid(row=2, column=0)
+        self.graph_lable_green = tk.Label(graphframeinfo,bg="green", fg="white", text=green)
+        self.graph_lable_green.grid(row=3, column=0)
 
 
     def init_gui_menu(self):

@@ -30,12 +30,6 @@ class AgentState(object):
         elif self.status == 4:
             self.fg = "#01DF01"
 
-    def infected(self):
-        return 1 < self.status < 4
-
-    def immun(self):
-        return self.status == 4
-
     def __eq__(self, other):
         return self.tick == other.tick
 
@@ -65,18 +59,6 @@ class Agent(object):
             return self.states[step]
         except:
             return None
-
-    def get_staterow(self):
-        d = {}
-        for x in self.states:
-            if x.stage != 0:
-                indicator = 0
-                if x.infected():
-                    indicator = 1
-                if x.immun():
-                    indicator = 2
-                d[x.tick] = indicator
-        return d
 
     def draw(self, canvas, step=0, agent_map=None):
         state = self.get_state(step)
@@ -215,12 +197,7 @@ class AdvancedAgentMap(object):
                 except Exception as e:
                     pass
 
-
-def clip(x, mini, maxi):
-    return min(maxi, max(mini, x))
-
-
-def map_readin(file=""):
+def map_read_in(file=""):
     x = 0
     y = 0
     l = []
@@ -248,7 +225,7 @@ def map_readin(file=""):
     return m
 
 
-def agent_readin(file, agent_map):
+def agent_read_in(file, map):
     agents = {}
     l = []
     with open(file, "r") as f:
@@ -274,17 +251,20 @@ def agent_readin(file, agent_map):
             columnids["CURRSTANCE"] = i
         elif "Color" in x:
             columnids["COLOR"] = i
+        elif "TeamName" in x:
+            columnids["TEAM"] = i
     for row in l[1::]:
-        aid = row[columnids["ID"]]
-        if not (aid in agents):
-            agents[aid] = Agent([])
-        agent = agents[aid]
+        agent_id = row[columnids["ID"]]
+        if not (agent_id in agents):
+            agents[agent_id] = Agent([])
+        agent = agents[agent_id]
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
-        y = len(agent_map.map) - y
+        y = len(map.map) - y
         alive = row[columnids["ALIVE"]]
         tick = int(row[columnids["TICK"]])
         status = row[columnids["COLOR"]]
+        team = row[columnids["TEAM"]]
         # blue
         if status == "Blue":
             state = AgentState(x, y, tick, alive, 1)
@@ -299,25 +279,17 @@ def agent_readin(file, agent_map):
             state = AgentState(x, y, tick, alive, 4)
         else:
             state = AgentState(x, y, tick, alive, 0)
-        # state = AgentState(x,y,tick)
-        # TEST
-        # bl=[False,False,False,True]
-        # state = AgentState(x,y,tick,rnd.choice(bl),rnd.choice(bl))
-        # print(agent)
         state.stage = row[columnids["COLOR"]]
+        state.team = team
         agent.states.append(state)
     return list(agents.values())
 
 
 def main():
-    am = map_readin("../LaserTagBox/Resources/map.csv")
-    # print(len(am.map[0]),len(am.map))
+    map = map_read_in("../LaserTagBox/Resources/map.csv")
     path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
-    # a = agent_readin("agents.csv",am)
-    a = agent_readin(path, am)
-    # am = AgentMap(20, 20)
-    gui.main(a, am)
-
+    agent_data = agent_read_in(path, map)
+    gui.main(agent_data, map)
 
 if __name__ == "__main__":
     main()
