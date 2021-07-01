@@ -193,6 +193,11 @@ namespace LaserTagBox.Model.Body
             (int) Distance.Manhattan(Position.PositionArray, position.PositionArray);
 
         public int RemainingShots { get; private set; } = 5;
+        
+        /// <summary>
+        ///     The name of the team to that this agent belongs.
+        /// </summary>
+        public string TeamName { get; set; }
 
 
         private void RefillPoints()

@@ -40,6 +40,7 @@ namespace LaserTagBox.Model.Mind
                         unregisterAgentHandle,
                         new List<ILayer> {this}, null, 1).First().Value;
                     agent.Body = bodies.Current;
+                    bodies.Current.TeamName = mapping.Type.Name;
                     agent.Init(this);
                 }
             }
