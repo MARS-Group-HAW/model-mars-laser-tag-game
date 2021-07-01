@@ -14,7 +14,7 @@
   "layers": [
     {
       "name": "PlayerBodyLayer",
-      "file": "Resources/map.csv",
+      "file": "Resources/map_3_close.csv",
       "dimensionx": 51,
       "dimensiony": 51
     }
@@ -22,8 +22,8 @@
   "agents": [
     {
       "name": "PlayerBody",
-      "count": 12,
-      "file": "Resources/player_positions.csv"
+      "count": 9,
+      "file": "Resources/player_positions_3.csv"
     },
     {
       "name": "Barrier",
