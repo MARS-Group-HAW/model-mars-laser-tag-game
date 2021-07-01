@@ -22,18 +22,18 @@ namespace LaserTagBox
             description.AddAgent<PlayerBody, PlayerBodyLayer>();
             
             // add the AIs
-            //description.AddAgent<LucaNiklasTimSchlaegertruppe, PlayerMindLayer>();
+            description.AddAgent<LucaNiklasTimSchlaegertruppe, PlayerMindLayer>();
             description.AddAgent<MasterOfDisasterMind, PlayerMindLayer>();
-            description.AddAgent<Myron, PlayerMindLayer>();
+            //description.AddAgent<Myron, PlayerMindLayer>();
             description.AddAgent<YoloTeaBagTralala, PlayerMindLayer>();
-            //description.AddAgent<JamesBond007, PlayerMindLayer>();
+            description.AddAgent<JamesBond007, PlayerMindLayer>();
             //description.AddAgent<RenamedPlayerMind, PlayerMindLayer>();
             //description.AddAgent<PAINballer, PlayerMindLayer>();
             //description.AddAgent<SuperMind, PlayerMindLayer>();
             //description.AddAgent<MostIntelligentKombatAgent, PlayerMindLayer>();
             //description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
 
-            var file = File.ReadAllText("config_3.json");
+            var file = File.ReadAllText("config_4.json");
             var config = SimulationConfig.Deserialize(file);
 
             var starter = SimulationStarter.Start(description, config);
