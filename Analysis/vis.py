@@ -1,3 +1,5 @@
+import re
+import sys
 import random as rnd
 import tkinter as tk
 import csv
@@ -309,8 +311,25 @@ def agent_readin(file, agent_map):
     return list(agents.values())
 
 
+def get_filename():
+    filename = ""
+    with open(r'../LaserTagBox/Program.cs') as file:
+        for line in file:
+            if 'config_' in line:
+                filename = re.search(r'(?<=\")(.*?)(?=\")', line).group(0)
+
+    with open(r'../LaserTagBox/{}'.format(filename)) as file:
+        for line in file:
+            if r'"file": "Resources/map' in line:
+                map_name = re.search(r'(?<=\/)(.*?)(?=\")', line).group(0)
+
+    return map_name
+
+
 def main():
-    am = map_readin("../LaserTagBox/Resources/map.csv")
+    load_map = get_filename()
+    print(load_map)
+    am = map_readin("../LaserTagBox/Resources/{}".format(load_map))
     # print(len(am.map[0]),len(am.map))
     path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
     # a = agent_readin("agents.csv",am)

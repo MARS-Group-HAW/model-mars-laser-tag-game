@@ -1,0 +1,33 @@
+{
+  "globals": {
+    "startTime": "2021-01-01T10:00:00.000Z",
+    "endTime": "2021-01-01T10:30:00.000Z",
+    "deltaT": 1,
+    "deltaTUnit": "seconds",
+    "output": "csv",
+    "options": {
+      "delimiter": ";",
+      "numberFormat": "G",
+      "culture": "en-EN"
+    }
+  },
+  "layers": [
+    {
+      "name": "PlayerBodyLayer",
+      "file": "Resources/map_4_1.csv",
+      "dimensionx": 51,
+      "dimensiony": 51
+    }
+  ],
+  "agents": [
+    {
+      "name": "PlayerBody",
+      "count": 12,
+      "file": "Resources/player_positions_4.csv"
+    },
+    {
+      "name": "Barrier",
+      "outputFrequency": -1
+    }
+  ]
+}
