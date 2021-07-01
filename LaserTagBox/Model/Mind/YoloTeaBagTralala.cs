@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LaserTagBox.Model.Body;
 using LaserTagBox.Model.Shared;
 using Mars.Interfaces.Environments;
 

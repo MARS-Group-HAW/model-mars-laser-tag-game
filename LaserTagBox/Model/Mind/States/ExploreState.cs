@@ -148,7 +148,7 @@ namespace LaserTagBox.Model.Mind.States {
                     if (missing == 0) {
                         //everyone is at initPos
                         _reachedInitPos = true;
-                        Console.WriteLine("Everyone reached InitPos at: " + _goal);
+                        //Console.WriteLine("Everyone reached InitPos at: " + _goal);
                     }
                 }
                 else {
@@ -158,7 +158,7 @@ namespace LaserTagBox.Model.Mind.States {
                             if (_mind.getBody().GetDistance(teamMem.Position) > 2) {
                                 if (_leaderGoal != null) {
                                     waitForTeammembers = true;
-                                    Console.WriteLine("Diff detected");
+                                    //Console.WriteLine("Diff detected");
                                 }
                             }
                         }
@@ -175,7 +175,7 @@ namespace LaserTagBox.Model.Mind.States {
                             }
 
 
-                            Console.WriteLine("got next goal@ " + _leaderGoal);
+                            //Console.WriteLine("got next goal@ " + _leaderGoal);
                         }
                     }
                 }
@@ -194,8 +194,7 @@ namespace LaserTagBox.Model.Mind.States {
 
             if (!moveResult) {
                 if (_mind.IsLeader()) {
-                    Console.WriteLine("something went wrong while moving." + _goal + " " + _leaderGoal +
-                                      " setting new Goal");
+                    //Console.WriteLine("something went wrong while moving." + _goal + " " + _leaderGoal +" setting new Goal");
                     // _goal = SelectNextGoal();
                     // _leaderGoal = SelectNextGoalByCoverage();
                     // moveResult = _mind.getBody().GoTo(_leaderGoal);

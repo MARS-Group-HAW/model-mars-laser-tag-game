@@ -68,7 +68,7 @@ namespace LaserTagBox.Model.Mind
                 var hit = Body.Tag5(closestEnemy);
                 if (hit)
                 {
-                    Console.WriteLine("Enemy hit");
+                    //Console.WriteLine("Enemy hit");
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace LaserTagBox.Model.Mind
                 {
                     if (!teamLeader.Body.Alive)
                     {
-                        Console.WriteLine("Teamleader died - new Teamleader selected");
+                        //Console.WriteLine("Teamleader died - new Teamleader selected");
                         SelectNewLeader();
                         return;
                     }
@@ -125,7 +125,7 @@ namespace LaserTagBox.Model.Mind
 
             if (_playerMindLayer.GetCurrentTick() == 1800 && printPoints)
             {
-                Console.WriteLine("Quan Points: " + _teamMates.Map(mate => mate.Body.GamePoints).Sum());
+                //Console.WriteLine("Quan Points: " + _teamMates.Map(mate => mate.Body.GamePoints).Sum());
                 printPoints = false;
             }
         }

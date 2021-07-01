@@ -85,7 +85,7 @@ namespace LaserTagBox.Model.Body
         
         public void Tick()
         {
-            if (Context.CurrentTick % 20 == 0)
+            if (Context.CurrentTick % 100 == 0)
                 Console.WriteLine($"Current tick: {Context.CurrentTick}");
         }
 

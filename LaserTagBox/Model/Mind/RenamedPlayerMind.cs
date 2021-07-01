@@ -23,7 +23,7 @@ namespace LaserTagBox.Model.Mind
             // don't do anything if dead, obviously
             if (!Body.Alive)
             {
-                Console.WriteLine($"{_mind.GetCurrentTick()} {ID}: DEAD!");
+                //Console.WriteLine($"{_mind.GetCurrentTick()} {ID}: DEAD!");
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             Body.Reload3();
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} Reload: {actionPoints} -> {Body.ActionPoints}");
+            //.WriteLine($"{_mind.GetCurrentTick()} {ID} Reload: {actionPoints} -> {Body.ActionPoints}");
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             var result = Body.ExploreDitches1();
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreDitches: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreDitches: {actionPoints} -> {Body.ActionPoints}");
             return result;
         }
 
@@ -177,7 +177,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             var result = Body.ExploreBarriers1();
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreBarriers: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreBarriers: {actionPoints} -> {Body.ActionPoints}");
             return result;
         }
 
@@ -189,7 +189,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             var result = Body.ExploreHills1();
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreHills: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreHills: {actionPoints} -> {Body.ActionPoints}");
             return result;
         }
 
@@ -201,7 +201,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             var result = Body.ExploreEnemies1();
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreEnemies: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ExploreEnemies: {actionPoints} -> {Body.ActionPoints}");
             return result;
         }
 
@@ -213,7 +213,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             Body.ChangeStance2(stance);
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ChangeStance: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} ChangeStance: {actionPoints} -> {Body.ActionPoints}");
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace LaserTagBox.Model.Mind
         {
             var actionPoints = Body.ActionPoints;
             Body.Tag5(enemy);
-            Console.WriteLine($"{_mind.GetCurrentTick()} {ID} Tag: {actionPoints} -> {Body.ActionPoints}");
+            //Console.WriteLine($"{_mind.GetCurrentTick()} {ID} Tag: {actionPoints} -> {Body.ActionPoints}");
         }
     }
 }

@@ -126,18 +126,18 @@ namespace LaserTagBox.Model.Mind {
             }
 
             if (Body.Energy < 0 && !death) {
-                Console.WriteLine("Agent: " + AgentId + " died");
+                //Console.WriteLine("Agent: " + AgentId + " died");
                 death = true;
             }
             else if (Body.WasTaggedLastTick) {
-                Console.WriteLine("Agent: " + AgentId + " has " + Body.Energy + " Energy left");
+                //Console.WriteLine("Agent: " + AgentId + " has " + Body.Energy + " Energy left");
             }
 
             if (CurrTick >= 1800) {
                 _csvStreamWriter.Flush();
-                Console.WriteLine("FLUSHED the Toilet");
-                Console.WriteLine("**** SCOREPOINTS *****");
-                Console.WriteLine(Body.GamePoints);
+                //Console.WriteLine("FLUSHED the Toilet");
+                //Console.WriteLine("**** SCOREPOINTS *****");
+                //Console.WriteLine(Body.GamePoints);
             }
         }
 
@@ -219,11 +219,10 @@ namespace LaserTagBox.Model.Mind {
                 while (Body.ActionPoints >= 5 && Body.RemainingShots >= 1) {
                     var result = Body.Tag5(enemySnapshot.Position);
                     if (result) {
-                        Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " +
-                                          Body.GamePoints); //TODO print how many lives left
+                        //Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " + Body.GamePoints); //TODO print how many lives left
                     }
                     else {
-                        Console.WriteLine(AgentId + " Enemy Missed");
+                        //Console.WriteLine(AgentId + " Enemy Missed");
                     }
                 }
             }
@@ -292,11 +291,10 @@ namespace LaserTagBox.Model.Mind {
             while (Body.ActionPoints >= 5 && Body.RemainingShots >= 1) {
                 var result = Body.Tag5(enemySnapshot.Position);
                 if (result) {
-                    Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " +
-                                      Body.GamePoints); //TODO print how many lives left
+                    //Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " + Body.GamePoints); //TODO print how many lives left
                 }
                 else {
-                    Console.WriteLine(AgentId + " Enemy Missed");
+                    //Console.WriteLine(AgentId + " Enemy Missed");
                 }
             }
 
@@ -312,10 +310,10 @@ namespace LaserTagBox.Model.Mind {
 
             _goal ??= Position.CreatePosition(RandomHelper.Random.Next(50), RandomHelper.Random.Next(50)); // TODO
             // check if go towards enemy or hold position
-            Console.WriteLine("Agent: " + AgentId + " is aggressive");
+            //Console.WriteLine("Agent: " + AgentId + " is aggressive");
 
             if (!Body.GoTo(_goal)) {
-                Console.WriteLine("something went wrong while moving in aggressive");
+                //Console.WriteLine("something went wrong while moving in aggressive");
             }
         }
 
@@ -335,11 +333,10 @@ namespace LaserTagBox.Model.Mind {
                 while (Body.ActionPoints >= 5 && Body.RemainingShots >= 1) {
                     var result = Body.Tag5(enemySnapshot.Position);
                     if (result) {
-                        Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " +
-                                          Body.GamePoints); //TODO print how many lives left
+                        //Console.WriteLine(AgentId + " Enemy Hit.. scorePoint: " + Body.GamePoints); //TODO print how many lives left
                     }
                     else {
-                        Console.WriteLine(AgentId + " Enemy Missed");
+                        //Console.WriteLine(AgentId + " Enemy Missed");
                     }
                 }
             }

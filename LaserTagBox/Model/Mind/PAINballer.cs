@@ -92,11 +92,11 @@ namespace LaserTagBox.Model.Mind
             if (Body.RemainingShots == 0) Body.Reload3(); //reload case end of move
 
             //confuse enemies with console outputs
-            Console.WriteLine("Mah Collah " + Body.Color);
+            //Console.WriteLine("Mah Collah " + Body.Color);
             //Console.WriteLine("Mah Pos " + Body.Position);
             //Console.WriteLine("Mah goal " + _goal);
-            Console.WriteLine("Mah Points " + Body.GamePoints);
-            Console.WriteLine("Mah Energy " + Body.Energy);
+            //Console.WriteLine("Mah Points " + Body.GamePoints);
+            //Console.WriteLine("Mah Energy " + Body.Energy);
         }
 
         private Position getRandomPosition()
