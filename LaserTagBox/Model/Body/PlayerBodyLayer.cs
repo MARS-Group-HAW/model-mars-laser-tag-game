@@ -82,11 +82,25 @@ namespace LaserTagBox.Model.Body
             return (Barrier) SpotEnv.Explore(position, -1, 1, spot => spot.GetType() == typeof(Barrier))
                 .FirstOrDefault();
         }
-        
+
         public void Tick()
         {
-            if (Context.CurrentTick % 20 == 0)
+            if (Context.CurrentTick % 50 == 0)
+            {
                 Console.WriteLine($"Current tick: {Context.CurrentTick}");
+            }
+
+            if (Context.CurrentTimePoint == Context.EndTimePoint)
+            {
+                Console.WriteLine();
+
+                foreach (var team in Bodies.Values.GroupBy(body => body.TeamName))
+                {
+                    Console.WriteLine($"{team.Key} {team.Sum(body => body.GamePoints)}");
+                }
+
+                Console.WriteLine();
+            }
         }
 
         public void PreTick()
@@ -108,10 +122,10 @@ namespace LaserTagBox.Model.Body
         {
             return (int) this[position.X, position.Y];
         }
-        
+
         public PlayerBody GetAgentOn(Position position) =>
             FigtherEnv.Entities.FirstOrDefault(body => body.Position.Equals(position));
-        
+
         public List<PlayerBody> GetAll(Color color)
         {
             return FigtherEnv.Entities.Where(fighter => fighter.Color == color).ToList();
