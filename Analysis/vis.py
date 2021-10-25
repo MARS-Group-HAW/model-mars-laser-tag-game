@@ -286,7 +286,7 @@ def agent_read_in(file, map):
 
 
 def main():
-    map = map_read_in("../LaserTagBox/Resources/map.csv")
+    map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
     path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
     agent_data = agent_read_in(path, map)
     gui.main(agent_data, map)
