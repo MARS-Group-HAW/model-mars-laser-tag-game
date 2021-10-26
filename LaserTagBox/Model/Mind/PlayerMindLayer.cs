@@ -15,6 +15,9 @@ namespace LaserTagBox.Model.Mind
         private ISimulationContext _simulationContext;
         private bool _initialized;
 
+        public int Width => _playerBodyLayer.Width;
+        public int Height => _playerBodyLayer.Height;
+
         public PlayerMindLayer(PlayerBodyLayer playerBodyLayer)
         {
             _playerBodyLayer = playerBodyLayer;
