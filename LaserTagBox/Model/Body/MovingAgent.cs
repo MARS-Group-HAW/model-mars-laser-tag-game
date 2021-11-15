@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LaserTagBox.Model.Shared;
 using LaserTagBox.Model.Spots;
+using Mars.Common.Core;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
@@ -80,8 +81,8 @@ namespace LaserTagBox.Model.Body
 
         private OccupiableSpot FindCurrentSpot()
         {
-            return (OccupiableSpot) battleground.SpotEnv.Entities.FirstOrDefault(spot =>
-                spot.Position.Equals(Position));
+            return  battleground.Environment.Entities.FirstOrDefault(spot =>
+                spot.GetType() == typeof(OccupiableSpot) &&  spot.Position.Equals(Position)).Value<OccupiableSpot>();
         }
 
         public Guid ID { get; set; }

@@ -23,8 +23,9 @@ namespace LaserTagBox
             
             // add the AIs
             description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
+            description.AddAgent<YourPlayerMindPleaseRenameCopy, PlayerMindLayer>();
 
-            var file = File.ReadAllText("config_4.json");
+            var file = File.ReadAllText("config_3.json");
             var config = SimulationConfig.Deserialize(file);
 
             var starter = SimulationStarter.Start(description, config);
