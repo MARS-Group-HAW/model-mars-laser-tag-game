@@ -1,10 +1,7 @@
+import statistics
 import threading
 import time
 import tkinter as tk
-from tkinter import filedialog
-import statistics
-import random as rnd
-import numpy as np
 
 
 class GUIFrame(object):

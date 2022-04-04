@@ -22,7 +22,7 @@
   "agents": [
     {
       "name": "PlayerBody",
-      "count": 8,
+      "count": 12,
       "file": "Resources/player_positions_4.csv"
     },
     {
