@@ -1,12 +1,11 @@
 using System;
 using LaserTagBox.Model.Body;
-using Mars.Components.Environments.Cartesian;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Environments;
 
 namespace LaserTagBox.Model.Spots
 {
-    public abstract class Spot : IAgent<PlayerBodyLayer>, IPositionable, IObstacle
+    public abstract class Spot : IAgent<PlayerBodyLayer>, IPositionable
     {
         public virtual void Init(PlayerBodyLayer battleground)
         {
@@ -22,11 +21,5 @@ namespace LaserTagBox.Model.Spots
         {
             //do nothing
         }
-
-        public abstract bool IsRoutable(ICharacter character);
-
-        public abstract CollisionKind? HandleCollision(ICharacter character);
-
-        public abstract VisibilityKind? HandleExploration(ICharacter explorer);
     }
 }

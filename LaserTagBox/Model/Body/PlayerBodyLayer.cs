@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using LaserTagBox.Model.Shared;
 using LaserTagBox.Model.Spots;
-using Mars.Components.Environments.Cartesian;
+using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Core.Data;
 using Mars.Interfaces.Data;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
-using NetTopologySuite.Geometries;
-using Position = Mars.Interfaces.Environments.Position;
 
 namespace LaserTagBox.Model.Body
 {
     public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     {
-        private Polygon _explorationWindow;
         public Dictionary<Guid, PlayerBody> Bodies { get; private set; }
 
         /// <summary>
-        ///     Holds all entities that are part of the game.
+        ///     Holds all agents in a 2-dimensional area for exploration purposes.
         /// </summary>
-        public ICollisionEnvironment<PlayerBody, Spot> Environment { get; private set; }
+        public SpatialHashEnvironment<PlayerBody> FigtherEnv { get; private set; }
 
+        /// <summary>
+        ///     Holds all spots in a 2-dimensional area for exploration purposes.
+        /// </summary>
+        public SpatialHashEnvironment<Spot> SpotEnv { get; private set; }
 
         /// <summary>
         ///     Responsible to create new agents and initialize them with required dependencies
@@ -35,7 +36,8 @@ namespace LaserTagBox.Model.Body
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgentHandle);
 
-            Environment = new CollisionEnvironment<PlayerBody, Spot>(); // {CheckBoundaries = true};
+            FigtherEnv = new SpatialHashEnvironment<PlayerBody>(Width - 1, Height - 1) {CheckBoundaries = true};
+            SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) {CheckBoundaries = true};
             AgentManager = layerInitData.Container.Resolve<IAgentManager>();
 
             Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().ToDictionary(body => body.ID);
@@ -45,22 +47,11 @@ namespace LaserTagBox.Model.Body
                 for (var y = 0; y < Height; y++)
                 {
                     var type = this[x, y];
-                    var spot = CreateSpots(type, Position.CreatePosition(x, y));
-                    if (spot != null)
-                    {
-                        Environment.Insert(spot, new Point(x, y));
-                    }
+                    var position = Position.CreatePosition(x, y);
+                    var spot = CreateSpots(type, position);
+                    SpotEnv.Insert(spot);
                 }
             }
-            
-            _explorationWindow = new Polygon(new LinearRing(new[]
-            {
-                new Coordinate(LowerLeft.X, LowerLeft.Y),
-                new Coordinate(LowerLeft.X, UpperRight.Y),
-                new Coordinate(UpperRight.X, UpperRight.Y),
-                new Coordinate(UpperRight.X, LowerLeft.Y),
-                new Coordinate(LowerLeft.X, LowerLeft.Y),
-            }));
 
             return true;
         }
@@ -78,20 +69,18 @@ namespace LaserTagBox.Model.Body
 
         public Ditch NearestDitch(Position position)
         {
-            return (Ditch)Environment.ExploreObstacles(_explorationWindow, spot => spot.GetType() == typeof(Ditch))
-                .OrderBy(spot => position.DistanceInMTo(spot.Position)).FirstOrDefault();
+            return (Ditch) SpotEnv.Explore(position, -1, 1, spot => spot.GetType() == typeof(Ditch)).FirstOrDefault();
         }
 
         public Hill NearestHill(Position position)
         {
-            return (Hill)Environment.ExploreObstacles(_explorationWindow, spot => spot.GetType() == typeof(Hill))
-                .OrderBy(spot => position.DistanceInMTo(spot.Position)).FirstOrDefault();
+            return (Hill) SpotEnv.Explore(position, -1, 1, spot => spot.GetType() == typeof(Hill)).FirstOrDefault();
         }
 
-        protected Barrier NearestBarrier(Position position)
+        public Barrier NearestBarrier(Position position)
         {
-            return (Barrier)Environment.ExploreObstacles(_explorationWindow, spot => spot.GetType() == typeof(Barrier))
-                .OrderBy(spot => position.DistanceInMTo(spot.Position)).FirstOrDefault();
+            return (Barrier) SpotEnv.Explore(position, -1, 1, spot => spot.GetType() == typeof(Barrier))
+                .FirstOrDefault();
         }
 
         public void Tick()
@@ -124,30 +113,30 @@ namespace LaserTagBox.Model.Body
 
         public int GetIntValue(double x, double y)
         {
-            return (int)this[x, y];
+            return (int) this[x, y];
         }
 
         public int GetIntValue(Position position)
         {
-            return (int)this[position.X, position.Y];
+            return (int) this[position.X, position.Y];
         }
 
         public PlayerBody GetAgentOn(Position position) =>
-            Environment.Entities.FirstOrDefault(body => body.Position.Equals(position));
+            FigtherEnv.Entities.FirstOrDefault(body => body.Position.Equals(position));
 
         public List<PlayerBody> GetAll(Color color)
         {
-            return Environment.Entities.Where(fighter => fighter.Color == color).ToList();
+            return FigtherEnv.Entities.Where(fighter => fighter.Color == color).ToList();
         }
 
         // implementation of Bresenham's Line Algorithm for obtaining a list of grid cells covered by a straight line between two points on the grid
         // http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/ for more information
         public bool HasBeeline(double x1, double y1, double x2, double y2)
         {
-            var x = (int)x1;
-            var y = (int)y1;
-            var newX2 = (int)x2;
-            var newY2 = (int)y2;
+            var x = (int) x1;
+            var y = (int) y1;
+            var newX2 = (int) x2;
+            var newY2 = (int) y2;
             var w = newX2 - x;
             var h = newY2 - y;
             var dx1 = 0;

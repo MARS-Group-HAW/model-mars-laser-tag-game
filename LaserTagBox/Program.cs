@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using LaserTagBox.Model;
 using LaserTagBox.Model.Body;
 using LaserTagBox.Model.Mind;
 using LaserTagBox.Model.Spots;
