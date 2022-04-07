@@ -8,11 +8,12 @@ namespace LaserTagBox.Model.Shared
     /// </summary>
     public readonly struct EnemySnapshot
     {
-        public EnemySnapshot(Guid id, Color team, Stance stance, Position position)
+        public EnemySnapshot(Guid id, int memberId, Color team, Stance stance, Position position)
         {
             Id = id;
             Team = team;
             Stance = stance;
+            MemberId = memberId;
             Position = Position.CreatePosition(position.X, position.Y);
         }
         
@@ -20,6 +21,11 @@ namespace LaserTagBox.Model.Shared
         ///     Identifies the player.
         /// </summary>
         public Guid Id { get; }
+        
+        /// <summary>
+        ///     Alternative identifier of the player.
+        /// </summary>
+        public int MemberId { get; }
         
         /// <summary>
         ///     Indicates to witch team the agent belongs.
@@ -30,7 +36,8 @@ namespace LaserTagBox.Model.Shared
         ///     The stance has influence on visibility (explorable by others) and visual range (extend of on exploration).
         /// </summary>
         public Stance Stance { get; }
-        
+
+
         /// <summary>
         ///     Current position of the agent on the grid.
         /// </summary>

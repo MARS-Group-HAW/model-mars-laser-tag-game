@@ -8,9 +8,10 @@ namespace LaserTagBox.Model.Shared
     /// </summary>
     public  struct FriendSnapshot
     {
-        public FriendSnapshot(Guid id, Color team, Stance stance, Position position, int energy, double visualRange, double visibilityRange)
+        public FriendSnapshot(Guid id, int memberId, Color team, Stance stance, Position position, int energy, double visualRange, double visibilityRange)
         {
             Id = id;
+            MemberId = memberId;
             Team = team;
             Stance = stance;
             Position = Position.CreatePosition(position.X, position.Y);
@@ -23,6 +24,11 @@ namespace LaserTagBox.Model.Shared
         ///     Identifies the player.
         /// </summary>
         public Guid Id { get; }
+        
+        /// <summary>
+        ///     Alternative identifier of the player.
+        /// </summary>
+        public int MemberId { get; }
         
         /// <summary>
         ///     Indicates to witch team the agent belongs.

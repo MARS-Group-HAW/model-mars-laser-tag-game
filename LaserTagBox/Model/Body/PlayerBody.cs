@@ -56,7 +56,7 @@ namespace LaserTagBox.Model.Body
             return battleground.FigtherEnv
                 .Explore(Position, VisualRange, -1,
                     player => IsEnemy(player) && HasBeeline(player) && IsVisible(player))
-                .Select(player => new EnemySnapshot(player.ID, player.Color, player.Stance, player.Position))
+                .Select(player => new EnemySnapshot(player.ID, player.MemberId, player.Color, player.Stance, player.Position))
                 .ToList();
         }
 
@@ -157,7 +157,7 @@ namespace LaserTagBox.Model.Body
         {
             return new List<FriendSnapshot>(battleground.FigtherEnv
                 .Entities.Where(body => body.Color == Color && body != this).Select(b =>
-                    new FriendSnapshot(b.ID, b.Color, b.Stance, b.Position, b.Energy, b.VisualRange, b.VisibilityRange))
+                    new FriendSnapshot(b.ID, b.MemberId, b.Color, b.Stance, b.Position, b.Energy, b.VisualRange, b.VisibilityRange))
                 .ToList());
         }
 
