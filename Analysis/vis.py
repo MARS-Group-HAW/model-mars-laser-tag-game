@@ -17,28 +17,23 @@ BITMAPS = [
     "warning",
 ]
 
+COLOR_LOOKUP = {
+    "Blue": "#0101DF",
+    "Red": "#FF0000",
+    "Green": "#01DF01",
+    "Yellow": "#FFFF00",
+    "Dead": "#DDD",
+}
+
 
 class AgentState(object):
-    def __init__(self, x, y, tick, alive, status=0):
+    def __init__(self, x, y, tick):
         self.x = x
         self.y = y
         self.tick = tick
-        self.alive = alive
-        self.status = status
-        self.fg = "#444"
-        self._update_color()
-        self.stage = 0
-
-    # TODO: update colors
-    def _update_color(self):
-        if self.status == 1:
-            self.fg = "#0101DF"
-        elif self.status == 2:
-            self.fg = "#FFFF00"
-        elif self.status == 3:
-            self.fg = "#FF0000"
-        elif self.status == 4:
-            self.fg = "#01DF01"
+        self.alive = True
+        self.color = "Dead"
+        self.team = "N/A"
 
     def __eq__(self, other):
         return self.tick == other.tick
@@ -62,7 +57,7 @@ class Agent(object):
         self.states.sort()
         self.statedic = None
         self._updateneeded = True
-        self._canvas_id = None
+        self._canvas_id = []
 
     def get_state(self, step=0):
         try:
@@ -71,6 +66,7 @@ class Agent(object):
             return None
 
     def draw(self, canvas, step=0, agent_map=None):
+        cid = []
         state = self.get_state(step)
         try:
             xy = agent_map.get_position(state.x, state.y - 1)
@@ -80,16 +76,25 @@ class Agent(object):
             state = self.states[-1]
             xy = agent_map.get_position(state.x, state.y)
 
-            cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
+            cid.append(canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD"))
         else:
             if state.alive == "True":
-                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
+                cid.append(
+                    canvas.create_bitmap(
+                        xy, bitmap=BITMAPS[7], foreground=COLOR_LOOKUP[state.color]
+                    )
+                )
             else:
-                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
+                cid.append(
+                    canvas.create_bitmap(
+                        xy, bitmap=BITMAPS[7], foreground=COLOR_LOOKUP["Dead"]
+                    )
+                )
         self._canvas_id = cid
 
     def delete(self, canvas, step=0, agent_map=None):
-        canvas.delete(self._canvas_id)
+        for i in self._canvas_id:
+            canvas.delete(i)
 
     def update(self, canvas, step=0, agent_map=None):
         if self._updateneeded:
@@ -242,23 +247,11 @@ def agent_read_in(file, map):
         y = len(map.map) - y
         alive = row[columnids["ALIVE"]]
         tick = int(row[columnids["TICK"]])
-        status = row[columnids["COLOR"]]
+        color = row[columnids["COLOR"]]
         team = row[columnids["TEAM"]]
-        # blue
-        if status == "Blue":
-            state = AgentState(x, y, tick, alive, 1)
-        # yellow
-        elif status == "Yellow":
-            state = AgentState(x, y, tick, alive, 2)
-        # red
-        elif status == "Red":
-            state = AgentState(x, y, tick, alive, 3)
-        # green
-        elif status == "Green":
-            state = AgentState(x, y, tick, alive, 4)
-        else:
-            state = AgentState(x, y, tick, alive, 0)
-        state.stage = row[columnids["COLOR"]]
+        state = AgentState(x, y, tick)
+        state.alive = alive
+        state.color = color
         state.team = team
         agent.states.append(state)
     return list(agents.values())

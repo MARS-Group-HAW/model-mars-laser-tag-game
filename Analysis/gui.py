@@ -140,7 +140,7 @@ class Visualizer(GUIFrame):
         self.fpsslider = tk.Scale(
             advancedmediaframeactionblock,
             from_=1,
-            to=200,
+            to=75,
             orient=tk.HORIZONTAL,
             length=400,
             command=self._update_fps,
@@ -155,13 +155,13 @@ class Visualizer(GUIFrame):
 
         for agent in self.agents:
             for state in agent.states:
-                if state.stage == "Red":
+                if state.color == "Red":
                     red = state.team
-                if state.stage == "Blue":
+                if state.color == "Blue":
                     blue = state.team
-                if state.stage == "Green":
+                if state.color == "Green":
                     green = state.team
-                if state.stage == "Yellow":
+                if state.color == "Yellow":
                     yellow = state.team
 
         graphframe = tk.LabelFrame(infoframe, text="Stats")
