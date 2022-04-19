@@ -4,8 +4,18 @@ import csv
 
 import gui
 
-BITMAPS = ["error", "gray75", "gray50", "gray25", "gray12",
-           "hourglass", "info", "questhead", "question", "warning"]
+BITMAPS = [
+    "error",
+    "gray75",
+    "gray50",
+    "gray25",
+    "gray12",
+    "hourglass",
+    "info",
+    "questhead",
+    "question",
+    "warning",
+]
 
 
 class AgentState(object):
@@ -72,7 +82,7 @@ class Agent(object):
 
             cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
         else:
-            if state.alive == 'True':
+            if state.alive == "True":
                 cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
             else:
                 cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
@@ -85,41 +95,6 @@ class Agent(object):
         if self._updateneeded:
             self.delete(canvas, step, agent_map)
             self.draw(canvas, step, agent_map)
-
-
-class AgentMap(object):
-    def __init__(self, x_size, y_size):
-        self.x = x_size
-        self.y = y_size
-        self.boarder = 10
-        self.box_size = 20
-        # self.color = "#FFF"
-
-    def get_canvas_dimension(self):
-        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
-
-    def get_position(self, x, y, delta=True):
-        dx = 0
-        dy = 0
-        if delta:
-            dx = self.box_size // 2
-            dy = self.box_size // 2
-        newx = self.boarder + x * self.box_size + dx
-        newy = self.boarder + y * self.box_size + dy
-        return (newx, newy)
-
-    def draw(self, canvas, step=0):
-        d = 0
-        for i in range(self.x):
-            for j in range(self.y):
-                x1, y1 = self.get_position(i, j, False)
-                x2, y2 = self.get_position(i + 1, j + 1, False)
-                if d == step:
-                    canvas.create_rectangle((x1, y1, x2, y2), fill="#F00")
-                else:
-                    canvas.create_rectangle((x1, y1, x2, y2), fill=self.color)
-                d += 1
-                d = 0
 
 
 class AdvancedAgentMapField(object):
@@ -161,7 +136,10 @@ class AdvancedAgentMap(object):
             self.map.append(l)
 
     def get_canvas_dimension(self):
-        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
+        return (
+            self.x * self.box_size + self.boarder * 2,
+            self.y * self.box_size + self.boarder * 2,
+        )
 
     def get_position(self, x, y, delta=True):
         dx = 0
@@ -196,6 +174,7 @@ class AdvancedAgentMap(object):
                     x.update(canvas, step)
                 except Exception as e:
                     pass
+
 
 def map_read_in(file=""):
     x = 0
@@ -287,9 +266,10 @@ def agent_read_in(file, map):
 
 def main():
     map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
-    path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
+    path = "../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv"
     agent_data = agent_read_in(path, map)
     gui.main(agent_data, map)
+
 
 if __name__ == "__main__":
     main()
