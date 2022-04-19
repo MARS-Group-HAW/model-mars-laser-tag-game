@@ -1,7 +1,5 @@
-import random as rnd
-import tkinter as tk
 import csv
-
+import tkinter as tk
 import gui
 
 BITMAPS = [
@@ -22,8 +20,11 @@ COLOR_LOOKUP = {
     "Red": "#FF0000",
     "Green": "#01DF01",
     "Yellow": "#FFFF00",
+    "Black": "#000000",
     "Dead": "#DDD",
 }
+
+BOXSIZE = 15
 
 
 class AgentState(object):
@@ -34,6 +35,7 @@ class AgentState(object):
         self.alive = True
         self.color = "Dead"
         self.team = "N/A"
+        self.vrange = 10
 
     def __eq__(self, other):
         return self.tick == other.tick
@@ -78,12 +80,25 @@ class Agent(object):
 
             cid.append(canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD"))
         else:
-            if state.alive == "True":
+            if state.alive:
                 cid.append(
                     canvas.create_bitmap(
                         xy, bitmap=BITMAPS[7], foreground=COLOR_LOOKUP[state.color]
                     )
                 )
+                cid.append(
+                    canvas.create_circle(
+                        xy,
+                        state.vrange * BOXSIZE + (BOXSIZE / 2),
+                        fill="",
+                        outline=COLOR_LOOKUP[state.color],
+                        width=4,
+                    )
+                )
+                if state.gotshot:
+                    cid.append(
+                        canvas.create_cross(xy, outline=COLOR_LOOKUP["Black"], width=3)
+                    )
             else:
                 cid.append(
                     canvas.create_bitmap(
@@ -129,7 +144,7 @@ class AdvancedAgentMap(object):
         self.x = x_size
         self.y = y_size
         self.boarder = 10
-        self.box_size = 15
+        self.box_size = BOXSIZE
         self.color = color
         self.map = []
         for y in range(self.y):
@@ -237,6 +252,11 @@ def agent_read_in(file, map):
             columnids["COLOR"] = i
         elif "TeamName" in x:
             columnids["TEAM"] = i
+        elif "VisualRange" in x:
+            columnids["VRANGE"] = i
+        elif "WasTaggedLastTick" in x:
+            columnids["GOTSHOT"] = i
+
     for row in l[1::]:
         agent_id = row[columnids["ID"]]
         if not (agent_id in agents):
@@ -245,19 +265,39 @@ def agent_read_in(file, map):
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
         y = len(map.map) - y
-        alive = row[columnids["ALIVE"]]
+        alive = row[columnids["ALIVE"]] == "True"
         tick = int(row[columnids["TICK"]])
         color = row[columnids["COLOR"]]
         team = row[columnids["TEAM"]]
+        vrange = int(row[columnids["VRANGE"]])
+        gotshot = row[columnids["GOTSHOT"]] == "True"
         state = AgentState(x, y, tick)
         state.alive = alive
         state.color = color
         state.team = team
+        state.vrange = vrange
+        state.gotshot = gotshot
         agent.states.append(state)
     return list(agents.values())
 
 
+def _create_circle(self, xy, r, **kwargs):
+    x, y = xy
+    return self.create_oval(x - r, y - r, x + r, y + r, **kwargs)
+
+
+def _create_cross(self, xy, **kwargs):
+    x, y = xy
+    x0, y0 = x - BOXSIZE, y - BOXSIZE
+    x1, y1 = x + BOXSIZE, y + BOXSIZE
+    x2, y2 = x - BOXSIZE, y + BOXSIZE
+    x3, y3 = x + BOXSIZE, y - BOXSIZE
+    return self.create_polygon(x0, y0, x1, y1, x, y, x2, y2, x3, y3, x, y, **kwargs)
+
+
 def main():
+    tk.Canvas.create_circle = _create_circle
+    tk.Canvas.create_cross = _create_cross
     map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
     path = "../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv"
     agent_data = agent_read_in(path, map)
