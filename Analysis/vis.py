@@ -1,34 +1,41 @@
-import random as rnd
-import tkinter as tk
 import csv
-
+import tkinter as tk
 import gui
 
-BITMAPS = ["error", "gray75", "gray50", "gray25", "gray12",
-           "hourglass", "info", "questhead", "question", "warning"]
+BITMAPS = [
+    "error",
+    "gray75",
+    "gray50",
+    "gray25",
+    "gray12",
+    "hourglass",
+    "info",
+    "questhead",
+    "question",
+    "warning",
+]
+
+COLOR_LOOKUP = {
+    "Blue": "#0101DF",
+    "Red": "#FF0000",
+    "Green": "#01DF01",
+    "Yellow": "#FFFF00",
+    "Black": "#000000",
+    "Dead": "#DDD",
+}
+
+BOXSIZE = 15
 
 
 class AgentState(object):
-    def __init__(self, x, y, tick, alive, status=0):
+    def __init__(self, x, y, tick):
         self.x = x
         self.y = y
         self.tick = tick
-        self.alive = alive
-        self.status = status
-        self.fg = "#444"
-        self._update_color()
-        self.stage = 0
-
-    # TODO: update colors
-    def _update_color(self):
-        if self.status == 1:
-            self.fg = "#0101DF"
-        elif self.status == 2:
-            self.fg = "#FFFF00"
-        elif self.status == 3:
-            self.fg = "#FF0000"
-        elif self.status == 4:
-            self.fg = "#01DF01"
+        self.alive = True
+        self.color = "Dead"
+        self.team = "N/A"
+        self.vrange = 10
 
     def __eq__(self, other):
         return self.tick == other.tick
@@ -52,7 +59,7 @@ class Agent(object):
         self.states.sort()
         self.statedic = None
         self._updateneeded = True
-        self._canvas_id = None
+        self._canvas_id = []
 
     def get_state(self, step=0):
         try:
@@ -61,6 +68,7 @@ class Agent(object):
             return None
 
     def draw(self, canvas, step=0, agent_map=None):
+        cid = []
         state = self.get_state(step)
         try:
             xy = agent_map.get_position(state.x, state.y - 1)
@@ -70,56 +78,43 @@ class Agent(object):
             state = self.states[-1]
             xy = agent_map.get_position(state.x, state.y)
 
-            cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
+            cid.append(canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD"))
         else:
-            if state.alive == 'True':
-                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground=state.fg)
+            if state.alive:
+                cid.append(
+                    canvas.create_bitmap(
+                        xy, bitmap=BITMAPS[7], foreground=COLOR_LOOKUP[state.color]
+                    )
+                )
+                cid.append(
+                    canvas.create_circle(
+                        xy,
+                        state.vrange * BOXSIZE + (BOXSIZE / 2),
+                        fill="",
+                        outline=COLOR_LOOKUP[state.color],
+                        width=4,
+                    )
+                )
+                if state.gotshot:
+                    cid.append(
+                        canvas.create_cross(xy, outline=COLOR_LOOKUP["Black"], width=3)
+                    )
             else:
-                cid = canvas.create_bitmap(xy, bitmap=BITMAPS[7], foreground="#DDD")
+                cid.append(
+                    canvas.create_bitmap(
+                        xy, bitmap=BITMAPS[7], foreground=COLOR_LOOKUP["Dead"]
+                    )
+                )
         self._canvas_id = cid
 
     def delete(self, canvas, step=0, agent_map=None):
-        canvas.delete(self._canvas_id)
+        for i in self._canvas_id:
+            canvas.delete(i)
 
     def update(self, canvas, step=0, agent_map=None):
         if self._updateneeded:
             self.delete(canvas, step, agent_map)
             self.draw(canvas, step, agent_map)
-
-
-class AgentMap(object):
-    def __init__(self, x_size, y_size):
-        self.x = x_size
-        self.y = y_size
-        self.boarder = 10
-        self.box_size = 20
-        # self.color = "#FFF"
-
-    def get_canvas_dimension(self):
-        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
-
-    def get_position(self, x, y, delta=True):
-        dx = 0
-        dy = 0
-        if delta:
-            dx = self.box_size // 2
-            dy = self.box_size // 2
-        newx = self.boarder + x * self.box_size + dx
-        newy = self.boarder + y * self.box_size + dy
-        return (newx, newy)
-
-    def draw(self, canvas, step=0):
-        d = 0
-        for i in range(self.x):
-            for j in range(self.y):
-                x1, y1 = self.get_position(i, j, False)
-                x2, y2 = self.get_position(i + 1, j + 1, False)
-                if d == step:
-                    canvas.create_rectangle((x1, y1, x2, y2), fill="#F00")
-                else:
-                    canvas.create_rectangle((x1, y1, x2, y2), fill=self.color)
-                d += 1
-                d = 0
 
 
 class AdvancedAgentMapField(object):
@@ -149,7 +144,7 @@ class AdvancedAgentMap(object):
         self.x = x_size
         self.y = y_size
         self.boarder = 10
-        self.box_size = 15
+        self.box_size = BOXSIZE
         self.color = color
         self.map = []
         for y in range(self.y):
@@ -161,7 +156,10 @@ class AdvancedAgentMap(object):
             self.map.append(l)
 
     def get_canvas_dimension(self):
-        return (self.x * self.box_size + self.boarder * 2, self.y * self.box_size + self.boarder * 2)
+        return (
+            self.x * self.box_size + self.boarder * 2,
+            self.y * self.box_size + self.boarder * 2,
+        )
 
     def get_position(self, x, y, delta=True):
         dx = 0
@@ -196,6 +194,7 @@ class AdvancedAgentMap(object):
                     x.update(canvas, step)
                 except Exception as e:
                     pass
+
 
 def map_read_in(file=""):
     x = 0
@@ -253,6 +252,11 @@ def agent_read_in(file, map):
             columnids["COLOR"] = i
         elif "TeamName" in x:
             columnids["TEAM"] = i
+        elif "VisualRange" in x:
+            columnids["VRANGE"] = i
+        elif "WasTaggedLastTick" in x:
+            columnids["GOTSHOT"] = i
+
     for row in l[1::]:
         agent_id = row[columnids["ID"]]
         if not (agent_id in agents):
@@ -261,35 +265,44 @@ def agent_read_in(file, map):
         x = int(row[columnids["X"]].split(",")[0])
         y = int(row[columnids["Y"]].split(",")[0])
         y = len(map.map) - y
-        alive = row[columnids["ALIVE"]]
+        alive = row[columnids["ALIVE"]] == "True"
         tick = int(row[columnids["TICK"]])
-        status = row[columnids["COLOR"]]
+        color = row[columnids["COLOR"]]
         team = row[columnids["TEAM"]]
-        # blue
-        if status == "Blue":
-            state = AgentState(x, y, tick, alive, 1)
-        # yellow
-        elif status == "Yellow":
-            state = AgentState(x, y, tick, alive, 2)
-        # red
-        elif status == "Red":
-            state = AgentState(x, y, tick, alive, 3)
-        # green
-        elif status == "Green":
-            state = AgentState(x, y, tick, alive, 4)
-        else:
-            state = AgentState(x, y, tick, alive, 0)
-        state.stage = row[columnids["COLOR"]]
+        vrange = int(row[columnids["VRANGE"]])
+        gotshot = row[columnids["GOTSHOT"]] == "True"
+        state = AgentState(x, y, tick)
+        state.alive = alive
+        state.color = color
         state.team = team
+        state.vrange = vrange
+        state.gotshot = gotshot
         agent.states.append(state)
     return list(agents.values())
 
 
+def _create_circle(self, xy, r, **kwargs):
+    x, y = xy
+    return self.create_oval(x - r, y - r, x + r, y + r, **kwargs)
+
+
+def _create_cross(self, xy, **kwargs):
+    x, y = xy
+    x0, y0 = x - BOXSIZE, y - BOXSIZE
+    x1, y1 = x + BOXSIZE, y + BOXSIZE
+    x2, y2 = x - BOXSIZE, y + BOXSIZE
+    x3, y3 = x + BOXSIZE, y - BOXSIZE
+    return self.create_polygon(x0, y0, x1, y1, x, y, x2, y2, x3, y3, x, y, **kwargs)
+
+
 def main():
+    tk.Canvas.create_circle = _create_circle
+    tk.Canvas.create_cross = _create_cross
     map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
-    path = '../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv'
+    path = "../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv"
     agent_data = agent_read_in(path, map)
     gui.main(agent_data, map)
+
 
 if __name__ == "__main__":
     main()

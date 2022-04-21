@@ -33,7 +33,6 @@ class GUIFrame(object):
 
 
 class Main(GUIFrame):
-
     def init_gui_elements(self):
         l = tk.Label(self.main_frame, text="FLJ")
         l.pack()
@@ -58,7 +57,7 @@ class Visualizer(GUIFrame):
     def __init__(self, root, preframe=None, auto_init=True):
         global AGENTS
         self.fps = 10
-        self.playdelay = 1/self.fps
+        self.playdelay = 1 / self.fps
         self.playdelaydelta = 0
         self.playstep = 1
         self.play_running = False
@@ -70,7 +69,7 @@ class Visualizer(GUIFrame):
         l = [0]
         for agent in AGENTS:
             l.append(len(agent.states))
-        self.playframe_max = max(l)-1
+        self.playframe_max = max(l) - 1
         self.canvas_graph_data = []
         self.canvas_graph_cursor = 0
         self.canvas_graph_cursor_id = None
@@ -83,48 +82,69 @@ class Visualizer(GUIFrame):
         try:
             h, w = AGENT_MAP.get_canvas_dimension()
             self.canvas = tk.Canvas(canvasframe, bg="#AAA", height=h, width=w)
-            self.canvas.config(width=800,height=800)
-            self.canvas.config(scrollregion=(0,0,h,w))
+            self.canvas.config(width=800, height=800)
+            self.canvas.config(scrollregion=(0, 0, h, w))
         except:
             self.canvas = tk.Canvas(canvasframe, bg="#F00", height=500, width=500)
-        hbar = tk.Scrollbar(canvasframe,orient=tk.HORIZONTAL)
-        hbar.pack(side=tk.BOTTOM,fill=tk.X)
+        hbar = tk.Scrollbar(canvasframe, orient=tk.HORIZONTAL)
+        hbar.pack(side=tk.BOTTOM, fill=tk.X)
         hbar.config(command=self.canvas.xview)
-        vbar = tk.Scrollbar(canvasframe,orient=tk.VERTICAL)
-        vbar.pack(side=tk.RIGHT,fill=tk.Y)
+        vbar = tk.Scrollbar(canvasframe, orient=tk.VERTICAL)
+        vbar.pack(side=tk.RIGHT, fill=tk.Y)
         vbar.config(command=self.canvas.yview)
         self.canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
-        self.canvas.pack(side=tk.LEFT,expand=True,fill=tk.BOTH)
+        self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
 
         infoframe = tk.Frame(self.main_frame)
         infoframe.grid(row=0, column=1)
 
         mediaframe = tk.LabelFrame(infoframe, text="Simulation")
         mediaframe.grid(row=0, column=0)
-        self.stepslider = tk.Scale(mediaframe, from_=self.playframe_min, to=self.playframe_max,
-                                   orient=tk.HORIZONTAL, length=400, command=self._canvas_update)
+        self.stepslider = tk.Scale(
+            mediaframe,
+            from_=self.playframe_min,
+            to=self.playframe_max,
+            orient=tk.HORIZONTAL,
+            length=400,
+            command=self._canvas_update,
+        )
         self.stepslider.grid(row=0, column=0)
-        
+
         mediaframeactionblock = tk.Frame(mediaframe)
         mediaframeactionblock.grid(row=1, column=0)
-        b_start = tk.Button(mediaframeactionblock, text="|<<", width=5, command=self._start)
+        b_start = tk.Button(
+            mediaframeactionblock, text="|<<", width=5, command=self._start
+        )
         b_start.grid(row=1, column=0)
-        b_playback = tk.Button(mediaframeactionblock, text="<|", width=5, command=self._playback)
+        b_playback = tk.Button(
+            mediaframeactionblock, text="<|", width=5, command=self._playback
+        )
         b_playback.grid(row=1, column=1)
-        b_pause = tk.Button(mediaframeactionblock, text="||", width=5, command=self._pause)
+        b_pause = tk.Button(
+            mediaframeactionblock, text="||", width=5, command=self._pause
+        )
         b_pause.grid(row=1, column=2)
-        b_play = tk.Button(mediaframeactionblock, text="|>", width=5, command=self._play)
+        b_play = tk.Button(
+            mediaframeactionblock, text="|>", width=5, command=self._play
+        )
         b_play.grid(row=1, column=3)
         b_end = tk.Button(mediaframeactionblock, text=">>|", width=5, command=self._end)
         b_end.grid(row=1, column=4)
         self.animationloop = tk.BooleanVar()
         cb_loop = tk.Checkbutton(mediaframe, text="Loop", variable=self.animationloop)
         cb_loop.grid(row=2, column=0)
-        
+
         advancedmediaframeactionblock = tk.LabelFrame(mediaframe, text="FPS")
         advancedmediaframeactionblock.grid(row=3, column=0)
         self.fpslable = advancedmediaframeactionblock
-        self.fpsslider = tk.Scale(advancedmediaframeactionblock, from_=1, to=200,orient=tk.HORIZONTAL, length=400, command=self._update_fps)
+        self.fpsslider = tk.Scale(
+            advancedmediaframeactionblock,
+            from_=1,
+            to=75,
+            orient=tk.HORIZONTAL,
+            length=400,
+            command=self._update_fps,
+        )
         self.fpsslider.grid(row=0, column=0)
         self.fpsslider.set(50)
 
@@ -135,15 +155,14 @@ class Visualizer(GUIFrame):
 
         for agent in self.agents:
             for state in agent.states:
-                if state.stage == "Red":
+                if state.color == "Red":
                     red = state.team
-                if state.stage == "Blue":
+                if state.color == "Blue":
                     blue = state.team
-                if state.stage == "Green":
+                if state.color == "Green":
                     green = state.team
-                if state.stage == "Yellow":
+                if state.color == "Yellow":
                     yellow = state.team
-
 
         graphframe = tk.LabelFrame(infoframe, text="Stats")
         graphframe.grid(row=4, column=0)
@@ -151,13 +170,18 @@ class Visualizer(GUIFrame):
         graphframeinfo.pack(side=tk.TOP, expand=True, fill=tk.BOTH)
         self.graph_lable_red = tk.Label(graphframeinfo, bg="red", fg="white", text=red)
         self.graph_lable_red.grid(row=0, column=0)
-        self.graph_lable_blue = tk.Label(graphframeinfo,bg="blue", fg="white", text=blue)
+        self.graph_lable_blue = tk.Label(
+            graphframeinfo, bg="blue", fg="white", text=blue
+        )
         self.graph_lable_blue.grid(row=1, column=0)
-        self.graph_lable_yellow = tk.Label(graphframeinfo, bg="yellow", fg="black", text=yellow)
+        self.graph_lable_yellow = tk.Label(
+            graphframeinfo, bg="yellow", fg="black", text=yellow
+        )
         self.graph_lable_yellow.grid(row=2, column=0)
-        self.graph_lable_green = tk.Label(graphframeinfo,bg="green", fg="white", text=green)
+        self.graph_lable_green = tk.Label(
+            graphframeinfo, bg="green", fg="white", text=green
+        )
         self.graph_lable_green.grid(row=3, column=0)
-
 
     def init_gui_menu(self):
         menubar = tk.Menu(self.root)
@@ -180,9 +204,9 @@ class Visualizer(GUIFrame):
 
     def _update_fps(self, e):
         self.fps = int(self.fpsslider.get())
-        self.playdelay = 1/self.fps
+        self.playdelay = 1 / self.fps
         self.playdelaydelta = 0
-            
+
     def _canvas_update(self, e):
         global AGENT_MAP
         AGENT_MAP.update(self.canvas, int(e))
@@ -200,15 +224,15 @@ class Visualizer(GUIFrame):
                 x = self.playframe + self.playstep
                 if x < self.playframe_min or x > self.playframe_max:
                     if self.animationloop.get():
-                        x = x%self.playframe_max
+                        x = x % self.playframe_max
                     else:
                         self._pause()
                 self.playframe = min(self.playframe_max, max(self.playframe_min, x))
                 self.stepslider.set(self.playframe)
                 tdticks += 1
                 tt = time.time()
-                if tt >= t+fpssec:
-                    fps = round(tdticks/(tt-t),2)
+                if tt >= t + fpssec:
+                    fps = round(tdticks / (tt - t), 2)
                     fpsrow.append(fps)
                     fpsdif = self.fps - statistics.median(fpsrow)
                     fpsdifdelta = fpsdif * 0.2
@@ -216,9 +240,17 @@ class Visualizer(GUIFrame):
                         fpsdifdelta = 0
                     else:
                         self.playdelaydelta += fpsdifdelta
-                    print("FPS :",fps," | ",self.fps,round(self.fps  + self.playdelaydelta,4))
-                    self.fpslable.config(text="FPS : "+str(fps))
-                    self.playdelay = fpssec / max((self.fps  + self.playdelaydelta),fpssec)
+                    print(
+                        "FPS :",
+                        fps,
+                        " | ",
+                        self.fps,
+                        round(self.fps + self.playdelaydelta, 4),
+                    )
+                    self.fpslable.config(text="FPS : " + str(fps))
+                    self.playdelay = fpssec / max(
+                        (self.fps + self.playdelaydelta), fpssec
+                    )
                     fpsrow = fpsrow[-4::]
                     t = time.time()
                     tdticks = 0
@@ -250,7 +282,7 @@ class Visualizer(GUIFrame):
         print("play")
 
     def _playback(self):
-        self.playstep = abs(self.playstep)*-1
+        self.playstep = abs(self.playstep) * -1
         if not self.play_running:
             self.playframe = self.stepslider.get()
             self.play_running = True
@@ -272,5 +304,5 @@ def main(agents=[], agent_map=None):
     root.mainloop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
