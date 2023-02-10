@@ -1,6 +1,7 @@
 import csv
 import tkinter as tk
 import gui
+from pathlib import Path
 
 BITMAPS = [
     "error",
@@ -227,6 +228,12 @@ def map_read_in(file=""):
 def agent_read_in(file, map):
     agents = {}
     l = []
+
+    my_file = Path(file)
+    if not my_file.is_file():
+        print(f"Could not find agent CSV output file at `{file}`. Please make sure the path is correct, you might be running the simulation with a different .NET Framework version and need to change the path in the main() method of this file.")
+        exit()
+
     with open(file, "r") as f:
         reader = csv.reader(f, delimiter=";")
         for row in reader:
