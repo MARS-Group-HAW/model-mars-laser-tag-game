@@ -299,7 +299,7 @@ def main():
     tk.Canvas.create_circle = _create_circle
     tk.Canvas.create_cross = _create_cross
     map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
-    path = "../LaserTagBox/bin/Debug/netcoreapp3.1/PlayerBody.csv"
+    path = "../LaserTagBox/bin/Debug/net6.0/PlayerBody.csv"
     agent_data = agent_read_in(path, map)
     gui.main(agent_data, map)
 
