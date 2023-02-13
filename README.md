@@ -1,14 +1,16 @@
 # Multi-Agent LaserTag Simulation Game
 
-This simulation game runs on the multi-agent simulation framework MARS (Multi-Agent Research and Simulation) to give AI developers an opportunity to implement and test AI for agents and let them compete against each other to see which AI wins the game. The goal of the game is to collect as many points as possible by "tagging" enemy agents. The agent with the highest score at the end of the simulation time wins the game.
+This simulation game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html). The game enables developers to implement and test agent behaviors and let agent teams compete against each other. The goal of each agent team is to collect as many points as possible by "tagging" agents of enemy teams. The team with the highest score at the end of the simulation wins the game.
 
-For project and simulation setup, game rules, agent interfaces, and other information that might be helpful when working with LaserTag, please see `Documentation/`.
+For project and simulation setup, game rules, agent interfaces, and other information about LaserTag, see `Documentation/`.
 
-## Requirements
+## Usage
 
-LaserTag is written in MARS C#, which can be used in, for example, JetBrains Rider with the MARS C# package (you can search for the package `Mars.Life.Simulations` using the NuGet package manager).
+LaserTag is written in MARS [C#](https://learn.microsoft.com/en-us/dotnet/csharp/). To use the project, open it with [JetBrains Rider](https://www.jetbrains.com/rider/).
 
-## Setting up a Game
+**Note:** MARS integrate into the IDE via a [NuGet](https://www.nuget.org/) package. If the MARS dependencies are not resolved properly, use the NuGet package manager to search for and install the package `Mars.Life.Simulations`.
+
+## Game Setup
 
 To set up a LaserTag game, please follow these steps:
 
@@ -17,30 +19,35 @@ To set up a LaserTag game, please follow these steps:
 2. In `LaserTagBox/Program.cs`, add the following line per agent:
 
    ```csharp
-   description.AddAgent<<AgentName>, PlayerMindLayer>();
+   description.AddAgent<<YourAgentClassName>, PlayerMindLayer>();
    ```
 
-   (`<AgentName>` is the name of your agent's main class).
+   **Note:** `<YourAgentClassName>` is the name of your agent's main class.
 
 3. In `LaserTagBox/Program.cs`, specify a configuration file (JSON) for the simulation.
 
-   **Note:** The default configuration files for three-player and four-player matches (`config_3.json` and `config_4.json`, respectively) can be found under `LaserTagBox/`.
+   **Note:** The default configuration files for three-player and four-player games (`config_3.json` and `config_4.json`, respectively) can be found in `LaserTagBox/`.
 
    **Note:** The game is designed to be played by three of four teams. If fewer teams than expected are specified in `Program.cs`, the remaining teams are placed in the game as "empty" agents without behavioral logic.
 
-4. Optional: In the configuration file, specify the map (`<FileName>` in the below code snippet).
+4. In the configuration file, specify the map for the game.
 
    ```json
    ...
    "layers": [{
      ...
-     "file": <FileName>,
+     "file": <FileNameOfMap>,
      ...
    }],
    ...
    ```
 
-   Under `LaserTagBox/Resources/`, there are some default maps (CSV). You can generate your own maps using the encoding given in the maps (0 = accessible cell, 1 = inaccessible cell).
+   **Note:** `<FileNameOfMap>` if the name of the file that contains the map encoding.
+
+   In `LaserTagBox/Resources/`, there are some default maps (CSV). You can generate your own maps using the following encoding:
+
+   - 0 = accessible cell
+   - 1 = inaccessible cell
 
 5. Run `Program.cs`.
 
