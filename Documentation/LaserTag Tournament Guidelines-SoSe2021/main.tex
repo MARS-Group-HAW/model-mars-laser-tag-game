@@ -1,0 +1,98 @@
+\documentclass[
+    a4paper,
+    english,
+    DIV=16,
+    11pt,
+    parskip=half,
+]{scrartcl}
+\usepackage[
+    pdfhighlight=/O, colorlinks, linkcolor=black, urlcolor=black, citecolor=black,
+    breaklinks, bookmarksopen,bookmarksopenlevel=1,linktocpage,xetex
+] {hyperref} % PDF support with links
+
+\usepackage[english]{babel}
+\usepackage[dvips]{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{pstricks}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+\usepackage{dirtytalk}
+\parindent 0pt
+\bibliographystyle{alphadin}
+\newcommand\todo[1]{\textcolor{red}{#1}}
+
+\title{WP Artificial Intelligence and Software Agents}
+\subtitle{LaserTag Group Competition: Guidelines}
+\date{\today}
+\setcounter{secnumdepth}{3}
+
+% ======================================================================
+
+\begin{document}
+\maketitle
+
+This outline describes the process leading up to the LaserTag tournament and the process on tournament day. If you have any questions about these guidelines, please reach out to us in the LaserTag Slack channel.
+
+\section*{Tick Submission and Review}
+\begin{itemize}
+    \item As mentioned on the LaserTag assignment sheet (see \say{Documentation} directory of the LaserTag repository), each tick method must be submitted by \textbf{20:00 CET on 22 June 2020} at the latest.
+    \item \textbf{IMPORTANT:} if you explicitly reference agent types (\texttt{Green}, \texttt{Red}, \texttt{Blue}, or \texttt{Yellow}) in your tick method, please submit four versions of your code with different type referencing. Since we are unable to determine ahead of time which color your team will be assigned at each stage of the tournament, having four versions of your code will allow us to assign your team a color more easily.
+    \item Each tick method must comply with all the LaserTag rules outlined on the LaserTag assignment sheet and LaserTag documentation. If your code does not follow one of the rules, you will not be able to participate in the tournament. \textbf{NOTE:} if there is any uncertainty about the rules, please post a message in the Slack channel so clarification can be provided.
+    \item We will review each tick's ability to run by performing a few test simulation with it. Our goal is to make sure that no exceptions are produced under the conditions we foresee for the tournament. If your code produces exceptions during testing, we will let you know and work with you, if needed, to resolve the issue until \textbf{16:00 CET on 23 June 2020}.
+\end{itemize}
+
+\section*{Tournament Setup and Process}
+\begin{itemize}
+    \item The tournament will begin at \textbf{9:00 CET on 24 June 2020} in the Zoom session created by Prof. Clemen (see the course schedule for the meeting details).
+    \item The tournament setup and sequence of games is outlined in the PDF document \say{tournament\_table} (see the \say{Tournament} directory in the LaserTag repository). The games will take place in the order in which they are numbered.
+    \item A simulation tick is defined as one real-time second. Each game will last 1800 ticks (\textbf{Note:} this number is subject to change depending on the time it takes for one simulation to finish).
+\end{itemize}
+
+\subsection*{Map description}
+\begin{itemize}
+    \item The maps that will be played on during the tournament can be found in the \say{Maps} directory of the repository.
+    \item As shown in the \say{tournament\_table}, each game will be played by either three or four teams.
+    \item A game with three teams will be played on a triangle-shaped map.
+    \item A game with four teams will be played on a rectangle-shaped map.
+    \item The borders of each map are lined with \texttt{Barriers} agents, forcing the agents to remain within the bounds of the arena.
+    \item There will be two types of maps:
+    \begin{itemize}
+        \item \say{open-style}: open terrain with different objects of interest (OOI), similar to the map description found in the LaserTag documentation
+        \item \say{labyrinth-style}: less open terrain with more tight spaces and corridors
+    \end{itemize}
+\end{itemize}
+
+\section*{Topics for Discussion}
+We encourage an open conversation and discussion among the group. Feel free to bring and share your thoughts, opinions, and feedback on the following subjects (as well as anything else related to artificial intelligence, software agents, and your experience with this course and LaserTag):
+\begin{itemize}
+    \item Your agents and their AI:
+    \begin{itemize}
+        \item What are the main ideas/priorities that guided your design choices?
+        \item What are your agents' behaviors driven by?
+        \item What decisions are your agents programmed to make, and why? \item What decisions could they have been programmed to make but were not, and why?
+        \item Which parts of the LaserTag environment do they interact with in what ways?
+        \item What were some of your challenges (logical and technical) during the development process? How did you overcome those challenges?
+    \end{itemize}
+    \item The LaserTag framework:
+    \begin{itemize}
+        \item What did you or didn't you like about this assignment and working with the LaserTag framework?
+        \item Is there any functionality (or access to already defined methods) that isn't currently available and that you would have liked to have in the game?
+        \item Did the provided \say{USER METHODS} sufficiently compensate for the limitations put in place by forbidding use of most of the MARS DSL keywords. If not, how so and what should be added to make the design process smoother and the game more enjoyable?
+        \item Do you have any suggestions for improving the LaserTag framework, documentation, or overall project?
+        \item Do you have any suggestions for the MARS DSL or MARS in general?
+    \end{itemize}
+\end{itemize}
+
+\end{document}
