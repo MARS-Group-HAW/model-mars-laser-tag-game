@@ -12,16 +12,7 @@ LaserTagBox/obj
 .metadata
 .idea
 
+
 # Analysis and Visualization files (Python)
 *.pyc
 *.prefs
-
-# LaTeX compiler outputs
-*.aux
-*.fls
-*.fdb_latexmk
-*.log
-*.out
-main.pdf
-*.synctex.gz
-*.toc
