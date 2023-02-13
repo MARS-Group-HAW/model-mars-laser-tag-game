@@ -10,6 +10,7 @@ lasertag/src-gen/obj
 LaserTagBox/bin
 LaserTagBox/obj
 .metadata
+.idea
 
 
 # Analysis and Visualization files (Python)
