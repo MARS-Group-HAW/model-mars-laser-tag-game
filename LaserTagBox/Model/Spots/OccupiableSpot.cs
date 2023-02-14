@@ -1,44 +1,64 @@
 using System.Linq;
 using LaserTagBox.Model.Body;
 
-namespace LaserTagBox.Model.Spots
+namespace LaserTagBox.Model.Spots;
+
+/// <summary>
+///     A ditch that agents can step into.
+/// </summary>
+public class Ditch : OccupiableSpot
 {
-    public class Barrier : Spot
+}
+
+/// <summary>
+///     A hill that agents can step onto.
+/// </summary>
+public class Hill : OccupiableSpot
+{
+}
+
+/// <summary>
+///     An object of interest (OOI) that can be occupied by agents.
+/// </summary>
+public abstract class OccupiableSpot : Spot
+{
+    #region Properties
+    /// <summary>
+    ///     A flag that tracks the occupation status of the object. True if the object is free, otherwise false.
+    /// </summary>
+    public bool Free { get; set; }
+    #endregion
+
+    #region Initialization
+    /// <summary>
+    ///     Initialization routine of the object.
+    /// </summary>
+    /// <param name="battleground">A reference to the environment in which the object is to be situated.</param>
+    public override void Init(PlayerBodyLayer battleground)
     {
+        base.Init(battleground);
+        Free = true;
     }
+    #endregion
 
-    public class Ditch : OccupiableSpot
+    #region Tick
+    /// <summary>
+    ///     Behavior routine of the object.
+    /// </summary>
+    public override void Tick()
     {
-    }
-
-    public class Hill : OccupiableSpot
-    {
-    }
-
-    public abstract class OccupiableSpot : Spot
-    {
-        public bool Free { get; set; }
-
-        public override void Init(PlayerBodyLayer battleground)
+        if (Free) return;
+            
+        // clean up, if necessary
+        var bodies = Battleground.FighterEnv.Entities;
+        if (bodies.Any(agent => agent.Position.Equals(Position)))
         {
-            base.Init(battleground);
+            Free = false;
+        }
+        else
+        {
             Free = true;
         }
-
-        public override void Tick()
-        {
-            if (Free) return;
-            
-            // clean up, if necessary
-            var bodies = Battleground.FigtherEnv.Entities;
-            if (bodies.Any(agent => agent.Position.Equals(Position)))
-            {
-                Free = false;
-            }
-            else
-            {
-                Free = true;
-            }
-        }
     }
+    #endregion
 }

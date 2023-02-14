@@ -1,7 +1,6 @@
-namespace LaserTagBox.Model.Mind
+namespace LaserTagBox.Model.Mind;
+
+public class YourPlayerMindPleaseRenameCopy : YourPlayerMindPleaseRename
 {
-    public class YourPlayerMindPleaseRenameCopy : YourPlayerMindPleaseRename
-    {
        
-    }
 }
