@@ -6,10 +6,17 @@
     parskip=half,
 ]{scrartcl}
 \usepackage[
-    pdfhighlight=/O, colorlinks, linkcolor=black, urlcolor=black, citecolor=black,
-    breaklinks, bookmarksopen,bookmarksopenlevel=1,linktocpage,xetex
+  pdfhighlight=/O,
+  colorlinks,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=black,
+  filecolor=black,
+  breaklinks,
+  bookmarksopen,
+  bookmarksopenlevel=1,
+  linktocpage
 ] {hyperref} % PDF support with links
-
 \usepackage[english]{babel}
 \usepackage[dvips]{graphicx}
 \usepackage{amsmath}
@@ -21,13 +28,18 @@
 \usepackage{tikz}
 \usepackage{pstricks}
 \usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=blue,
-    urlcolor=blue
-}
+\usepackage[
+  firstpage=true,
+  scale=1,
+  angle=0,
+  position={current page.north},
+  hshift=7.5cm, 
+  vshift=-1.0cm,
+  opacity=1,
+  contents={%
+    \includegraphics[width=5cm,keepaspectratio]{../logos/mars_logo.png}%
+  }%
+]{background}
 \usepackage{dirtytalk}
 \parindent 0pt
 \bibliographystyle{alphadin}
@@ -35,6 +47,7 @@
 
 \title{WP Artificial Intelligence and Software Agents}
 \subtitle{LaserTag Group Competition: Assignment}
+\author{MARS Group}
 \date{\today}
 \setcounter{secnumdepth}{3}
 
@@ -43,49 +56,49 @@
 \begin{document}
 \maketitle
 \section*{LaserTag: Game Description}
-LaserTag is a multi-agent game simulation in which four agent teams, each made up of three agents, compete against each other. Team members need to coordinate with each other and be careful not to become overpowered by agents from other teams. To play the game well, agent behavior needs to be designed intelligently such that each agent interacts with its environment, its team members, and its opponents in meaningful ways to work towards the common goal of the team.
+LaserTag is a multi-agent game simulation in which three or four agent teams, each made up of three agents, compete against each other. Team members need to coordinate with each other and be careful not to become overpowered by agents from other teams. To play the game well, agent behavior needs to be designed intelligently such that each agent interacts with its environment, its team members, and its opponents to work towards the common goal of the team.
 
 \section*{Your Assignment}
 \begin{enumerate}
-    \item \textbf{Set up communication:} Please join the channel \underline{\# lasertag} in
-    \href{https://join.slack.com/t/mars-explorers/shared_invite/zt-recgxwyo-WWOpjkLFq69CxQtSrlBIxw}{MARS Explorers} on Slack. All announcements, communication, and technical discussions about LaserTag and the competition will occur via this channel.
-    \item \textbf{Set up the project:} LaserTag is developed and written in MARS C\#. Please check out the project's \href{https://git.haw-hamburg.de/mars/mars-laser-tag-game}{GitLab repository} and set up the project in Rider. The directory \textbf{LaserTagBox} contains the game.
-    \item \textbf{Review the documentation:} The LaserTag documentation (PDF) can be found in the \textbf{Documentation} directory of the repository. Please use it as a reference guide to familiarize yourself with the model's concepts and mechanisms and while designing your AI.
-    \item \textbf{Study the code:} The source code includes the setup for the four agent teams that will compete in one simulation. Review and experiment with the code to get a feeling for what the possibilities are and how agents behave when calling different methods.
-    \item \textbf{Write your AI:}
+  \item \textbf{Set up communication:} Please join the channel \underline{\# lasertag} in
+  \href{https://join.slack.com/t/mars-explorers/shared_invite/zt-recgxwyo-WWOpjkLFq69CxQtSrlBIxw}{MARS Explorers} on Slack. All announcements, communication, and technical discussions about LaserTag and the competition will occur in this channel.
+  \item \textbf{Set up the project:} LaserTag is developed and written in \href{https://mars-group-haw.github.io/index.html}{MARS}. Please check out the project's \href{https://github.com/MARS-Group-HAW/model-mars-laser-tag-game}{GitHub repository} and set up the project in \href{https://www.jetbrains.com/rider/}{Rider}. The directory \textbf{LaserTagBox} contains the game. See the section \emph{Project Setup} in the LaserTag documentation for more details.
+  \item \textbf{Review the documentation:} The LaserTag documentation (PDF) can be found in the \textbf{Documentation} directory of the repository. Please use it to familiarize yourself with the model's concepts and mechanisms while designing your AI.
+  \item \textbf{Study the code:} The source code includes the setup for the three or four agent teams that will compete in one simulation. Review and experiment with the code to get a feeling for what the possibilities are and how agents behave when calling different methods.
+  \item \textbf{Write your agent logic:}
+  \begin{itemize}
+    \item Create a class that inherits from \texttt{AbstractPlayerMind}. Your agents' mind will be written inside this class. From here, it can access a \texttt{PlayerBody} (via an interface \texttt{IPlayerBody}), which represents the agent's physical form. Call methods defined in \texttt{PlayerBody} to shape the agent's physical behaviors and routines. Here is the list of available methods:
     \begin{itemize}
-        \item Create a class that inherits from \texttt{PlayerMind}. Your agents' mind (i.e., its AI) will be written inside this class. From here, it can access the \texttt{PlayerBody}, which represents the agents' physical form. Call methods defined in \texttt{PlayerBody} to shape the agents' behaviors and routines. 
-        \begin{itemize}
-            \item \texttt{ChangeStance2(Stance)}
-            \item \texttt{ExploreBarriers1() : List<Position>}
-            \item \texttt{ExploreDitches1() : List<Position>}
-            \item \texttt{ExploreEnemies1() : List<EnemySnapshot>}
-            \item \texttt{ExploreHills1() : List<Position>}
-            \item \texttt{ExploreTeam() : List<IPlayerBody>}
-            \item \texttt{GetDistance(Position) : int}
-            \item \texttt{GoTo(Position) : bool}
-            \item \texttt{HasBeeline1(Position) : bool}
-            \item \texttt{Reload3()}
-            \item \texttt{Tag5(Position)}
-        \end{itemize}
-        The numbers at the end of some of the methods indiciate the number of \texttt{actionPoints} required to execute the method. Please see the documentation for further details.
-        \item Your code must meet the following requirements:
-        \begin{enumerate}
-            \item follow all rules listed in the section "Rules" of the Documentation
-            \item no simulation-external information may be loaded into the simulation at runtime (your agent must have an empty constructor)
-            \item no loops that are known not to terminate within a reasonable time (example: \texttt{while(true)})
-            \item The use of \texttt{PropertyDescription} tags (for loading external information into your agents at runtime) is not allowed.
-        \end{enumerate}
+      \item \texttt{ChangeStance2(Stance)}
+      \item \texttt{ExploreBarriers1() : List<Position>}
+      \item \texttt{ExploreDitches1() : List<Position>}
+      \item \texttt{ExploreHills1() : List<Position>}
+      \item \texttt{ExploreEnemies1() : List<EnemySnapshot>}
+      \item \texttt{ExploreTeam() : List<FriendSnapshot>}
+      \item \texttt{GetDistance(Position) : int}
+      \item \texttt{GoTo(Position) : bool}
+      \item \texttt{HasBeeline1(Position) : bool}
+      \item \texttt{Reload3()}
+      \item \texttt{Tag5(Position) : bool}
     \end{itemize}
-    \item \textbf{Submit your AI:} The deadline for submitting your code for the competition is 09:00 CET on 28 June 2021. Only your class inheriting from \texttt{PlayerMind} (and its associated classes, if any) will be considered. Please submit your code via EMIL. 
-    \item \textbf{Attend the competition:} The competition will begin 12:30 CET on 02 July 2021. The competition/tournament style will be discussed and decided with you in the Slack channel.
+    The numbers at the end of some of the methods indiciate the number of \texttt{ActionPoints} required to execute the method. Please see the LaserTag documentation for more details.
+    \item Your code must meet the following requirements:
+    \begin{enumerate}
+      \item Follow all rules listed in the section \emph{Constraints for Developers} of the LaserTag documentation.
+      \item No simulation-external information may be loaded into the simulation at runtime (your agent must have an empty constructor).
+      \item No loops that are known not to terminate within a reasonable time (e.g., \texttt{while(true)}).
+      \item The use of \texttt{PropertyDescription} tags (for loading external information into your agents at runtime) is not allowed.
     \end{enumerate}
+  \end{itemize}
+  \item \textbf{Submit your AI:} The deadline for submitting your code for the competition is HH:mm on DDMMYYYY. Only your class inheriting from \texttt{AbstractPlayerMind} (and all associated classes, if any) will be considered. Please submit your code via LOCATION. \todo{To-do: Update date, time, location}
+  \item \textbf{Attend the competition:} The competition will begin HH:MM on DDMMYYYY. The competition/tournament style will be discussed and decided with you in the Slack channel. \todo{To-do: Update date, time}
+\end{enumerate}
 
 \section*{Goal of the Game}
 The objective of the game will be discussed and decided with you in the Slack channel.
 
 \section*{Questions and Feedback}
-Please submit any questions, feedback, feature requests, and bug reports via the Slack channel mentioned above. We (Daniel Osterholz and Nima Ahmady-Moghaddam) will do our best to address any issues as quickly as possible. \par Happy coding and good luck! :)
+Please submit any questions, feedback, feature requests, and bug reports via the Slack channel mentioned above. We (Nima Ahmady-Moghaddam and Jonathan Ströbele) will do our best to address any issues as quickly as possible. \par Happy coding and good luck! :)
 
 % ======================================================================
 
