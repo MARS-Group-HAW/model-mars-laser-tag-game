@@ -83,8 +83,8 @@ public interface IPlayerBody : IPositionable
     ///     Provides the distance between given position and the agents position.
     /// </summary>
     /// <param name="position">That is tested upon.</param>
-    /// <returns>The distance in Manhatten calculation.</returns>
-    int GetDistance(Position position); //chebyshef diagonal = 1, manhatten diagonal = 2
+    /// <returns>The distance in Manhattan calculation.</returns>
+    int GetDistance(Position position); // Chebyshev diagonal = 1, manhattan diagonal = 2
 
     /// <summary>
     ///     The magazine count of the weapon. How many more tag-attempts can be made before reloading is required.
