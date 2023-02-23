@@ -41,6 +41,8 @@
   }%
 ]{background}
 \usepackage{dirtytalk}
+\usepackage{fontawesome}
+
 \parindent 0pt
 \bibliographystyle{alphadin}
 \newcommand\todo[1]{\textcolor{red}{#1}}
@@ -56,49 +58,78 @@
 \begin{document}
 \maketitle
 \section*{LaserTag: Game Description}
-LaserTag is a multi-agent game simulation in which three or four agent teams, each made up of three agents, compete against each other. Team members need to coordinate with each other and be careful not to become overpowered by agents from other teams. To play the game well, agent behavior needs to be designed intelligently such that each agent interacts with its environment, its team members, and its opponents to work towards the common goal of the team.
+LaserTag is a multi-agent game simulation written in \href{https://mars-group-haw.github.io/index.html}{MARS}. The game consists of three or four teams -- each made up of three agents -- competing against each other. Team members need to coordinate with each other and be careful not to become overpowered by agents from other teams. To play the game well, agent behavior needs to be designed intelligently such that each agent interacts with its environment, its team members, and its opponents to work towards the common goal of the team.
 
-\section*{Your Assignment}
-\begin{enumerate}
-  \item \textbf{Set up communication:} Please join the channel \underline{\# lasertag} in
-  \href{https://join.slack.com/t/mars-explorers/shared_invite/zt-recgxwyo-WWOpjkLFq69CxQtSrlBIxw}{MARS Explorers} on Slack. All announcements, communication, and technical discussions about LaserTag and the competition will occur in this channel.
-  \item \textbf{Set up the project:} LaserTag is developed and written in \href{https://mars-group-haw.github.io/index.html}{MARS}. Please check out the project's \href{https://github.com/MARS-Group-HAW/model-mars-laser-tag-game}{GitHub repository} and set up the project in \href{https://www.jetbrains.com/rider/}{Rider}. The directory \textbf{LaserTagBox} contains the game. See the section \emph{Project Setup} in the LaserTag documentation for more details.
-  \item \textbf{Review the documentation:} The LaserTag documentation (PDF) can be found in the \textbf{Documentation} directory of the repository. Please use it to familiarize yourself with the model's concepts and mechanisms while designing your AI.
-  \item \textbf{Study the code:} The source code includes the setup for the three or four agent teams that will compete in one simulation. Review and experiment with the code to get a feeling for what the possibilities are and how agents behave when calling different methods.
-  \item \textbf{Write your agent logic:}
-  \begin{itemize}
-    \item Create a class that inherits from \texttt{AbstractPlayerMind}. Your agents' mind will be written inside this class. From here, it can access a \texttt{PlayerBody} (via an interface \texttt{IPlayerBody}), which represents the agent's physical form. Call methods defined in \texttt{PlayerBody} to shape the agent's physical behaviors and routines. Here is the list of available methods:
-    \begin{itemize}
-      \item \texttt{ChangeStance2(Stance)}
-      \item \texttt{ExploreBarriers1() : List<Position>}
-      \item \texttt{ExploreDitches1() : List<Position>}
-      \item \texttt{ExploreHills1() : List<Position>}
-      \item \texttt{ExploreEnemies1() : List<EnemySnapshot>}
-      \item \texttt{ExploreTeam() : List<FriendSnapshot>}
-      \item \texttt{GetDistance(Position) : int}
-      \item \texttt{GoTo(Position) : bool}
-      \item \texttt{HasBeeline1(Position) : bool}
-      \item \texttt{Reload3()}
-      \item \texttt{Tag5(Position) : bool}
-    \end{itemize}
-    The numbers at the end of some of the methods indiciate the number of \texttt{ActionPoints} required to execute the method. Please see the LaserTag documentation for more details.
-    \item Your code must meet the following requirements:
-    \begin{enumerate}
-      \item Follow all rules listed in the section \emph{Constraints for Developers} of the LaserTag documentation.
-      \item No simulation-external information may be loaded into the simulation at runtime (your agent must have an empty constructor).
-      \item No loops that are known not to terminate within a reasonable time (e.g., \texttt{while(true)}).
-      \item The use of \texttt{PropertyDescription} tags (for loading external information into your agents at runtime) is not allowed.
-    \end{enumerate}
-  \end{itemize}
-  \item \textbf{Submit your AI:} The deadline for submitting your code for the competition is HH:mm on DDMMYYYY. Only your class inheriting from \texttt{AbstractPlayerMind} (and all associated classes, if any) will be considered. Please submit your code via LOCATION. \todo{To-do: Update date, time, location}
-  \item \textbf{Attend the competition:} The competition will begin HH:MM on DDMMYYYY. The competition/tournament style will be discussed and decided with you in the Slack channel. \todo{To-do: Update date, time}
-\end{enumerate}
+\section*{Initial Setup}
+
+Before beginning to work on your assignment, please complete the following steps.
+
+\begin{itemize}
+  \item \textbf{Communication:} Join the channel \underline{\# lasertag} in the Slack workspace \href{https://join.slack.com/t/mars-explorers/shared_invite/zt-recgxwyo-WWOpjkLFq69CxQtSrlBIxw}{MARS Explorers}. All communication about LaserTag and the competition will occur in this channel.
+  \item \textbf{Repository:} Clone the LaserTag \href{https://github.com/MARS-Group-HAW/model-mars-laser-tag-game}{GitHub repository}.
+  \item \textbf{Documentation:} The LaserTag documentation (PDF) is in the \texttt{Documentation} directory of the repository. Please read it thoroughly to learn about the game's concepts and mechanisms.
+  \item \textbf{Project Setup:} Set up LaserTag in \href{https://www.jetbrains.com/rider/}{JetBrains Rider}.
+  
+  \faLightbulbO\: See the section \emph{Project Setup} of the LaserTag documentation for more details.
+  \item \textbf{Code:} The LaserTag source code includes the setup for the three or four agent teams that will compete in one simulation. Review and experiment with the code to learn about the game and how agents behave when calling different methods.
+\end{itemize}
 
 \section*{Goal of the Game}
-The objective of the game will be discussed and decided with you in the Slack channel.
+The objective of the game will be discussed and decided with you in the \underline{\# lasertag} Slack channel (see \textbf{Communication} above for the link to the Slack workspace).
+
+\section*{Your Assignment}
+Your assignment is to create two agent types. One will be a \emph{rule-based} agent type and the other will be a \emph{learning} agent type. Your agents will compete in the LaserTag competition against agents designed by other groups. The goal of this assignment is to
+\begin{enumerate}
+  \item program rule-driven and learning-driven agent behaviors and
+  \item observe and analyze differences in rule-based and learning-based agent behavior.
+\end{enumerate}
+
+\subsection*{Rule-based agent}
+In this behavior modeling approach, your main task as developers is to define \emph{rules} (e.g., in the form of \texttt{if-else} statements) for your agents to follow. These rules will determine under which circumstances your agents call the methods that are available via the \texttt{PlayerBody}.
+
+\subsection*{Learning agent}
+In this behavior modeling approach, your main task as developers is to define:
+\begin{itemize}
+  \item \emph{states} that your agents can be in and
+  \item \emph{rewards} that your agents receive for their \emph{actions}.
+\end{itemize}
+The states will be passed to a \href{https://en.wikipedia.org/wiki/Reinforcement\_learning}{reinforcement learning (RL)} algorithm that returns a corresponding \emph{action} for your agent to perform.~We recommend table-based \href{https://en.wikipedia.org/wiki/Q-learning}{$Q$-learning}.~Through this learning approach, your agent can store its experiences for state-action pairs in a table. By querying the table, the agent can let its experiences influence its behaviors in the present and future.
+
+The MARS Framework provides some base classes that you can use for your implementation:
+\begin{itemize}
+  \item \texttt{Mars.Components.Services.Learning} for basic learning algorithm and data structures
+  \item \texttt{Mars.Components.Services.Explorations} for action selection policies
+\end{itemize}
+You can also implement from scratch or use external libraries. Here are some examples:
+\begin{itemize}
+  \item \href{https://learn.microsoft.com/en-us/archive/msdn-magazine/2018/august/test-run-introduction-to-q-learning-using-csharp (C\# documentation)}{Introduction to Q-Learning Using C\#}
+  \item \href{https://devindeep.com/how-to-implement-q-learning-algorithm-in-c/}{Implement Q-Learning Algorithm in C\#}
+  \item \href{https://rubikscode.net/2022/08/29/machine-learning-with-ml-net-introduction/}{Introduction to Machine Learning with C\# and ML.NET}
+\end{itemize}
+
+\subsection*{Constraints}
+All implementations must satisfy the following constraints:
+\begin{itemize}
+  \item Your agent type's main class (e.g., \texttt{MyAgentMind}) must inherit from the class \texttt{AbstractPlayerMind}. In \texttt{MyAgentMind}, you can define your agent type's mind. From here, your agent type can access a \texttt{PlayerBody} (via an interface \texttt{IPlayerBody}), which represents its physical form.
+  
+  \faLightbulbO\: See the section \emph{Project Structure} of the LaserTag documentation for the project's class structure.
+  
+  \faLightbulbO\: See the section \emph{Agent properties and methods} of the LaserTag documentation for a list of properties and methods that are available via the \texttt{PlayerBody}.
+
+  \item Satisfy all constraints listed in the section \emph{Constraints for Developers} of the LaserTag documentation.
+\end{itemize}
+
+\section*{Submission and Competition}
+
+\begin{itemize}
+  \item \textbf{Submit your agents:} Your agent types' source code must be submitted for the competition via LOCATION by HH:mm on DDMMYYYY. Submissions must include only your main class inheriting from \texttt{AbstractPlayerMind} and its associated classes, if any. \todo{To-do: Update date, time, location}
+  \item \textbf{Attend the competition:} The competition will begin on DDMMYYYY at HH:MM. The competition/tournament style will be discussed and decided with you in the LaserTag Slack channel (see above). \todo{To-do: Update date, time}
+\end{itemize}
 
 \section*{Questions and Feedback}
-Please submit any questions, feedback, feature requests, and bug reports via the Slack channel mentioned above. We (Nima Ahmady-Moghaddam and Jonathan Ströbele) will do our best to address any issues as quickly as possible. \par Happy coding and good luck! :)
+Please submit any questions, feedback, feature requests, and bug reports via the LaserTag Slack channel. We (Nima Ahmady-Moghaddam and Jonathan Ströbele) will do our best to address them as soon as possible.
+
+Happy coding and good luck! :)
 
 % ======================================================================
 
