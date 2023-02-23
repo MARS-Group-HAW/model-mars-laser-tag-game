@@ -167,8 +167,9 @@ In order to play the game as intended, please adhere to the following rules when
 \begin{enumerate}
   \item Only interact with the interface \texttt{IPlayerBody} to access the agent's physical representation.
   \item When interacting with the \texttt{PlayerMindLayer}, only invoke the \texttt{GetCurrentTick()} method. Other calls to the \texttt{PlayerMindLayer} are not allowed.
+  \item Your agent's constructor must be empty. \todo{Why?}
   \item Loops that are known not to terminate after a reasonable time (example: \texttt{while(true)}) are not allowed.
-  \item \texttt{PropertyDescription} tags for loading external information into your agents at runtime via an external configuration file are not allowed.
+  \item \texttt{PropertyDescription} tags for loading external information into your agents at runtime via an external configuration file are not allowed. The only allowed external data source is learned behavior for a learning agent.
 \end{enumerate}
 %
 \section{Agent Properties and Methods} \label{sec:AgentDesc}
@@ -216,7 +217,7 @@ Below are the properties provided by the \texttt{IPlayerBody} interface that an 
 \subsection{Methods} \label{ssec:methods}
 Below are the methods provided by the \texttt{IPlayerBody} interface that an agent's mind can call to guide its body. The digit at the end of the method name indicates the number of \texttt{ActionPoints} required to execute the method. Methods with no digit at the end cost zero \texttt{ActionPoints}.
 %
-\subsubsection{sssec:Movement Methods} \label{sssec:movMeth}
+\subsubsection{Movement Methods} \label{sssec:movMeth}
 \begin{itemize}
   \item \texttt{ChangeStance2(Stance)}: This method takes a \texttt{Stance} and allows the calling agent to change between three possible stances: \texttt{Standing}, \texttt{Kneeling}, and \texttt{Lying}. Stance changes affect the values of the agent's \texttt{VisualRange}, \texttt{VisibilityRange}, and movement speed (see Section~\ref{sssec:explAttr}).
   \item \texttt{GoTo(Position) :~bool}: This is the main method used for pathfinding, movement, and path readjustment. When an agent invokes the method, the method devises a path from the agent's current position to the given \texttt{Position}. Each subsequent invocation of \texttt{GoTo(Position)} with the same destination will, if possible, move the agent one step closer to the destination until the destination is reached.
