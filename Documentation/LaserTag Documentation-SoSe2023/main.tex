@@ -258,7 +258,7 @@ The model's main components are the environment and the properties and methods t
 \subsection{The Environment} \label{ssec:env}
 The default environment is a $50\times 50$ grid layer. In order to effectively simulate the indoor nature of real-world laser tag, the environment is fenced in. To add texture and complexity to the environment and to allow agents to interact with it meaningfully, maps may feature structures (barriers, rooms, hills, and ditches).
 
-Figure~\ref{fig:envEx} shows a bird's eye view of an example of a square-shaped map at the start of the simulation. The following sections describe each of the spots. For more information on spots, see \ref{sssec:vision}, \ref{sssec:tagging}, and \ref{sssec:spot}.
+Figure~\ref{fig:envEx} shows a bird's eye view of an example of a square-shaped map at the start of the simulation. The following sections describe each of the spots. For more information on spots, see Sections \ref{sssec:vision}, \ref{sssec:tagging}, and \ref{sssec:spot}.
 %
 \begin{figure}[H]
   \centering
@@ -289,12 +289,29 @@ A \texttt{Ditch} is a structure that can be occupied. While an agent occupies a 
 \paragraph{Room} \label{par:roomDesc}
 A room is a section of the grid layer that is enclosed by barriers, leaving only one or more small gaps to enter and exit the enclosed section.
 %
+\subsubsection{Designing your own maps}
+%
+You can design your own LaserTag environments. To do so, create a CSV file and follow these guidelines:
+%
+\begin{itemize}
+  \item The shape of your map must be rectancular ($n \times m$) or square ($n \times n$).
+  \item Use a semicolon (\texttt{;}) as a separator.
+  \item Use the following encoding for LaserTag structures (see Section~\ref{sssec:struc} for more details):
+  \begin{itemize}
+    \item 0$\,\to\,$empty cell
+    \item 1$\,\to\,$\texttt{Barrier}
+    \item 2$\,\to\,$\texttt{Hill}
+    \item 3$\,\to\,$\texttt{Ditch}
+  \end{itemize}
+\end{itemize}
+%
+For reference and examples, see the default maps in the directory \texttt{LaserTagBox/Resources/}.
+%
 \subsection{Game Mechanics} \label{ssec:gameMechs}
 %
 This section outlines some of the built-in logic, mechanisms, and rules of LaserTag to help you devise intelligent and feasible strategies for your agents.
 %
 \subsubsection{Vision} \label{sssec:vision}
-%
 The game features a vision system that depends on a number of variables and circumstances. The following example aims to illustrate the process. Agent X calls \texttt{ExploreEnemies1()} and hopes to see agent Y. X's ability to see Y may be influenced by each of the following conditions:
 %
 \begin{enumerate}
