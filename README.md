@@ -1,34 +1,40 @@
-# Multi-Agent LaserTag Simulation Game
+# LaserTag: A Multi-Agent Simulation Game
 
-This simulation game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html). The game enables developers to implement and test agent behaviors and let agent teams compete against each other. The goal of each agent team is to collect as many points as possible by "tagging" agents of enemy teams. The team with the highest score at the end of the simulation wins the game.
+LaserTag is an agent-based simulation game designed for developers to implement and test agent behaviors and let agent teams with different strategies compete against each other. The game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html).
 
-For project and simulation setup, game rules, agent interfaces, and other information about LaserTag, see `Documentation/`.
+For project setup, game rules, agent interfaces, and more information on everything described in this README, see the PDF documentation in the directory `Documentation/`.
 
 ## Usage
 
-LaserTag is written in MARS [C#](https://learn.microsoft.com/en-us/dotnet/csharp/). To use the project, open it with [JetBrains Rider](https://www.jetbrains.com/rider/).
+LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application. To work with it, open the directory `LaserTagBox/` with [JetBrains Rider](https://www.jetbrains.com/rider/).
 
-**Note:** MARS integrate into the IDE via a [NuGet](https://www.nuget.org/) package. If the MARS dependencies are not resolved properly, use the NuGet package manager to search for and install the package `Mars.Life.Simulations`.
+**Note:** MARS integrates into Rider via a [NuGet](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the NuGet package manager in Rider to search for and install the NuGet package `Mars.Life.Simulations`.
 
 ## Game Setup
 
-To set up a LaserTag game, please follow these steps:
+To set up a LaserTag game, follow these steps:
 
-1. Add your agents' implementation files to `LaserTagBox/Model/Mind`.
+1. Add your agents' implementation files to the directory `LaserTagBox/Model/Mind/`.
 
-2. In `LaserTagBox/Program.cs`, add the following line per agent:
+2. In the file `LaserTagBox/Program.cs`, add the following line per agent type:
 
    ```csharp
-   description.AddAgent<<YourAgentClassName>, PlayerMindLayer>();
+   description.AddAgent<MyAgentType, PlayerMindLayer>();
    ```
 
-   **Note:** `<YourAgentClassName>` is the name of your agent's main class.
+   **Note:** `MyAgentType` is the name of the main class of your agent type.
 
-3. In `LaserTagBox/Program.cs`, specify a configuration file (JSON) for the simulation.
+3. In the file `LaserTagBox/Program.cs`, specify a JSON configuration file for the simulation.
 
-   **Note:** The default configuration files for three-player and four-player games (`config_3.json` and `config_4.json`, respectively) can be found in `LaserTagBox/`.
+   ```csharp
+   var file = File.ReadAllText("my_config_file.json");
+   ```
 
-   **Note:** The game is designed to be played by three of four teams. If fewer teams than expected are specified in `Program.cs`, the remaining teams are placed in the game as "empty" agents without behavioral logic.
+   **Note:** `my_config_file` is the name of the JSON file that contains the game configuration.
+
+   **Note:** The game is designed to be played by three of four teams. If fewer teams are specified in the file `Program.cs`, the remaining teams are placed in the game as "empty" agents without behavioral logic.
+
+   **Note:** The default configuration files for three-player and four-player games (`config_3.json` and `config_4.json`, respectively) can be found in the directory `LaserTagBox/`.
 
 4. In the configuration file, specify the map for the game.
 
@@ -36,19 +42,25 @@ To set up a LaserTag game, please follow these steps:
    ...
    "layers": [{
      ...
-     "file": <FileNameOfMap>,
+     "file": my_map.csv,
      ...
    }],
    ...
    ```
 
-   **Note:** `<FileNameOfMap>` if the name of the file that contains the map encoding.
+   **Note:** `my_map` is the name of the CSV file that contains the map encoding.
 
-   In `LaserTagBox/Resources/`, there are some default maps (CSV). You can generate your own maps using the following encoding:
+   In the directory `LaserTagBox/Resources/`, there are some default maps. You can generate your own maps using the following encoding:
 
-   - 0 = accessible cell
-   - 1 = inaccessible cell
+   - 0 = empty cell (accessible)
+   - 1 = `Barrier` (inaccessible)
+   - 2 = `Hill` (accessible)
+   - 3 = `Ditch` (accessible)
 
 5. Run `Program.cs`.
 
-6. After the simulation has finished, go to `Analysis/` and run `vis.py` to visualize the game.
+6. After the simulation has finished, go to the directory `Analysis/` and run the file `vis.py` to visualize the game. You can double-click the file in your file explorer, or run it via a terminal:
+
+   ```bash
+   python3 vis.py
+   ```
