@@ -167,7 +167,7 @@ In order to play the game as intended, please adhere to the following rules when
 \begin{enumerate}
   \item Only interact with the interface \texttt{IPlayerBody} to access the agent's physical representation.
   \item When interacting with the \texttt{PlayerMindLayer}, only invoke the \texttt{GetCurrentTick()} method. Other calls to the \texttt{PlayerMindLayer} are not allowed.
-  \item Your agent's constructor must be empty. \todo{Why?}
+  \item Your agent's constructor must be empty. %\todo{Why?}
   \item Loops that are known not to terminate after a reasonable time (example: \texttt{while(true)}) are not allowed.
   \item \texttt{PropertyDescription} tags for loading external information into your agents at runtime via an external configuration file are not allowed. The only allowed external data source is learned behavior for a learning agent.
 \end{enumerate}

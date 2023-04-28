@@ -64,7 +64,7 @@ LaserTag is a multi-agent game simulation written in \href{https://mars-group-ha
 Before beginning to work on your assignment, please complete the following steps.
 
 \begin{itemize}
-  \item \textbf{Communication:} Join the channel \underline{\# lasertag} in the Slack workspace \href{https://join.slack.com/t/mars-explorers/shared_invite/zt-recgxwyo-WWOpjkLFq69CxQtSrlBIxw}{MARS Explorers}. All communication about LaserTag and the competition will occur in this channel.
+  \item \textbf{Communication:} All communication about LaserTag and the competition will occur in the \emph{LaserTag} Channel in MS Teams.
   \item \textbf{Repository:} Clone the LaserTag \href{https://github.com/MARS-Group-HAW/model-mars-laser-tag-game}{GitHub repository}.
   \item \textbf{Documentation:} The LaserTag documentation (PDF) is in the \texttt{Documentation} directory of the repository. Please read it thoroughly to learn about the game's concepts and mechanisms.
   \item \textbf{Project Setup:} Set up LaserTag in \href{https://www.jetbrains.com/rider/}{JetBrains Rider}.
@@ -73,8 +73,8 @@ Before beginning to work on your assignment, please complete the following steps
   \item \textbf{Code:} The LaserTag source code includes the setup for the three or four agent teams that will compete in one simulation. Review and experiment with the code to learn about the game and how agents behave when calling different methods.
 \end{itemize}
 
-\section*{Goal of the Game}
-The objective of the game will be discussed and decided with you in the \underline{\# lasertag} Slack channel (see \textbf{Communication} above for the link to the Slack workspace).
+%\section*{Goal of the Game}
+%The objective of the game will be discussed and decided with you in the \underline{\# lasertag} Slack channel (see \textbf{Communication} above for the link to the Slack workspace).
 
 \section*{Your Assignment}
 Your assignment is to create two agent types. One will be a \emph{rule-based} agent type and the other will be a \emph{learning} agent type. Your agents will compete in the LaserTag competition against agents designed by other groups. The goal of this assignment is to
@@ -92,7 +92,7 @@ In this behavior modeling approach, your main task as developers is to define:
   \item \emph{states} that your agents can be in and
   \item \emph{rewards} that your agents receive for their \emph{actions}.
 \end{itemize}
-The states will be passed to a \href{https://en.wikipedia.org/wiki/Reinforcement\_learning}{reinforcement learning (RL)} algorithm that returns a corresponding \emph{action} for your agent to perform.~We recommend table-based \href{https://en.wikipedia.org/wiki/Q-learning}{$Q$-learning}.~Through this learning approach, your agent can store its experiences for state-action pairs in a table. By querying the table, the agent can let its experiences influence its behaviors in the present and future.
+The states will be passed to a reinforcement learning (RL) algorithm that returns a corresponding \emph{action} for your agent to perform.~Through this learning approach, your agent can store its experiences for state-action pairs in a table. By querying the table, the agent can let its experiences influence its behaviors in the present and future.
 
 The MARS Framework provides some base classes that you can use for your implementation:
 \begin{itemize}
@@ -101,7 +101,7 @@ The MARS Framework provides some base classes that you can use for your implemen
 \end{itemize}
 You can also implement from scratch or use external libraries. Here are some examples:
 \begin{itemize}
-  \item \href{https://learn.microsoft.com/en-us/archive/msdn-magazine/2018/august/test-run-introduction-to-q-learning-using-csharp (C\# documentation)}{Introduction to Q-Learning Using C\#}
+  \item \href{https://learn.microsoft.com/en-us/archive/msdn-magazine/2018/august/test-run-introduction-to-q-learning-using-csharp}{Introduction to Q-Learning Using C\#}
   \item \href{https://devindeep.com/how-to-implement-q-learning-algorithm-in-c/}{Implement Q-Learning Algorithm in C\#}
   \item \href{https://rubikscode.net/2022/08/29/machine-learning-with-ml-net-introduction/}{Introduction to Machine Learning with C\# and ML.NET}
 \end{itemize}
@@ -121,12 +121,12 @@ All implementations must satisfy the following constraints:
 \section*{Submission and Competition}
 
 \begin{itemize}
-  \item \textbf{Submit your agents:} Your agent types' source code must be submitted for the competition via LOCATION by HH:mm on DD.MM.yyyy. Submissions must include only your main class inheriting from \texttt{AbstractPlayerMind} and its associated classes, if any. \todo{To-do: Update date, time, location}
-  \item \textbf{Attend the competition:} The competition will begin on DD.MM.yyyy at HH:mm. The competition/tournament style will be discussed and decided with you in the LaserTag Slack channel (see above). \todo{To-do: Update date, time}
+  \item \textbf{Submit your agents:} Your agent types' source code must be submitted for the competition via Moodle. Submissions must include only your main class inheriting from \texttt{AbstractPlayerMind} and its associated classes, if any.
+  \item \textbf{Attend the competition:} The competition will take place in two phases. First, the best team per internship group will be selected. This team will then compete in the overall competition at the end. The exact procedure and deadlines will be communicated separately.
 \end{itemize}
 
 \section*{Questions and Feedback}
-Please submit any questions, feedback, feature requests, and bug reports via the LaserTag Slack channel. We (Nima Ahmady-Moghaddam and Jonathan Ströbele) will do our best to address them as soon as possible.
+Please submit any questions, feedback, feature requests, and bug reports via the LaserTag Teams channel.
 
 Happy coding and good luck! :)
 
