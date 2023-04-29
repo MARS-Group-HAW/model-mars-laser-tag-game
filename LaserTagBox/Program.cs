@@ -20,7 +20,7 @@ internal static class Program
         description.AddAgent<Ditch, PlayerBodyLayer>();
         description.AddAgent<Barrier, PlayerBodyLayer>();
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
-            
+
         // USER: Add agents here
         description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
         description.AddAgent<YourPlayerMindPleaseRenameCopy, PlayerMindLayer>();
