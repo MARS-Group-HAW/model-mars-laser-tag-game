@@ -1,7 +1,12 @@
 import csv
+import json
 import tkinter as tk
 import gui
 from pathlib import Path
+from xml.etree import ElementTree
+from xml.etree.ElementTree import Element
+
+LASER_TAG_BOX_ROOT_DIR = "../LaserTagBox/"
 
 BITMAPS = [
     "error",
@@ -302,15 +307,68 @@ def _create_cross(self, xy, **kwargs):
     return self.create_polygon(x0, y0, x1, y1, x, y, x2, y2, x3, y3, x, y, **kwargs)
 
 
+def get_config_file_name() -> str:
+    """
+    Gets the name of the JSON file that is read in Program.cs of the LaserTag project.
+
+    :raises FileNotFounderror: Raised if no JSON file is read in Program.cs
+    :return: The name of the JSON file
+    """
+    with open(f"{LASER_TAG_BOX_ROOT_DIR}Program.cs") as program_file:
+        for line in program_file.readlines():
+            if ".json" in line:
+                split_line: list[str] = line.split("\"")
+                return split_line[1]
+        else:
+            raise FileNotFoundError("No JSON file is read in Program.cs.")
+
+
+def get_map_file_name(config_file_name) -> str:
+    """
+    Gets the name (and extension) of the CSV map that is listed in the given JSON configuration file of the LaserTag
+    project.
+
+    :param config_file_name: The name of the given JSON configuration file.
+    :return: The name of the identified CSV map file
+    """
+    with open(f"{LASER_TAG_BOX_ROOT_DIR}{config_file_name}") as config_file:
+        laser_tag_config: dict = json.load(config_file)
+        map_file_path: str = laser_tag_config["layers"][0]["file"]
+        map_file_name: str = map_file_path[map_file_path.rindex("/")+1:]
+    return map_file_name
+
+
+def get_dotnet_version() -> str:
+    """
+    Gets the .NET version specified in the CSPROJ file of the LaserTag project.
+
+    :raises TypeError: Raised if the PropertyGroup or the TargetFramework tag is not present in the given CSPROJ file
+    :return: The .NET version
+    """
+    csproj_file_tree: ElementTree = ElementTree.parse(f"{LASER_TAG_BOX_ROOT_DIR}LaserTagBox.csproj")
+    tree_root: Element = csproj_file_tree.getroot()
+    for child_x in tree_root:
+        if child_x.tag == "PropertyGroup":
+            for child_y in child_x:
+                if child_y.tag == "TargetFramework":
+                    return child_y.text
+            else:
+                raise TypeError("The PropertyGroup tag of the CSPROJ must include a TargetFramework tag.")
+    else:
+        raise TypeError("The CSPROJ file must include a PropertyGroup tag")
+
+
 def main():
     tk.Canvas.create_circle = _create_circle
     tk.Canvas.create_cross = _create_cross
-    map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
-    path = "../LaserTagBox/bin/Debug/net6.0/PlayerBody.csv"
-    agent_data = agent_read_in(path, map)
-    gui.main(agent_data, map)
+    config_file_name: str = get_config_file_name()
+    map_file_name: str = get_map_file_name(config_file_name)
+    dotnet_version: str = get_dotnet_version()
+    advanced_agent_map: AdvancedAgentMap = map_read_in(f"{LASER_TAG_BOX_ROOT_DIR}Resources/{map_file_name}")
+    path_to_agent_csv_file: str = f"{LASER_TAG_BOX_ROOT_DIR}bin/Debug/{dotnet_version}/PlayerBody.csv"
+    agent_data = agent_read_in(path_to_agent_csv_file, advanced_agent_map)
+    gui.main(agent_data, advanced_agent_map)
 
 
 if __name__ == "__main__":
     main()
-    pass
