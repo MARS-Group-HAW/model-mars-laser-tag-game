@@ -19,7 +19,7 @@ The visualization works on the result data of a **finished** LaserTag simulation
 
 Open a terminal, navigate to the directory `Analysis/`, and start the visualization:
 
-- On macOS/Linus: `python3 vis.py`
+- On macOS/Linux: `python3 vis.py`
 - On Windows: `python vis.py`
 
 ## Troubleshooting
