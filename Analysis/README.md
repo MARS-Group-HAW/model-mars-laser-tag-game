@@ -1,12 +1,15 @@
-# Installation
+# LaserTag Visualization Tool
 
-This visualization tool requires [Python 3](https://www.python.org/downloads/) and `Tk`.
+This visualization tool can be used to visualize a finished LaserTag game simulation.
 
-You might need to install `tkinter` manually. On macOS this can be done with [Homebrew](https://brew.sh/) by executing the following command:
+## Installation
 
-```bash
-brew install python-tk
-```
+The visualization tool requires [Python 3](https://www.python.org/downloads/) and [Tkinter](https://docs.python.org/3/library/tkinter.html).
+
+You might need to install `tkinter` manually, either via your IDE or a package manager in the terminal:
+
+- On macOS: `brew install python-tk`
+- On Windows: `choco install python-tkinter`
 
 ## Preconditions
 
@@ -16,9 +19,8 @@ The visualization works on the result data of a **finished** LaserTag simulation
 
 Open a terminal, navigate to the directory `Analysis/`, and start the visualization:
 
-```bash
-python3 vis.py
-```
+- On macOS/Linus: `python3 vis.py`
+- On Windows: `python vis.py`
 
 ## Troubleshooting
 
@@ -26,7 +28,7 @@ Below are descriptions of some common issues and known fixes.
 
 ### Simulation configuration defines CSV output?
 
-The JSON configuration file for the LaserTag simulation (`config.json` in the directory `LaserTagBox/`) needs to specify `csv` as output format.
+The JSON configuration file for the LaserTag simulation (`config.json` in the directory `LaserTagBox/`) needs to specify `csv` as output format. This will make the MARS Framework produce a CSV output file with agent attributes per tick. This CSV file can be used be the visualization tool to render agent positions and other attributes.
 
 ```json
 {
@@ -45,23 +47,4 @@ The JSON configuration file for the LaserTag simulation (`config.json` in the di
  }
   // ... agent, entities and layer mappings
 }
-```
-
-### Which map is referenced?
-
-The visualization works on the agent output CSV files and displays the map. It must know which map was used for the simulation that should be visualized. Make sure that the correct map is referenced in the `main()` method in `vis.py`.
-
-```python
-def main():
-    map = map_read_in("../LaserTagBox/Resources/map_4_open.csv")
-```
-
-### Changed .NET execution framework?
-
-The visualization assumes that the simulation code is run in `net6.0`. Therefore, the result data are stored in a folder with the same name (e.g., `LaserTagBox/bin/Debug/net6.0`). If you run the program on another target framework, then the result data is also stored in subdirectory with a corresponding name (e.g., `LaserTagBox/bin/Debug/net7.0`). Please change the path of the CSV file accordingly in the `main()` method in `vis.py`.
-
-```python
-def main():
-    #...
-    path = '../LaserTagBox/bin/Debug/net6.0/PlayerBody.csv'
 ```
