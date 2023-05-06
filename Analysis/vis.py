@@ -311,7 +311,7 @@ def _create_cross(self, xy, **kwargs):
     return self.create_polygon(x0, y0, x1, y1, x, y, x2, y2, x3, y3, x, y, **kwargs)
 
 
-def get_config_file_name() -> str:
+def get_config_filename() -> str:
     """
     Gets the name of the JSON file that is read in Program.cs of the LaserTag project.
 
@@ -327,7 +327,7 @@ def get_config_file_name() -> str:
             raise FileNotFoundError("No JSON file is read in Program.cs.")
 
 
-def get_map_file_name() -> str:
+def get_map_filename() -> str:
     """
     Gets the name (and extension) of the CSV map that is listed in the given JSON configuration file of the LaserTag
     project.
@@ -336,17 +336,17 @@ def get_map_file_name() -> str:
     LaserTag root directory
     :return: The name of the identified CSV map file
     """
-    config_file_name: str = get_config_file_name()
-    path_to_config_file: str = f"{LASER_TAG_BOX_ROOT_DIR}{config_file_name}"
+    config_filename: str = get_config_filename()
+    path_to_config_file: str = f"{LASER_TAG_BOX_ROOT_DIR}{config_filename}"
 
     if not os.path.exists(path_to_config_file):
         raise FileNotFoundError(f"The file {path_to_config_file} does not exist.")
 
     with open(path_to_config_file) as config_file:
         laser_tag_config: dict = json.load(config_file)
-        map_file_path: str = laser_tag_config["layers"][0]["file"]
-        map_file_name: str = map_file_path[map_file_path.rindex("/") + 1:]
-    return map_file_name
+        map_filepath: str = laser_tag_config["layers"][0]["file"]
+        map_filename: str = map_filepath[map_filepath.rindex("/") + 1:]
+    return map_filename
 
 
 def get_dotnet_version() -> str:
@@ -372,9 +372,9 @@ def get_dotnet_version() -> str:
 def main():
     tk.Canvas.create_circle = _create_circle
     tk.Canvas.create_cross = _create_cross
-    map_file_name: str = get_map_file_name()
+    map_filename: str = get_map_filename()
     dotnet_version: str = get_dotnet_version()
-    advanced_agent_map: AdvancedAgentMap = map_read_in(f"{LASER_TAG_BOX_ROOT_DIR}Resources/{map_file_name}")
+    advanced_agent_map: AdvancedAgentMap = map_read_in(f"{LASER_TAG_BOX_ROOT_DIR}Resources/{map_filename}")
     path_to_agent_csv_file: str = f"{LASER_TAG_BOX_ROOT_DIR}bin/Debug/{dotnet_version}/PlayerBody.csv"
     agent_data = agent_read_in(path_to_agent_csv_file, advanced_agent_map)
     gui.main(agent_data, advanced_agent_map)
