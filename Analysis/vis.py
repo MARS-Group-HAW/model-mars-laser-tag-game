@@ -1,3 +1,4 @@
+import os
 import csv
 import json
 import tkinter as tk
@@ -236,7 +237,10 @@ def agent_read_in(file, map):
 
     my_file = Path(file)
     if not my_file.is_file():
-        print(f"Could not find agent CSV output file at `{file}`. Please make sure the path is correct, you might be running the simulation with a different .NET Framework version and need to change the path in the main() method of this file.")
+        print(
+            f"""Could not find agent CSV output file at `{file}`. Please make sure the path is correct, you might be
+            running the simulation with a different .NET Framework version and need to change the path in the main()
+            method of this file.""")
         exit()
 
     with open(file, "r") as f:
@@ -311,30 +315,37 @@ def get_config_file_name() -> str:
     """
     Gets the name of the JSON file that is read in Program.cs of the LaserTag project.
 
-    :raises FileNotFounderror: Raised if no JSON file is read in Program.cs
+    :raises FileNotFoundError: Raised if no JSON file is read in Program.cs
     :return: The name of the JSON file
     """
     with open(f"{LASER_TAG_BOX_ROOT_DIR}Program.cs") as program_file:
         for line in program_file.readlines():
-            if ".json" in line:
+            if not line.lstrip().startswith("//") and ".json" in line.lower():
                 split_line: list[str] = line.split("\"")
                 return split_line[1]
         else:
             raise FileNotFoundError("No JSON file is read in Program.cs.")
 
 
-def get_map_file_name(config_file_name) -> str:
+def get_map_file_name() -> str:
     """
     Gets the name (and extension) of the CSV map that is listed in the given JSON configuration file of the LaserTag
     project.
 
-    :param config_file_name: The name of the given JSON configuration file.
+    :raises FileNotFoundError: Raised if no JSON file with the given name exists in the Resources directory of the
+    LaserTag root directory
     :return: The name of the identified CSV map file
     """
-    with open(f"{LASER_TAG_BOX_ROOT_DIR}{config_file_name}") as config_file:
+    config_file_name: str = get_config_file_name()
+    path_to_config_file: str = f"{LASER_TAG_BOX_ROOT_DIR}{config_file_name}"
+
+    if not os.path.exists(path_to_config_file):
+        raise FileNotFoundError(f"The file {path_to_config_file} does not exist.")
+
+    with open(path_to_config_file) as config_file:
         laser_tag_config: dict = json.load(config_file)
         map_file_path: str = laser_tag_config["layers"][0]["file"]
-        map_file_name: str = map_file_path[map_file_path.rindex("/")+1:]
+        map_file_name: str = map_file_path[map_file_path.rindex("/") + 1:]
     return map_file_name
 
 
@@ -361,8 +372,7 @@ def get_dotnet_version() -> str:
 def main():
     tk.Canvas.create_circle = _create_circle
     tk.Canvas.create_cross = _create_cross
-    config_file_name: str = get_config_file_name()
-    map_file_name: str = get_map_file_name(config_file_name)
+    map_file_name: str = get_map_file_name()
     dotnet_version: str = get_dotnet_version()
     advanced_agent_map: AdvancedAgentMap = map_read_in(f"{LASER_TAG_BOX_ROOT_DIR}Resources/{map_file_name}")
     path_to_agent_csv_file: str = f"{LASER_TAG_BOX_ROOT_DIR}bin/Debug/{dotnet_version}/PlayerBody.csv"
