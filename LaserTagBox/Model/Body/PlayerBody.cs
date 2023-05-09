@@ -73,6 +73,8 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// <exception cref="InvalidOperationException">Thrown if this method is called manually</exception>
     public override void Tick()
     {
+        base.Tick();
+        
         if (!Alive) return;
         if (_currentTick == Battleground.GetCurrentTick())
             throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
