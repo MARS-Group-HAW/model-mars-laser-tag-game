@@ -277,7 +277,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     /// <param name="enemy">The PlayerBody whose visibility relative to the caller is to be determined</param>
     /// <returns>boolean</returns>
-    private bool IsVisible(PlayerBody enemy) => enemy.VisibilityRange >= GetDistance(enemy.Position);
+    private bool IsVisible(PlayerBody enemy) => Battleground.GetIntValue(Position) is 2 or 3 || enemy.VisibilityRange >= GetDistance(enemy.Position);
         
     /// <summary>
     ///     Moves the agent to the given position.

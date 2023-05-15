@@ -234,7 +234,10 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
             var intValue = GetIntValue(x, y);
             if (intValue is 1 or 2)
             {
-                return false;
+                if (!((x == (int)x1 && y == (int)y1) || (x == (int)x2 && y == (int)y2)))
+                {
+                    return false;
+                }
             }
 
             numerator += shortest;
