@@ -211,6 +211,12 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
     {
         var xGoal = Math.Floor(goal.X);
         var yGoal = Math.Floor(goal.Y);
+        
+        if (!Battleground.IsInRaster(goal))
+        {
+            return false;
+        }
+        
         if ((int) Battleground[xGoal, yGoal] == 1)
         {
             HasMoved = true;
