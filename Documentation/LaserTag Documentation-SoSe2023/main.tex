@@ -48,6 +48,7 @@
 \usepackage{xcolor}
 %\usepackage[htt]{hyphenat}
 %\usepackage{lmodern}
+\usepackage{fontawesome}
 \parindent 0pt
 \bibliographystyle{alphadin}
 \newcommand\todo[1]{\textcolor{red}{#1}}
@@ -215,29 +216,49 @@ Below are the properties provided by the \texttt{IPlayerBody} interface that an 
 \end{itemize}
 %
 \subsection{Methods} \label{ssec:methods}
-Below are the methods provided by the \texttt{IPlayerBody} interface that an agent's mind can call to guide its body. The digit at the end of the method name indicates the number of \texttt{ActionPoints} required to execute the method. Methods with no digit at the end cost zero \texttt{ActionPoints}.
+Below are the methods provided by the \texttt{IPlayerBody} interface that an agent's mind can call to guide its body. The digit at the end of the method name indicates the number of \texttt{ActionPoints} required to execute the method. Methods with no digit at the end of the name cost zero \texttt{ActionPoints}.
+
+\faLightbulbO\: \textbf{Note:}~In general, a method call is not executed if the caller does not have enough \texttt{ActionPoints}. In this case, the method returns \texttt{false} or \texttt{null}. Please refer to individual method signatures and implementations (and the detailed descriptions below) for more information on return values of specific methods.
 %
 \subsubsection{Movement Methods} \label{sssec:movMeth}
 \begin{itemize}
-  \item \texttt{ChangeStance2(Stance)}: This method takes a \texttt{Stance} and allows the calling agent to change between three possible stances: \texttt{Standing}, \texttt{Kneeling}, and \texttt{Lying}. Stance changes affect the values of the agent's \texttt{VisualRange}, \texttt{VisibilityRange}, and movement speed (see Section~\ref{sssec:explAttr}).
+  \item \texttt{ChangeStance2(Stance)}: This method takes a \texttt{Stance} and allows the calling agent to change between three possible stances: \texttt{Standing}, \texttt{Kneeling}, and \texttt{Lying}. Stance changes affect the values of the agent's \texttt{VisualRange}, \texttt{VisibilityRange}, and movement speed (see Section~\ref{sssec:explAttr}). This method has no return value.
   \item \texttt{GoTo(Position) :~bool}: This is the main method used for pathfinding, movement, and path readjustment. When an agent invokes the method, the method devises a path from the agent's current position to the given \texttt{Position}. Each subsequent invocation of \texttt{GoTo(Position)} with the same destination will, if possible, move the agent one step closer to the destination until the destination is reached.
   
   In order for the agent to change its path before reaching its current destination, \texttt{GoTo(Position)} must be called with a different destination. For example, if the agent is currently moving towards the \texttt{Position} (a, b), this movement process can be interrupted and replaced by a new movement process by calling \texttt{goto((c, d))}, where \texttt{c != a} or \texttt{d != b}.
   
-  The method returns \texttt{true} when a move was made and \texttt{false} when, for any reason, a move was not made. \textbf{Note:} if \texttt{GoTo(Position)} is called with a destination that refers to a grid cell that is inaccessible (because there is a \texttt{Barrier} on it), then no path is calculated and no movement is initiated towards the specified destination.
+  The method returns \texttt{true} if a move was made and \texttt{false} if, for any reason, a move was not made.
+  
+  \faLightbulbO\: \textbf{Note:}~If \texttt{GoTo(Position)} is called with a destination that refers to a grid cell that is inaccessible (because there is a \texttt{Barrier} on it or because it lies outside of the environment), then no path is calculated and no movement is initiated.
   
   For more information on \texttt{GoTo(Position)}, see Section~\ref{sssec:movement}.
 \end{itemize}
 %
 \subsubsection{Exploration methods} \label{sssec:explMeth}
 \begin{itemize}
-  \item \texttt{ExploreBarriers1() :~List<Position>}: Returns a list of positions of \texttt{Barrier} objects that are in the caller's \texttt{VisualRange} and which the caller can see (\texttt{HasBeeline == true}).
+  \item \texttt{ExploreBarriers1() :~List<Position>}: Returns a (potentially empty) list of positions of \texttt{Barrier} objects that are in the caller's \texttt{VisualRange} and which the caller can see (\texttt{HasBeeline == true}).
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
   \item \texttt{ExploreDitches1() :~List<Position>}: Returns a list of positions of \texttt{Ditch} objects that are in the caller's \texttt{VisualRange} and which the caller can see (\texttt{HasBeeline == true}).
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
   \item \texttt{ExploreHills1() :~List<Position>}: Returns a list of positions of \texttt{Hill} objects that are in the caller's \texttt{VisualRange} and which the caller can see (\texttt{HasBeeline == true}).
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
   \item \texttt{ExploreEnemies1() :~List<EnemySnapshot>}: Performs an exploration of opponents in the caller's \texttt{VisualRange} and which the caller can see (\texttt{HasBeeline == true}). Returns a list of \texttt{EnemySnapshot} structs, offering limited information about the identified opponents.
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
   \item \texttt{ExploreTeam() :~List<IPlayerBody>}: Returns a list of \texttt{FriendSnapshot} structs, offering limited information about the caller's team members.
-  \item \texttt{GetDistance(Position) :~int}: This method returns the shortest distance (measured in the the number of grid cells) from the calling agent's current position to the specified \texttt{Position}. In order for the distance to be calculable, the grid cell specified by \texttt{Position} must be visible (based on \texttt{HasBeeline1(Position)}). If the distance to the grid cell specified by \texttt{Position} is not calculable, the method returns \texttt{-1}.
-  \item \texttt{HasBeeline1(Position) :~bool}: This method may be called by an agent to check if the line of sight between its current position and the grid cell denoted by \texttt{Position} is free from vision-blocking obstacles (i.e., \texttt{Barrier} or \texttt{Hill} objects). If it is, the method returns \texttt{true}, otherwise \texttt{false}.
+  %
+  \item \texttt{GetDistance(Position) :~int}: Returns the shortest distance (measured in the the number of grid cells) from the caller's current position to the specified \texttt{Position}. In order for the distance to be calculable, the grid cell specified by \texttt{Position} must be visible (based on \texttt{HasBeeline1(Position)}). If the distance to the grid cell specified by \texttt{Position} is not calculable, the method returns \texttt{-1}.
+  %
+  \item \texttt{HasBeeline1(Position) :~bool}: This method may be called by an agent to check if the line of sight between its current position and the grid cell denoted by \texttt{Position} is free from vision-blocking obstacles (i.e., \texttt{Barrier} or \texttt{Hill} objects). If it is, the method returns \texttt{true}. If it is not (or if the caller does not have enough \texttt{ActionPoints}), the method returns \texttt{false}.
+
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{false} if the caller does not have enough \texttt{ActionPoints}.
 \end{itemize}
 %
 \subsubsection{Tagging methods} \label{sssec:tagMeth}
@@ -245,9 +266,13 @@ Below are the methods provided by the \texttt{IPlayerBody} interface that an age
   \item \texttt{Tag5(Position)}: This method takes a \texttt{Position} and prompts the calling agent to fire a shot onto the grid cell encoded by the position. If an enemy agent is currently located at that position, then that agent is tagged.
   
   Tagging is implemented as a probability-based process that is influenced by both agents' \texttt{Stance} and current positions (ground, \texttt{Hill}, or \texttt{Ditch}). For example, an agent in the \texttt{Lying} stance has higher accuracy but shorter \texttt{VisualRange}. If an agent is tagged, its \texttt{Energy} is decreased by $10$ and the property \texttt{WasTaggedLastTick} is set to \texttt{true}. The tagging agent's \texttt{GamePoints} is increased by $10$.
+
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{false} if the caller does not have enough \texttt{ActionPoints}.
   
   For more information on tagging, see Section \ref{sssec:tagging}.
-  \item \texttt{Reload3()}: This method prompts the calling agent to reload its tag gun. This is necessary when \texttt{RemainingShots == 0} so that the agent can continue tagging enemies. A successful call to \texttt{Reload3()} refills the calling agent's \texttt{RemainingShots} to $5$.
+  %
+  \item \texttt{Reload3()}: Reloads the caller's tag gun. This is necessary when \texttt{RemainingShots == 0} so that the agent can continue tagging enemies. A successful call to \texttt{Reload3()} refills the calling agent's \texttt{RemainingShots} to $5$. This method does not return anything.
+
 \end{itemize}
 %
 % ======================================================================
