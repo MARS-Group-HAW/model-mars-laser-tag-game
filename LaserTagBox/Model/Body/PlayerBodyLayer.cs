@@ -80,7 +80,7 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
         if (Context.CurrentTick % 100 == 0)
             Console.WriteLine($"Current tick: {Context.CurrentTick}");
 
-        if (Context.CurrentTimePoint == Context.EndTimePoint)
+        if (Context.CurrentTick == Context.MaxTicks)
         {
             Console.WriteLine();
 

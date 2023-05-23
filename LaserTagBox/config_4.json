@@ -1,9 +1,6 @@
 {
   "globals": {
-    "startTime": "2021-01-01T10:00:00.000Z",
-    "endTime": "2021-01-01T10:30:00.000Z",
-    "deltaT": 1,
-    "deltaTUnit": "seconds",
+    "steps": 1800,
     "output": "csv",
     "options": {
       "delimiter": ";",
@@ -14,7 +11,7 @@
   "layers": [
     {
       "name": "PlayerBodyLayer",
-      "file": "Resources/rec1_Battleground.csv",
+      "file": "Resources/rec0_Battleground.csv",
       "dimensionx": 51,
       "dimensiony": 51
     }
