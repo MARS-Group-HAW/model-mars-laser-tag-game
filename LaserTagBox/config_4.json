@@ -11,7 +11,7 @@
   "layers": [
     {
       "name": "PlayerBodyLayer",
-      "file": "Resources/rec0_Battleground.csv",
+      "file": "Resources/rec1_Battleground.csv",
       "dimensionx": 51,
       "dimensiony": 51
     }
