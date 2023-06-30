@@ -2,6 +2,7 @@
 using System.IO;
 using LaserTagBox.Model.Body;
 using LaserTagBox.Model.Mind;
+using LaserTagBox.Model.Mind.Examples;
 using LaserTagBox.Model.Spots;
 using Mars.Components.Starter;
 using Mars.Interfaces.Model;
@@ -21,12 +22,18 @@ internal static class Program
         description.AddAgent<Barrier, PlayerBodyLayer>();
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
 
+        // Example teams
+        description.AddAgent<Example8Rule, PlayerMindLayer>();
+        description.AddAgent<Example7QL, PlayerMindLayer>();
+        description.AddAgent<Example2, PlayerMindLayer>();
+        description.AddAgent<Example10Rule, PlayerMindLayer>();
+
         // USER: Add agents here
-        description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
-        description.AddAgent<YourPlayerMindPleaseRenameCopy, PlayerMindLayer>();
+        //description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
+        //description.AddAgent<YourPlayerMindPleaseRenameCopy, PlayerMindLayer>();
 
         // USER: Specify JSON configuration file here
-        var file = File.ReadAllText("config_4.json");
+        var file = File.ReadAllText("config.json");
         var config = SimulationConfig.Deserialize(file);
 
         var starter = SimulationStarter.Start(description, config);
