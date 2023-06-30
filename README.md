@@ -6,9 +6,9 @@ For project setup, game rules, agent interfaces, and more information on everyth
 
 ## Usage
 
-LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application. To work with it, open the directory `LaserTagBox/` with [JetBrains Rider](https://www.jetbrains.com/rider/).
+LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application. To work with it, open the directory `LaserTagBox/` with a .NET IDE of your choice (e.g., [Visual Studio](https://visualstudio.microsoft.com/), [JetBrains Rider](https://www.jetbrains.com/rider/), or [VS Code](https://code.visualstudio.com/)).
 
-**Note:** MARS integrates into Rider via a [NuGet](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the NuGet package manager in Rider to search for and install the NuGet package `Mars.Life.Simulations`.
+**Note:** The MARS Framework integrates into LaserTag via a [nuget](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the nuget package manager of your IDE to search for and install the nuget package `Mars.Life.Simulations`.
 
 ## Game Setup
 
@@ -64,3 +64,9 @@ To set up a LaserTag game, follow these steps:
    ```bash
    python3 vis.py
    ```
+
+## Contact
+
+Prof. Dr. Thomas Clemen, Berliner Tor 7, 20099 Hamburg, Germany  
+eMail: [thomas.clemen@haw-hamburg.de](mailto:thomas.clemen@haw-hamburg.de)  
+Web: [www.mars-group.org](https://www.mars-group.org)
