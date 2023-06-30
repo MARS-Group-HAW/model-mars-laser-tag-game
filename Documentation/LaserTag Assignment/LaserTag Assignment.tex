@@ -1,61 +1,71 @@
-\documentclass[
-    a4paper,
-    english,
-    DIV=16,
-    11pt,
-    parskip=half,
-]{scrartcl}
+\documentclass[a4paper,english,DIV=16,11pt,parskip=half,dvipsnames,listof=totoc,index=totoc,bibliography=totoc]{scrartcl}
+\usepackage{graphicx}
+\usepackage{framed}
 \usepackage[
-  pdfhighlight=/O,
-  colorlinks,
-  linkcolor=blue,
-  urlcolor=blue,
-  citecolor=black,
-  filecolor=black,
-  breaklinks,
-  bookmarksopen,
-  bookmarksopenlevel=1,
-  linktocpage
-] {hyperref}
+pdfhighlight=/O,
+colorlinks,
+linkcolor=blue,
+urlcolor=blue,
+citecolor=black,
+filecolor=black,
+breaklinks,
+bookmarksopen,
+bookmarksopenlevel=1,
+linktocpage
+]{hyperref}  % PDF support with links
 \usepackage[english]{babel}
-\usepackage[dvips]{graphicx}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{marvosym}
 \usepackage{float}
 \usepackage{microtype}
-\usepackage{xcolor}
 \usepackage{textcomp}
 \usepackage{tikz}
 \usepackage{pstricks}
-\usepackage[
-  firstpage=true,
-  scale=1,
-  angle=0,
-  position={current page.north},
-  hshift=7.5cm, 
-  vshift=-1.0cm,
-  opacity=1,
-  contents={%
-    \includegraphics[width=5cm,keepaspectratio]{../logos/mars_logo.png}%
-  }%
-]{background}
 \usepackage{dirtytalk}
+\usepackage{xcolor}
+\usepackage[htt]{hyphenat}
+\usepackage{lmodern}
 \usepackage{fontawesome}
-
 \parindent 0pt
 \bibliographystyle{alphadin}
 \newcommand\todo[1]{\textcolor{red}{#1}}
 
-\title{WP Artificial Intelligence and Software Agents}
-\subtitle{LaserTag Group Competition: Assignment}
-\author{MARS Group}
-\date{\today}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 \setcounter{secnumdepth}{3}
 
-% ======================================================================
-
 \begin{document}
-\maketitle
+	
+\begin{titlepage}		
+	\begin{minipage}{\textwidth}
+		\noindent
+		\includegraphics[width=5cm]{../logos/HAW_Hamburg.jpeg}
+		\hfill
+		\includegraphics[width=4cm]{../logos/mars_logo.png}
+	\end{minipage}\\
+		
+	\vspace{5cm}
+		
+	\begin{minipage}{\textwidth}
+		\noindent
+		\centering
+		{\huge MARS LaserTag Game}\\[0.5cm]
+		{\LARGE Part I: Handbook}\\[0.5cm]
+		{\large \textsf{\today}}
+	\end{minipage}\\
+		
+	\vfill
+		
+	\begin{framed}
+		\begin{minipage}{\textwidth}
+			Contact:\\ Prof.~Dr.~Thomas Clemen, Berliner Tor 7, 20099 Hamburg, Germany\\
+			eMail: \href{mailto:thomas.clemen@haw-hamburg.de}{thomas.clemen@haw-hamburg.de}\\
+			Web: \url{www.mars-group.org}
+		\end{minipage}
+			
+	\end{framed}
+\end{titlepage}
+
 \section*{LaserTag: Game Description}
 LaserTag is a multi-agent game simulation written in \href{https://mars-group-haw.github.io/index.html}{MARS}. The game consists of three or four teams -- each made up of three agents -- competing against each other. Team members need to coordinate with each other and be careful not to become overpowered by agents from other teams. To play the game well, agent behavior needs to be designed intelligently such that each agent interacts with its environment, its team members, and its opponents to work towards the common goal of the team.
 

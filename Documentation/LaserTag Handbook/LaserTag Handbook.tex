@@ -1,14 +1,6 @@
-\documentclass[
-  a4paper,
-  english,
-  DIV=16,
-  11pt,
-  parskip=half,
-  dvipsnames,
-  listof=totoc,		     % lists to toc
-  index=totoc,		     % index to toc
-  bibliography=totoc,	 % bibliography to toc
-]{scrartcl}
+\documentclass[a4paper,english,DIV=16,11pt,parskip=half,dvipsnames,listof=totoc,index=totoc,bibliography=totoc]{scrartcl}
+\usepackage{graphicx}
+\usepackage{framed}
 \usepackage[
   pdfhighlight=/O,
   colorlinks,
@@ -22,20 +14,6 @@
   linktocpage
 ]{hyperref}  % PDF support with links
 \usepackage[english]{babel}
-\usepackage[dvips]{graphicx}
-\usepackage{eso-pic}
-\usepackage[
-  firstpage=true,
-  scale=1,
-  angle=0,
-  position={current page.north},
-  hshift=7.5cm, 
-  vshift=-2.5cm,
-  opacity=1,
-  contents={%
-    \includegraphics[width=5cm,keepaspectratio]{../logos/mars_logo.png}%
-  }%
-]{background}
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{marvosym}
@@ -46,23 +24,50 @@
 \usepackage{pstricks}
 \usepackage{dirtytalk}
 \usepackage{xcolor}
-%\usepackage[htt]{hyphenat}
-%\usepackage{lmodern}
+\usepackage[htt]{hyphenat}
+\usepackage{lmodern}
 \usepackage{fontawesome}
 \parindent 0pt
 \bibliographystyle{alphadin}
 \newcommand\todo[1]{\textcolor{red}{#1}}
 
-\title{LaserTag}
-\subtitle{An Agent-Based Simulation Game}
-\author{MARS Group}
-\date{\today\\Version 1.0}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 \setcounter{secnumdepth}{3}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+
+\begin{minipage}{\textwidth}
+\noindent
+\includegraphics[width=5cm]{../logos/HAW_Hamburg.jpeg}
+\hfill
+\includegraphics[width=4cm]{../logos/mars_logo.png}
+\end{minipage}\\
+
+\vspace{5cm}
+
+\begin{minipage}{\textwidth}
+\noindent
+\centering
+{\huge MARS LaserTag Game}\\[0.5cm]
+{\LARGE Part I: Handbook}\\[0.5cm]
+{\large \textsf{\today}}
+\end{minipage}\\
+
+\vfill
+
+\begin{framed}
+	\begin{minipage}{\textwidth}
+		Contact:\\ Prof.~Dr.~Thomas Clemen, Berliner Tor 7, 20099 Hamburg, Germany\\
+		eMail: \href{mailto:thomas.clemen@haw-hamburg.de}{thomas.clemen@haw-hamburg.de}\\
+		Web: \url{www.mars-group.org}
+	\end{minipage}
+
+\end{framed}
+
+\end{titlepage}
+
 %
 % ======================================================================
 %
