@@ -11,6 +11,7 @@ LaserTagBox/bin
 LaserTagBox/obj
 .metadata
 .idea
+.Rhistory
 
 # Analysis and Visualization files (Python)
 *.pyc
