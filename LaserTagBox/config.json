@@ -11,16 +11,30 @@
   "layers": [
     {
       "name": "PlayerBodyLayer",
-      "file": "Resources/rec1_Battleground.csv",
+      "file": "Resources/ctf_Battleground.csv",
       "dimensionx": 51,
-      "dimensiony": 51
+      "dimensiony": 51,
+      "mapping": [
+        {
+          "parameter": "Visualization",
+          "value": true
+        },
+        {
+          "parameter": "VisualizationTimeout",
+          "value": 180
+        },
+        {
+          "parameter": "Mode",
+          "value": 1
+        }
+      ]
     }
   ],
   "agents": [
     {
       "name": "PlayerBody",
-      "count": 12,
-      "file": "Resources/player_positions_4.csv"
+      "count": 6,
+      "file": "Resources/player_positions_2.csv"
     },
     {
       "name": "Barrier",

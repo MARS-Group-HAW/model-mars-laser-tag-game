@@ -1,5 +1,6 @@
 using System.Linq;
 using LaserTagBox.Model.Body;
+using LaserTagBox.Model.Shared;
 
 namespace LaserTagBox.Model.Spots;
 
@@ -15,6 +16,14 @@ public class Ditch : OccupiableSpot
 /// </summary>
 public class Hill : OccupiableSpot
 {
+}
+
+/// <summary>
+///
+/// </summary>
+public class FlagStand : OccupiableSpot
+{
+    public Color Color { get; set; }
 }
 
 /// <summary>

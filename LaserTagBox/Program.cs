@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using LaserTagBox.Model.Body;
+using LaserTagBox.Model.Items;
 using LaserTagBox.Model.Mind;
 using LaserTagBox.Model.Mind.Examples;
 using LaserTagBox.Model.Spots;
@@ -20,13 +21,15 @@ internal static class Program
         description.AddAgent<Hill, PlayerBodyLayer>();
         description.AddAgent<Ditch, PlayerBodyLayer>();
         description.AddAgent<Barrier, PlayerBodyLayer>();
+        description.AddAgent<FlagStand, PlayerBodyLayer>();
+        description.AddAgent<Flag, PlayerBodyLayer>();
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
 
         // Example teams
         description.AddAgent<Example8Rule, PlayerMindLayer>();
         description.AddAgent<Example7QL, PlayerMindLayer>();
-        description.AddAgent<Example2, PlayerMindLayer>();
-        description.AddAgent<Example10Rule, PlayerMindLayer>();
+        // description.AddAgent<Example2, PlayerMindLayer>();
+        // description.AddAgent<Example10Rule, PlayerMindLayer>();
 
         // USER: Add agents here
         //description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();

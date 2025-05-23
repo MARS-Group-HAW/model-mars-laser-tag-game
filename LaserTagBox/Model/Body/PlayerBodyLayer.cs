@@ -6,9 +6,14 @@ using LaserTagBox.Model.Spots;
 using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Core.Data;
+using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Data;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
+using System.Threading;
+using LaserTagBox.Model.Items;
+using Barrier = LaserTagBox.Model.Spots.Barrier;
+
 
 namespace LaserTagBox.Model.Body;
 
@@ -20,9 +25,32 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 {
     #region Properties
     /// <summary>
+    ///    Determines whether the layer should be visualized in a separate window.
+    /// </summary>
+    [PropertyDescription]
+    public bool Visualization { get; set; }
+    
+    /// <summary>
+    ///    The timeout for the visualization server to wait for the next tick.
+    /// </summary>
+    [PropertyDescription]
+    public int VisualizationTimeout { get; set; }
+    
+    /// <summary>
+    ///    The game mode of the simulation.
+    /// </summary>
+    [PropertyDescription]
+    public GameMode Mode { get; set; }
+    
+    /// <summary>
     ///     A dictionary of agent bodies, identified by their GUID.
     /// </summary>
     public Dictionary<Guid, PlayerBody> Bodies { get; private set; }
+    
+    /// <summary>
+    ///    A dictionary of items, identified by their GUID.
+    /// </summary>
+    public Dictionary<Guid, Item> Items { get; private set; }
 
     /// <summary>
     ///     Holds all agents in a 2-dimensional area for exploration purposes.
@@ -33,6 +61,11 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     ///     Holds all spots in a 2-dimensional area for exploration purposes.
     /// </summary>
     public SpatialHashEnvironment<Spot> SpotEnv { get; private set; }
+    
+    /// <summary>
+    ///     Holds all items in a 2-dimensional area for exploration purposes.
+    /// </summary>
+    public SpatialHashEnvironment<Item> ItemEnv { get; private set; }
 
     /// <summary>
     ///     Responsible for creating new agents and initializing them with required dependencies.
@@ -53,13 +86,20 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
         UnregisterAgent unregisterAgentHandle = null)
     {
         base.InitLayer(layerInitData, registerAgentHandle, unregisterAgentHandle);
-
+        
+        if (Visualization) DataVisualizationServer.RunInBackground();
+        
         FighterEnv = new SpatialHashEnvironment<PlayerBody>(Width - 1, Height - 1) {CheckBoundaries = true};
         SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) {CheckBoundaries = true};
+        ItemEnv = new SpatialHashEnvironment<Item>(Width - 1, Height - 1) {CheckBoundaries = true};
         AgentManager = layerInitData.Container.Resolve<IAgentManager>();
 
         Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().ToDictionary(body => body.ID);
-
+        
+        Items = new Dictionary<Guid, Item>();
+        
+        Console.WriteLine(Mode.ToString());
+        
         for (var x = 0; x < Width; x++)
         {
             for (var y = 0; y < Height; y++)
@@ -86,7 +126,13 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 
             foreach (var team in Bodies.Values.GroupBy(body => body.TeamName))
             {
-                Console.WriteLine($"{team.Key} {team.Sum(body => body.GamePoints)}");
+                var gamePoints = Mode switch
+                {
+                    GameMode.TeamDeathmatch => team.Sum(b => b.GamePoints),
+                    GameMode.CaptureTheFlag => team.Sum(b => b.GamePoints),
+                    _ => 0
+                };
+                Console.WriteLine($"{team.Key} {gamePoints}");
             }
 
             Console.WriteLine();
@@ -100,7 +146,21 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 
     public void PostTick()
     {
-        //do nothing
+        if (Visualization)
+        {
+            while (!DataVisualizationServer.Connected())
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("Waiting for live visualization to run.");
+            }
+            
+            DataVisualizationServer.SendData(Bodies.Values, Items.Values);
+            Console.WriteLine(Context.CurrentTick + 1);
+            while (DataVisualizationServer.CurrentTick != Context.CurrentTick + 1)
+            {
+                Thread.Sleep(VisualizationTimeout);
+            }
+        }
     }
     #endregion
         
@@ -264,13 +324,36 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     /// <returns>A reference to the initialized OOI</returns>
     private Spot CreateSpots(double type, Position position)
     {
-        return type switch
+        Spot spot = null;
+
+        switch (type)
         {
-            1 => AgentManager.Spawn<Barrier, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First(),
-            2 => AgentManager.Spawn<Hill, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First(),
-            3 => AgentManager.Spawn<Ditch, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First(),
-            _ => null
-        };
+            case 1:
+                spot = AgentManager.Spawn<Barrier, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                break;
+            case 2:
+                spot = AgentManager.Spawn<Hill, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                break;
+            case 3:
+                spot = AgentManager.Spawn<Ditch, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                break;
+            case 7:
+                spot = AgentManager.Spawn<FlagStand, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                ((FlagStand)spot).Color = Color.Red;
+                var redFlag = AgentManager.Spawn<Flag, PlayerBodyLayer>(null, f => f.Position = position).Take(1).First();
+                redFlag.Color = Color.Red;
+                Items.Add(redFlag.ID, redFlag);
+                break;
+            case 8:
+                spot = AgentManager.Spawn<FlagStand, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                ((FlagStand)spot).Color = Color.Yellow;
+                var yellowFlag = AgentManager.Spawn<Flag, PlayerBodyLayer>(null, f => f.Position = position).Take(1).First();
+                yellowFlag.Color = Color.Yellow;
+                Items.Add(yellowFlag.ID, yellowFlag);
+                break;
+        }
+
+        return spot;
     }
     #endregion
 }
