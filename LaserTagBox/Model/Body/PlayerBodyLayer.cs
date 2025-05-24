@@ -105,7 +105,6 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
         Items = new Dictionary<Guid, Item>();
         
         Score = new Dictionary<Color, TeamScore>();
-        Console.WriteLine(Mode.ToString());
         
         for (var x = 0; x < Width; x++)
         {
@@ -178,8 +177,10 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                             }
                             else // Bring flag back to flag stand
                             {
+                                // Console.WriteLine(flag.Position);
                                 var homestand  = flagStands.First(fs => fs.Color == player.Color).Position;
                                 ItemEnv.PosAt(flag, homestand.X, homestand.Y);
+                                // Console.WriteLine(flag.Position);
                             }
                         }
                         if (flagstand != null && flagstand.Color == player.Color && flag.PickedUp) // Drop flag
@@ -414,6 +415,12 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                 break;
             case 3:
                 spot = AgentManager.Spawn<Ditch, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                break;
+            case 4:
+                spot = AgentManager.Spawn<Water, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
+                break;
+            case 5:
+                spot = AgentManager.Spawn<ExplosiveBarrel, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();
                 break;
             case 7:
                 spot = AgentManager.Spawn<FlagStand, PlayerBodyLayer>(null, s => s.Position = position).Take(1).First();

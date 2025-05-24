@@ -236,6 +236,13 @@ public class PlayerBody : MovingAgent, IPlayerBody
 
         if (!HasBeeline(aimedPosition)) return false;
 
+        var barrel = (ExplosiveBarrel)Battleground.SpotEnv.Explore(aimedPosition, 0)
+            .Where(b => b.GetType() == typeof(ExplosiveBarrel)).FirstOrDefault(b => ((ExplosiveBarrel)b).HasExploded == false);
+        if (barrel != null)
+        {
+            barrel.Tagged();
+            return true;
+        }
         var enemy = Battleground.GetAgentOn(aimedPosition);
         if (enemy == null) return false;
         if (enemy.Color == Color) return false;
@@ -362,6 +369,20 @@ public class PlayerBody : MovingAgent, IPlayerBody
         if (Energy >= 0) return false;
         Die();
         return true;
+    }
+
+    /// <summary>
+    ///    Handles the agent's explosion damage.
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeExplosionDamage(int damage)
+    {
+        _tickWhenLastTagged = _currentTick;
+        Energy -= damage;
+        if (Energy <= 0)
+        {
+            Die();
+        }
     }
 
     /// <summary>

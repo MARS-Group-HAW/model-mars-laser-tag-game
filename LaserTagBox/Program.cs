@@ -23,11 +23,16 @@ internal static class Program
         description.AddAgent<Barrier, PlayerBodyLayer>();
         description.AddAgent<FlagStand, PlayerBodyLayer>();
         description.AddAgent<Flag, PlayerBodyLayer>();
+        description.AddAgent<ExplosiveBarrel, PlayerBodyLayer>();
+        description.AddAgent<Water, PlayerBodyLayer>();
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
 
         // Example teams
-        description.AddAgent<FlagCollector, PlayerMindLayer>();
-        description.AddAgent<Example7QL, PlayerMindLayer>();
+        // description.AddAgent<FlagCollector, PlayerMindLayer>();
+        // description.AddAgent<SecondFlagCollector, PlayerMindLayer>();
+        description.AddAgent<BarrelAdmirer, PlayerMindLayer>();
+        description.AddAgent<BarrelShooter, PlayerMindLayer>();
+        // description.AddAgent<Example7QL, PlayerMindLayer>();
         // description.AddAgent<IdleAgent, PlayerMindLayer>();
         // description.AddAgent<Example2, PlayerMindLayer>();
         // description.AddAgent<Example10Rule, PlayerMindLayer>();

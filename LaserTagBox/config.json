@@ -11,7 +11,7 @@
   "layers": [
     {
       "name": "PlayerBodyLayer",
-      "file": "Resources/ctf_Battleground.csv",
+      "file": "Resources/test_Battleground.csv",
       "dimensionx": 51,
       "dimensiony": 51,
       "mapping": [
