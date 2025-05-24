@@ -14,11 +14,12 @@ using Mars.Interfaces.Environments;
 namespace LaserTagBox.Model.Body;
 public static class DataVisualizationServer
 {
-    public static volatile int CurrentTick = -1; 
+    public static volatile int CurrentTick = 1; 
     private static IWebSocketConnection _client; 
     private static WebSocketServer _server; 
     private static CancellationTokenSource _cts; 
     private static Task _serverTask; 
+    private static string _lastMessage = string.Empty;
 
     public static void Start()
     {
@@ -37,6 +38,14 @@ public static class DataVisualizationServer
             {
                 if (int.TryParse(message, out var tick))
                 {
+                    if (tick != CurrentTick + 1)
+                    {
+                        if (_client != null && _client.IsAvailable)
+                        {
+                            _client.Send(_lastMessage);
+                        }
+                        return;
+                    }
                     CurrentTick = tick;
                 }
             };
@@ -84,6 +93,7 @@ public static class DataVisualizationServer
     {
         var payload = new
         {
+            expectingTick = CurrentTick + 1,
             agents = bodies.Select(b => new
             {
                 id = b.ID,
@@ -131,8 +141,8 @@ public static class DataVisualizationServer
                 score = t.GamePoints
             })
         };
-        string json = JsonSerializer.Serialize(payload);
-        _client?.Send(json);
+        _lastMessage = JsonSerializer.Serialize(payload);
+        _client?.Send(_lastMessage);
     }
     
     
