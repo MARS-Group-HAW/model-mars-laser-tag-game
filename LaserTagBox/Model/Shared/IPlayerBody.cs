@@ -17,6 +17,24 @@ public interface IPlayerBody : IPositionable
     /// </summary>
     /// <returns>A list of the barriers positions.</returns>
     List<Position> ExploreBarriers1();
+    
+    /// <summary>
+    ///     Explores all <code>Water</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreWater1();
+    
+    /// <summary>
+    ///     Explores all <code>ExplosiveBarrel</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreBarrels1();
+    
+    /// <summary>
+    ///     Explores all explodable <code>ExplosiveBarrel</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreExplosiveBarrels1();
 
     /// <summary>
     ///     Explores all <code>Hill</code>s in sight of the agent. Costs 1 action point.
@@ -160,7 +178,7 @@ public interface IPlayerBody : IPositionable
     bool Alive { get; }
     
     /// <summary>
-    ///
+    ///     Indicates if the agent is carrying the flag of opponent.
     /// </summary>
     bool CarryingFlag { get; }
 }

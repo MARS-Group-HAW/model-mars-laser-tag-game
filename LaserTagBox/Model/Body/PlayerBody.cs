@@ -112,6 +112,19 @@ public class PlayerBody : MovingAgent, IPlayerBody
     #endregion
     
     #region User Methods
+
+    public List<Position> ExploreExplosiveBarrels1()
+    {
+        if (ActionPoints < 1) return null;
+        ActionPoints -= 1;
+        return Battleground.SpotEnv.Explore(Position, VisualRange, -1,
+            spot => spot.GetType() == typeof(ExplosiveBarrel) && 
+                    HasBeeline(spot)).Where(spot => ((ExplosiveBarrel)spot).HasExploded == false).
+            Select(p => Position.CreatePosition(p.Position.X, p.Position.Y)).ToList();
+    }
+    
+    public List<Position> ExploreBarrels1() => ExploreSpots(typeof(ExplosiveBarrel));
+
     /// <summary>
     ///     Explores the hills in the agent's field of vision.
     /// </summary>
@@ -124,6 +137,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// <returns>A list of Barrier objects or null if the caller does not have enough ActionPoints</returns>
     public List<Position> ExploreBarriers1() => ExploreSpots(typeof(Barrier));
 
+    /// <summary>
+    ///    Explores the water bodies in the agent's field of vision.
+    /// </summary>
+    /// <returns></returns>
+    public List<Position> ExploreWater1() => ExploreSpots(typeof(Water));
     /// <summary>
     ///     Explores the ditches in the agent's field of vision.
     /// </summary>
