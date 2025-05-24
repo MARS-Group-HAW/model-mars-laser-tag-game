@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using LaserTagBox.Model.Items;
 using LaserTagBox.Model.Shared;
+using LaserTagBox.Model.Spots;
+using Mars.Interfaces.Environments;
 
 namespace LaserTagBox.Model.Body;
 public static class DataVisualizationServer
@@ -78,7 +80,7 @@ public static class DataVisualizationServer
         _client = null;
     }
         
-    public static void SendData(IEnumerable<PlayerBody> bodies, IEnumerable<Item> items, Dictionary<Color, TeamScore> scores)
+    public static void SendData(IEnumerable<PlayerBody> bodies, IEnumerable<Item> items, Dictionary<Color, TeamScore> scores, IEnumerable<ExplosiveBarrel> explosiveBarrels)
     {
         var payload = new
         {
@@ -115,6 +117,13 @@ public static class DataVisualizationServer
                     type = "UnknownItem"
                 };
             }),
+            explosiveBarrels = explosiveBarrels.Select(barrel => new
+            {
+                id = barrel.ID,
+                x = barrel.Position.X,
+                y = barrel.Position.Y,
+                hasExploded = barrel.HasExploded,
+            }),
             scores = scores.Values.Select(t => new
             {
                 teamName = t.Name,
@@ -122,7 +131,6 @@ public static class DataVisualizationServer
                 score = t.GamePoints
             })
         };
-
         string json = JsonSerializer.Serialize(payload);
         _client?.Send(json);
     }

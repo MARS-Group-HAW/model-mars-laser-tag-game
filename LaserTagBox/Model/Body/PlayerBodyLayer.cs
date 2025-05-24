@@ -129,7 +129,6 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 
     public void PreTick()
     {
-        //do nothing
     }
 
     public void PostTick()
@@ -233,7 +232,7 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                 Console.WriteLine("Waiting for live visualization to run.");
             }
             
-            DataVisualizationServer.SendData(Bodies.Values, Items.Values, Score);
+            DataVisualizationServer.SendData(Bodies.Values, Items.Values, Score, SpotEnv.Entities.OfType<ExplosiveBarrel>());
             Console.WriteLine(Context.CurrentTick + 1);
             while (DataVisualizationServer.CurrentTick != Context.CurrentTick + 1)
             {
