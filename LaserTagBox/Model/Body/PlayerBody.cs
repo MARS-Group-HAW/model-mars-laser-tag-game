@@ -360,7 +360,6 @@ public class PlayerBody : MovingAgent, IPlayerBody
         _tickWhenLastTagged = _currentTick;
         Energy -= 10;
         if (Energy >= 0) return false;
-
         Die();
         return true;
     }
@@ -370,12 +369,13 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     private void Die()
     {
-        Console.WriteLine($"{ID}" + " died at " + Position);
+        if (!Alive) return;
+        Alive = false;
+        // Console.WriteLine($"{ID}" + " died at " + Position);
         Battleground.FighterEnv.Remove(this);
         // Do not remove agent from tick cycle for evaluation purposes
             
         ActionPoints = 0;
-        Alive = false;
         if (!CarryingFlag) return;
         var flag = Battleground.Items.Values.Where(f => f is Flag).Where(f => f.PickedUp).FirstOrDefault(f => f.Owner.ID.Equals(ID));
         if (flag != null)
@@ -423,7 +423,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
             RemainingShots = 5;
         }
         Battleground.FighterEnv.Insert(this);
-        Console.WriteLine("" + TeamName + " respawned at " + Position);
+        // Console.WriteLine("" + ID + " respawned at " + Position);
     }
     #endregion
 }

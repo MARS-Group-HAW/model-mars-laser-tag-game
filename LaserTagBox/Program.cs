@@ -39,10 +39,13 @@ internal static class Program
         // USER: Specify JSON configuration file here
         var file = File.ReadAllText("config.json");
         var config = SimulationConfig.Deserialize(file);
-
-        var starter = SimulationStarter.Start(description, config);
-        var handle = starter.Run();
-        Console.WriteLine("Successfully executed iterations: " + handle.Iterations);
-        starter.Dispose();
+        
+        for (int i = 0; i < 1; i++)
+        {
+            var starter = SimulationStarter.Start(description, config);
+            var handle = starter.Run();
+            Console.WriteLine("Successfully executed iterations: " + handle.Iterations);
+            starter.Dispose();
+        }
     }
 }

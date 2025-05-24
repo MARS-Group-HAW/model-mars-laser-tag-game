@@ -75,9 +75,9 @@ public abstract class Item : IAgent<PlayerBodyLayer>, IPositionable
     public virtual void Drop()
     {
         _groundPosition = new Position(Owner.Position.X, Owner.Position.Y);
-        Console.WriteLine($"{Owner.ID} dropped flag at {Position}");
         if (Owner != null)
         {
+            // Console.WriteLine($"{Owner.ID} dropped flag at {Position}");
             Owner.CarryingFlag = false;
             Owner = null;
             Battleground.ItemEnv.Insert(this);

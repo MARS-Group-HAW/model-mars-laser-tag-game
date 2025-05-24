@@ -174,16 +174,17 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                             {
                                 flag.PickUp(player);
                                 player.CarryingFlag = true;
-                                Console.WriteLine($"{player.ID} picked up {flag.Color} flag at {flag.Position}");
+                                // Console.WriteLine($"{player.ID} picked up {flag.Color} flag at {flag.Position}");
                             }
                             else // Bring flag back to flag stand
                             {
-                                flag.Position = flagStands.First(fs => fs.Color == player.Color).Position;
+                                var homestand  = flagStands.First(fs => fs.Color == player.Color).Position;
+                                ItemEnv.PosAt(flag, homestand.X, homestand.Y);
                             }
                         }
                         if (flagstand != null && flagstand.Color == player.Color && flag.PickedUp) // Drop flag
                         {
-                            Console.WriteLine($"{player.ID} {player.Color} dropped {flag.Color} flag at {flag.Position}");
+                            // Console.WriteLine($"{player.ID} {player.Color} dropped {flag.Color} flag at {flag.Position}");
                             flag.Owner.CarryingFlag = false;
                             flag.Drop();
                         }
@@ -200,12 +201,10 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                         Score[flagStand.Color].GamePoints += 1;
                         foreach (var flag in flags) // reset flag position
                         {
-                            var homeStand = (FlagStand)SpotEnv.Explore(flag.Position, -1, -1, 
-                                spot => spot.GetType() == typeof(FlagStand)).FirstOrDefault(spot => ((FlagStand)spot).Color == flag.Color);
-                            Console.WriteLine($"homestand {homeStand.Color} {homeStand.Position} flagcolor: {flag.Color} {flag.Position}");
-                            Console.WriteLine($"flagstandcolor {flagStand.Color} {flagStand.Position} flagcolor: {flag.Color} {flag.Position}");
-                            ItemEnv.PosAt(flag, [homeStand.Position.X, homeStand.Position.Y]);
-                            Console.WriteLine(flag.Position);
+                            var homestand  = flagStands.First(fs => fs.Color == flag.Color).Position;
+                            // Console.WriteLine(flag.Position);
+                            ItemEnv.PosAt(flag, homestand.X, homestand.Y);
+                            // Console.WriteLine(flag.Position);
                         }
                         break; 
                     }
