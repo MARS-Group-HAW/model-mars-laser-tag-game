@@ -12,6 +12,7 @@ using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
 using System.Threading;
 using LaserTagBox.Model.Items;
+using Microsoft.CodeAnalysis.Operations;
 using Barrier = LaserTagBox.Model.Spots.Barrier;
 
 
@@ -51,6 +52,11 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     ///    A dictionary of items, identified by their GUID.
     /// </summary>
     public Dictionary<Guid, Item> Items { get; private set; }
+    
+    /// <summary>
+    ///    A dictionary of scores, identified by the team name.
+    /// </summary>
+    public Dictionary<Color, TeamScore> Score { get; private set; }
 
     /// <summary>
     ///     Holds all agents in a 2-dimensional area for exploration purposes.
@@ -93,11 +99,12 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
         SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) {CheckBoundaries = true};
         ItemEnv = new SpatialHashEnvironment<Item>(Width - 1, Height - 1) {CheckBoundaries = true};
         AgentManager = layerInitData.Container.Resolve<IAgentManager>();
-
+        
         Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().ToDictionary(body => body.ID);
         
         Items = new Dictionary<Guid, Item>();
         
+        Score = new Dictionary<Color, TeamScore>();
         Console.WriteLine(Mode.ToString());
         
         for (var x = 0; x < Width; x++)
@@ -119,24 +126,6 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     {
         if (Context.CurrentTick % 100 == 0)
             Console.WriteLine($"Current tick: {Context.CurrentTick}");
-
-        if (Context.CurrentTick == Context.MaxTicks)
-        {
-            Console.WriteLine();
-
-            foreach (var team in Bodies.Values.GroupBy(body => body.TeamName))
-            {
-                var gamePoints = Mode switch
-                {
-                    GameMode.TeamDeathmatch => team.Sum(b => b.GamePoints),
-                    GameMode.CaptureTheFlag => team.Sum(b => b.GamePoints),
-                    _ => 0
-                };
-                Console.WriteLine($"{team.Key} {gamePoints}");
-            }
-
-            Console.WriteLine();
-        }
     }
 
     public void PreTick()
@@ -146,6 +135,96 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 
     public void PostTick()
     {
+        if (Score.Count == 0)
+        {
+            foreach (var team in Bodies.Values.GroupBy(body => body.Color))
+            {
+                var teamColor = team.Key;
+                var teamName = team.First().TeamName;
+                Score.Add(teamColor, new TeamScore(teamName, teamColor, 0));
+            }
+        }
+        
+        switch (Mode)
+        {
+            case GameMode.TeamDeathmatch:
+                foreach (var team in Bodies.Values.GroupBy(body => body.Color))
+                {
+                    var teamColor = team.Key;
+                    var gamePoints = team.Sum(b => b.GamePoints);
+                    Score[teamColor].GamePoints = gamePoints;
+                }
+                break;
+            case GameMode.CaptureTheFlag:
+                var flags = Items.Values.OfType<Flag>().ToList();
+                var flagStands = SpotEnv.Entities.OfType<FlagStand>().ToList();
+
+                foreach (var flag in flags)
+                {
+                    // var player = Bodies.Values.FirstOrDefault(b => b.Position.Equals(flag.Position) && b.Alive);
+                    var player = FighterEnv.Explore(flag.Position, 0, -1, body => body.Alive).FirstOrDefault();
+                    if (player != null)
+                    {
+                        var flagstand = (FlagStand)SpotEnv.Explore(flag.Position, 0, 1, 
+                            spot => spot.GetType() == typeof(FlagStand)).FirstOrDefault();
+
+                        if (flagstand == null && !flag.PickedUp || flagstand != null && !flag.PickedUp && flagstand.Color != player.Color)
+                        {
+                            if (flag.Color != player.Color) // Pick up flag
+                            {
+                                flag.PickUp(player);
+                                player.CarryingFlag = true;
+                                Console.WriteLine($"{player.ID} picked up {flag.Color} flag at {flag.Position}");
+                            }
+                            else // Bring flag back to flag stand
+                            {
+                                flag.Position = flagStands.First(fs => fs.Color == player.Color).Position;
+                            }
+                        }
+                        if (flagstand != null && flagstand.Color == player.Color && flag.PickedUp) // Drop flag
+                        {
+                            Console.WriteLine($"{player.ID} {player.Color} dropped {flag.Color} flag at {flag.Position}");
+                            flag.Owner.CarryingFlag = false;
+                            flag.Drop();
+                        }
+                    }
+                }
+                
+                // Check if all flags are at the flag stand
+                foreach (var flagStand in flagStands)
+                {
+                    int flagsAtStand = ItemEnv.Explore(flagStand.Position, 0, -1, item => item.GetType() == typeof(Flag)).Count();
+
+                    if (flagsAtStand == Score.Keys.Count)
+                    {
+                        Score[flagStand.Color].GamePoints += 1;
+                        foreach (var flag in flags) // reset flag position
+                        {
+                            var homeStand = (FlagStand)SpotEnv.Explore(flag.Position, -1, -1, 
+                                spot => spot.GetType() == typeof(FlagStand)).FirstOrDefault(spot => ((FlagStand)spot).Color == flag.Color);
+                            Console.WriteLine($"homestand {homeStand.Color} {homeStand.Position} flagcolor: {flag.Color} {flag.Position}");
+                            Console.WriteLine($"flagstandcolor {flagStand.Color} {flagStand.Position} flagcolor: {flag.Color} {flag.Position}");
+                            ItemEnv.PosAt(flag, [homeStand.Position.X, homeStand.Position.Y]);
+                            Console.WriteLine(flag.Position);
+                        }
+                        break; 
+                    }
+                }
+                break;
+        }
+        
+        if (Context.CurrentTick == Context.MaxTicks)
+        {
+            Console.WriteLine();
+
+            foreach (var team in Score)
+            {
+                Console.WriteLine($"Team: {team.Value.Name} Score: {team.Value.GamePoints}");
+            }
+
+            Console.WriteLine();
+        }
+        
         if (Visualization)
         {
             while (!DataVisualizationServer.Connected())
@@ -154,7 +233,7 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                 Console.WriteLine("Waiting for live visualization to run.");
             }
             
-            DataVisualizationServer.SendData(Bodies.Values, Items.Values);
+            DataVisualizationServer.SendData(Bodies.Values, Items.Values, Score);
             Console.WriteLine(Context.CurrentTick + 1);
             while (DataVisualizationServer.CurrentTick != Context.CurrentTick + 1)
             {

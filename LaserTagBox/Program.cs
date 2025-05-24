@@ -26,8 +26,9 @@ internal static class Program
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
 
         // Example teams
-        description.AddAgent<Example8Rule, PlayerMindLayer>();
+        description.AddAgent<FlagCollector, PlayerMindLayer>();
         description.AddAgent<Example7QL, PlayerMindLayer>();
+        // description.AddAgent<IdleAgent, PlayerMindLayer>();
         // description.AddAgent<Example2, PlayerMindLayer>();
         // description.AddAgent<Example10Rule, PlayerMindLayer>();
 

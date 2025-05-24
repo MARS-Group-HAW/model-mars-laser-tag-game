@@ -7,16 +7,16 @@ using Fleck;
 using System.Threading;
 using System.Threading.Tasks;
 using LaserTagBox.Model.Items;
+using LaserTagBox.Model.Shared;
 
 namespace LaserTagBox.Model.Body;
 public static class DataVisualizationServer
 {
-    public static volatile int CurrentTick = -1;
-        
+    public static volatile int CurrentTick = -1; 
     private static IWebSocketConnection _client; 
-    private static WebSocketServer _server;
-    private static CancellationTokenSource _cts;
-    private static Task _serverTask;
+    private static WebSocketServer _server; 
+    private static CancellationTokenSource _cts; 
+    private static Task _serverTask; 
 
     public static void Start()
     {
@@ -78,7 +78,7 @@ public static class DataVisualizationServer
         _client = null;
     }
         
-    public static void SendData(IEnumerable<PlayerBody> bodies, IEnumerable<Item> items)
+    public static void SendData(IEnumerable<PlayerBody> bodies, IEnumerable<Item> items, Dictionary<Color, TeamScore> scores)
     {
         var payload = new
         {
@@ -114,6 +114,12 @@ public static class DataVisualizationServer
                 {
                     type = "UnknownItem"
                 };
+            }),
+            scores = scores.Values.Select(t => new
+            {
+                teamName = t.Name,
+                teamColor = t.Color.ToString(),
+                score = t.GamePoints
             })
         };
 

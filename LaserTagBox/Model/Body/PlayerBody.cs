@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LaserTagBox.Model.Items;
 using LaserTagBox.Model.Shared;
 using LaserTagBox.Model.Spots;
 using Mars.Common.Core.Random;
@@ -40,6 +41,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     The agent's point count (for tagging enemy agents, etc.).
     /// </summary>
     public int GamePoints { get; private set; }
+    
+    /// <summary>
+    ///    Determines whether the agent is carrying the flag.
+    /// </summary>
+    public bool CarryingFlag { get; set; }
         
     //	*********************** tagging attributes ***********************
     /// <summary>
@@ -63,6 +69,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     Stores the most recent tick during which the agent was tagged by an enemy agent.
     /// </summary>
     private long _tickWhenLastTagged = -100;
+    
+    /// <summary>
+    /// Stores the number of ticks since the agent has died.
+    /// </summary>
+    private int _deadTicks = 0;
     #endregion
 
     #region Tick
@@ -74,8 +85,24 @@ public class PlayerBody : MovingAgent, IPlayerBody
     public override void Tick()
     {
         base.Tick();
+        if (!Alive)
+        {
+            if (Battleground.Mode == GameMode.TeamDeathmatch)
+            {
+                return;
+            }
+            else
+            {
+                _deadTicks++;
+                if (_deadTicks >= 60)
+                {
+                    Respawn();
+                    _deadTicks = 0;
+                }
+                return;
+            }
+        }
         
-        if (!Alive) return;
         if (_currentTick == Battleground.GetCurrentTick())
             throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
         _currentTick = Battleground.GetCurrentTick();
@@ -102,6 +129,42 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     /// <returns>A list of Ditch objects or null if the caller does not have enough ActionPoints</returns>
     public List<Position> ExploreDitches1() => ExploreSpots(typeof(Ditch));
+    
+    /// <summary>
+    ///    Explores the position of the own flag stand.
+    /// </summary>
+    /// <returns></returns>
+    public Position ExploreOwnFlagStand() 
+    {
+        return Battleground.SpotEnv.Entities
+            .FirstOrDefault(e => e is FlagStand && ((FlagStand)e).Color == Color)?.Position;
+    }
+    
+    /// <summary>
+    ///    Explores the enemy flag stands.
+    /// </summary>
+    public List<Position> ExploreEnemyFlagStands1()
+    {
+        if (ActionPoints < 1) return null;
+        ActionPoints -= 1;
+        return Battleground.SpotEnv.Entities
+            .Where(e => e is FlagStand && ((FlagStand)e).Color != Color)
+            .Select(e => e.Position)
+            .ToList();
+    }
+    
+    /// <summary>
+    ///    Explores the flags.
+    /// </summary>
+    /// <returns></returns>
+    public List<FlagSnapshot> ExploreFlags2()
+    {
+        if (ActionPoints < 2) return null;
+        ActionPoints -= 2;
+        return Battleground.Items.Values.Where(e => e is Flag)
+            .Select(e => new FlagSnapshot(e.ID, ((Flag)e).Color, e.Position, ((Flag)e).PickedUp))
+            .ToList();
+    }
         
     /// <summary>
     ///     Explores the agent's team members across the entire environment.
@@ -307,11 +370,19 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     private void Die()
     {
+        Console.WriteLine($"{ID}" + " died at " + Position);
         Battleground.FighterEnv.Remove(this);
         // Do not remove agent from tick cycle for evaluation purposes
             
         ActionPoints = 0;
         Alive = false;
+        if (!CarryingFlag) return;
+        var flag = Battleground.Items.Values.Where(f => f is Flag).Where(f => f.PickedUp).FirstOrDefault(f => f.Owner.ID.Equals(ID));
+        if (flag != null)
+        {
+            flag.Drop();
+            CarryingFlag = false;
+        }
     }
 
     /// <summary>
@@ -334,6 +405,25 @@ public class PlayerBody : MovingAgent, IPlayerBody
         {
             Energy += 1;
         }
+    }
+    
+    /// <summary>
+    ///     Respawns the agent at its flag stand.
+    /// </summary>
+    private void Respawn()
+    {
+        var flagStand = Battleground.SpotEnv.Entities.Where(e => 
+            e.GetType() == typeof(FlagStand)).FirstOrDefault(e => ((FlagStand)e).Color == Color);
+        if (flagStand != null)
+        {
+            Position = Position.CreatePosition(flagStand.Position.X, flagStand.Position.Y);
+            Alive = true;
+            ActionPoints = 10;
+            Energy = 100;
+            RemainingShots = 5;
+        }
+        Battleground.FighterEnv.Insert(this);
+        Console.WriteLine("" + TeamName + " respawned at " + Position);
     }
     #endregion
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LaserTagBox.Model.Items;
 using Mars.Interfaces.Environments;
 
 namespace LaserTagBox.Model.Shared;
@@ -36,6 +37,17 @@ public interface IPlayerBody : IPositionable
     List<EnemySnapshot> ExploreEnemies1();
 
     /// <summary>
+    ///    Explores the enemy flag stands.
+    /// </summary>
+    List<Position> ExploreEnemyFlagStands1();
+
+    /// <summary>
+    ///    Explores the flags.
+    /// </summary>
+    /// <returns></returns>
+    List<FlagSnapshot> ExploreFlags2();
+
+    /// <summary>
     ///     Change the current stance of the agent. Costs 2 action points.
     /// </summary>
     /// <param name="newStance">The new stance of the agent.</param>
@@ -69,6 +81,12 @@ public interface IPlayerBody : IPositionable
     /// </summary>
     /// <returns>A list of the teams player bodies.</returns>
     List<FriendSnapshot> ExploreTeam();  // TODO split into info and interaction part
+    
+    /// <summary>
+    ///     Explores the position of the own flag stand.
+    /// </summary>
+    /// <returns></returns>
+    Position ExploreOwnFlagStand();
 
     /// <summary>
     ///     Moves towards given position by using a D*-algorithm. The algorithm automatically moves around obstacles.
@@ -140,4 +158,9 @@ public interface IPlayerBody : IPositionable
     ///     Indicates if the agent is alive and can therefore act.
     /// </summary>
     bool Alive { get; }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    bool CarryingFlag { get; }
 }

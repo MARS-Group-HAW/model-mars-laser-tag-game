@@ -18,14 +18,14 @@ public abstract class Item : IAgent<PlayerBodyLayer>, IPositionable
     /// </summary>
     public Position Position
     {
-        get => _owner != null ? _owner.Position : _groundPosition;
+        get => Owner != null ? Owner.Position : _groundPosition;
         set => _groundPosition = value;
     }
     
     /// <summary>
     ///     Indicates whether the object is picked up by an agent.
     /// </summary>
-    public bool PickedUp => _owner != null;
+    public bool PickedUp => Owner != null;
 
 
     /// <summary>
@@ -35,10 +35,10 @@ public abstract class Item : IAgent<PlayerBodyLayer>, IPositionable
 
     public Guid OwnerID
     {
-        get => _owner != null ? _owner.ID : Guid.Empty;
+        get => Owner != null ? Owner.ID : Guid.Empty;
     }
 
-    private PlayerBody _owner;
+    public PlayerBody Owner;
     
     private Position _groundPosition;
     #endregion
@@ -68,15 +68,20 @@ public abstract class Item : IAgent<PlayerBodyLayer>, IPositionable
     #region Methods
     public virtual void PickUp(PlayerBody agent)
     {
-        _owner = agent;
+        Owner = agent;
         Battleground.ItemEnv.Remove(this);
     }
     
     public virtual void Drop()
     {
-        _groundPosition = new Position(_owner.Position.X, _owner.Position.Y);
-        _owner = null;
-        Battleground.ItemEnv.Insert(this);
+        _groundPosition = new Position(Owner.Position.X, Owner.Position.Y);
+        Console.WriteLine($"{Owner.ID} dropped flag at {Position}");
+        if (Owner != null)
+        {
+            Owner.CarryingFlag = false;
+            Owner = null;
+            Battleground.ItemEnv.Insert(this);
+        }
     }
     #endregion
 }
