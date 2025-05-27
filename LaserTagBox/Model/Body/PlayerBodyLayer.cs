@@ -159,7 +159,6 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
 
                 foreach (var flag in flags)
                 {
-                    // var player = Bodies.Values.FirstOrDefault(b => b.Position.Equals(flag.Position) && b.Alive);
                     var player = FighterEnv.Explore(flag.Position, 0, -1, body => body.Alive).FirstOrDefault();
                     if (player != null)
                     {
@@ -172,19 +171,15 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                             {
                                 flag.PickUp(player);
                                 player.CarryingFlag = true;
-                                // Console.WriteLine($"{player.ID} picked up {flag.Color} flag at {flag.Position}");
                             }
                             else // Bring flag back to flag stand
                             {
-                                // Console.WriteLine(flag.Position);
                                 var homestand  = flagStands.First(fs => fs.Color == player.Color).Position;
                                 ItemEnv.PosAt(flag, homestand.X, homestand.Y);
-                                // Console.WriteLine(flag.Position);
                             }
                         }
                         if (flagstand != null && flagstand.Color == player.Color && flag.PickedUp) // Drop flag
                         {
-                            // Console.WriteLine($"{player.ID} {player.Color} dropped {flag.Color} flag at {flag.Position}");
                             flag.Owner.CarryingFlag = false;
                             flag.Drop();
                         }
@@ -202,9 +197,7 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                         foreach (var flag in flags) // reset flag position
                         {
                             var homestand  = flagStands.First(fs => fs.Color == flag.Color).Position;
-                            // Console.WriteLine(flag.Position);
                             ItemEnv.PosAt(flag, homestand.X, homestand.Y);
-                            // Console.WriteLine(flag.Position);
                         }
                         break; 
                     }
@@ -233,7 +226,6 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
             }
             
             DataVisualizationServer.SendData(Bodies.Values, Items.Values, Score, SpotEnv.Entities.OfType<ExplosiveBarrel>());
-            Console.WriteLine(Context.CurrentTick + 1);
             while (DataVisualizationServer.CurrentTick != Context.CurrentTick + 1)
             {
                 Thread.Sleep(VisualizationTimeout);

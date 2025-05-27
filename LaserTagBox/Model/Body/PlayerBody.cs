@@ -410,7 +410,6 @@ public class PlayerBody : MovingAgent, IPlayerBody
     {
         if (!Alive) return;
         Alive = false;
-        // Console.WriteLine($"{ID}" + " died at " + Position);
         Battleground.FighterEnv.Remove(this);
         // Do not remove agent from tick cycle for evaluation purposes
             
@@ -462,7 +461,6 @@ public class PlayerBody : MovingAgent, IPlayerBody
             RemainingShots = 5;
         }
         Battleground.FighterEnv.Insert(this);
-        // Console.WriteLine("" + ID + " respawned at " + Position);
     }
     #endregion
 }
