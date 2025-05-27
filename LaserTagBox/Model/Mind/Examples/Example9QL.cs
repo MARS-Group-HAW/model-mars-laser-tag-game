@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
@@ -577,13 +578,41 @@ public class Example9QL : AbstractPlayerMind
     /// </summary>
     private void LoadQTable()
     {
-        //_mutexQTable.WaitOne();
         try
         {
             using (FileStream fileStream = File.Open(QtableSrc, FileMode.Open))
+            using (BinaryReader reader = new BinaryReader(fileStream))
             {
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                _qTable = (double[,,,,,,,,])binaryFormatter.Deserialize(fileStream);
+                // 1. Dimensionen lesen
+                int[] lengths = new int[9];
+                for (int i = 0; i < 9; i++)
+                {
+                    lengths[i] = reader.ReadInt32();
+                }
+
+                // 2. Array anlegen
+                _qTable = new double[
+                    lengths[0], lengths[1], lengths[2],
+                    lengths[3], lengths[4], lengths[5],
+                    lengths[6], lengths[7], lengths[8]];
+
+                // 3. Werte lesen und einsetzen
+                int[] indices = new int[9];
+                foreach (var _ in _qTable)
+                {
+                    double value = reader.ReadDouble();
+
+                    // Set value at current indices
+                    _qTable.SetValue(value, indices);
+
+                    // Indizes wie bei einem 9D-Zähler hochzählen
+                    for (int d = 8; d >= 0; d--)
+                    {
+                        indices[d]++;
+                        if (indices[d] < lengths[d]) break;
+                        indices[d] = 0;
+                    }
+                }
             }
 
             //Console.WriteLine("Q-table loaded successfully.");
@@ -592,22 +621,31 @@ public class Example9QL : AbstractPlayerMind
         {
             Console.WriteLine("Error loading Q-table: " + ex.Message);
         }
-
-        //_mutexQTable.ReleaseMutex();
     }
+
 
     /// <summary>
     /// Saving Q-Table to a file
     /// </summary>
     private void SaveQTable()
     {
-        //_mutexQTable.WaitOne();
         try
         {
             using (FileStream fileStream = File.Open(QtableSrc, FileMode.Create))
+            using (BinaryWriter writer = new BinaryWriter(fileStream))
             {
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(fileStream, _qTable);
+                // 1. Dimensionen speichern
+                int rank = _qTable.Rank;
+                for (int i = 0; i < rank; i++)
+                {
+                    writer.Write(_qTable.GetLength(i));
+                }
+
+                // 2. Werte speichern (flach durchiterieren)
+                foreach (double value in _qTable)
+                {
+                    writer.Write(value);
+                }
             }
 
             //Console.WriteLine("Q-table saved successfully.");
@@ -616,9 +654,8 @@ public class Example9QL : AbstractPlayerMind
         {
             Console.WriteLine("Error saving Q-table: " + ex.Message);
         }
-
-        //_mutexQTable.ReleaseMutex();
     }
+
 
     #endregion
 

@@ -217,7 +217,7 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
             return false;
         }
         
-        if ((int) Battleground[xGoal, yGoal] == 1)
+        if ((int) Battleground[xGoal, yGoal] == 1 || (int) Battleground[xGoal, yGoal] == 4 || (int) Battleground[xGoal, yGoal] == 5)
         {
             HasMoved = true;
             return false;
@@ -699,7 +699,8 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
         var dist = Heur(s, u);
         if (dist == 1.0)
         {
-            if (Battleground[s.Item1, s.Item2] == 1)
+            if (Battleground[s.Item1, s.Item2] == 1 || Battleground[s.Item1, s.Item2] == 4 ||
+                Battleground[s.Item1, s.Item2] == 5)
             {
                 return 1000;
             }

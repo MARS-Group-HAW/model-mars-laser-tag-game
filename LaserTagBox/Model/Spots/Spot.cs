@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using LaserTagBox.Model.Body;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Environments;
+using ServiceStack;
 
 namespace LaserTagBox.Model.Spots;
 
@@ -10,6 +12,70 @@ namespace LaserTagBox.Model.Spots;
 /// </summary>
 public class Barrier : Spot
 {
+}
+
+/// <summary>
+///     A spot that represents a water body in the environment.
+/// </summary>
+public class Water : Spot
+{
+}
+
+/// <summary>
+///     A spot that represents an explosive barrel in the environment.
+/// </summary>
+public class ExplosiveBarrel : Spot
+{
+    /// <summary>
+    ///     The radius of the explosion when the barrel is hit.
+    /// </summary>
+    private int _explosionRadius = 3;
+
+    /// <summary>
+    ///     The damage caused by the explosion.
+    /// </summary>
+    private int _damage = 100;
+
+    private bool _hasBeenHit = false;
+    
+    /// <summary>
+    ///     Indicates whether the barrel has exploded.
+    /// </summary>
+    public bool HasExploded { get; private set; }
+
+    private void Explode()
+    {
+        HasExploded = true;
+        var agents = Battleground.FighterEnv.Explore(Position, _explosionRadius).ToList();
+        var barrels = Battleground.SpotEnv.Explore(Position, _explosionRadius, -1,
+            spot => spot.GetType() == typeof(ExplosiveBarrel)).ToList();
+        foreach (var agent in agents)
+        {
+            agent.TakeExplosionDamage(_damage);
+        }
+
+        foreach (var barrel in barrels)
+        {
+            if (barrel != this)
+            {
+                ((ExplosiveBarrel)barrel).Tagged();
+            }
+        }
+        // Console.WriteLine($"Explosive barrel at {Position} exploded, damaging {agents.Count} agents and tagging {barrels.Count - 1} barrels.");
+    }
+
+    public void Tagged()
+    {
+        _hasBeenHit = true;
+    }
+    
+    public override void Tick()
+    {
+        if (!HasExploded && _hasBeenHit)
+        {
+            Explode();
+        }
+    }
 }
 
 /// <summary>

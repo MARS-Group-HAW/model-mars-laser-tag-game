@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LaserTagBox.Model.Items;
 using Mars.Interfaces.Environments;
 
 namespace LaserTagBox.Model.Shared;
@@ -16,6 +17,24 @@ public interface IPlayerBody : IPositionable
     /// </summary>
     /// <returns>A list of the barriers positions.</returns>
     List<Position> ExploreBarriers1();
+    
+    /// <summary>
+    ///     Explores all <code>Water</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreWater1();
+    
+    /// <summary>
+    ///     Explores all <code>ExplosiveBarrel</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreBarrels1();
+    
+    /// <summary>
+    ///     Explores all explodable <code>ExplosiveBarrel</code>s in sight of the agent. Costs 1 action point.
+    /// </summary>
+    /// <returns></returns>
+    List<Position> ExploreExplosiveBarrels1();
 
     /// <summary>
     ///     Explores all <code>Hill</code>s in sight of the agent. Costs 1 action point.
@@ -34,6 +53,17 @@ public interface IPlayerBody : IPositionable
     /// </summary>
     /// <returns>A list of the enemies information.</returns>
     List<EnemySnapshot> ExploreEnemies1();
+
+    /// <summary>
+    ///    Explores the enemy flag stands.
+    /// </summary>
+    List<Position> ExploreEnemyFlagStands1();
+
+    /// <summary>
+    ///    Explores the flags.
+    /// </summary>
+    /// <returns></returns>
+    List<FlagSnapshot> ExploreFlags2();
 
     /// <summary>
     ///     Change the current stance of the agent. Costs 2 action points.
@@ -69,6 +99,12 @@ public interface IPlayerBody : IPositionable
     /// </summary>
     /// <returns>A list of the teams player bodies.</returns>
     List<FriendSnapshot> ExploreTeam();  // TODO split into info and interaction part
+    
+    /// <summary>
+    ///     Explores the position of the own flag stand.
+    /// </summary>
+    /// <returns></returns>
+    Position ExploreOwnFlagStand();
 
     /// <summary>
     ///     Moves towards given position by using a D*-algorithm. The algorithm automatically moves around obstacles.
@@ -140,4 +176,9 @@ public interface IPlayerBody : IPositionable
     ///     Indicates if the agent is alive and can therefore act.
     /// </summary>
     bool Alive { get; }
+    
+    /// <summary>
+    ///     Indicates if the agent is carrying the flag of opponent.
+    /// </summary>
+    bool CarryingFlag { get; }
 }
