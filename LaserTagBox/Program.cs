@@ -27,19 +27,9 @@ internal static class Program
         description.AddAgent<Water, PlayerBodyLayer>();
         description.AddAgent<PlayerBody, PlayerBodyLayer>();
 
-        // Example teams
-        // description.AddAgent<FlagCollector, PlayerMindLayer>();
-        // description.AddAgent<SecondFlagCollector, PlayerMindLayer>();
-        description.AddAgent<BarrelAdmirer, PlayerMindLayer>();
-        description.AddAgent<BarrelShooter, PlayerMindLayer>();
-        // description.AddAgent<Example7QL, PlayerMindLayer>();
-        // description.AddAgent<IdleAgent, PlayerMindLayer>();
-        // description.AddAgent<Example2, PlayerMindLayer>();
-        // description.AddAgent<Example10Rule, PlayerMindLayer>();
-
         // USER: Add agents here
-        //description.AddAgent<YourPlayerMindPleaseRename, PlayerMindLayer>();
-        //description.AddAgent<YourPlayerMindPleaseRenameCopy, PlayerMindLayer>();
+        description.AddAgent<FlagCollector, PlayerMindLayer>();
+        description.AddAgent<SecondFlagCollector, PlayerMindLayer>();
 
         // USER: Specify JSON configuration file here
         var file = File.ReadAllText("config.json");
