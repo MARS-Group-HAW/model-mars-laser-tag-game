@@ -27,6 +27,7 @@
 \usepackage[htt]{hyphenat}
 \usepackage{lmodern}
 \usepackage{fontawesome}
+\usepackage{listings}
 \parindent 0pt
 \bibliographystyle{alphadin}
 \newcommand\todo[1]{\textcolor{red}{#1}}
@@ -40,9 +41,9 @@
 
 \begin{minipage}{\textwidth}
 \noindent
-\includegraphics[width=5cm]{../logos/HAW_Hamburg.jpeg}
+\includegraphics[width=5cm]{./logos/HAW_Hamburg.jpeg}
 \hfill
-\includegraphics[width=4cm]{../logos/mars_logo.png}
+\includegraphics[width=4cm]{./logos/mars_logo.png}
 \end{minipage}\\
 
 \vspace{5cm}
@@ -52,16 +53,23 @@
 \centering
 {\huge MARS LaserTag Game}\\[0.5cm]
 {\LARGE Part I: Handbook}\\[0.5cm]
+{\large \textsf{Version 1.0.0}}\\
 {\large \textsf{\today}}
+
 \end{minipage}\\
+
 
 \vfill
 
 \begin{framed}
 	\begin{minipage}{\textwidth}
-		Contact:\\ Prof.~Dr.~Thomas Clemen, Berliner Tor 7, 20099 Hamburg, Germany\\
+		Contact:\\[2ex]  
+        Prof.~Dr.~Thomas Clemen, Berliner Tor 7, 20099 Hamburg, Germany\\
 		eMail: \href{mailto:thomas.clemen@haw-hamburg.de}{thomas.clemen@haw-hamburg.de}\\
-		Web: \url{www.mars-group.org}
+		Web: \url{www.mars-group.org}\\[2ex] 
+
+        Ersan Baran, Berliner Tor 7, 20099 Hamburg, Germany\\
+        eMail: \href{mailto:ersan.baran@haw-hamburg.de}{ersan.baran@haw-hamburg.de}\\
 	\end{minipage}
 
 \end{framed}
@@ -81,8 +89,17 @@
 LaserTag is an agent-based simulation game that is inspired by the real-world recreational shooting sport known as laser tag.~The game is developed with the \href{https://mars-group-haw.github.io/index.html}{Multi-Agent Research and Simulation (MARS) Framework}, which is written in \href{https://learn.microsoft.com/en-us/dotnet/csharp/}{C\#} and runs on \href{https://dotnet.microsoft.com/en-us/download}{.NET}.~Users of LaserTag can implement their own agents with customized behavioral logic by using the provided agent interface. The interface provides properties and methods which enable agent movement, agent state management, agent-agent and agent-environment interactions, and other functions.
 %
 \section{Game Objective} \label{sec:objective}
-%
-A game consists of three or four teams. Each team is made up of three agents with the same behavior logic. An agent has an energy level, which is reduced when the agent is tagged by an enemy agent. The team that depletes the energy levels of all enemy agents first wins the game.
+
+The game can be played in two different modes: \textbf{Team Deathmatch} and \textbf{Capture the Flag}.
+
+\subsection*{Team Deathmatch}
+In this mode, three or four teams compete against each other. Each team consists of three agents that share the same behavior logic. Each agent has an energy level, which decreases when the agent is tagged by an enemy agent. The first team to deplete the energy levels of all enemy agents wins the game.
+
+\subsection*{Capture the Flag}
+This mode features two teams, each with their own base and a team flag located at a flag stand. The goal is to capture the enemy team’s flag and bring it back to the own flag stand, while simultaneously preventing the enemy from stealing your own flag. A point is awarded each time a team successfully returns the enemy flag to its base.
+
+The match ends after a fixed number of ticks. Unlike in Team Deathmatch, agents respawn after being tagged, allowing continuous play throughout the match duration.
+
 %
 % ======================================================================
 %
@@ -123,7 +140,7 @@ More details regarding the enums, structs, and other parts of the model can be f
 %
 \section{Simulation: Setup and Execution} \label{sec:simSetup}
 %
-The game is designed to be played by three or four teams. Follow these steps to set up and play a game:
+The game is designed to be played by two, three or four teams. Follow these steps to set up and play a game:
 \begin{enumerate}
   \item Open the file \texttt{Program.cs}.
   \item Add your agents to the \texttt{ModelDescription} object using the provided syntax:%
@@ -143,18 +160,85 @@ The game is designed to be played by three or four teams. Follow these steps to 
   \end{enumerate}%
 \end{enumerate}
 %
-The JSON file \texttt{config\_3.json} or \texttt{config\_4.json} in the directory \textbf{LaserTagBox} can be used to configure a game with three teams or four teams, respectively. Each configuration file requires resource files that need to be in the directory \textbf{Resources}:%
+The JSON file \texttt{config.json} in the directory \textbf{LaserTagBox} can be used to configure a game. Each configuration file requires resource files that need to be in the directory \textbf{Resources}:%
 %
 \begin{itemize}
   \item A CSV file encoding the grid-based environment
   \item A CSV file with agent parameters
 \end{itemize}
+
+In the section
+\begin{lstlisting}
+  "agents": [
+    {
+      "name": "PlayerBody",
+      "count": 6,
+      "file": "Resources/player_positions_2.csv"
+    },
+\end{lstlisting}
+the game is configured for six players (three per team), using a predefined file with initial spawn positions for two teams. For \textbf{Capture the Flag} games, a grid file such as \texttt{ctf\_battleground.csv} must be used. This map includes two flag stands, which are encoded with the tile values \texttt{7} and \texttt{8}.
+
 %
 The default environment is called \texttt{rec1\_battleground.csv}.~It encodes an environment consisting of $50\times 50$ grid cells.~The default agent initialization file for three-player and four-player games is called \texttt{player\_positions\_3.csv} and \texttt{player\_positions\_4.csv}, respectively.~Each file lists the spawn positions of the agents on the map at the beginning of the game.
 %
 \section{Visualization: Analyzing Game Outcomes} \label{sec:vis}
-%
-A Python-based tool for post-game visualization is available in the directory \textbf{Analysis}. This tool can help you analyze and improve your agents' behavior during the development process. For the tool to work, a map file (\texttt{map.csv}) is required in the directory \textbf{Resources/} and a simulation output file (\texttt{PlayerBody.csv}) is required in the directory \textbf{bin/Debug/net6.0/}.~Once these files are in place, simply double-click \texttt{vis.py} to start the visualizaton. For more detailed information, see the README file in \textbf{Analysis}.
+
+A Python-based tool for post-game visualization is available in the directory \textbf{Analysis}. This tool can help you analyze and improve your agents' behavior during the development process. For the tool to work, a map file (\texttt{map.csv}) is required in the directory \textbf{Resources/} and a simulation output file (\texttt{PlayerBody.csv}) is required in the directory \textbf{bin/Debug/net8.0/}. Once these files are in place, simply double-click \texttt{vis.py} to start the visualizaton. For more detailed information, see the README file in \textbf{Analysis}.
+
+\subsection{Standalone Visualization Tool}
+In addition to the Python script, a standalone graphical visualization tool is available in the \textbf{Visualization/} directory. It is compatible with Windows, macOS, and Linux and allows interactive analysis of game data using a GUI.
+
+\subsubsection*{Usage Instructions}
+\begin{enumerate}
+  \item Navigate to the \textbf{Visualization/} directory.
+  \item Choose the appropriate archive for your operating system:
+  \begin{itemize}
+    \item \texttt{visualization\_windows.zip} for Windows
+    \item \texttt{visualization\_macOS.app.tar.xz} for macOS
+    \item \texttt{visualization\_linux.zip} for Linux
+  \end{itemize}
+  \item Extract the archive.
+  \item Run the extracted executable file (\texttt{visualization.exe}, \texttt{visualization.app}, or Linux binary).
+\end{enumerate}
+
+\paragraph{Note:}
+The visualization tool was created using the \textbf{Godot Engine}. No additional installation is required — the application runs as a portable binary on each platform.
+
+\subsubsection*{macOS Gatekeeper Warning}
+If macOS blocks the application due to it being from an unidentified developer, you can manually allow it. Run the following command in Terminal after extracting the app:
+
+\texttt{xattr -d com.apple.quarantine} 
+
+\texttt{/path/to/model-mars-laser-tag-game/Visualization/visualization\_macOS.app}
+
+If your project is located in your home directory, use:
+
+\texttt{xattr -d com.apple.quarantine} 
+
+\texttt{\textasciitilde/model-mars-laser-tag-game/Visualization/visualization\_macOS.app}
+
+Alternatively, you can right-click the app, select “Open”, and confirm the warning dialog once.
+
+\subsection{Disabling Visualization}
+If you do not want to use the visualization, you can disable it via the JSON configuration file. In the respective layer entry, set the \texttt{Visualization} parameter to \texttt{false}:
+
+\begin{lstlisting}
+"layers": [
+  {
+    "name": "PlayerBodyLayer",
+    "file": "Resources/ctf_Battleground.csv",
+    "dimensionx": 51,
+    "dimensiony": 51,
+    "mapping": [
+      {
+        "parameter": "Visualization",
+        "value": false
+      }
+    ]
+  }
+]
+\end{lstlisting}
+
 %
 % ======================================================================
 %
@@ -166,7 +250,9 @@ Below is a list of some of the most important parts of the game's logic:
 \begin{itemize}
   \item If an agent's \texttt{Energy} is equal to or below 0, then the agent is taken out of the environment and does not respawn for the rest of the game. The agent's points, however, are maintained and added to the cumulative score of the team at the end of the match.
   \item An agent's \texttt{Energy} regenerates over time. At the end of each tick, an agent's \texttt{Energy} is increased by $1$.
+  \item In \texttt{Capture the Flag} mode, agents respawn at their own team's flag stand after a short delay when their energy reaches zero.
 \end{itemize}
+
 %
 \subsection{Constraints for Developers}
 In order to play the game as intended, please adhere to the following rules when implementing your agents:
@@ -190,6 +276,7 @@ Below are the properties provided by the \texttt{IPlayerBody} interface that an 
   \item \texttt{Color}: The agent's color, indicating the team the agent belongs to.
   \item \texttt{Energy}: The agent's maximum energy level is $100$. It decreases if the agent gets tagged by an opponent. If the energy level is less than or equal to zero, the agent is removed from the simulation.
   \item \texttt{GamePoints}: the agent's score, which is increased by tagging opponents. Each tag increases the score by $10$ points. If a tag causes the tagged agent's \texttt{Energy} to be less than or equal to zero, the tagged agent loses $10$ \texttt{GamePoints} and is removed from the simulation. The tagging agent receives $10$ additional \texttt{GamePoints} as a bonus.
+  \item \texttt{CarryingFlag}: Indicates whether the agent is currently carrying an opponent's flag. This is only relevant in \texttt{Capture the Flag} mode.
 \end{itemize}
 %
 \subsubsection{Movement properties} \label{sssec:movAttr}
@@ -234,7 +321,7 @@ Below are the methods provided by the \texttt{IPlayerBody} interface that an age
   
   The method returns \texttt{true} if a move was made and \texttt{false} if, for any reason, a move was not made.
   
-  \faLightbulbO\: \textbf{Note:}~If \texttt{GoTo(Position)} is called with a destination that refers to a grid cell that is inaccessible (because there is a \texttt{Barrier} on it or because it lies outside of the environment), then no path is calculated and no movement is initiated.
+  \faLightbulbO\: \textbf{Note:}~If \texttt{GoTo(Position)} is called with a destination that refers to a grid cell that is inaccessible (because there is a \texttt{Barrier}, \texttt{Water}, etc. on it or because it lies outside of the environment), then no path is calculated and no movement is initiated.
   
   For more information on \texttt{GoTo(Position)}, see Section~\ref{sssec:movement}.
 \end{itemize}
@@ -259,6 +346,30 @@ Below are the methods provided by the \texttt{IPlayerBody} interface that an age
   %
   \item \texttt{ExploreTeam() :~List<IPlayerBody>}: Returns a list of \texttt{FriendSnapshot} structs, offering limited information about the caller's team members.
   %
+  \item \texttt{ExploreWater1() :~List<Position>}: Returns a list of positions of \texttt{Water} tiles that are within the caller's \texttt{VisualRange} and visible (\texttt{HasBeeline == true}).
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
+  \item \texttt{ExploreBarrels1() :~List<Position>}: Returns a list of positions of \texttt{ExplosiveBarrel} tiles, including barrels that have already exploded, if they are in \texttt{VisualRange} and visible.
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
+  \item \texttt{ExploreExplosiveBarrels1() :~List<Position>}: Returns a list of positions of unexploded \texttt{ExplosiveBarrel} tiles that are within \texttt{VisualRange} and visible.
+  
+  \faLightbulbO\: \textbf{Note:} Returns \texttt{null} if the caller does not have enough \texttt{ActionPoints}.
+  %
+  \item \texttt{ExploreEnemyFlagStands1() :~List<Position>}: Returns a list of positions of \texttt{FlagStand} tiles belonging to opposing teams, if visible and within range.
+  
+  \faLightbulbO\: \textbf{Note:} Only relevant in \texttt{Capture the Flag} mode.
+  %
+  \item \texttt{ExploreFlags2() :~List<FlagSnapshot>}: Returns a list of \texttt{FlagSnapshot} structs, each describing a flag's current position, team, and if it is carried (if applicable).
+  
+  \faLightbulbO\: \textbf{Note:} Consumes \texttt{2} \texttt{ActionPoints}.
+  %
+  \item \texttt{ExploreOwnFlagStand() :~Position}: Returns the position of the caller's own \texttt{FlagStand}, if visible.
+  
+  \faLightbulbO\: \textbf{Note:} Only available in \texttt{Capture the Flag} mode.
+  %
   \item \texttt{GetDistance(Position) :~int}: Returns the shortest distance (measured in the the number of grid cells) from the caller's current position to the specified \texttt{Position}. In order for the distance to be calculable, the grid cell specified by \texttt{Position} must be visible (based on \texttt{HasBeeline1(Position)}). If the distance to the grid cell specified by \texttt{Position} is not calculable, the method returns \texttt{-1}.
   %
   \item \texttt{HasBeeline1(Position) :~bool}: This method may be called by an agent to check if the line of sight between its current position and the grid cell denoted by \texttt{Position} is free from vision-blocking obstacles (i.e., \texttt{Barrier} or \texttt{Hill} objects). If it is, the method returns \texttt{true}. If it is not (or if the caller does not have enough \texttt{ActionPoints}), the method returns \texttt{false}.
@@ -269,13 +380,15 @@ Below are the methods provided by the \texttt{IPlayerBody} interface that an age
 \subsubsection{Tagging methods} \label{sssec:tagMeth}
 \begin{itemize}
   \item \texttt{Tag5(Position)}: This method takes a \texttt{Position} and prompts the calling agent to fire a shot onto the grid cell encoded by the position. If an enemy agent is currently located at that position, then that agent is tagged.
-  
+
   Tagging is implemented as a probability-based process that is influenced by both agents' \texttt{Stance} and current positions (ground, \texttt{Hill}, or \texttt{Ditch}). For example, an agent in the \texttt{Lying} stance has higher accuracy but shorter \texttt{VisualRange}. If an agent is tagged, its \texttt{Energy} is decreased by $10$ and the property \texttt{WasTaggedLastTick} is set to \texttt{true}. The tagging agent's \texttt{GamePoints} is increased by $10$.
 
+  If an unexploded \texttt{ExplosiveBarrel} is located at the targeted position, it is immediately triggered and explodes. The explosion inflicts $100$ points of damage to all agents within a radius of three tiles and may cause nearby barrels to detonate as well.
+
   \faLightbulbO\: \textbf{Note:} Returns \texttt{false} if the caller does not have enough \texttt{ActionPoints}.
-  
+
   For more information on tagging, see Section \ref{sssec:tagging}.
-  %
+
   \item \texttt{Reload3()}: Reloads the caller's tag gun. This is necessary when \texttt{RemainingShots == 0} so that the agent can continue tagging enemies. A successful call to \texttt{Reload3()} refills the calling agent's \texttt{RemainingShots} to $5$. This method does not return anything.
 
 \end{itemize}
@@ -319,6 +432,24 @@ A \texttt{Ditch} is a structure that can be occupied. While an agent occupies a 
 \paragraph{Room} \label{par:roomDesc}
 A room is a section of the grid layer that is enclosed by barriers, leaving only one or more small gaps to enter and exit the enclosed section.
 %
+\paragraph{Water} \label{par:waterDesc}
+\texttt{Water} is a non-occupiable terrain element. It blocks movement, but not vision. Agents can see across \texttt{Water} tiles if no other obstacles are in the way. \texttt{Water} tiles can be explored by calling \texttt{ExploreWater1}.
+%
+\paragraph{ExplosiveBarrel} \label{par:barrelDesc}
+An \texttt{ExplosiveBarrel} is a destructible object that cannot be occupied. Like \texttt{Water}, it does not block vision. When hit by a tagging action, an unexploded \texttt{ExplosiveBarrel} detonates and deals damage to agents in a radius of three tiles. Exploded barrels remain visible and can still be explored using \texttt{ExploreBarrels1} or \texttt{ExploreExplosiveBarrels1}.
+
+\paragraph{FlagStand} \label{par:flagstandDesc}
+A \texttt{FlagStand} is a tile that belongs to a specific team and can be occupied by agents. At the beginning of the game, a flag is placed on each team’s \texttt{FlagStand}. During gameplay, if both flags are brought to the same \texttt{FlagStand}, a capture is scored and both flags are returned to their respective \texttt{FlagStands}. Agents can respawn at their team's \texttt{FlagStand} in \texttt{Capture the Flag} mode. \texttt{FlagStand} tiles can be explored by calling \texttt{ExploreEnemyFlagStands1} or \texttt{ExploreOwnFlagStand}.
+
+\subsubsection{Items} \label{sssec:items}
+An \texttt{Item} is an object that can exist on the grid and may interact with agents through pickup or triggering mechanics.
+
+\paragraph{Flag} \label{par:flagItemDesc}
+A \texttt{Flag} is an item that belongs to a specific team. Each flag starts the game on its team's \texttt{FlagStand}. The boolean property \texttt{PickedUp} indicates whether the flag is currently being carried by an agent.
+
+When an agent from the \emph{opposing} team steps onto the tile containing the flag, it is automatically picked up. If the carrier reaches the opponent's \texttt{FlagStand}, the flag is automatically dropped on that tile. If an agent from the \emph{same} team touches their own flag while it has been dropped or stolen, the flag is instantly returned (teleported) to its original \texttt{FlagStand}.
+
+
 \subsubsection{Designing your own maps}
 %
 You can design your own LaserTag environments. To do so, create a CSV file and follow these guidelines:
@@ -332,8 +463,13 @@ You can design your own LaserTag environments. To do so, create a CSV file and f
     \item 1$\,\to\,$\texttt{Barrier}
     \item 2$\,\to\,$\texttt{Hill}
     \item 3$\,\to\,$\texttt{Ditch}
+    \item 4$\,\to\,$\texttt{Water}
+    \item 5$\,\to\,$\texttt{ExplosiveBarrel}
+    \item 7$\,\to\,$\texttt{FlagStand} (red team)
+    \item 8$\,\to\,$\texttt{FlagStand} (yellow team)
   \end{itemize}
 \end{itemize}
+
 %
 For reference and examples, see the default maps in the directory \texttt{LaserTagBox/Resources/}.
 %
@@ -387,6 +523,11 @@ Let us examine each factor in turn:
 \end{enumerate}
 %
 \subsubsection{Spots} \label{sssec:spot}
-The environment features \texttt{Hill}, \texttt{Ditch}, and \texttt{Barrier} objects for agents to interact with and, under certain circumstances, gain an advantage over their opponents. A \texttt{Barrier} object cannot be occupied. A \texttt{Hill} or \texttt{Ditch} can be occupied by only one agent at a time. Being on a \texttt{Hill} increases an agent's \texttt{VisualRange} and \texttt{VisibilityRange} by five each. Being in a \texttt{Ditch} lowers an agent's \texttt{VisualRange} and  \texttt{VisibilityRange} by three each. See Sections \ref{sssec:vision}, \ref{sssec:tagging}, \ref{par:hillDesc}, and \ref{par:ditchDesc} for more information.
+The environment features \texttt{Hill}, \texttt{Ditch}, \texttt{Barrier}, \texttt{Water}, \texttt{ExplosiveBarrel} and \texttt{FlagStand} objects for agents to interact with and, under certain circumstances, gain an advantage over their opponents. A \texttt{Barrier} object cannot be occupied. A \texttt{Hill} or \texttt{Ditch} can be occupied by only one agent at a time. Being on a \texttt{Hill} increases an agent's \texttt{VisualRange} and \texttt{VisibilityRange} by five each. Being in a \texttt{Ditch} lowers an agent's \texttt{VisualRange} and \texttt{VisibilityRange} by three each.
+
+\texttt{Water} tiles cannot be entered, but do not block line of sight. \texttt{ExplosiveBarrel} tiles also cannot be occupied and allow agents to see across them, but they detonate when hit, causing area damage. \texttt{FlagStand} tiles can be occupied by agents and belong to a specific team. In \texttt{Capture the Flag} mode, they serve as spawn points for flags and agents.
+
+See Sections \ref{sssec:vision}, \ref{sssec:tagging}, \ref{par:hillDesc}, \ref{par:ditchDesc}, \ref{par:waterDesc}, \ref{par:barrelDesc}, and \ref{par:flagstandDesc} for more information.
+
 
 \end{document}
