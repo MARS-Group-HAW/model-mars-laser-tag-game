@@ -53,7 +53,7 @@
 \centering
 {\huge MARS LaserTag Game}\\[0.5cm]
 {\LARGE Part I: Handbook}\\[0.5cm]
-{\large \textsf{Version 1.0.0}}\\
+{\large \textsf{Version 1.0.1}}\\
 {\large \textsf{\today}}
 
 \end{minipage}\\
@@ -158,6 +158,7 @@ The game is designed to be played by two, three or four teams. Follow these step
     \item In Rider, press the \textcolor{OliveGreen}{\Forward} Run button
     \item In a terminal, go to the directory \textbf{LaserTagBox} and enter the commands \texttt{dotnet build} and \texttt{dotnet run}.
   \end{enumerate}%
+  \item If the configuration file contains a mapping parameter \texttt{"Visualization": true}, the simulation output can be visualized using the standalone tool described in Section~\ref{sec:vis:stand}.
 \end{enumerate}
 %
 The JSON file \texttt{config.json} in the directory \textbf{LaserTagBox} can be used to configure a game. Each configuration file requires resource files that need to be in the directory \textbf{Resources}:%
@@ -185,7 +186,7 @@ The default environment is called \texttt{rec1\_battleground.csv}.~It encodes an
 
 A Python-based tool for post-game visualization is available in the directory \textbf{Analysis}. This tool can help you analyze and improve your agents' behavior during the development process. For the tool to work, a map file (\texttt{map.csv}) is required in the directory \textbf{Resources/} and a simulation output file (\texttt{PlayerBody.csv}) is required in the directory \textbf{bin/Debug/net8.0/}. Once these files are in place, simply double-click \texttt{vis.py} to start the visualizaton. For more detailed information, see the README file in \textbf{Analysis}.
 
-\subsection{Standalone Visualization Tool}
+\subsection{Standalone Visualization Tool}\label{sec:vis:stand}
 In addition to the Python script, a standalone graphical visualization tool is available in the \textbf{Visualization/} directory. It is compatible with Windows, macOS, and Linux and allows interactive analysis of game data using a GUI.
 
 \subsubsection*{Usage Instructions}
@@ -198,7 +199,16 @@ In addition to the Python script, a standalone graphical visualization tool is a
     \item \texttt{visualization\_linux.zip} for Linux
   \end{itemize}
   \item Extract the archive.
-  \item Run the extracted executable file (\texttt{visualization.exe}, \texttt{visualization.app}, or Linux binary).
+  \item Run the extracted application:
+  \begin{itemize}
+    \item \textbf{On Windows:} \texttt{visualization.exe}
+    \item \textbf{On Linux:} \texttt{visualization.sh}
+    \item \textbf{On macOS:} open a terminal and execute:
+    \begin{lstlisting}[language=bash]
+./visualization_macOS.app/Contents/MacOS/mmvp
+    \end{lstlisting}
+  \end{itemize}
+
 \end{enumerate}
 
 \paragraph{Note:}
@@ -493,7 +503,7 @@ Let us examine each condition in turn:
 \begin{enumerate}
   \item If the distance between X and Y is less than or equal to X's \texttt{VisualRange}, then X may be able to see Y.
   \item If the distance between X and Y is less than or equal to Y's \texttt{VisibilityRange}, then X may be able to see Y. Y's \texttt{VisibilityRange} is irrelevant for when X stands either on a \texttt{Hill} or in a \texttt{Ditch}.
-  \item A barrier or \texttt{Hill} can block an agent's line of sight. If there is nothing blocking X's line of sight to Y, then X may be able to see Y. For more information on line-of-sight computation, feel free to check out \href{http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/}{Bresenham's Line Algorithm} which is implemented in LaserTag to determine if any of the grid cells along the line of sight between two agents holds an vision-blocking object (a barrier or \texttt{Hill}).
+  \item A barrier or \texttt{Hill} can block an agent's line of sight. If there is nothing blocking X's line of sight to Y, then X may be able to see Y. For more information on line-of-sight computation, feel free to check out Bresenham's Line Algorithm which is implemented in LaserTag to determine if any of the grid cells along the line of sight between two agents holds an vision-blocking object (a barrier or \texttt{Hill}).
   \item If X is located on a \texttt{Hill}, then his \texttt{VisualRange} is increased, making it possible for him to see Y from a farther distance. Likewise, if Y is located on a hill, then his \texttt{VisibilityRange} is increased, making it easier for X to see him.
   \item If X is located in a \texttt{Ditch}, then his \texttt{VisualRange} is decreased, which requires Y to be closer to X in order for X to be able to see Y. Likewise, if Y is located in a \texttt{Ditch}, then his \texttt{VisibilityRange} is decreased, requiring X to be closer to Y in order for X to be able to see Y.
 \end{enumerate}
@@ -502,6 +512,18 @@ Conditions 1, 2, and 3 must be met in order for X to be able to see Y. Condition
 %
 \subsubsection{Movement} \label{sssec:movement}
 Agents move along the grid via a modified version of the \href{http://idm-lab.org/bib/abstracts/papers/aaai02b.pdf}{D* Lite Algorithm}. The algorithm computes an initial (usually close-to-optimal or optimal) route from an agent's current position to the desired destination. Once the route has been calculated, the algorithm guides the agent towards the goal at a rate dependent on the agent's \texttt{Stance} and movement capabilities. The algorithm performs route adjustments and recalculations only if an obstacle intersects the agent's path that was not present during the initial route computation. This makes the algorithm highly efficient and perform at a better time complexity than more common path-finding algorithms such as A*.
+
+An agent's current \texttt{Stance} directly affects its mobility. Specifically, each stance imposes a movement delay that is applied before the next move can be executed:
+\begin{itemize}
+  \item \texttt{Standing} – no delay (fastest movement)
+  \item \texttt{Kneeling} – incurs a movement delay of 2 ticks
+  \item \texttt{Lying} – incurs a movement delay of 3 ticks
+\end{itemize}
+
+This delay is managed through the agent’s internal \texttt{MovementDelayCounter}, which counts down each tick. During this delay, the agent cannot take further movement actions. The delay value resets when the stance is changed or a new goal is selected.
+
+For more on how stances affect visibility and tagging, see Sections \ref{sssec:tagging} and \ref{sssec:vision}.
+
 %
 \subsubsection{Tagging} \label{sssec:tagging}
 Tagging is the core game mechanic that drives LaserTag. In an attempt to simulate real-world tag-and-get-tagged interactions between laser tag players, the method \texttt{Tag5(Position)} relies on probability and randomization to create a balance between successful and unsuccessful tag attempts. If agent X attempts to tag agent Y, the outcome depends on the following factors:
