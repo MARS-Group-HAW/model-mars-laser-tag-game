@@ -1,10 +1,10 @@
 # LaserTag: A Multi-Agent Simulation Game
-**Version 1.0.1** – *Released: June 3, 2025*
+**Version 1.0.2** – *Released: June 17, 2025*
 
 
 LaserTag is an agent-based simulation game designed for developers to implement and test agent behaviors and let agent teams with different strategies compete against each other. The game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html).
 
-For project setup, game rules, agent interfaces, and further details, refer to the PDF handbook `LaserTag_Handbook.pdf` located in the `Documentation/` directory.
+For game rules, agent interfaces, and further details, refer to the website [Mars Laser Tag Game](https://www.mars-group.org/model-mars-laser-tag-game/).
 
 
 ## Usage
@@ -15,16 +15,16 @@ LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application
 
 ## Visualization
 
-To visualize the results of a simulation, prebuilt visualization tools are provided for Linux, macOS, and Windows.
+To visualize the results of a simulation, prebuilt [visualization tools](https://github.com/MARS-Group-HAW/mars-grid-visualizer/releases) are provided for Linux, macOS, and Windows.
 
 ### How to Use
 
 1. Go to the directory `Visualization/`.
-2. Choose the file corresponding to your operating system:
+2. Choose the release corresponding to your operating system:
    - `visualization_windows.zip` for Windows
    - `visualization_macOS.app.tar.xz` for macOS
    - `visualization_linux.zip` for Linux
-3. Extract the archive.
+3. Extract the archive in the directory.
 4. Run the extracted application 
    - On Windows: `visualization.exe`
    - On Linux: `visualization.sh`.
