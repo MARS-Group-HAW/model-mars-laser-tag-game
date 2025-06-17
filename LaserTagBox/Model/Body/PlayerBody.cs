@@ -57,6 +57,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     The remaining number of shots (tagging opportunities) of the agent.
     /// </summary>
     public int RemainingShots { get; private set; } = 5;
+    
     #endregion
 
     #region Fields
@@ -91,18 +92,16 @@ public class PlayerBody : MovingAgent, IPlayerBody
             {
                 return;
             }
-            else
+            _deadTicks++;
+            // Workaround: Sometimes the agent does not move to the spawn point due to a bug, so we reset the position here.
+            Position = Position.CreatePosition(XSpawn, YSpawn); 
+            if (_deadTicks >= 60)
             {
-                _deadTicks++;
-                if (_deadTicks >= 60)
-                {
-                    Respawn();
-                    _deadTicks = 0;
-                }
-                return;
+                Respawn();
+                _deadTicks = 0;
             }
+            return;
         }
-        
         if (_currentTick == Battleground.GetCurrentTick())
             throw new InvalidOperationException("Don't call the Tick method, it's done by the system.");
         _currentTick = Battleground.GetCurrentTick();
@@ -410,17 +409,21 @@ public class PlayerBody : MovingAgent, IPlayerBody
     {
         if (!Alive) return;
         Alive = false;
+        if (CarryingFlag) // If the agent was carrying a flag, it is dropped.
+        {
+            var flag = Battleground.Items.Values.Where(f => f is Flag).Where(f => f.PickedUp).FirstOrDefault(f => f.Owner.ID.Equals(ID));
+            if (flag != null)
+            {
+                flag.Drop();
+                CarryingFlag = false;
+            }
+        }
+        Position = Position.CreatePosition(XSpawn, YSpawn);
+        Battleground.FighterEnv.PosAt(this, [XSpawn, YSpawn]);
         Battleground.FighterEnv.Remove(this);
-        // Do not remove agent from tick cycle for evaluation purposes
             
         ActionPoints = 0;
-        if (!CarryingFlag) return;
-        var flag = Battleground.Items.Values.Where(f => f is Flag).Where(f => f.PickedUp).FirstOrDefault(f => f.Owner.ID.Equals(ID));
-        if (flag != null)
-        {
-            flag.Drop();
-            CarryingFlag = false;
-        }
+
     }
 
     /// <summary>
@@ -448,19 +451,16 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// <summary>
     ///     Respawns the agent at its flag stand.
     /// </summary>
-    private void Respawn()
+    public void Respawn()
     {
-        var flagStand = Battleground.SpotEnv.Entities.Where(e => 
-            e.GetType() == typeof(FlagStand)).FirstOrDefault(e => ((FlagStand)e).Color == Color);
-        if (flagStand != null)
-        {
-            Position = Position.CreatePosition(flagStand.Position.X, flagStand.Position.Y);
-            Alive = true;
-            ActionPoints = 10;
-            Energy = 100;
-            RemainingShots = 5;
-        }
+        
+        Alive = true;
+        ActionPoints = 10;
+        Energy = 100;
+        RemainingShots = 5;
+        Position = Position.CreatePosition(XSpawn, YSpawn);
         Battleground.FighterEnv.Insert(this);
+        Battleground.FighterEnv.PosAt(this, [XSpawn, YSpawn]);
     }
     #endregion
 }
