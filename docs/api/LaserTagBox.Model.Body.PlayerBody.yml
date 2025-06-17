@@ -1,0 +1,2581 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Body.PlayerBody
+  commentId: T:LaserTagBox.Model.Body.PlayerBody
+  id: PlayerBody
+  parent: LaserTagBox.Model.Body
+  children:
+  - LaserTagBox.Model.Body.PlayerBody.ActionPoints
+  - LaserTagBox.Model.Body.PlayerBody.Alive
+  - LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+  - LaserTagBox.Model.Body.PlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  - LaserTagBox.Model.Body.PlayerBody.Energy
+  - LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreDitches1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreFlags2
+  - LaserTagBox.Model.Body.PlayerBody.ExploreHills1
+  - LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand
+  - LaserTagBox.Model.Body.PlayerBody.ExploreTeam
+  - LaserTagBox.Model.Body.PlayerBody.ExploreWater1
+  - LaserTagBox.Model.Body.PlayerBody.GamePoints
+  - LaserTagBox.Model.Body.PlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv
+  - LaserTagBox.Model.Body.PlayerBody.MoveToPosition(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBody.Reload3
+  - LaserTagBox.Model.Body.PlayerBody.RemainingShots
+  - LaserTagBox.Model.Body.PlayerBody.Respawn
+  - LaserTagBox.Model.Body.PlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage(System.Int32)
+  - LaserTagBox.Model.Body.PlayerBody.TeamName
+  - LaserTagBox.Model.Body.PlayerBody.Tick
+  - LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+  langs:
+  - csharp
+  - vb
+  name: PlayerBody
+  nameWithType: PlayerBody
+  fullName: LaserTagBox.Model.Body.PlayerBody
+  type: Class
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PlayerBody
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 15
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Represents the spatially explicit body of a LaserTag agent that is situated in the LaserTag environment.
+  example: []
+  syntax:
+    content: 'public class PlayerBody : MovingAgent, IAgent<PlayerBodyLayer>, IAgent, ITickClient, IEntity, IModelObject, IPlayerBody, IPositionable'
+    content.vb: Public Class PlayerBody Inherits MovingAgent Implements IAgent(Of PlayerBodyLayer), IAgent, ITickClient, IEntity, IModelObject, IPlayerBody, IPositionable
+  inheritance:
+  - System.Object
+  - LaserTagBox.Model.Body.MovingAgent
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  - Mars.Interfaces.Agents.IAgent
+  - Mars.Interfaces.Agents.ITickClient
+  - Mars.Interfaces.Agents.IEntity
+  - Mars.Interfaces.IModelObject
+  - LaserTagBox.Model.Shared.IPlayerBody
+  - Mars.Interfaces.Environments.IPositionable
+  inheritedMembers:
+  - LaserTagBox.Model.Body.MovingAgent.ID
+  - LaserTagBox.Model.Body.MovingAgent.Battleground
+  - LaserTagBox.Model.Body.MovingAgent.MemberId
+  - LaserTagBox.Model.Body.MovingAgent.XSpawn
+  - LaserTagBox.Model.Body.MovingAgent.YSpawn
+  - LaserTagBox.Model.Body.MovingAgent.Color
+  - LaserTagBox.Model.Body.MovingAgent.Stance
+  - LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  - LaserTagBox.Model.Body.MovingAgent.HasMoved
+  - LaserTagBox.Model.Body.MovingAgent.Position
+  - LaserTagBox.Model.Body.MovingAgent.XCor
+  - LaserTagBox.Model.Body.MovingAgent.YCor
+  - LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  - LaserTagBox.Model.Body.MovingAgent.VisualRange
+  - LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  - LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  - LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LaserTagBox.Model.Body.PlayerBody.TeamName
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.TeamName
+  id: TeamName
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: TeamName
+  nameWithType: PlayerBody.TeamName
+  fullName: LaserTagBox.Model.Body.PlayerBody.TeamName
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: TeamName
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 22
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The name of the team to which the agent belongs.
+  example: []
+  syntax:
+    content: public string TeamName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TeamName As String
+  overload: LaserTagBox.Model.Body.PlayerBody.TeamName*
+- uid: LaserTagBox.Model.Body.PlayerBody.Alive
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.Alive
+  id: Alive
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Alive
+  nameWithType: PlayerBody.Alive
+  fullName: LaserTagBox.Model.Body.PlayerBody.Alive
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Alive
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 27
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Represents the agent's vital state.
+  example: []
+  syntax:
+    content: public bool Alive { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Alive As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBody.Alive*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.Alive
+- uid: LaserTagBox.Model.Body.PlayerBody.ActionPoints
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.ActionPoints
+  id: ActionPoints
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ActionPoints
+  nameWithType: PlayerBody.ActionPoints
+  fullName: LaserTagBox.Model.Body.PlayerBody.ActionPoints
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ActionPoints
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 32
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Points that can be spent on actions per tick.
+  example: []
+  syntax:
+    content: public int ActionPoints { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ActionPoints As Integer
+  overload: LaserTagBox.Model.Body.PlayerBody.ActionPoints*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+- uid: LaserTagBox.Model.Body.PlayerBody.Energy
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.Energy
+  id: Energy
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Energy
+  nameWithType: PlayerBody.Energy
+  fullName: LaserTagBox.Model.Body.PlayerBody.Energy
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Energy
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 37
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The agent's current energy count.
+  example: []
+  syntax:
+    content: public int Energy { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Energy As Integer
+  overload: LaserTagBox.Model.Body.PlayerBody.Energy*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.Energy
+- uid: LaserTagBox.Model.Body.PlayerBody.GamePoints
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.GamePoints
+  id: GamePoints
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: GamePoints
+  nameWithType: PlayerBody.GamePoints
+  fullName: LaserTagBox.Model.Body.PlayerBody.GamePoints
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GamePoints
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 42
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The agent's point count (for tagging enemy agents, etc.).
+  example: []
+  syntax:
+    content: public int GamePoints { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property GamePoints As Integer
+  overload: LaserTagBox.Model.Body.PlayerBody.GamePoints*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+- uid: LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+  id: CarryingFlag
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: CarryingFlag
+  nameWithType: PlayerBody.CarryingFlag
+  fullName: LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: CarryingFlag
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 47
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Determines whether the agent is carrying the flag.
+  example: []
+  syntax:
+    content: public bool CarryingFlag { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CarryingFlag As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBody.CarryingFlag*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+- uid: LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+  id: WasTaggedLastTick
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: WasTaggedLastTick
+  nameWithType: PlayerBody.WasTaggedLastTick
+  fullName: LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: WasTaggedLastTick
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 53
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Returns true if the agent was tagged during the last tick (i.e., the tick before the current tick).
+  example: []
+  syntax:
+    content: public bool WasTaggedLastTick { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property WasTaggedLastTick As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+- uid: LaserTagBox.Model.Body.PlayerBody.RemainingShots
+  commentId: P:LaserTagBox.Model.Body.PlayerBody.RemainingShots
+  id: RemainingShots
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: RemainingShots
+  nameWithType: PlayerBody.RemainingShots
+  fullName: LaserTagBox.Model.Body.PlayerBody.RemainingShots
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: RemainingShots
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 58
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The remaining number of shots (tagging opportunities) of the agent.
+  example: []
+  syntax:
+    content: public int RemainingShots { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RemainingShots As Integer
+  overload: LaserTagBox.Model.Body.PlayerBody.RemainingShots*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+- uid: LaserTagBox.Model.Body.PlayerBody.Tick
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.Tick
+  id: Tick
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Tick()
+  nameWithType: PlayerBody.Tick()
+  fullName: LaserTagBox.Model.Body.PlayerBody.Tick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tick
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 85
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: >-
+    The behavior routine of the spatially explicit component of the LaserTag agent, which is executed
+
+    automatically by the LaserTag framework.
+  example: []
+  syntax:
+    content: public override void Tick()
+    content.vb: Public Overrides Sub Tick()
+  overridden: LaserTagBox.Model.Body.MovingAgent.Tick
+  overload: LaserTagBox.Model.Body.PlayerBody.Tick*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if this method is called manually
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1
+  id: ExploreExplosiveBarrels1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreExplosiveBarrels1()
+  nameWithType: PlayerBody.ExploreExplosiveBarrels1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreExplosiveBarrels1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 114
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores all explodable <pre><code class="lang-csharp">ExplosiveBarrel</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: public List<Position> ExploreExplosiveBarrels1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Public Function ExploreExplosiveBarrels1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1
+  id: ExploreBarrels1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreBarrels1()
+  nameWithType: PlayerBody.ExploreBarrels1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreBarrels1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 124
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores all <pre><code class="lang-csharp">ExplosiveBarrel</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: public List<Position> ExploreBarrels1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Public Function ExploreBarrels1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreHills1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreHills1
+  id: ExploreHills1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreHills1()
+  nameWithType: PlayerBody.ExploreHills1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreHills1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreHills1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 130
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the hills in the agent's field of vision.
+  example: []
+  syntax:
+    content: public List<Position> ExploreHills1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of Hill objects or null if the caller does not have enough ActionPoints
+    content.vb: Public Function ExploreHills1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreHills1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1
+  id: ExploreBarriers1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreBarriers1()
+  nameWithType: PlayerBody.ExploreBarriers1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreBarriers1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 136
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the barriers in the agent's field of vision.
+  example: []
+  syntax:
+    content: public List<Position> ExploreBarriers1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of Barrier objects or null if the caller does not have enough ActionPoints
+    content.vb: Public Function ExploreBarriers1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreWater1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreWater1
+  id: ExploreWater1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreWater1()
+  nameWithType: PlayerBody.ExploreWater1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreWater1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreWater1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 142
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the water bodies in the agent's field of vision.
+  example: []
+  syntax:
+    content: public List<Position> ExploreWater1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Public Function ExploreWater1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreWater1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreDitches1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreDitches1
+  id: ExploreDitches1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreDitches1()
+  nameWithType: PlayerBody.ExploreDitches1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreDitches1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreDitches1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 147
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the ditches in the agent's field of vision.
+  example: []
+  syntax:
+    content: public List<Position> ExploreDitches1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of Ditch objects or null if the caller does not have enough ActionPoints
+    content.vb: Public Function ExploreDitches1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreDitches1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand
+  id: ExploreOwnFlagStand
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreOwnFlagStand()
+  nameWithType: PlayerBody.ExploreOwnFlagStand()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreOwnFlagStand
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 153
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the position of the own flag stand.
+  example: []
+  syntax:
+    content: public Position ExploreOwnFlagStand()
+    return:
+      type: Mars.Interfaces.Environments.Position
+      description: ''
+    content.vb: Public Function ExploreOwnFlagStand() As Position
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1
+  id: ExploreEnemyFlagStands1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreEnemyFlagStands1()
+  nameWithType: PlayerBody.ExploreEnemyFlagStands1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreEnemyFlagStands1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 162
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the enemy flag stands.
+  example: []
+  syntax:
+    content: public List<Position> ExploreEnemyFlagStands1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+    content.vb: Public Function ExploreEnemyFlagStands1() As List(Of Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreFlags2
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreFlags2
+  id: ExploreFlags2
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreFlags2()
+  nameWithType: PlayerBody.ExploreFlags2()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreFlags2()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreFlags2
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 176
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the flags.
+  example: []
+  syntax:
+    content: public List<FlagSnapshot> ExploreFlags2()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+      description: ''
+    content.vb: Public Function ExploreFlags2() As List(Of FlagSnapshot)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreFlags2*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreTeam
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreTeam
+  id: ExploreTeam
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreTeam()
+  nameWithType: PlayerBody.ExploreTeam()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreTeam()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreTeam
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 189
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores the agent's team members across the entire environment.
+  example: []
+  syntax:
+    content: public List<FriendSnapshot> ExploreTeam()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+      description: A list of FriendSnapshot objects
+    content.vb: Public Function ExploreTeam() As List(Of FriendSnapshot)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreTeam*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1
+  id: ExploreEnemies1
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreEnemies1()
+  nameWithType: PlayerBody.ExploreEnemies1()
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreEnemies1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 201
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Explores enemy agents in the agent's field of vision.
+  example: []
+  syntax:
+    content: public List<EnemySnapshot> ExploreEnemies1()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+      description: A list of EnemySnapshot objects or null if the caller does not have enough ActionPoints
+    content.vb: Public Function ExploreEnemies1() As List(Of EnemySnapshot)
+  overload: LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+- uid: LaserTagBox.Model.Body.PlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  id: HasBeeline1(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: HasBeeline1(Position)
+  nameWithType: PlayerBody.HasBeeline1(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: HasBeeline1
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 218
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Determines whether there exists a direct line of sight between the caller and the given position
+  example: []
+  syntax:
+    content: public bool HasBeeline1(Position other)
+    parameters:
+    - id: other
+      type: Mars.Interfaces.Environments.Position
+      description: The position whose line of sight relative to the caller is to be determined
+    return:
+      type: System.Boolean
+      description: >-
+        true if there exists an open line of sight between the caller's position and the given position.
+            false if no such line of sight exists or if the caller does not have enough ActionPoints.
+    content.vb: Public Function HasBeeline1(other As Position) As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBody.HasBeeline1*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+- uid: LaserTagBox.Model.Body.PlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  id: ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ChangeStance2(Stance)
+  nameWithType: PlayerBody.ChangeStance2(Stance)
+  fullName: LaserTagBox.Model.Body.PlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ChangeStance2
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 230
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Changes the agent's current stance to the given stance.
+  example: []
+  syntax:
+    content: public void ChangeStance2(Stance newStance)
+    parameters:
+    - id: newStance
+      type: LaserTagBox.Model.Shared.Stance
+      description: The given stance
+    content.vb: Public Sub ChangeStance2(newStance As Stance)
+  overload: LaserTagBox.Model.Body.PlayerBody.ChangeStance2*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+- uid: LaserTagBox.Model.Body.PlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  id: Tag5(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Tag5(Position)
+  nameWithType: PlayerBody.Tag5(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tag5
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 245
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Shoots at the given Position. Returns true if shot was successfully executed, otherwise false.
+  example: []
+  syntax:
+    content: public bool Tag5(Position aimedPosition)
+    parameters:
+    - id: aimedPosition
+      type: Mars.Interfaces.Environments.Position
+      description: The position to be shot at
+    return:
+      type: System.Boolean
+      description: true if an enemy on the given position was tagged, false otherwise
+    content.vb: Public Function Tag5(aimedPosition As Position) As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBody.Tag5*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: Thrown if a player has an invalid Stance
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+- uid: LaserTagBox.Model.Body.PlayerBody.Reload3
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.Reload3
+  id: Reload3
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Reload3()
+  nameWithType: PlayerBody.Reload3()
+  fullName: LaserTagBox.Model.Body.PlayerBody.Reload3()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Reload3
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 303
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Refills the ammunition of the agent's tagging weapon.
+  example: []
+  syntax:
+    content: public void Reload3()
+    content.vb: Public Sub Reload3()
+  overload: LaserTagBox.Model.Body.PlayerBody.Reload3*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.Reload3
+- uid: LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv
+  id: InsertIntoEnv
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: InsertIntoEnv()
+  nameWithType: PlayerBody.InsertIntoEnv()
+  fullName: LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: InsertIntoEnv
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 315
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Inserts the agent into the LaserTag environment.
+  example: []
+  syntax:
+    content: protected override void InsertIntoEnv()
+    content.vb: Protected Overrides Sub InsertIntoEnv()
+  overridden: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  overload: LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv*
+- uid: LaserTagBox.Model.Body.PlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  id: GetDistance(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: GetDistance(Position)
+  nameWithType: PlayerBody.GetDistance(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetDistance
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 352
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Returns the distance from the caller to the given position, using the Manhattan distance measure.
+  example: []
+  syntax:
+    content: public int GetDistance(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position whose distance to the caller is to be determined
+    return:
+      type: System.Int32
+      description: An integer that represents the calculated distance
+    content.vb: Public Function GetDistance(position As Position) As Integer
+  overload: LaserTagBox.Model.Body.PlayerBody.GetDistance*
+  implements:
+  - LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+- uid: LaserTagBox.Model.Body.PlayerBody.MoveToPosition(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.MoveToPosition(Mars.Interfaces.Environments.Position)
+  id: MoveToPosition(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: MoveToPosition(Position)
+  nameWithType: PlayerBody.MoveToPosition(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBody.MoveToPosition(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToPosition
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 374
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Moves the agent to the given position.
+  example: []
+  syntax:
+    content: protected override Position MoveToPosition(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position to which the agent is to be moved.
+    return:
+      type: Mars.Interfaces.Environments.Position
+      description: The position to which the agent was moved
+    content.vb: Protected Overrides Function MoveToPosition(position As Position) As Position
+  overridden: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  overload: LaserTagBox.Model.Body.PlayerBody.MoveToPosition*
+- uid: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage(System.Int32)
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage(System.Int32)
+  id: TakeExplosionDamage(System.Int32)
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: TakeExplosionDamage(int)
+  nameWithType: PlayerBody.TakeExplosionDamage(int)
+  fullName: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage(int)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: TakeExplosionDamage
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 394
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Handles the agent's explosion damage.
+  example: []
+  syntax:
+    content: public void TakeExplosionDamage(int damage)
+    parameters:
+    - id: damage
+      type: System.Int32
+      description: ''
+    content.vb: Public Sub TakeExplosionDamage(damage As Integer)
+  overload: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage*
+  nameWithType.vb: PlayerBody.TakeExplosionDamage(Integer)
+  fullName.vb: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage(Integer)
+  name.vb: TakeExplosionDamage(Integer)
+- uid: LaserTagBox.Model.Body.PlayerBody.Respawn
+  commentId: M:LaserTagBox.Model.Body.PlayerBody.Respawn
+  id: Respawn
+  parent: LaserTagBox.Model.Body.PlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Respawn()
+  nameWithType: PlayerBody.Respawn()
+  fullName: LaserTagBox.Model.Body.PlayerBody.Respawn()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Respawn
+    path: ../LaserTagBox/Model/Body/PlayerBody.cs
+    startLine: 453
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Respawns the agent at its flag stand.
+  example: []
+  syntax:
+    content: public void Respawn()
+    content.vb: Public Sub Respawn()
+  overload: LaserTagBox.Model.Body.PlayerBody.Respawn*
+references:
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LaserTagBox.Model.Body.MovingAgent
+  commentId: T:LaserTagBox.Model.Body.MovingAgent
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.MovingAgent.html
+  name: MovingAgent
+  nameWithType: MovingAgent
+  fullName: LaserTagBox.Model.Body.MovingAgent
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  commentId: T:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  parent: Mars.Interfaces.Agents
+  definition: Mars.Interfaces.Agents.IAgent`1
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: IAgent<PlayerBodyLayer>
+  nameWithType: IAgent<PlayerBodyLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Body.PlayerBodyLayer>
+  nameWithType.vb: IAgent(Of PlayerBodyLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Body.PlayerBodyLayer)
+  name.vb: IAgent(Of PlayerBodyLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent
+  commentId: T:Mars.Interfaces.Agents.IAgent
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IAgent
+  nameWithType: IAgent
+  fullName: Mars.Interfaces.Agents.IAgent
+- uid: Mars.Interfaces.Agents.ITickClient
+  commentId: T:Mars.Interfaces.Agents.ITickClient
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: ITickClient
+  nameWithType: ITickClient
+  fullName: Mars.Interfaces.Agents.ITickClient
+- uid: Mars.Interfaces.Agents.IEntity
+  commentId: T:Mars.Interfaces.Agents.IEntity
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IEntity
+  nameWithType: IEntity
+  fullName: Mars.Interfaces.Agents.IEntity
+- uid: Mars.Interfaces.IModelObject
+  commentId: T:Mars.Interfaces.IModelObject
+  parent: Mars.Interfaces
+  isExternal: true
+  name: IModelObject
+  nameWithType: IModelObject
+  fullName: Mars.Interfaces.IModelObject
+- uid: LaserTagBox.Model.Shared.IPlayerBody
+  commentId: T:LaserTagBox.Model.Shared.IPlayerBody
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.IPlayerBody.html
+  name: IPlayerBody
+  nameWithType: IPlayerBody
+  fullName: LaserTagBox.Model.Shared.IPlayerBody
+- uid: Mars.Interfaces.Environments.IPositionable
+  commentId: T:Mars.Interfaces.Environments.IPositionable
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: IPositionable
+  nameWithType: IPositionable
+  fullName: Mars.Interfaces.Environments.IPositionable
+- uid: LaserTagBox.Model.Body.MovingAgent.ID
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.ID
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_ID
+  name: ID
+  nameWithType: MovingAgent.ID
+  fullName: LaserTagBox.Model.Body.MovingAgent.ID
+- uid: LaserTagBox.Model.Body.MovingAgent.Battleground
+  commentId: F:LaserTagBox.Model.Body.MovingAgent.Battleground
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Battleground
+  name: Battleground
+  nameWithType: MovingAgent.Battleground
+  fullName: LaserTagBox.Model.Body.MovingAgent.Battleground
+- uid: LaserTagBox.Model.Body.MovingAgent.MemberId
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MemberId
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MemberId
+  name: MemberId
+  nameWithType: MovingAgent.MemberId
+  fullName: LaserTagBox.Model.Body.MovingAgent.MemberId
+- uid: LaserTagBox.Model.Body.MovingAgent.XSpawn
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.XSpawn
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_XSpawn
+  name: XSpawn
+  nameWithType: MovingAgent.XSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.XSpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.YSpawn
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.YSpawn
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_YSpawn
+  name: YSpawn
+  nameWithType: MovingAgent.YSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.YSpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.Color
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Color
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Color
+  name: Color
+  nameWithType: MovingAgent.Color
+  fullName: LaserTagBox.Model.Body.MovingAgent.Color
+- uid: LaserTagBox.Model.Body.MovingAgent.Stance
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Stance
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Stance
+  name: Stance
+  nameWithType: MovingAgent.Stance
+  fullName: LaserTagBox.Model.Body.MovingAgent.Stance
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MovementDelayCounter
+  name: MovementDelayCounter
+  nameWithType: MovingAgent.MovementDelayCounter
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+- uid: LaserTagBox.Model.Body.MovingAgent.HasMoved
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.HasMoved
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_HasMoved
+  name: HasMoved
+  nameWithType: MovingAgent.HasMoved
+  fullName: LaserTagBox.Model.Body.MovingAgent.HasMoved
+- uid: LaserTagBox.Model.Body.MovingAgent.Position
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Position
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Position
+  name: Position
+  nameWithType: MovingAgent.Position
+  fullName: LaserTagBox.Model.Body.MovingAgent.Position
+- uid: LaserTagBox.Model.Body.MovingAgent.XCor
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.XCor
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_XCor
+  name: XCor
+  nameWithType: MovingAgent.XCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.XCor
+- uid: LaserTagBox.Model.Body.MovingAgent.YCor
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.YCor
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_YCor
+  name: YCor
+  nameWithType: MovingAgent.YCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.YCor
+- uid: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Init_LaserTagBox_Model_Body_PlayerBodyLayer_
+  name: Init(PlayerBodyLayer)
+  nameWithType: MovingAgent.Init(PlayerBodyLayer)
+  fullName: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Init_LaserTagBox_Model_Body_PlayerBodyLayer_
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Init_LaserTagBox_Model_Body_PlayerBodyLayer_
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: LaserTagBox.Model.Body.MovingAgent.VisualRange
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.VisualRange
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_VisualRange
+  name: VisualRange
+  nameWithType: MovingAgent.VisualRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisualRange
+- uid: LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_VisibilityRange
+  name: VisibilityRange
+  nameWithType: MovingAgent.VisibilityRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MovementDelayPenalty
+  name: MovementDelayPenalty
+  nameWithType: MovingAgent.MovementDelayPenalty
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+- uid: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  isExternal: true
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_GoTo_Mars_Interfaces_Environments_Position_
+  name: GoTo(Position)
+  nameWithType: MovingAgent.GoTo(Position)
+  fullName: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+    name: GoTo
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_GoTo_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+    name: GoTo
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_GoTo_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Mars.Interfaces.Agents.IAgent`1
+  commentId: T:Mars.Interfaces.Agents.IAgent`1
+  isExternal: true
+  name: IAgent<TLayer>
+  nameWithType: IAgent<TLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>
+  nameWithType.vb: IAgent(Of TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer)
+  name.vb: IAgent(Of TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - name: TLayer
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLayer
+  - name: )
+- uid: Mars.Interfaces.Agents
+  commentId: N:Mars.Interfaces.Agents
+  isExternal: true
+  name: Mars.Interfaces.Agents
+  nameWithType: Mars.Interfaces.Agents
+  fullName: Mars.Interfaces.Agents
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+- uid: Mars.Interfaces
+  commentId: N:Mars.Interfaces
+  isExternal: true
+  name: Mars.Interfaces
+  nameWithType: Mars.Interfaces
+  fullName: Mars.Interfaces
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Body.PlayerBody.TeamName*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.TeamName
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_TeamName
+  name: TeamName
+  nameWithType: PlayerBody.TeamName
+  fullName: LaserTagBox.Model.Body.PlayerBody.TeamName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LaserTagBox.Model.Body.PlayerBody.Alive*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Alive
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Alive
+  name: Alive
+  nameWithType: PlayerBody.Alive
+  fullName: LaserTagBox.Model.Body.PlayerBody.Alive
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Alive
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Alive
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Alive
+  name: Alive
+  nameWithType: IPlayerBody.Alive
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Alive
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LaserTagBox.Model.Body.PlayerBody.ActionPoints*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ActionPoints
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ActionPoints
+  name: ActionPoints
+  nameWithType: PlayerBody.ActionPoints
+  fullName: LaserTagBox.Model.Body.PlayerBody.ActionPoints
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ActionPoints
+  name: ActionPoints
+  nameWithType: IPlayerBody.ActionPoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LaserTagBox.Model.Body.PlayerBody.Energy*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Energy
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Energy
+  name: Energy
+  nameWithType: PlayerBody.Energy
+  fullName: LaserTagBox.Model.Body.PlayerBody.Energy
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Energy
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Energy
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Energy
+  name: Energy
+  nameWithType: IPlayerBody.Energy
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Energy
+- uid: LaserTagBox.Model.Body.PlayerBody.GamePoints*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.GamePoints
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_GamePoints
+  name: GamePoints
+  nameWithType: PlayerBody.GamePoints
+  fullName: LaserTagBox.Model.Body.PlayerBody.GamePoints
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GamePoints
+  name: GamePoints
+  nameWithType: IPlayerBody.GamePoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+- uid: LaserTagBox.Model.Body.PlayerBody.CarryingFlag*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_CarryingFlag
+  name: CarryingFlag
+  nameWithType: PlayerBody.CarryingFlag
+  fullName: LaserTagBox.Model.Body.PlayerBody.CarryingFlag
+- uid: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_CarryingFlag
+  name: CarryingFlag
+  nameWithType: IPlayerBody.CarryingFlag
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+- uid: LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_WasTaggedLastTick
+  name: WasTaggedLastTick
+  nameWithType: PlayerBody.WasTaggedLastTick
+  fullName: LaserTagBox.Model.Body.PlayerBody.WasTaggedLastTick
+- uid: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_WasTaggedLastTick
+  name: WasTaggedLastTick
+  nameWithType: IPlayerBody.WasTaggedLastTick
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+- uid: LaserTagBox.Model.Body.PlayerBody.RemainingShots*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.RemainingShots
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_RemainingShots
+  name: RemainingShots
+  nameWithType: PlayerBody.RemainingShots
+  fullName: LaserTagBox.Model.Body.PlayerBody.RemainingShots
+- uid: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_RemainingShots
+  name: RemainingShots
+  nameWithType: IPlayerBody.RemainingShots
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LaserTagBox.Model.Body.MovingAgent.Tick
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.Tick
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Tick
+  name: Tick()
+  nameWithType: MovingAgent.Tick()
+  fullName: LaserTagBox.Model.Body.MovingAgent.Tick()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Body.MovingAgent.Tick
+    name: Tick
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Tick
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Body.MovingAgent.Tick
+    name: Tick
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Tick
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.Tick*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Tick
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Tick
+  name: Tick
+  nameWithType: PlayerBody.Tick
+  fullName: LaserTagBox.Model.Body.PlayerBody.Tick
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreExplosiveBarrels1
+  name: ExploreExplosiveBarrels1
+  nameWithType: PlayerBody.ExploreExplosiveBarrels1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreExplosiveBarrels1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreExplosiveBarrels1
+  name: ExploreExplosiveBarrels1()
+  nameWithType: IPlayerBody.ExploreExplosiveBarrels1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+    name: ExploreExplosiveBarrels1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreExplosiveBarrels1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+    name: ExploreExplosiveBarrels1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreExplosiveBarrels1
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+  commentId: T:System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Position>
+  nameWithType: List<Position>
+  fullName: System.Collections.Generic.List<Mars.Interfaces.Environments.Position>
+  nameWithType.vb: List(Of Position)
+  fullName.vb: System.Collections.Generic.List(Of Mars.Interfaces.Environments.Position)
+  name.vb: List(Of Position)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreBarrels1
+  name: ExploreBarrels1
+  nameWithType: PlayerBody.ExploreBarrels1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreBarrels1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarrels1
+  name: ExploreBarrels1()
+  nameWithType: IPlayerBody.ExploreBarrels1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+    name: ExploreBarrels1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarrels1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+    name: ExploreBarrels1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarrels1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreHills1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreHills1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreHills1
+  name: ExploreHills1
+  nameWithType: PlayerBody.ExploreHills1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreHills1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreHills1
+  name: ExploreHills1()
+  nameWithType: IPlayerBody.ExploreHills1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+    name: ExploreHills1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreHills1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+    name: ExploreHills1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreHills1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreBarriers1
+  name: ExploreBarriers1
+  nameWithType: PlayerBody.ExploreBarriers1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreBarriers1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarriers1
+  name: ExploreBarriers1()
+  nameWithType: IPlayerBody.ExploreBarriers1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+    name: ExploreBarriers1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarriers1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+    name: ExploreBarriers1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarriers1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreWater1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreWater1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreWater1
+  name: ExploreWater1
+  nameWithType: PlayerBody.ExploreWater1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreWater1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreWater1
+  name: ExploreWater1()
+  nameWithType: IPlayerBody.ExploreWater1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+    name: ExploreWater1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreWater1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+    name: ExploreWater1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreWater1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreDitches1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreDitches1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreDitches1
+  name: ExploreDitches1
+  nameWithType: PlayerBody.ExploreDitches1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreDitches1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreDitches1
+  name: ExploreDitches1()
+  nameWithType: IPlayerBody.ExploreDitches1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+    name: ExploreDitches1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreDitches1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+    name: ExploreDitches1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreDitches1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreOwnFlagStand
+  name: ExploreOwnFlagStand
+  nameWithType: PlayerBody.ExploreOwnFlagStand
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreOwnFlagStand
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreOwnFlagStand
+  name: ExploreOwnFlagStand()
+  nameWithType: IPlayerBody.ExploreOwnFlagStand()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+    name: ExploreOwnFlagStand
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreOwnFlagStand
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+    name: ExploreOwnFlagStand
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreOwnFlagStand
+  - name: (
+  - name: )
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreEnemyFlagStands1
+  name: ExploreEnemyFlagStands1
+  nameWithType: PlayerBody.ExploreEnemyFlagStands1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreEnemyFlagStands1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemyFlagStands1
+  name: ExploreEnemyFlagStands1()
+  nameWithType: IPlayerBody.ExploreEnemyFlagStands1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+    name: ExploreEnemyFlagStands1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemyFlagStands1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+    name: ExploreEnemyFlagStands1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemyFlagStands1
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreFlags2*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreFlags2
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreFlags2
+  name: ExploreFlags2
+  nameWithType: PlayerBody.ExploreFlags2
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreFlags2
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreFlags2
+  name: ExploreFlags2()
+  nameWithType: IPlayerBody.ExploreFlags2()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+    name: ExploreFlags2
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreFlags2
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+    name: ExploreFlags2
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreFlags2
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<FlagSnapshot>
+  nameWithType: List<FlagSnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.FlagSnapshot>
+  nameWithType.vb: List(Of FlagSnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.FlagSnapshot)
+  name.vb: List(Of FlagSnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.FlagSnapshot
+    name: FlagSnapshot
+    href: LaserTagBox.Model.Shared.FlagSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.FlagSnapshot
+    name: FlagSnapshot
+    href: LaserTagBox.Model.Shared.FlagSnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreTeam*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreTeam
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreTeam
+  name: ExploreTeam
+  nameWithType: PlayerBody.ExploreTeam
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreTeam
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreTeam
+  name: ExploreTeam()
+  nameWithType: IPlayerBody.ExploreTeam()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+    name: ExploreTeam
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreTeam
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+    name: ExploreTeam
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreTeam
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<FriendSnapshot>
+  nameWithType: List<FriendSnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.FriendSnapshot>
+  nameWithType.vb: List(Of FriendSnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.FriendSnapshot)
+  name.vb: List(Of FriendSnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.FriendSnapshot
+    name: FriendSnapshot
+    href: LaserTagBox.Model.Shared.FriendSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.FriendSnapshot
+    name: FriendSnapshot
+    href: LaserTagBox.Model.Shared.FriendSnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ExploreEnemies1
+  name: ExploreEnemies1
+  nameWithType: PlayerBody.ExploreEnemies1
+  fullName: LaserTagBox.Model.Body.PlayerBody.ExploreEnemies1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemies1
+  name: ExploreEnemies1()
+  nameWithType: IPlayerBody.ExploreEnemies1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+    name: ExploreEnemies1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemies1
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+    name: ExploreEnemies1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemies1
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EnemySnapshot>
+  nameWithType: List<EnemySnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.EnemySnapshot>
+  nameWithType.vb: List(Of EnemySnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.EnemySnapshot)
+  name.vb: List(Of EnemySnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.EnemySnapshot
+    name: EnemySnapshot
+    href: LaserTagBox.Model.Shared.EnemySnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.EnemySnapshot
+    name: EnemySnapshot
+    href: LaserTagBox.Model.Shared.EnemySnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.HasBeeline1*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.HasBeeline1
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_HasBeeline1_Mars_Interfaces_Environments_Position_
+  name: HasBeeline1
+  nameWithType: PlayerBody.HasBeeline1
+  fullName: LaserTagBox.Model.Body.PlayerBody.HasBeeline1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  isExternal: true
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_HasBeeline1_Mars_Interfaces_Environments_Position_
+  name: HasBeeline1(Position)
+  nameWithType: IPlayerBody.HasBeeline1(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+    name: HasBeeline1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_HasBeeline1_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+    name: HasBeeline1
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_HasBeeline1_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.ChangeStance2*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.ChangeStance2
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_ChangeStance2_LaserTagBox_Model_Shared_Stance_
+  name: ChangeStance2
+  nameWithType: PlayerBody.ChangeStance2
+  fullName: LaserTagBox.Model.Body.PlayerBody.ChangeStance2
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ChangeStance2_LaserTagBox_Model_Shared_Stance_
+  name: ChangeStance2(Stance)
+  nameWithType: IPlayerBody.ChangeStance2(Stance)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+    name: ChangeStance2
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ChangeStance2_LaserTagBox_Model_Shared_Stance_
+  - name: (
+  - uid: LaserTagBox.Model.Shared.Stance
+    name: Stance
+    href: LaserTagBox.Model.Shared.Stance.html
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+    name: ChangeStance2
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ChangeStance2_LaserTagBox_Model_Shared_Stance_
+  - name: (
+  - uid: LaserTagBox.Model.Shared.Stance
+    name: Stance
+    href: LaserTagBox.Model.Shared.Stance.html
+  - name: )
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LaserTagBox.Model.Body.PlayerBody.Tag5*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Tag5
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Tag5_Mars_Interfaces_Environments_Position_
+  name: Tag5
+  nameWithType: PlayerBody.Tag5
+  fullName: LaserTagBox.Model.Body.PlayerBody.Tag5
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  isExternal: true
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Tag5_Mars_Interfaces_Environments_Position_
+  name: Tag5(Position)
+  nameWithType: IPlayerBody.Tag5(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+    name: Tag5
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Tag5_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+    name: Tag5
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Tag5_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.Reload3*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Reload3
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Reload3
+  name: Reload3
+  nameWithType: PlayerBody.Reload3
+  fullName: LaserTagBox.Model.Body.PlayerBody.Reload3
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Reload3
+  name: Reload3()
+  nameWithType: IPlayerBody.Reload3()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Reload3()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.Reload3
+    name: Reload3
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Reload3
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.Reload3
+    name: Reload3
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Reload3
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  parent: LaserTagBox.Model.Body.MovingAgent
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_InsertIntoEnv
+  name: InsertIntoEnv()
+  nameWithType: MovingAgent.InsertIntoEnv()
+  fullName: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv()
+  spec.csharp:
+  - uid: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+    name: InsertIntoEnv
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_InsertIntoEnv
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+    name: InsertIntoEnv
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_InsertIntoEnv
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_InsertIntoEnv
+  name: InsertIntoEnv
+  nameWithType: PlayerBody.InsertIntoEnv
+  fullName: LaserTagBox.Model.Body.PlayerBody.InsertIntoEnv
+- uid: LaserTagBox.Model.Body.PlayerBody.GetDistance*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.GetDistance
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_GetDistance_Mars_Interfaces_Environments_Position_
+  name: GetDistance
+  nameWithType: PlayerBody.GetDistance
+  fullName: LaserTagBox.Model.Body.PlayerBody.GetDistance
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  isExternal: true
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GetDistance_Mars_Interfaces_Environments_Position_
+  name: GetDistance(Position)
+  nameWithType: IPlayerBody.GetDistance(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+    name: GetDistance
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GetDistance_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+    name: GetDistance
+    href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GetDistance_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  isExternal: true
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MoveToPosition_Mars_Interfaces_Environments_Position_
+  name: MoveToPosition(Position)
+  nameWithType: MovingAgent.MoveToPosition(Position)
+  fullName: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+    name: MoveToPosition
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MoveToPosition_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+    name: MoveToPosition
+    href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MoveToPosition_Mars_Interfaces_Environments_Position_
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBody.MoveToPosition*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.MoveToPosition
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_MoveToPosition_Mars_Interfaces_Environments_Position_
+  name: MoveToPosition
+  nameWithType: PlayerBody.MoveToPosition
+  fullName: LaserTagBox.Model.Body.PlayerBody.MoveToPosition
+- uid: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_TakeExplosionDamage_System_Int32_
+  name: TakeExplosionDamage
+  nameWithType: PlayerBody.TakeExplosionDamage
+  fullName: LaserTagBox.Model.Body.PlayerBody.TakeExplosionDamage
+- uid: LaserTagBox.Model.Body.PlayerBody.Respawn*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBody.Respawn
+  href: LaserTagBox.Model.Body.PlayerBody.html#LaserTagBox_Model_Body_PlayerBody_Respawn
+  name: Respawn
+  nameWithType: PlayerBody.Respawn
+  fullName: LaserTagBox.Model.Body.PlayerBody.Respawn

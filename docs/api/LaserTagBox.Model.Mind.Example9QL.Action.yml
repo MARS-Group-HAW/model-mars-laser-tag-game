@@ -1,0 +1,514 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Mind.Example9QL.Action
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Action
+  id: Example9QL.Action
+  parent: LaserTagBox.Model.Mind
+  children:
+  - LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToKneeling2
+  - LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToLying2
+  - LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToStanding2
+  - LaserTagBox.Model.Mind.Example9QL.Action.EndTick
+  - LaserTagBox.Model.Mind.Example9QL.Action.LookForBarriers1
+  - LaserTagBox.Model.Mind.Example9QL.Action.LookForDitches1
+  - LaserTagBox.Model.Mind.Example9QL.Action.LookForEnemies1
+  - LaserTagBox.Model.Mind.Example9QL.Action.LookForHills1
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToAlly
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToDitch
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToHill
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToRandom
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToSharedEnemy
+  - LaserTagBox.Model.Mind.Example9QL.Action.MoveToTarget
+  - LaserTagBox.Model.Mind.Example9QL.Action.Reload3
+  - LaserTagBox.Model.Mind.Example9QL.Action.TagTarget5
+  langs:
+  - csharp
+  - vb
+  name: Example9QL.Action
+  nameWithType: Example9QL.Action
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action
+  type: Enum
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Action
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 125
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: public enum Example9QL.Action
+    content.vb: Public Enum Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.Reload3
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.Reload3
+  id: Reload3
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: Reload3
+  nameWithType: Example9QL.Action.Reload3
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.Reload3
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Reload3
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 127
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: Reload3 = 0
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToStanding2
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToStanding2
+  id: ChangeStanceToStanding2
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: ChangeStanceToStanding2
+  nameWithType: Example9QL.Action.ChangeStanceToStanding2
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToStanding2
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ChangeStanceToStanding2
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 128
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: ChangeStanceToStanding2 = 1
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToKneeling2
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToKneeling2
+  id: ChangeStanceToKneeling2
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: ChangeStanceToKneeling2
+  nameWithType: Example9QL.Action.ChangeStanceToKneeling2
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToKneeling2
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ChangeStanceToKneeling2
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 129
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: ChangeStanceToKneeling2 = 2
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToLying2
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToLying2
+  id: ChangeStanceToLying2
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: ChangeStanceToLying2
+  nameWithType: Example9QL.Action.ChangeStanceToLying2
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.ChangeStanceToLying2
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ChangeStanceToLying2
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 130
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: ChangeStanceToLying2 = 3
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.LookForDitches1
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.LookForDitches1
+  id: LookForDitches1
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: LookForDitches1
+  nameWithType: Example9QL.Action.LookForDitches1
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.LookForDitches1
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: LookForDitches1
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 131
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: LookForDitches1 = 4
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.LookForHills1
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.LookForHills1
+  id: LookForHills1
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: LookForHills1
+  nameWithType: Example9QL.Action.LookForHills1
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.LookForHills1
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: LookForHills1
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 132
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: LookForHills1 = 5
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.LookForBarriers1
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.LookForBarriers1
+  id: LookForBarriers1
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: LookForBarriers1
+  nameWithType: Example9QL.Action.LookForBarriers1
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.LookForBarriers1
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: LookForBarriers1
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 133
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: LookForBarriers1 = 6
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.LookForEnemies1
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.LookForEnemies1
+  id: LookForEnemies1
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: LookForEnemies1
+  nameWithType: Example9QL.Action.LookForEnemies1
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.LookForEnemies1
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: LookForEnemies1
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 134
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: LookForEnemies1 = 7
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToHill
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToHill
+  id: MoveToHill
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToHill
+  nameWithType: Example9QL.Action.MoveToHill
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToHill
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToHill
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 137
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToHill = 8
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToDitch
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToDitch
+  id: MoveToDitch
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToDitch
+  nameWithType: Example9QL.Action.MoveToDitch
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToDitch
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToDitch
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 138
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToDitch = 9
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToSharedEnemy
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToSharedEnemy
+  id: MoveToSharedEnemy
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToSharedEnemy
+  nameWithType: Example9QL.Action.MoveToSharedEnemy
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToSharedEnemy
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToSharedEnemy
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 139
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToSharedEnemy = 10
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToRandom
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToRandom
+  id: MoveToRandom
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToRandom
+  nameWithType: Example9QL.Action.MoveToRandom
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToRandom
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToRandom
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 140
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToRandom = 11
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToAlly
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToAlly
+  id: MoveToAlly
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToAlly
+  nameWithType: Example9QL.Action.MoveToAlly
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToAlly
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToAlly
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 141
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToAlly = 12
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.MoveToTarget
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.MoveToTarget
+  id: MoveToTarget
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: MoveToTarget
+  nameWithType: Example9QL.Action.MoveToTarget
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.MoveToTarget
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToTarget
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 142
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: MoveToTarget = 13
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.TagTarget5
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.TagTarget5
+  id: TagTarget5
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: TagTarget5
+  nameWithType: Example9QL.Action.TagTarget5
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.TagTarget5
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: TagTarget5
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 143
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: TagTarget5 = 14
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+- uid: LaserTagBox.Model.Mind.Example9QL.Action.EndTick
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Action.EndTick
+  id: EndTick
+  parent: LaserTagBox.Model.Mind.Example9QL.Action
+  langs:
+  - csharp
+  - vb
+  name: EndTick
+  nameWithType: Example9QL.Action.EndTick
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action.EndTick
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: EndTick
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 144
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: EndTick = 15
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Action
+references:
+- uid: LaserTagBox.Model.Mind
+  commentId: N:LaserTagBox.Model.Mind
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Mind
+  nameWithType: LaserTagBox.Model.Mind
+  fullName: LaserTagBox.Model.Mind
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+- uid: LaserTagBox.Model.Mind.Example9QL.Action
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Action
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL.Action
+  nameWithType: Example9QL.Action
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action
+  spec.csharp:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Action
+    name: Action
+    href: LaserTagBox.Model.Mind.Example9QL.Action.html
+  spec.vb:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Action
+    name: Action
+    href: LaserTagBox.Model.Mind.Example9QL.Action.html

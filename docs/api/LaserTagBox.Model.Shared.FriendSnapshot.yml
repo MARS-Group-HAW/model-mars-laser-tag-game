@@ -1,0 +1,726 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Shared.FriendSnapshot
+  commentId: T:LaserTagBox.Model.Shared.FriendSnapshot
+  id: FriendSnapshot
+  parent: LaserTagBox.Model.Shared
+  children:
+  - LaserTagBox.Model.Shared.FriendSnapshot.#ctor(System.Guid,System.Int32,LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.Stance,Mars.Interfaces.Environments.Position,System.Int32,System.Double,System.Double)
+  - LaserTagBox.Model.Shared.FriendSnapshot.Energy
+  - LaserTagBox.Model.Shared.FriendSnapshot.Id
+  - LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+  - LaserTagBox.Model.Shared.FriendSnapshot.Position
+  - LaserTagBox.Model.Shared.FriendSnapshot.Stance
+  - LaserTagBox.Model.Shared.FriendSnapshot.Team
+  - LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+  - LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+  langs:
+  - csharp
+  - vb
+  name: FriendSnapshot
+  nameWithType: FriendSnapshot
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot
+  type: Struct
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: FriendSnapshot
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 8
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides information about other team members.
+  example: []
+  syntax:
+    content: public struct FriendSnapshot
+    content.vb: Public Structure FriendSnapshot
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Id
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.Id
+  id: Id
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: FriendSnapshot.Id
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Id
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Id
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 14
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Identifies the player.
+  example: []
+  syntax:
+    content: public readonly Guid Id { get; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public ReadOnly Property Id As Guid
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.Id*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+  id: MemberId
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: MemberId
+  nameWithType: FriendSnapshot.MemberId
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MemberId
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 19
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Alternative identifier of the player.
+  example: []
+  syntax:
+    content: public readonly int MemberId { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property MemberId As Integer
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.MemberId*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Team
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.Team
+  id: Team
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Team
+  nameWithType: FriendSnapshot.Team
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Team
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Team
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 24
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates to witch team the agent belongs.
+  example: []
+  syntax:
+    content: public readonly Color Team { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Color
+    content.vb: Public ReadOnly Property Team As Color
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.Team*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Stance
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.Stance
+  id: Stance
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Stance
+  nameWithType: FriendSnapshot.Stance
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Stance
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Stance
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 29
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: The stance has influence on visibility (explorable by others) and visual range (extend of on exploration).
+  example: []
+  syntax:
+    content: public readonly Stance Stance { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+    content.vb: Public ReadOnly Property Stance As Stance
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.Stance*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Position
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.Position
+  id: Position
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: FriendSnapshot.Position
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Position
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Position
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 34
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Current position of the agent on the grid.
+  example: []
+  syntax:
+    content: public readonly Position Position { get; }
+    parameters: []
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: Public ReadOnly Property Position As Position
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.Position*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Energy
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.Energy
+  id: Energy
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Energy
+  nameWithType: FriendSnapshot.Energy
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Energy
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Energy
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 39
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Remaining energy of the agent.
+  example: []
+  syntax:
+    content: public readonly int Energy { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Energy As Integer
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.Energy*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+  id: VisualRange
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: VisualRange
+  nameWithType: FriendSnapshot.VisualRange
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisualRange
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 44
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides a metric on the distance for exploring.
+  example: []
+  syntax:
+    content: public readonly double VisualRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property VisualRange As Double
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.VisualRange*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+  commentId: P:LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+  id: VisibilityRange
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: VisibilityRange
+  nameWithType: FriendSnapshot.VisibilityRange
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisibilityRange
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 49
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides a metric on how visible the agent is for enemies.
+  example: []
+  syntax:
+    content: public readonly double VisibilityRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property VisibilityRange As Double
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange*
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.#ctor(System.Guid,System.Int32,LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.Stance,Mars.Interfaces.Environments.Position,System.Int32,System.Double,System.Double)
+  commentId: M:LaserTagBox.Model.Shared.FriendSnapshot.#ctor(System.Guid,System.Int32,LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.Stance,Mars.Interfaces.Environments.Position,System.Int32,System.Double,System.Double)
+  id: '#ctor(System.Guid,System.Int32,LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.Stance,Mars.Interfaces.Environments.Position,System.Int32,System.Double,System.Double)'
+  parent: LaserTagBox.Model.Shared.FriendSnapshot
+  langs:
+  - csharp
+  - vb
+  name: FriendSnapshot(Guid, int, Color, Stance, Position, int, double, double)
+  nameWithType: FriendSnapshot.FriendSnapshot(Guid, int, Color, Stance, Position, int, double, double)
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.FriendSnapshot(System.Guid, int, LaserTagBox.Model.Shared.Color, LaserTagBox.Model.Shared.Stance, Mars.Interfaces.Environments.Position, int, double, double)
+  type: Constructor
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FriendSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: .ctor
+    path: ../LaserTagBox/Model/Shared/FriendSnapshot.cs
+    startLine: 54
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: public FriendSnapshot(Guid id, int memberId, Color team, Stance stance, Position position, int energy, double visualRange, double visibilityRange)
+    parameters:
+    - id: id
+      type: System.Guid
+    - id: memberId
+      type: System.Int32
+    - id: team
+      type: LaserTagBox.Model.Shared.Color
+    - id: stance
+      type: LaserTagBox.Model.Shared.Stance
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+    - id: energy
+      type: System.Int32
+    - id: visualRange
+      type: System.Double
+    - id: visibilityRange
+      type: System.Double
+    content.vb: Public Sub New(id As Guid, memberId As Integer, team As Color, stance As Stance, position As Position, energy As Integer, visualRange As Double, visibilityRange As Double)
+  overload: LaserTagBox.Model.Shared.FriendSnapshot.#ctor*
+  nameWithType.vb: FriendSnapshot.New(Guid, Integer, Color, Stance, Position, Integer, Double, Double)
+  fullName.vb: LaserTagBox.Model.Shared.FriendSnapshot.New(System.Guid, Integer, LaserTagBox.Model.Shared.Color, LaserTagBox.Model.Shared.Stance, Mars.Interfaces.Environments.Position, Integer, Double, Double)
+  name.vb: New(Guid, Integer, Color, Stance, Position, Integer, Double, Double)
+references:
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Id*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.Id
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_Id
+  name: Id
+  nameWithType: FriendSnapshot.Id
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Id
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.MemberId*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_MemberId
+  name: MemberId
+  nameWithType: FriendSnapshot.MemberId
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.MemberId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Team*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.Team
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_Team
+  name: Team
+  nameWithType: FriendSnapshot.Team
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Team
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Stance*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.Stance
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_Stance
+  name: Stance
+  nameWithType: FriendSnapshot.Stance
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Stance
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Position*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.Position
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_Position
+  name: Position
+  nameWithType: FriendSnapshot.Position
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Position
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.Energy*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.Energy
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_Energy
+  name: Energy
+  nameWithType: FriendSnapshot.Energy
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.Energy
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.VisualRange*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_VisualRange
+  name: VisualRange
+  nameWithType: FriendSnapshot.VisualRange
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.VisualRange
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot_VisibilityRange
+  name: VisibilityRange
+  nameWithType: FriendSnapshot.VisibilityRange
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.VisibilityRange
+- uid: LaserTagBox.Model.Shared.FriendSnapshot.#ctor*
+  commentId: Overload:LaserTagBox.Model.Shared.FriendSnapshot.#ctor
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html#LaserTagBox_Model_Shared_FriendSnapshot__ctor_System_Guid_System_Int32_LaserTagBox_Model_Shared_Color_LaserTagBox_Model_Shared_Stance_Mars_Interfaces_Environments_Position_System_Int32_System_Double_System_Double_
+  name: FriendSnapshot
+  nameWithType: FriendSnapshot.FriendSnapshot
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot.FriendSnapshot
+  nameWithType.vb: FriendSnapshot.New
+  fullName.vb: LaserTagBox.Model.Shared.FriendSnapshot.New
+  name.vb: New

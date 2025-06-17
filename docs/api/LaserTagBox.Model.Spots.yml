@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Spots
+  commentId: N:LaserTagBox.Model.Spots
+  id: LaserTagBox.Model.Spots
+  children:
+  - LaserTagBox.Model.Spots.Barrier
+  - LaserTagBox.Model.Spots.Ditch
+  - LaserTagBox.Model.Spots.ExplosiveBarrel
+  - LaserTagBox.Model.Spots.FlagStand
+  - LaserTagBox.Model.Spots.Hill
+  - LaserTagBox.Model.Spots.OccupiableSpot
+  - LaserTagBox.Model.Spots.Spot
+  - LaserTagBox.Model.Spots.Water
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Spots
+  nameWithType: LaserTagBox.Model.Spots
+  fullName: LaserTagBox.Model.Spots
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Spots.Ditch
+  commentId: T:LaserTagBox.Model.Spots.Ditch
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Ditch.html
+  name: Ditch
+  nameWithType: Ditch
+  fullName: LaserTagBox.Model.Spots.Ditch
+- uid: LaserTagBox.Model.Spots.Hill
+  commentId: T:LaserTagBox.Model.Spots.Hill
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Hill.html
+  name: Hill
+  nameWithType: Hill
+  fullName: LaserTagBox.Model.Spots.Hill
+- uid: LaserTagBox.Model.Spots.FlagStand
+  commentId: T:LaserTagBox.Model.Spots.FlagStand
+  href: LaserTagBox.Model.Spots.FlagStand.html
+  name: FlagStand
+  nameWithType: FlagStand
+  fullName: LaserTagBox.Model.Spots.FlagStand
+- uid: LaserTagBox.Model.Spots.OccupiableSpot
+  commentId: T:LaserTagBox.Model.Spots.OccupiableSpot
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.OccupiableSpot.html
+  name: OccupiableSpot
+  nameWithType: OccupiableSpot
+  fullName: LaserTagBox.Model.Spots.OccupiableSpot
+- uid: LaserTagBox.Model.Spots.Barrier
+  commentId: T:LaserTagBox.Model.Spots.Barrier
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Barrier.html
+  name: Barrier
+  nameWithType: Barrier
+  fullName: LaserTagBox.Model.Spots.Barrier
+- uid: LaserTagBox.Model.Spots.Water
+  commentId: T:LaserTagBox.Model.Spots.Water
+  href: LaserTagBox.Model.Spots.Water.html
+  name: Water
+  nameWithType: Water
+  fullName: LaserTagBox.Model.Spots.Water
+- uid: LaserTagBox.Model.Spots.ExplosiveBarrel
+  commentId: T:LaserTagBox.Model.Spots.ExplosiveBarrel
+  href: LaserTagBox.Model.Spots.ExplosiveBarrel.html
+  name: ExplosiveBarrel
+  nameWithType: ExplosiveBarrel
+  fullName: LaserTagBox.Model.Spots.ExplosiveBarrel
+- uid: LaserTagBox.Model.Spots.Spot
+  commentId: T:LaserTagBox.Model.Spots.Spot
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Spot.html
+  name: Spot
+  nameWithType: Spot
+  fullName: LaserTagBox.Model.Spots.Spot
+- uid: LaserTagBox.Model.Spots
+  commentId: N:LaserTagBox.Model.Spots
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Spots
+  nameWithType: LaserTagBox.Model.Spots
+  fullName: LaserTagBox.Model.Spots
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Spots
+    name: Spots
+    href: LaserTagBox.Model.Spots.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Spots
+    name: Spots
+    href: LaserTagBox.Model.Spots.html

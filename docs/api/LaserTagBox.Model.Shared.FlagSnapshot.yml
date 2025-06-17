@@ -1,0 +1,546 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Shared.FlagSnapshot
+  commentId: T:LaserTagBox.Model.Shared.FlagSnapshot
+  id: FlagSnapshot
+  parent: LaserTagBox.Model.Shared
+  children:
+  - LaserTagBox.Model.Shared.FlagSnapshot.#ctor(System.Guid,LaserTagBox.Model.Shared.Color,Mars.Interfaces.Environments.Position,System.Boolean)
+  - LaserTagBox.Model.Shared.FlagSnapshot.Id
+  - LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+  - LaserTagBox.Model.Shared.FlagSnapshot.Position
+  - LaserTagBox.Model.Shared.FlagSnapshot.Team
+  langs:
+  - csharp
+  - vb
+  name: FlagSnapshot
+  nameWithType: FlagSnapshot
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot
+  type: Struct
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: FlagSnapshot
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 5
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: public struct FlagSnapshot
+    content.vb: Public Structure FlagSnapshot
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Id
+  commentId: P:LaserTagBox.Model.Shared.FlagSnapshot.Id
+  id: Id
+  parent: LaserTagBox.Model.Shared.FlagSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: FlagSnapshot.Id
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Id
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Id
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 11
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Identifies the item.
+  example: []
+  syntax:
+    content: public readonly Guid Id { get; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public ReadOnly Property Id As Guid
+  overload: LaserTagBox.Model.Shared.FlagSnapshot.Id*
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Team
+  commentId: P:LaserTagBox.Model.Shared.FlagSnapshot.Team
+  id: Team
+  parent: LaserTagBox.Model.Shared.FlagSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Team
+  nameWithType: FlagSnapshot.Team
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Team
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Team
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 16
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates to which team the item belongs.
+  example: []
+  syntax:
+    content: public readonly Color Team { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Color
+    content.vb: Public ReadOnly Property Team As Color
+  overload: LaserTagBox.Model.Shared.FlagSnapshot.Team*
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Position
+  commentId: P:LaserTagBox.Model.Shared.FlagSnapshot.Position
+  id: Position
+  parent: LaserTagBox.Model.Shared.FlagSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: FlagSnapshot.Position
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Position
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Position
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 21
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Current position of the agent on the grid.
+  example: []
+  syntax:
+    content: public readonly Position Position { get; }
+    parameters: []
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: Public ReadOnly Property Position As Position
+  overload: LaserTagBox.Model.Shared.FlagSnapshot.Position*
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+  commentId: P:LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+  id: PickedUp
+  parent: LaserTagBox.Model.Shared.FlagSnapshot
+  langs:
+  - csharp
+  - vb
+  name: PickedUp
+  nameWithType: FlagSnapshot.PickedUp
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PickedUp
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 26
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates whether the item is picked up by an agent.
+  example: []
+  syntax:
+    content: public readonly bool PickedUp { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property PickedUp As Boolean
+  overload: LaserTagBox.Model.Shared.FlagSnapshot.PickedUp*
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.#ctor(System.Guid,LaserTagBox.Model.Shared.Color,Mars.Interfaces.Environments.Position,System.Boolean)
+  commentId: M:LaserTagBox.Model.Shared.FlagSnapshot.#ctor(System.Guid,LaserTagBox.Model.Shared.Color,Mars.Interfaces.Environments.Position,System.Boolean)
+  id: '#ctor(System.Guid,LaserTagBox.Model.Shared.Color,Mars.Interfaces.Environments.Position,System.Boolean)'
+  parent: LaserTagBox.Model.Shared.FlagSnapshot
+  langs:
+  - csharp
+  - vb
+  name: FlagSnapshot(Guid, Color, Position, bool)
+  nameWithType: FlagSnapshot.FlagSnapshot(Guid, Color, Position, bool)
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.FlagSnapshot(System.Guid, LaserTagBox.Model.Shared.Color, Mars.Interfaces.Environments.Position, bool)
+  type: Constructor
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/FlagSnapshot.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: .ctor
+    path: ../LaserTagBox/Model/Shared/FlagSnapshot.cs
+    startLine: 31
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: public FlagSnapshot(Guid id, Color team, Position position, bool pickedUp)
+    parameters:
+    - id: id
+      type: System.Guid
+    - id: team
+      type: LaserTagBox.Model.Shared.Color
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+    - id: pickedUp
+      type: System.Boolean
+    content.vb: Public Sub New(id As Guid, team As Color, position As Position, pickedUp As Boolean)
+  overload: LaserTagBox.Model.Shared.FlagSnapshot.#ctor*
+  nameWithType.vb: FlagSnapshot.New(Guid, Color, Position, Boolean)
+  fullName.vb: LaserTagBox.Model.Shared.FlagSnapshot.New(System.Guid, LaserTagBox.Model.Shared.Color, Mars.Interfaces.Environments.Position, Boolean)
+  name.vb: New(Guid, Color, Position, Boolean)
+references:
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Id*
+  commentId: Overload:LaserTagBox.Model.Shared.FlagSnapshot.Id
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html#LaserTagBox_Model_Shared_FlagSnapshot_Id
+  name: Id
+  nameWithType: FlagSnapshot.Id
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Id
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Team*
+  commentId: Overload:LaserTagBox.Model.Shared.FlagSnapshot.Team
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html#LaserTagBox_Model_Shared_FlagSnapshot_Team
+  name: Team
+  nameWithType: FlagSnapshot.Team
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Team
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.Position*
+  commentId: Overload:LaserTagBox.Model.Shared.FlagSnapshot.Position
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html#LaserTagBox_Model_Shared_FlagSnapshot_Position
+  name: Position
+  nameWithType: FlagSnapshot.Position
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.Position
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.PickedUp*
+  commentId: Overload:LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html#LaserTagBox_Model_Shared_FlagSnapshot_PickedUp
+  name: PickedUp
+  nameWithType: FlagSnapshot.PickedUp
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.PickedUp
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LaserTagBox.Model.Shared.FlagSnapshot.#ctor*
+  commentId: Overload:LaserTagBox.Model.Shared.FlagSnapshot.#ctor
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html#LaserTagBox_Model_Shared_FlagSnapshot__ctor_System_Guid_LaserTagBox_Model_Shared_Color_Mars_Interfaces_Environments_Position_System_Boolean_
+  name: FlagSnapshot
+  nameWithType: FlagSnapshot.FlagSnapshot
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot.FlagSnapshot
+  nameWithType.vb: FlagSnapshot.New
+  fullName.vb: LaserTagBox.Model.Shared.FlagSnapshot.New
+  name.vb: New

@@ -1,0 +1,77 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  id: LaserTagBox.Model.Body
+  children:
+  - LaserTagBox.Model.Body.DataVisualizationServer
+  - LaserTagBox.Model.Body.MovingAgent
+  - LaserTagBox.Model.Body.PlayerBody
+  - LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Body.DataVisualizationServer
+  commentId: T:LaserTagBox.Model.Body.DataVisualizationServer
+  href: LaserTagBox.Model.Body.DataVisualizationServer.html
+  name: DataVisualizationServer
+  nameWithType: DataVisualizationServer
+  fullName: LaserTagBox.Model.Body.DataVisualizationServer
+- uid: LaserTagBox.Model.Body.MovingAgent
+  commentId: T:LaserTagBox.Model.Body.MovingAgent
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.MovingAgent.html
+  name: MovingAgent
+  nameWithType: MovingAgent
+  fullName: LaserTagBox.Model.Body.MovingAgent
+- uid: LaserTagBox.Model.Body.PlayerBody
+  commentId: T:LaserTagBox.Model.Body.PlayerBody
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBody.html
+  name: PlayerBody
+  nameWithType: PlayerBody
+  fullName: LaserTagBox.Model.Body.PlayerBody
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer
+  commentId: T:LaserTagBox.Model.Body.PlayerBodyLayer
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: PlayerBodyLayer
+  nameWithType: PlayerBodyLayer
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html

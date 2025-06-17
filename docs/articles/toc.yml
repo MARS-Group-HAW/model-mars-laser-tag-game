@@ -1,0 +1,14 @@
+- name: Getting Started
+  href: getting-started.md
+- name: Game Objective
+  href: game-objective.md
+- name: Rules
+  href: rules.md
+- name: The Environment
+  href: environment.md
+- name: Game Mechanics
+  href: game_mechanics.md
+- name: Agent Properties
+  href: agent-properties.md
+- name: Agent Methods
+  href: agent-methods.md

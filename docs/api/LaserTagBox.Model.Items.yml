@@ -1,0 +1,61 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Items
+  commentId: N:LaserTagBox.Model.Items
+  id: LaserTagBox.Model.Items
+  children:
+  - LaserTagBox.Model.Items.Flag
+  - LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Items
+  nameWithType: LaserTagBox.Model.Items
+  fullName: LaserTagBox.Model.Items
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Items.Flag
+  commentId: T:LaserTagBox.Model.Items.Flag
+  href: LaserTagBox.Model.Items.Flag.html
+  name: Flag
+  nameWithType: Flag
+  fullName: LaserTagBox.Model.Items.Flag
+- uid: LaserTagBox.Model.Items.Item
+  commentId: T:LaserTagBox.Model.Items.Item
+  parent: LaserTagBox.Model.Items
+  href: LaserTagBox.Model.Items.Item.html
+  name: Item
+  nameWithType: Item
+  fullName: LaserTagBox.Model.Items.Item
+- uid: LaserTagBox.Model.Items
+  commentId: N:LaserTagBox.Model.Items
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Items
+  nameWithType: LaserTagBox.Model.Items
+  fullName: LaserTagBox.Model.Items
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Items
+    name: Items
+    href: LaserTagBox.Model.Items.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Items
+    name: Items
+    href: LaserTagBox.Model.Items.html

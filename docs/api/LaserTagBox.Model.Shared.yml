@@ -1,0 +1,106 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  id: LaserTagBox.Model.Shared
+  children:
+  - LaserTagBox.Model.Shared.Color
+  - LaserTagBox.Model.Shared.EnemySnapshot
+  - LaserTagBox.Model.Shared.FlagSnapshot
+  - LaserTagBox.Model.Shared.FriendSnapshot
+  - LaserTagBox.Model.Shared.GameMode
+  - LaserTagBox.Model.Shared.IPlayerBody
+  - LaserTagBox.Model.Shared.Stance
+  - LaserTagBox.Model.Shared.TeamScore
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: LaserTagBox.Model.Shared.EnemySnapshot
+  commentId: T:LaserTagBox.Model.Shared.EnemySnapshot
+  href: LaserTagBox.Model.Shared.EnemySnapshot.html
+  name: EnemySnapshot
+  nameWithType: EnemySnapshot
+  fullName: LaserTagBox.Model.Shared.EnemySnapshot
+- uid: LaserTagBox.Model.Shared.FlagSnapshot
+  commentId: T:LaserTagBox.Model.Shared.FlagSnapshot
+  href: LaserTagBox.Model.Shared.FlagSnapshot.html
+  name: FlagSnapshot
+  nameWithType: FlagSnapshot
+  fullName: LaserTagBox.Model.Shared.FlagSnapshot
+- uid: LaserTagBox.Model.Shared.FriendSnapshot
+  commentId: T:LaserTagBox.Model.Shared.FriendSnapshot
+  href: LaserTagBox.Model.Shared.FriendSnapshot.html
+  name: FriendSnapshot
+  nameWithType: FriendSnapshot
+  fullName: LaserTagBox.Model.Shared.FriendSnapshot
+- uid: LaserTagBox.Model.Shared.GameMode
+  commentId: T:LaserTagBox.Model.Shared.GameMode
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.GameMode.html
+  name: GameMode
+  nameWithType: GameMode
+  fullName: LaserTagBox.Model.Shared.GameMode
+- uid: LaserTagBox.Model.Shared.IPlayerBody
+  commentId: T:LaserTagBox.Model.Shared.IPlayerBody
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.IPlayerBody.html
+  name: IPlayerBody
+  nameWithType: IPlayerBody
+  fullName: LaserTagBox.Model.Shared.IPlayerBody
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Shared.TeamScore
+  commentId: T:LaserTagBox.Model.Shared.TeamScore
+  href: LaserTagBox.Model.Shared.TeamScore.html
+  name: TeamScore
+  nameWithType: TeamScore
+  fullName: LaserTagBox.Model.Shared.TeamScore
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html

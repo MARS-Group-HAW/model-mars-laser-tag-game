@@ -32,6 +32,10 @@ LaserTagBox/obj
 .*.lb
 main.pdf
 
+
+docs/_site/
+
+
 ## Intermediate documents:
 *.dvi
 *.xdv

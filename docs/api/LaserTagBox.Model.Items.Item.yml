@@ -1,0 +1,1008 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Items.Item
+  commentId: T:LaserTagBox.Model.Items.Item
+  id: Item
+  parent: LaserTagBox.Model.Items
+  children:
+  - LaserTagBox.Model.Items.Item.Battleground
+  - LaserTagBox.Model.Items.Item.Drop
+  - LaserTagBox.Model.Items.Item.ID
+  - LaserTagBox.Model.Items.Item.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  - LaserTagBox.Model.Items.Item.Owner
+  - LaserTagBox.Model.Items.Item.OwnerID
+  - LaserTagBox.Model.Items.Item.PickUp(LaserTagBox.Model.Body.PlayerBody)
+  - LaserTagBox.Model.Items.Item.PickedUp
+  - LaserTagBox.Model.Items.Item.Position
+  - LaserTagBox.Model.Items.Item.Tick
+  langs:
+  - csharp
+  - vb
+  name: Item
+  nameWithType: Item
+  fullName: LaserTagBox.Model.Items.Item
+  type: Class
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Item
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 7
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  syntax:
+    content: 'public abstract class Item : IAgent<PlayerBodyLayer>, IAgent, ITickClient, IEntity, IModelObject, IPositionable'
+    content.vb: Public MustInherit Class Item Implements IAgent(Of PlayerBodyLayer), IAgent, ITickClient, IEntity, IModelObject, IPositionable
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - LaserTagBox.Model.Items.Flag
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  - Mars.Interfaces.Agents.IAgent
+  - Mars.Interfaces.Agents.ITickClient
+  - Mars.Interfaces.Agents.IEntity
+  - Mars.Interfaces.IModelObject
+  - Mars.Interfaces.Environments.IPositionable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LaserTagBox.Model.Items.Item.Battleground
+  commentId: P:LaserTagBox.Model.Items.Item.Battleground
+  id: Battleground
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Battleground
+  nameWithType: Item.Battleground
+  fullName: LaserTagBox.Model.Items.Item.Battleground
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Battleground
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 13
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: A reference to the environment in which the object is situated.
+  example: []
+  syntax:
+    content: protected PlayerBodyLayer Battleground { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Body.PlayerBodyLayer
+    content.vb: Protected Property Battleground As PlayerBodyLayer
+  overload: LaserTagBox.Model.Items.Item.Battleground*
+- uid: LaserTagBox.Model.Items.Item.Position
+  commentId: P:LaserTagBox.Model.Items.Item.Position
+  id: Position
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Item.Position
+  fullName: LaserTagBox.Model.Items.Item.Position
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Position
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 18
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: The position of the object in the environment.
+  example: []
+  syntax:
+    content: public Position Position { get; set; }
+    parameters: []
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: Public Property Position As Position
+  overload: LaserTagBox.Model.Items.Item.Position*
+  implements:
+  - Mars.Interfaces.Environments.IPositionable.Position
+- uid: LaserTagBox.Model.Items.Item.PickedUp
+  commentId: P:LaserTagBox.Model.Items.Item.PickedUp
+  id: PickedUp
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: PickedUp
+  nameWithType: Item.PickedUp
+  fullName: LaserTagBox.Model.Items.Item.PickedUp
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PickedUp
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 27
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: Indicates whether the object is picked up by an agent.
+  example: []
+  syntax:
+    content: public bool PickedUp { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property PickedUp As Boolean
+  overload: LaserTagBox.Model.Items.Item.PickedUp*
+- uid: LaserTagBox.Model.Items.Item.ID
+  commentId: P:LaserTagBox.Model.Items.Item.ID
+  id: ID
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: Item.ID
+  fullName: LaserTagBox.Model.Items.Item.ID
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ID
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 33
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: The unique identifier of the object.
+  example: []
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property ID As Guid
+  overload: LaserTagBox.Model.Items.Item.ID*
+  implements:
+  - Mars.Interfaces.Agents.IEntity.ID
+- uid: LaserTagBox.Model.Items.Item.OwnerID
+  commentId: P:LaserTagBox.Model.Items.Item.OwnerID
+  id: OwnerID
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: OwnerID
+  nameWithType: Item.OwnerID
+  fullName: LaserTagBox.Model.Items.Item.OwnerID
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: OwnerID
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 35
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  syntax:
+    content: public Guid OwnerID { get; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public ReadOnly Property OwnerID As Guid
+  overload: LaserTagBox.Model.Items.Item.OwnerID*
+- uid: LaserTagBox.Model.Items.Item.Owner
+  commentId: F:LaserTagBox.Model.Items.Item.Owner
+  id: Owner
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Owner
+  nameWithType: Item.Owner
+  fullName: LaserTagBox.Model.Items.Item.Owner
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Owner
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 40
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  syntax:
+    content: public PlayerBody Owner
+    return:
+      type: LaserTagBox.Model.Body.PlayerBody
+    content.vb: Public Owner As PlayerBody
+- uid: LaserTagBox.Model.Items.Item.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  commentId: M:LaserTagBox.Model.Items.Item.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  id: Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Init(PlayerBodyLayer)
+  nameWithType: Item.Init(PlayerBodyLayer)
+  fullName: LaserTagBox.Model.Items.Item.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Init
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 50
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: Initialization routine of the object.
+  example: []
+  syntax:
+    content: public virtual void Init(PlayerBodyLayer battleground)
+    parameters:
+    - id: battleground
+      type: LaserTagBox.Model.Body.PlayerBodyLayer
+      description: A reference to the environment in which the object is to be situated.
+    content.vb: Public Overridable Sub Init(battleground As PlayerBodyLayer)
+  overload: LaserTagBox.Model.Items.Item.Init*
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+- uid: LaserTagBox.Model.Items.Item.Tick
+  commentId: M:LaserTagBox.Model.Items.Item.Tick
+  id: Tick
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Tick()
+  nameWithType: Item.Tick()
+  fullName: LaserTagBox.Model.Items.Item.Tick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tick
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 61
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  summary: The behavior routine of the object. (This is an abstract object without behavior).
+  example: []
+  syntax:
+    content: public virtual void Tick()
+    content.vb: Public Overridable Sub Tick()
+  overload: LaserTagBox.Model.Items.Item.Tick*
+  implements:
+  - Mars.Interfaces.Agents.ITickClient.Tick
+- uid: LaserTagBox.Model.Items.Item.PickUp(LaserTagBox.Model.Body.PlayerBody)
+  commentId: M:LaserTagBox.Model.Items.Item.PickUp(LaserTagBox.Model.Body.PlayerBody)
+  id: PickUp(LaserTagBox.Model.Body.PlayerBody)
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: PickUp(PlayerBody)
+  nameWithType: Item.PickUp(PlayerBody)
+  fullName: LaserTagBox.Model.Items.Item.PickUp(LaserTagBox.Model.Body.PlayerBody)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PickUp
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 68
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  syntax:
+    content: public virtual void PickUp(PlayerBody agent)
+    parameters:
+    - id: agent
+      type: LaserTagBox.Model.Body.PlayerBody
+    content.vb: Public Overridable Sub PickUp(agent As PlayerBody)
+  overload: LaserTagBox.Model.Items.Item.PickUp*
+- uid: LaserTagBox.Model.Items.Item.Drop
+  commentId: M:LaserTagBox.Model.Items.Item.Drop
+  id: Drop
+  parent: LaserTagBox.Model.Items.Item
+  langs:
+  - csharp
+  - vb
+  name: Drop()
+  nameWithType: Item.Drop()
+  fullName: LaserTagBox.Model.Items.Item.Drop()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Items/Item.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Drop
+    path: ../LaserTagBox/Model/Items/Item.cs
+    startLine: 74
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Items
+  syntax:
+    content: public virtual void Drop()
+    content.vb: Public Overridable Sub Drop()
+  overload: LaserTagBox.Model.Items.Item.Drop*
+references:
+- uid: LaserTagBox.Model.Items
+  commentId: N:LaserTagBox.Model.Items
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Items
+  nameWithType: LaserTagBox.Model.Items
+  fullName: LaserTagBox.Model.Items
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Items
+    name: Items
+    href: LaserTagBox.Model.Items.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Items
+    name: Items
+    href: LaserTagBox.Model.Items.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  commentId: T:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  parent: Mars.Interfaces.Agents
+  definition: Mars.Interfaces.Agents.IAgent`1
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: IAgent<PlayerBodyLayer>
+  nameWithType: IAgent<PlayerBodyLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Body.PlayerBodyLayer>
+  nameWithType.vb: IAgent(Of PlayerBodyLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Body.PlayerBodyLayer)
+  name.vb: IAgent(Of PlayerBodyLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent
+  commentId: T:Mars.Interfaces.Agents.IAgent
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IAgent
+  nameWithType: IAgent
+  fullName: Mars.Interfaces.Agents.IAgent
+- uid: Mars.Interfaces.Agents.ITickClient
+  commentId: T:Mars.Interfaces.Agents.ITickClient
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: ITickClient
+  nameWithType: ITickClient
+  fullName: Mars.Interfaces.Agents.ITickClient
+- uid: Mars.Interfaces.Agents.IEntity
+  commentId: T:Mars.Interfaces.Agents.IEntity
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IEntity
+  nameWithType: IEntity
+  fullName: Mars.Interfaces.Agents.IEntity
+- uid: Mars.Interfaces.IModelObject
+  commentId: T:Mars.Interfaces.IModelObject
+  parent: Mars.Interfaces
+  isExternal: true
+  name: IModelObject
+  nameWithType: IModelObject
+  fullName: Mars.Interfaces.IModelObject
+- uid: Mars.Interfaces.Environments.IPositionable
+  commentId: T:Mars.Interfaces.Environments.IPositionable
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: IPositionable
+  nameWithType: IPositionable
+  fullName: Mars.Interfaces.Environments.IPositionable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Mars.Interfaces.Agents.IAgent`1
+  commentId: T:Mars.Interfaces.Agents.IAgent`1
+  isExternal: true
+  name: IAgent<TLayer>
+  nameWithType: IAgent<TLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>
+  nameWithType.vb: IAgent(Of TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer)
+  name.vb: IAgent(Of TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - name: TLayer
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLayer
+  - name: )
+- uid: Mars.Interfaces.Agents
+  commentId: N:Mars.Interfaces.Agents
+  isExternal: true
+  name: Mars.Interfaces.Agents
+  nameWithType: Mars.Interfaces.Agents
+  fullName: Mars.Interfaces.Agents
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+- uid: Mars.Interfaces
+  commentId: N:Mars.Interfaces
+  isExternal: true
+  name: Mars.Interfaces
+  nameWithType: Mars.Interfaces
+  fullName: Mars.Interfaces
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Items.Item.Battleground*
+  commentId: Overload:LaserTagBox.Model.Items.Item.Battleground
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_Battleground
+  name: Battleground
+  nameWithType: Item.Battleground
+  fullName: LaserTagBox.Model.Items.Item.Battleground
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer
+  commentId: T:LaserTagBox.Model.Body.PlayerBodyLayer
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: PlayerBodyLayer
+  nameWithType: PlayerBodyLayer
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+- uid: LaserTagBox.Model.Items.Item.Position*
+  commentId: Overload:LaserTagBox.Model.Items.Item.Position
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_Position
+  name: Position
+  nameWithType: Item.Position
+  fullName: LaserTagBox.Model.Items.Item.Position
+- uid: Mars.Interfaces.Environments.IPositionable.Position
+  commentId: P:Mars.Interfaces.Environments.IPositionable.Position
+  parent: Mars.Interfaces.Environments.IPositionable
+  isExternal: true
+  name: Position
+  nameWithType: IPositionable.Position
+  fullName: Mars.Interfaces.Environments.IPositionable.Position
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: LaserTagBox.Model.Items.Item.PickedUp*
+  commentId: Overload:LaserTagBox.Model.Items.Item.PickedUp
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_PickedUp
+  name: PickedUp
+  nameWithType: Item.PickedUp
+  fullName: LaserTagBox.Model.Items.Item.PickedUp
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LaserTagBox.Model.Items.Item.ID*
+  commentId: Overload:LaserTagBox.Model.Items.Item.ID
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_ID
+  name: ID
+  nameWithType: Item.ID
+  fullName: LaserTagBox.Model.Items.Item.ID
+- uid: Mars.Interfaces.Agents.IEntity.ID
+  commentId: P:Mars.Interfaces.Agents.IEntity.ID
+  parent: Mars.Interfaces.Agents.IEntity
+  isExternal: true
+  name: ID
+  nameWithType: IEntity.ID
+  fullName: Mars.Interfaces.Agents.IEntity.ID
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: LaserTagBox.Model.Items.Item.OwnerID*
+  commentId: Overload:LaserTagBox.Model.Items.Item.OwnerID
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_OwnerID
+  name: OwnerID
+  nameWithType: Item.OwnerID
+  fullName: LaserTagBox.Model.Items.Item.OwnerID
+- uid: LaserTagBox.Model.Body.PlayerBody
+  commentId: T:LaserTagBox.Model.Body.PlayerBody
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBody.html
+  name: PlayerBody
+  nameWithType: PlayerBody
+  fullName: LaserTagBox.Model.Body.PlayerBody
+- uid: LaserTagBox.Model.Items.Item.Init*
+  commentId: Overload:LaserTagBox.Model.Items.Item.Init
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_Init_LaserTagBox_Model_Body_PlayerBodyLayer_
+  name: Init
+  nameWithType: Item.Init
+  fullName: LaserTagBox.Model.Items.Item.Init
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  commentId: M:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  parent: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  definition: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: Init(PlayerBodyLayer)
+  nameWithType: IAgent<PlayerBodyLayer>.Init(PlayerBodyLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Body.PlayerBodyLayer>.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  nameWithType.vb: IAgent(Of PlayerBodyLayer).Init(PlayerBodyLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Body.PlayerBodyLayer).Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  commentId: M:Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  isExternal: true
+  name: Init(TLayer)
+  nameWithType: IAgent<TLayer>.Init(TLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>.Init(TLayer)
+  nameWithType.vb: IAgent(Of TLayer).Init(TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer).Init(TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+- uid: LaserTagBox.Model.Items.Item.Tick*
+  commentId: Overload:LaserTagBox.Model.Items.Item.Tick
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_Tick
+  name: Tick
+  nameWithType: Item.Tick
+  fullName: LaserTagBox.Model.Items.Item.Tick
+- uid: Mars.Interfaces.Agents.ITickClient.Tick
+  commentId: M:Mars.Interfaces.Agents.ITickClient.Tick
+  parent: Mars.Interfaces.Agents.ITickClient
+  isExternal: true
+  name: Tick()
+  nameWithType: ITickClient.Tick()
+  fullName: Mars.Interfaces.Agents.ITickClient.Tick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Items.Item.PickUp*
+  commentId: Overload:LaserTagBox.Model.Items.Item.PickUp
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_PickUp_LaserTagBox_Model_Body_PlayerBody_
+  name: PickUp
+  nameWithType: Item.PickUp
+  fullName: LaserTagBox.Model.Items.Item.PickUp
+- uid: LaserTagBox.Model.Items.Item.Drop*
+  commentId: Overload:LaserTagBox.Model.Items.Item.Drop
+  href: LaserTagBox.Model.Items.Item.html#LaserTagBox_Model_Items_Item_Drop
+  name: Drop
+  nameWithType: Item.Drop
+  fullName: LaserTagBox.Model.Items.Item.Drop

@@ -1,0 +1,147 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  id: Stance
+  parent: LaserTagBox.Model.Shared
+  children:
+  - LaserTagBox.Model.Shared.Stance.Kneeling
+  - LaserTagBox.Model.Shared.Stance.Lying
+  - LaserTagBox.Model.Shared.Stance.Standing
+  langs:
+  - csharp
+  - vb
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+  type: Enum
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/Stance.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Stance
+    path: ../LaserTagBox/Model/Shared/Stance.cs
+    startLine: 2
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: public enum Stance
+    content.vb: Public Enum Stance
+- uid: LaserTagBox.Model.Shared.Stance.Standing
+  commentId: F:LaserTagBox.Model.Shared.Stance.Standing
+  id: Standing
+  parent: LaserTagBox.Model.Shared.Stance
+  langs:
+  - csharp
+  - vb
+  name: Standing
+  nameWithType: Stance.Standing
+  fullName: LaserTagBox.Model.Shared.Stance.Standing
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/Stance.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Standing
+    path: ../LaserTagBox/Model/Shared/Stance.cs
+    startLine: 4
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: Standing = 0
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Shared.Stance.Kneeling
+  commentId: F:LaserTagBox.Model.Shared.Stance.Kneeling
+  id: Kneeling
+  parent: LaserTagBox.Model.Shared.Stance
+  langs:
+  - csharp
+  - vb
+  name: Kneeling
+  nameWithType: Stance.Kneeling
+  fullName: LaserTagBox.Model.Shared.Stance.Kneeling
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/Stance.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Kneeling
+    path: ../LaserTagBox/Model/Shared/Stance.cs
+    startLine: 5
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: Kneeling = 1
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Shared.Stance.Lying
+  commentId: F:LaserTagBox.Model.Shared.Stance.Lying
+  id: Lying
+  parent: LaserTagBox.Model.Shared.Stance
+  langs:
+  - csharp
+  - vb
+  name: Lying
+  nameWithType: Stance.Lying
+  fullName: LaserTagBox.Model.Shared.Stance.Lying
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/Stance.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Lying
+    path: ../LaserTagBox/Model/Shared/Stance.cs
+    startLine: 6
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  syntax:
+    content: Lying = 2
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+references:
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance

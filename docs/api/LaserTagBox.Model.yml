@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model
+  commentId: N:LaserTagBox.Model
+  id: LaserTagBox.Model
+  children:
+  - LaserTagBox.Model.Commons
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model
+  nameWithType: LaserTagBox.Model
+  fullName: LaserTagBox.Model
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Commons
+  commentId: T:LaserTagBox.Model.Commons
+  href: LaserTagBox.Model.Commons.html
+  name: Commons
+  nameWithType: Commons
+  fullName: LaserTagBox.Model.Commons

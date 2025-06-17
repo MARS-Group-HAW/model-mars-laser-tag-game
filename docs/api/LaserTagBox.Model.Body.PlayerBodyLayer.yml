@@ -1,0 +1,3491 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer
+  commentId: T:LaserTagBox.Model.Body.PlayerBodyLayer
+  id: PlayerBodyLayer
+  parent: LaserTagBox.Model.Body
+  children:
+  - LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+  - LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+  - LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.GetAll(LaserTagBox.Model.Shared.Color)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(System.Double,System.Double)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline(System.Double,System.Double,System.Double,System.Double)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Items
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+  - LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.PlayerBodyLayer.PostTick
+  - LaserTagBox.Model.Body.PlayerBodyLayer.PreTick
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Score
+  - LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Tick
+  - LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+  - LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+  langs:
+  - csharp
+  - vb
+  name: PlayerBodyLayer
+  nameWithType: PlayerBodyLayer
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer
+  type: Class
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PlayerBodyLayer
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 24
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: >-
+    A layer type that represents the spatial environment and holds the spatially explicit bodies of the LaserTag
+
+    agents.
+  example: []
+  syntax:
+    content: 'public class PlayerBodyLayer : RasterLayer, IRasterLayer, IDataLayer, IRaster<double>, IEnvelopDataLayer, IDataSet, IDisposable, IChangingLayer, ISteppedActiveLayer, ILayer, ITickClient, IModelObject'
+    content.vb: Public Class PlayerBodyLayer Inherits RasterLayer Implements IRasterLayer, IDataLayer, IRaster(Of Double), IEnvelopDataLayer, IDataSet, IDisposable, IChangingLayer, ISteppedActiveLayer, ILayer, ITickClient, IModelObject
+  inheritance:
+  - System.Object
+  - Mars.Components.Layers.AbstractLayer
+  - Mars.Components.Layers.AbstractEnvelopedLayer
+  - Mars.Components.Layers.RasterLayer
+  implements:
+  - Mars.Interfaces.Layers.IRasterLayer
+  - Mars.Interfaces.Layers.IDataLayer
+  - Mars.Interfaces.Data.IRaster{System.Double}
+  - Mars.Interfaces.Layers.IEnvelopDataLayer
+  - Mars.Interfaces.Layers.IDataSet
+  - System.IDisposable
+  - Mars.Interfaces.Layers.IChangingLayer
+  - Mars.Interfaces.Layers.ISteppedActiveLayer
+  - Mars.Interfaces.Layers.ILayer
+  - Mars.Interfaces.Agents.ITickClient
+  - Mars.Interfaces.IModelObject
+  inheritedMembers:
+  - Mars.Components.Layers.RasterLayer.SetCurrentTick(System.Int64)
+  - Mars.Components.Layers.RasterLayer.GetCurrentTick
+  - Mars.Components.Layers.RasterLayer.SerializeValueCells
+  - Mars.Components.Layers.RasterLayer.Increase(System.Int32,System.Int32,System.Double)
+  - Mars.Components.Layers.RasterLayer.Increase(System.Double,System.Double,System.Double)
+  - Mars.Components.Layers.RasterLayer.Reduce(System.Int32,System.Int32,System.Double)
+  - Mars.Components.Layers.RasterLayer.Reduce(System.Double,System.Double,System.Double)
+  - Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position,System.Double,System.Int32,System.Func{System.Double,System.Boolean})
+  - Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.ParseData(System.String)
+  - Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(System.Double,System.Double,System.Int32@)
+  - Mars.Components.Layers.RasterLayer.IsRoutable(System.Int32,System.Int32)
+  - Mars.Components.Layers.RasterLayer.IsRoutable(System.Double,System.Double)
+  - Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position,Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.FindPath(System.Int32,System.Int32,System.Int32,System.Int32)
+  - Mars.Components.Layers.RasterLayer.IsChanged
+  - Mars.Components.Layers.RasterLayer.Width
+  - Mars.Components.Layers.RasterLayer.Height
+  - Mars.Components.Layers.RasterLayer.LowerLeft
+  - Mars.Components.Layers.RasterLayer.UpperRight
+  - Mars.Components.Layers.RasterLayer.CellHeight
+  - Mars.Components.Layers.RasterLayer.CellWidth
+  - Mars.Components.Layers.RasterLayer.NoDataValue
+  - Mars.Components.Layers.RasterLayer.Count
+  - Mars.Components.Layers.RasterLayer.Extent
+  - Mars.Components.Layers.RasterLayer.Item(Mars.Interfaces.Environments.Position)
+  - Mars.Components.Layers.RasterLayer.Item(System.Double,System.Double)
+  - Mars.Components.Layers.RasterLayer.Item(System.Int32,System.Int32)
+  - Mars.Components.Layers.RasterLayer.DistanceMetric
+  - Mars.Components.Layers.RasterLayer.AllowDiagonalMove
+  - Mars.Components.Layers.AbstractEnvelopedLayer.Dispose
+  - Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(System.Boolean)
+  - Mars.Components.Layers.AbstractEnvelopedLayer.IsTemporalChanging
+  - Mars.Components.Layers.AbstractEnvelopedLayer.MinLon
+  - Mars.Components.Layers.AbstractEnvelopedLayer.MinLat
+  - Mars.Components.Layers.AbstractEnvelopedLayer.MaxLon
+  - Mars.Components.Layers.AbstractEnvelopedLayer.MaxLat
+  - Mars.Components.Layers.AbstractEnvelopedLayer.IsDisposed
+  - Mars.Components.Layers.AbstractLayer.Mapping
+  - Mars.Components.Layers.AbstractLayer.RegisterAgent
+  - Mars.Components.Layers.AbstractLayer.UnregisterAgent
+  - Mars.Components.Layers.AbstractLayer.Context
+  - Mars.Components.Layers.AbstractLayer.Container
+  - Mars.Components.Layers.AbstractLayer.EntityManager
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+  id: Visualization
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Visualization
+  nameWithType: PlayerBodyLayer.Visualization
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Visualization
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 30
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Determines whether the layer should be visualized in a separate window.
+  example: []
+  syntax:
+    content: >-
+      [PropertyDescription]
+
+      public bool Visualization { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <PropertyDescription>
+
+      Public Property Visualization As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Visualization*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+  id: VisualizationTimeout
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: VisualizationTimeout
+  nameWithType: PlayerBodyLayer.VisualizationTimeout
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisualizationTimeout
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 36
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The timeout for the visualization server to wait for the next tick.
+  example: []
+  syntax:
+    content: >-
+      [PropertyDescription]
+
+      public int VisualizationTimeout { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <PropertyDescription>
+
+      Public Property VisualizationTimeout As Integer
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+  id: Mode
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Mode
+  nameWithType: PlayerBodyLayer.Mode
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Mode
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 42
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: The game mode of the simulation.
+  example: []
+  syntax:
+    content: >-
+      [PropertyDescription]
+
+      public GameMode Mode { get; set; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.GameMode
+    content.vb: >-
+      <PropertyDescription>
+
+      Public Property Mode As GameMode
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Mode*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+  id: Bodies
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Bodies
+  nameWithType: PlayerBodyLayer.Bodies
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Bodies
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 48
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: A dictionary of agent bodies, identified by their GUID.
+  example: []
+  syntax:
+    content: public Dictionary<Guid, PlayerBody> Bodies { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Body.PlayerBody}
+    content.vb: Public Property Bodies As Dictionary(Of Guid, PlayerBody)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Bodies*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Items
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.Items
+  id: Items
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Items
+  nameWithType: PlayerBodyLayer.Items
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Items
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Items
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 53
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: A dictionary of items, identified by their GUID.
+  example: []
+  syntax:
+    content: public Dictionary<Guid, Item> Items { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Items.Item}
+    content.vb: Public Property Items As Dictionary(Of Guid, Item)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Items*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Score
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.Score
+  id: Score
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Score
+  nameWithType: PlayerBodyLayer.Score
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Score
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Score
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 58
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: A dictionary of scores, identified by the team name.
+  example: []
+  syntax:
+    content: public Dictionary<Color, TeamScore> Score { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.TeamScore}
+    content.vb: Public Property Score As Dictionary(Of Color, TeamScore)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Score*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+  id: FighterEnv
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: FighterEnv
+  nameWithType: PlayerBodyLayer.FighterEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: FighterEnv
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 63
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Holds all agents in a 2-dimensional area for exploration purposes.
+  example: []
+  syntax:
+    content: public SpatialHashEnvironment<PlayerBody> FighterEnv { get; }
+    parameters: []
+    return:
+      type: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Body.PlayerBody}
+    content.vb: Public Property FighterEnv As SpatialHashEnvironment(Of PlayerBody)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+  id: SpotEnv
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: SpotEnv
+  nameWithType: PlayerBodyLayer.SpotEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: SpotEnv
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 68
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Holds all spots in a 2-dimensional area for exploration purposes.
+  example: []
+  syntax:
+    content: public SpatialHashEnvironment<Spot> SpotEnv { get; }
+    parameters: []
+    return:
+      type: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Spots.Spot}
+    content.vb: Public Property SpotEnv As SpatialHashEnvironment(Of Spot)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+  id: ItemEnv
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: ItemEnv
+  nameWithType: PlayerBodyLayer.ItemEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ItemEnv
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 73
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Holds all items in a 2-dimensional area for exploration purposes.
+  example: []
+  syntax:
+    content: public SpatialHashEnvironment<Item> ItemEnv { get; }
+    parameters: []
+    return:
+      type: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Items.Item}
+    content.vb: Public Property ItemEnv As SpatialHashEnvironment(Of Item)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+  commentId: P:LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+  id: AgentManager
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: AgentManager
+  nameWithType: PlayerBodyLayer.AgentManager
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: AgentManager
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 78
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Responsible for creating new agents and initializing them with required dependencies.
+  example: []
+  syntax:
+    content: public IAgentManager AgentManager { get; }
+    parameters: []
+    return:
+      type: Mars.Core.Data.IAgentManager
+    content.vb: Public Property AgentManager As IAgentManager
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  id: InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  nameWithType: PlayerBodyLayer.InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer(Mars.Interfaces.Data.LayerInitData, Mars.Interfaces.Layers.RegisterAgent, Mars.Interfaces.Layers.UnregisterAgent)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: InitLayer
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 90
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Initialization routine of the layer type. Returns true if initialization was successful, otherwise false.
+  example: []
+  syntax:
+    content: public override bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null, UnregisterAgent unregisterAgentHandle = null)
+    parameters:
+    - id: layerInitData
+      type: Mars.Interfaces.Data.LayerInitData
+      description: >-
+        External initialization and configuration data for constructing the layer and
+            initializing agents.
+    - id: registerAgentHandle
+      type: Mars.Interfaces.Layers.RegisterAgent
+      description: A handle for registering agents with the simulation.
+    - id: unregisterAgentHandle
+      type: Mars.Interfaces.Layers.UnregisterAgent
+      description: A handle for unregistering agents from the simulation.
+    return:
+      type: System.Boolean
+      description: boolean
+    content.vb: Public Overrides Function InitLayer(layerInitData As LayerInitData, registerAgentHandle As RegisterAgent = Nothing, unregisterAgentHandle As UnregisterAgent = Nothing) As Boolean
+  overridden: Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer*
+  implements:
+  - Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Tick
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.Tick
+  id: Tick
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: Tick()
+  nameWithType: PlayerBodyLayer.Tick()
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Tick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tick
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 123
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public void Tick()
+    content.vb: Public Sub Tick()
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.Tick*
+  implements:
+  - Mars.Interfaces.Agents.ITickClient.Tick
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.PreTick
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.PreTick
+  id: PreTick
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: PreTick()
+  nameWithType: PlayerBodyLayer.PreTick()
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.PreTick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PreTick
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 129
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public void PreTick()
+    content.vb: Public Sub PreTick()
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.PreTick*
+  implements:
+  - Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.PostTick
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.PostTick
+  id: PostTick
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: PostTick()
+  nameWithType: PlayerBodyLayer.PostTick()
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.PostTick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: PostTick
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 133
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public void PostTick()
+    content.vb: Public Sub PostTick()
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.PostTick*
+  implements:
+  - Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch(Mars.Interfaces.Environments.Position)
+  id: NearestDitch(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: NearestDitch(Position)
+  nameWithType: PlayerBodyLayer.NearestDitch(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: NearestDitch
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 243
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the Ditch object with the smallest distance to the given position.
+  example: []
+  syntax:
+    content: public Ditch NearestDitch(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position from which the nearest Ditch is to be minimal
+    return:
+      type: LaserTagBox.Model.Spots.Ditch
+      description: The identified Ditch object
+    content.vb: Public Function NearestDitch(position As Position) As Ditch
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill(Mars.Interfaces.Environments.Position)
+  id: NearestHill(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: NearestHill(Position)
+  nameWithType: PlayerBodyLayer.NearestHill(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: NearestHill
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 251
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the Hill object with the smallest distance to the given position.
+  example: []
+  syntax:
+    content: public Hill NearestHill(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position from which the nearest Hill is to be minimal
+    return:
+      type: LaserTagBox.Model.Spots.Hill
+      description: The identified Hill object
+    content.vb: Public Function NearestHill(position As Position) As Hill
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier(Mars.Interfaces.Environments.Position)
+  id: NearestBarrier(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: NearestBarrier(Position)
+  nameWithType: PlayerBodyLayer.NearestBarrier(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: NearestBarrier
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 259
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the Barrier object with the smallest distance to the given position.
+  example: []
+  syntax:
+    content: public Barrier NearestBarrier(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position from which the nearest Barrier is to be minimal
+    return:
+      type: LaserTagBox.Model.Spots.Barrier
+      description: The identified Barrier object
+    content.vb: Public Function NearestBarrier(position As Position) As Barrier
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(System.Double,System.Double)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(System.Double,System.Double)
+  id: GetIntValue(System.Double,System.Double)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: GetIntValue(double, double)
+  nameWithType: PlayerBodyLayer.GetIntValue(double, double)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(double, double)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetIntValue
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 268
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the integer value stored in the cell identified by the given coordinates.
+  example: []
+  syntax:
+    content: public int GetIntValue(double x, double y)
+    parameters:
+    - id: x
+      type: System.Double
+      description: The first dimension of the cell
+    - id: y
+      type: System.Double
+      description: The second dimension of the cell
+    return:
+      type: System.Int32
+      description: The value of the cell
+    content.vb: Public Function GetIntValue(x As Double, y As Double) As Integer
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue*
+  nameWithType.vb: PlayerBodyLayer.GetIntValue(Double, Double)
+  fullName.vb: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(Double, Double)
+  name.vb: GetIntValue(Double, Double)
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(Mars.Interfaces.Environments.Position)
+  id: GetIntValue(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: GetIntValue(Position)
+  nameWithType: PlayerBodyLayer.GetIntValue(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetIntValue
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 275
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the integer value stored in the cell identified by the given position.
+  example: []
+  syntax:
+    content: public int GetIntValue(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position whose value is requested
+    return:
+      type: System.Int32
+      description: The value of the cell
+    content.vb: Public Function GetIntValue(position As Position) As Integer
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn(Mars.Interfaces.Environments.Position)
+  id: GetAgentOn(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: GetAgentOn(Position)
+  nameWithType: PlayerBodyLayer.GetAgentOn(Position)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetAgentOn
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 282
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets the agent body located on the given position.
+  example: []
+  syntax:
+    content: public PlayerBody GetAgentOn(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: The position
+    return:
+      type: LaserTagBox.Model.Body.PlayerBody
+      description: The agent body located on the given position
+    content.vb: Public Function GetAgentOn(position As Position) As PlayerBody
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetAll(LaserTagBox.Model.Shared.Color)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.GetAll(LaserTagBox.Model.Shared.Color)
+  id: GetAll(LaserTagBox.Model.Shared.Color)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: GetAll(Color)
+  nameWithType: PlayerBodyLayer.GetAll(Color)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetAll(LaserTagBox.Model.Shared.Color)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetAll
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 290
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Gets all agent bodies of the given color.
+  example: []
+  syntax:
+    content: public List<PlayerBody> GetAll(Color color)
+    parameters:
+    - id: color
+      type: LaserTagBox.Model.Shared.Color
+      description: The color of the requested agent bodies
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Body.PlayerBody}
+      description: A list of all identified agent bodies
+    content.vb: Public Function GetAll(color As Color) As List(Of PlayerBody)
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.GetAll*
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline(System.Double,System.Double,System.Double,System.Double)
+  commentId: M:LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline(System.Double,System.Double,System.Double,System.Double)
+  id: HasBeeline(System.Double,System.Double,System.Double,System.Double)
+  parent: LaserTagBox.Model.Body.PlayerBodyLayer
+  langs:
+  - csharp
+  - vb
+  name: HasBeeline(double, double, double, double)
+  nameWithType: PlayerBodyLayer.HasBeeline(double, double, double, double)
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline(double, double, double, double)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/PlayerBodyLayer.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: HasBeeline
+    path: ../LaserTagBox/Model/Body/PlayerBodyLayer.cs
+    startLine: 305
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: >-
+    Returns true of there exists a straight line of sight between the given source position and target position,
+
+    otherwise false.
+
+    Implements Bresenham's Line Algorithm, which obtains a list of grid cells covered by a straight line
+
+    between two points on a grid-based environment.
+
+    For more information: http://tech-algorithm.com/articles/drawing-line-using-bresenham-algorithm/
+  example: []
+  syntax:
+    content: public bool HasBeeline(double x1, double y1, double x2, double y2)
+    parameters:
+    - id: x1
+      type: System.Double
+      description: The first dimension of the source position
+    - id: y1
+      type: System.Double
+      description: The second dimension of the source position
+    - id: x2
+      type: System.Double
+      description: The first dimension of the target position
+    - id: y2
+      type: System.Double
+      description: The second dimension of the target position
+    return:
+      type: System.Boolean
+      description: boolean
+    content.vb: Public Function HasBeeline(x1 As Double, y1 As Double, x2 As Double, y2 As Double) As Boolean
+  overload: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline*
+  nameWithType.vb: PlayerBodyLayer.HasBeeline(Double, Double, Double, Double)
+  fullName.vb: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline(Double, Double, Double, Double)
+  name.vb: HasBeeline(Double, Double, Double, Double)
+references:
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Mars.Components.Layers.AbstractLayer
+  commentId: T:Mars.Components.Layers.AbstractLayer
+  parent: Mars.Components.Layers
+  isExternal: true
+  name: AbstractLayer
+  nameWithType: AbstractLayer
+  fullName: Mars.Components.Layers.AbstractLayer
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer
+  commentId: T:Mars.Components.Layers.AbstractEnvelopedLayer
+  parent: Mars.Components.Layers
+  isExternal: true
+  name: AbstractEnvelopedLayer
+  nameWithType: AbstractEnvelopedLayer
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer
+- uid: Mars.Components.Layers.RasterLayer
+  commentId: T:Mars.Components.Layers.RasterLayer
+  parent: Mars.Components.Layers
+  isExternal: true
+  name: RasterLayer
+  nameWithType: RasterLayer
+  fullName: Mars.Components.Layers.RasterLayer
+- uid: Mars.Interfaces.Layers.IRasterLayer
+  commentId: T:Mars.Interfaces.Layers.IRasterLayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: IRasterLayer
+  nameWithType: IRasterLayer
+  fullName: Mars.Interfaces.Layers.IRasterLayer
+- uid: Mars.Interfaces.Layers.IDataLayer
+  commentId: T:Mars.Interfaces.Layers.IDataLayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: IDataLayer
+  nameWithType: IDataLayer
+  fullName: Mars.Interfaces.Layers.IDataLayer
+- uid: Mars.Interfaces.Data.IRaster{System.Double}
+  commentId: T:Mars.Interfaces.Data.IRaster{System.Double}
+  parent: Mars.Interfaces.Data
+  definition: Mars.Interfaces.Data.IRaster`1
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: IRaster<double>
+  nameWithType: IRaster<double>
+  fullName: Mars.Interfaces.Data.IRaster<double>
+  nameWithType.vb: IRaster(Of Double)
+  fullName.vb: Mars.Interfaces.Data.IRaster(Of Double)
+  name.vb: IRaster(Of Double)
+  spec.csharp:
+  - uid: Mars.Interfaces.Data.IRaster`1
+    name: IRaster
+    isExternal: true
+  - name: <
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Data.IRaster`1
+    name: IRaster
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Interfaces.Layers.IEnvelopDataLayer
+  commentId: T:Mars.Interfaces.Layers.IEnvelopDataLayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: IEnvelopDataLayer
+  nameWithType: IEnvelopDataLayer
+  fullName: Mars.Interfaces.Layers.IEnvelopDataLayer
+- uid: Mars.Interfaces.Layers.IDataSet
+  commentId: T:Mars.Interfaces.Layers.IDataSet
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: IDataSet
+  nameWithType: IDataSet
+  fullName: Mars.Interfaces.Layers.IDataSet
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Mars.Interfaces.Layers.IChangingLayer
+  commentId: T:Mars.Interfaces.Layers.IChangingLayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: IChangingLayer
+  nameWithType: IChangingLayer
+  fullName: Mars.Interfaces.Layers.IChangingLayer
+- uid: Mars.Interfaces.Layers.ISteppedActiveLayer
+  commentId: T:Mars.Interfaces.Layers.ISteppedActiveLayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: ISteppedActiveLayer
+  nameWithType: ISteppedActiveLayer
+  fullName: Mars.Interfaces.Layers.ISteppedActiveLayer
+- uid: Mars.Interfaces.Layers.ILayer
+  commentId: T:Mars.Interfaces.Layers.ILayer
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: ILayer
+  nameWithType: ILayer
+  fullName: Mars.Interfaces.Layers.ILayer
+- uid: Mars.Interfaces.Agents.ITickClient
+  commentId: T:Mars.Interfaces.Agents.ITickClient
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: ITickClient
+  nameWithType: ITickClient
+  fullName: Mars.Interfaces.Agents.ITickClient
+- uid: Mars.Interfaces.IModelObject
+  commentId: T:Mars.Interfaces.IModelObject
+  parent: Mars.Interfaces
+  isExternal: true
+  name: IModelObject
+  nameWithType: IModelObject
+  fullName: Mars.Interfaces.IModelObject
+- uid: Mars.Components.Layers.RasterLayer.SetCurrentTick(System.Int64)
+  commentId: M:Mars.Components.Layers.RasterLayer.SetCurrentTick(System.Int64)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: SetCurrentTick(long)
+  nameWithType: RasterLayer.SetCurrentTick(long)
+  fullName: Mars.Components.Layers.RasterLayer.SetCurrentTick(long)
+  nameWithType.vb: RasterLayer.SetCurrentTick(Long)
+  fullName.vb: Mars.Components.Layers.RasterLayer.SetCurrentTick(Long)
+  name.vb: SetCurrentTick(Long)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.SetCurrentTick(System.Int64)
+    name: SetCurrentTick
+    isExternal: true
+  - name: (
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.SetCurrentTick(System.Int64)
+    name: SetCurrentTick
+    isExternal: true
+  - name: (
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.GetCurrentTick
+  commentId: M:Mars.Components.Layers.RasterLayer.GetCurrentTick
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: GetCurrentTick()
+  nameWithType: RasterLayer.GetCurrentTick()
+  fullName: Mars.Components.Layers.RasterLayer.GetCurrentTick()
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.GetCurrentTick
+    name: GetCurrentTick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.GetCurrentTick
+    name: GetCurrentTick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.SerializeValueCells
+  commentId: M:Mars.Components.Layers.RasterLayer.SerializeValueCells
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: SerializeValueCells()
+  nameWithType: RasterLayer.SerializeValueCells()
+  fullName: Mars.Components.Layers.RasterLayer.SerializeValueCells()
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.SerializeValueCells
+    name: SerializeValueCells
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.SerializeValueCells
+    name: SerializeValueCells
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Increase(System.Int32,System.Int32,System.Double)
+  commentId: M:Mars.Components.Layers.RasterLayer.Increase(System.Int32,System.Int32,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: Increase(int, int, double)
+  nameWithType: RasterLayer.Increase(int, int, double)
+  fullName: Mars.Components.Layers.RasterLayer.Increase(int, int, double)
+  nameWithType.vb: RasterLayer.Increase(Integer, Integer, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.Increase(Integer, Integer, Double)
+  name.vb: Increase(Integer, Integer, Double)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.Increase(System.Int32,System.Int32,System.Double)
+    name: Increase
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Increase(System.Int32,System.Int32,System.Double)
+    name: Increase
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Increase(System.Double,System.Double,System.Double)
+  commentId: M:Mars.Components.Layers.RasterLayer.Increase(System.Double,System.Double,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: Increase(double, double, double)
+  nameWithType: RasterLayer.Increase(double, double, double)
+  fullName: Mars.Components.Layers.RasterLayer.Increase(double, double, double)
+  nameWithType.vb: RasterLayer.Increase(Double, Double, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.Increase(Double, Double, Double)
+  name.vb: Increase(Double, Double, Double)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.Increase(System.Double,System.Double,System.Double)
+    name: Increase
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Increase(System.Double,System.Double,System.Double)
+    name: Increase
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Reduce(System.Int32,System.Int32,System.Double)
+  commentId: M:Mars.Components.Layers.RasterLayer.Reduce(System.Int32,System.Int32,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: Reduce(int, int, double)
+  nameWithType: RasterLayer.Reduce(int, int, double)
+  fullName: Mars.Components.Layers.RasterLayer.Reduce(int, int, double)
+  nameWithType.vb: RasterLayer.Reduce(Integer, Integer, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.Reduce(Integer, Integer, Double)
+  name.vb: Reduce(Integer, Integer, Double)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.Reduce(System.Int32,System.Int32,System.Double)
+    name: Reduce
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Reduce(System.Int32,System.Int32,System.Double)
+    name: Reduce
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Reduce(System.Double,System.Double,System.Double)
+  commentId: M:Mars.Components.Layers.RasterLayer.Reduce(System.Double,System.Double,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: Reduce(double, double, double)
+  nameWithType: RasterLayer.Reduce(double, double, double)
+  fullName: Mars.Components.Layers.RasterLayer.Reduce(double, double, double)
+  nameWithType.vb: RasterLayer.Reduce(Double, Double, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.Reduce(Double, Double, Double)
+  name.vb: Reduce(Double, Double, Double)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.Reduce(System.Double,System.Double,System.Double)
+    name: Reduce
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Reduce(System.Double,System.Double,System.Double)
+    name: Reduce
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: IsInRaster(Position)
+  nameWithType: RasterLayer.IsInRaster(Position)
+  fullName: Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+    name: IsInRaster
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.IsInRaster(Mars.Interfaces.Environments.Position)
+    name: IsInRaster
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position,System.Double,System.Int32,System.Func{System.Double,System.Boolean})
+  commentId: M:Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position,System.Double,System.Int32,System.Func{System.Double,System.Boolean})
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: Explore(Position, double, int, Func<double, bool>)
+  nameWithType: RasterLayer.Explore(Position, double, int, Func<double, bool>)
+  fullName: Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position, double, int, System.Func<double, bool>)
+  nameWithType.vb: RasterLayer.Explore(Position, Double, Integer, Func(Of Double, Boolean))
+  fullName.vb: Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position, Double, Integer, System.Func(Of Double, Boolean))
+  name.vb: Explore(Position, Double, Integer, Func(Of Double, Boolean))
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position,System.Double,System.Int32,System.Func{System.Double,System.Boolean})
+    name: Explore
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Explore(Mars.Interfaces.Environments.Position,System.Double,System.Int32,System.Func{System.Double,System.Boolean})
+    name: Explore
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: GetNeighbourCellWithMaxValue(Position)
+  nameWithType: RasterLayer.GetNeighbourCellWithMaxValue(Position)
+  fullName: Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+    name: GetNeighbourCellWithMaxValue
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.GetNeighbourCellWithMaxValue(Mars.Interfaces.Environments.Position)
+    name: GetNeighbourCellWithMaxValue
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.ParseData(System.String)
+  commentId: M:Mars.Components.Layers.RasterLayer.ParseData(System.String)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: ParseData(string)
+  nameWithType: RasterLayer.ParseData(string)
+  fullName: Mars.Components.Layers.RasterLayer.ParseData(string)
+  nameWithType.vb: RasterLayer.ParseData(String)
+  fullName.vb: Mars.Components.Layers.RasterLayer.ParseData(String)
+  name.vb: ParseData(String)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.ParseData(System.String)
+    name: ParseData
+    isExternal: true
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.ParseData(System.String)
+    name: ParseData
+    isExternal: true
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: GetValueByGeoPosition(Position)
+  nameWithType: RasterLayer.GetValueByGeoPosition(Position)
+  fullName: Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+    name: GetValueByGeoPosition
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.GetValueByGeoPosition(Mars.Interfaces.Environments.Position)
+    name: GetValueByGeoPosition
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: GetValue(Position)
+  nameWithType: RasterLayer.GetValue(Position)
+  fullName: Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+    name: GetValue
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.GetValue(Mars.Interfaces.Environments.Position)
+    name: GetValue
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(System.Double,System.Double,System.Int32@)
+  commentId: M:Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(System.Double,System.Double,System.Int32@)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: ConvertToGridCoordinate(double, double, out int)
+  nameWithType: RasterLayer.ConvertToGridCoordinate(double, double, out int)
+  fullName: Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(double, double, out int)
+  nameWithType.vb: RasterLayer.ConvertToGridCoordinate(Double, Double, Integer)
+  fullName.vb: Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(Double, Double, Integer)
+  name.vb: ConvertToGridCoordinate(Double, Double, Integer)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(System.Double,System.Double,System.Int32@)
+    name: ConvertToGridCoordinate
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.ConvertToGridCoordinate(System.Double,System.Double,System.Int32@)
+    name: ConvertToGridCoordinate
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Int32,System.Int32)
+  commentId: M:Mars.Components.Layers.RasterLayer.IsRoutable(System.Int32,System.Int32)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: IsRoutable(int, int)
+  nameWithType: RasterLayer.IsRoutable(int, int)
+  fullName: Mars.Components.Layers.RasterLayer.IsRoutable(int, int)
+  nameWithType.vb: RasterLayer.IsRoutable(Integer, Integer)
+  fullName.vb: Mars.Components.Layers.RasterLayer.IsRoutable(Integer, Integer)
+  name.vb: IsRoutable(Integer, Integer)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Int32,System.Int32)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Int32,System.Int32)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Double,System.Double)
+  commentId: M:Mars.Components.Layers.RasterLayer.IsRoutable(System.Double,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: IsRoutable(double, double)
+  nameWithType: RasterLayer.IsRoutable(double, double)
+  fullName: Mars.Components.Layers.RasterLayer.IsRoutable(double, double)
+  nameWithType.vb: RasterLayer.IsRoutable(Double, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.IsRoutable(Double, Double)
+  name.vb: IsRoutable(Double, Double)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Double,System.Double)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(System.Double,System.Double)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: IsRoutable(Position)
+  nameWithType: RasterLayer.IsRoutable(Position)
+  fullName: Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.IsRoutable(Mars.Interfaces.Environments.Position)
+    name: IsRoutable
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position,Mars.Interfaces.Environments.Position)
+  commentId: M:Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position,Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: FindPath(Position, Position)
+  nameWithType: RasterLayer.FindPath(Position, Position)
+  fullName: Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position, Mars.Interfaces.Environments.Position)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position,Mars.Interfaces.Environments.Position)
+    name: FindPath
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.FindPath(Mars.Interfaces.Environments.Position,Mars.Interfaces.Environments.Position)
+    name: FindPath
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.FindPath(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Mars.Components.Layers.RasterLayer.FindPath(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: FindPath(int, int, int, int)
+  nameWithType: RasterLayer.FindPath(int, int, int, int)
+  fullName: Mars.Components.Layers.RasterLayer.FindPath(int, int, int, int)
+  nameWithType.vb: RasterLayer.FindPath(Integer, Integer, Integer, Integer)
+  fullName.vb: Mars.Components.Layers.RasterLayer.FindPath(Integer, Integer, Integer, Integer)
+  name.vb: FindPath(Integer, Integer, Integer, Integer)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.FindPath(System.Int32,System.Int32,System.Int32,System.Int32)
+    name: FindPath
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.FindPath(System.Int32,System.Int32,System.Int32,System.Int32)
+    name: FindPath
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.IsChanged
+  commentId: P:Mars.Components.Layers.RasterLayer.IsChanged
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: IsChanged
+  nameWithType: RasterLayer.IsChanged
+  fullName: Mars.Components.Layers.RasterLayer.IsChanged
+- uid: Mars.Components.Layers.RasterLayer.Width
+  commentId: P:Mars.Components.Layers.RasterLayer.Width
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: Width
+  nameWithType: RasterLayer.Width
+  fullName: Mars.Components.Layers.RasterLayer.Width
+- uid: Mars.Components.Layers.RasterLayer.Height
+  commentId: P:Mars.Components.Layers.RasterLayer.Height
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: Height
+  nameWithType: RasterLayer.Height
+  fullName: Mars.Components.Layers.RasterLayer.Height
+- uid: Mars.Components.Layers.RasterLayer.LowerLeft
+  commentId: P:Mars.Components.Layers.RasterLayer.LowerLeft
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: LowerLeft
+  nameWithType: RasterLayer.LowerLeft
+  fullName: Mars.Components.Layers.RasterLayer.LowerLeft
+- uid: Mars.Components.Layers.RasterLayer.UpperRight
+  commentId: P:Mars.Components.Layers.RasterLayer.UpperRight
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: UpperRight
+  nameWithType: RasterLayer.UpperRight
+  fullName: Mars.Components.Layers.RasterLayer.UpperRight
+- uid: Mars.Components.Layers.RasterLayer.CellHeight
+  commentId: P:Mars.Components.Layers.RasterLayer.CellHeight
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: CellHeight
+  nameWithType: RasterLayer.CellHeight
+  fullName: Mars.Components.Layers.RasterLayer.CellHeight
+- uid: Mars.Components.Layers.RasterLayer.CellWidth
+  commentId: P:Mars.Components.Layers.RasterLayer.CellWidth
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: CellWidth
+  nameWithType: RasterLayer.CellWidth
+  fullName: Mars.Components.Layers.RasterLayer.CellWidth
+- uid: Mars.Components.Layers.RasterLayer.NoDataValue
+  commentId: P:Mars.Components.Layers.RasterLayer.NoDataValue
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: NoDataValue
+  nameWithType: RasterLayer.NoDataValue
+  fullName: Mars.Components.Layers.RasterLayer.NoDataValue
+- uid: Mars.Components.Layers.RasterLayer.Count
+  commentId: P:Mars.Components.Layers.RasterLayer.Count
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: Count
+  nameWithType: RasterLayer.Count
+  fullName: Mars.Components.Layers.RasterLayer.Count
+- uid: Mars.Components.Layers.RasterLayer.Extent
+  commentId: P:Mars.Components.Layers.RasterLayer.Extent
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: Extent
+  nameWithType: RasterLayer.Extent
+  fullName: Mars.Components.Layers.RasterLayer.Extent
+- uid: Mars.Components.Layers.RasterLayer.Item(Mars.Interfaces.Environments.Position)
+  commentId: P:Mars.Components.Layers.RasterLayer.Item(Mars.Interfaces.Environments.Position)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: this[Position]
+  nameWithType: RasterLayer.this[Position]
+  fullName: Mars.Components.Layers.RasterLayer.this[Mars.Interfaces.Environments.Position]
+  nameWithType.vb: RasterLayer.this[](Position)
+  fullName.vb: Mars.Components.Layers.RasterLayer.this[](Mars.Interfaces.Environments.Position)
+  name.vb: this[](Position)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: ']'
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Item(Mars.Interfaces.Environments.Position)
+    name: this[]
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Item(System.Double,System.Double)
+  commentId: P:Mars.Components.Layers.RasterLayer.Item(System.Double,System.Double)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: this[double, double]
+  nameWithType: RasterLayer.this[double, double]
+  fullName: Mars.Components.Layers.RasterLayer.this[double, double]
+  nameWithType.vb: RasterLayer.this[](Double, Double)
+  fullName.vb: Mars.Components.Layers.RasterLayer.this[](Double, Double)
+  name.vb: this[](Double, Double)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ']'
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Item(System.Double,System.Double)
+    name: this[]
+    isExternal: true
+  - name: (
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.Item(System.Int32,System.Int32)
+  commentId: P:Mars.Components.Layers.RasterLayer.Item(System.Int32,System.Int32)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int, int]
+  nameWithType: RasterLayer.this[int, int]
+  fullName: Mars.Components.Layers.RasterLayer.this[int, int]
+  nameWithType.vb: RasterLayer.this[](Integer, Integer)
+  fullName.vb: Mars.Components.Layers.RasterLayer.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.Item(System.Int32,System.Int32)
+    name: this[]
+    isExternal: true
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Mars.Components.Layers.RasterLayer.DistanceMetric
+  commentId: P:Mars.Components.Layers.RasterLayer.DistanceMetric
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: DistanceMetric
+  nameWithType: RasterLayer.DistanceMetric
+  fullName: Mars.Components.Layers.RasterLayer.DistanceMetric
+- uid: Mars.Components.Layers.RasterLayer.AllowDiagonalMove
+  commentId: P:Mars.Components.Layers.RasterLayer.AllowDiagonalMove
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: AllowDiagonalMove
+  nameWithType: RasterLayer.AllowDiagonalMove
+  fullName: Mars.Components.Layers.RasterLayer.AllowDiagonalMove
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose
+  commentId: M:Mars.Components.Layers.AbstractEnvelopedLayer.Dispose
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: Dispose()
+  nameWithType: AbstractEnvelopedLayer.Dispose()
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose()
+  spec.csharp:
+  - uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(System.Boolean)
+  commentId: M:Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(System.Boolean)
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: Dispose(bool)
+  nameWithType: AbstractEnvelopedLayer.Dispose(bool)
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(bool)
+  nameWithType.vb: AbstractEnvelopedLayer.Dispose(Boolean)
+  fullName.vb: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.AbstractEnvelopedLayer.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.IsTemporalChanging
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.IsTemporalChanging
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: IsTemporalChanging
+  nameWithType: AbstractEnvelopedLayer.IsTemporalChanging
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.IsTemporalChanging
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.MinLon
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.MinLon
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: MinLon
+  nameWithType: AbstractEnvelopedLayer.MinLon
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.MinLon
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.MinLat
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.MinLat
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: MinLat
+  nameWithType: AbstractEnvelopedLayer.MinLat
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.MinLat
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.MaxLon
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.MaxLon
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: MaxLon
+  nameWithType: AbstractEnvelopedLayer.MaxLon
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.MaxLon
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.MaxLat
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.MaxLat
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: MaxLat
+  nameWithType: AbstractEnvelopedLayer.MaxLat
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.MaxLat
+- uid: Mars.Components.Layers.AbstractEnvelopedLayer.IsDisposed
+  commentId: P:Mars.Components.Layers.AbstractEnvelopedLayer.IsDisposed
+  parent: Mars.Components.Layers.AbstractEnvelopedLayer
+  isExternal: true
+  name: IsDisposed
+  nameWithType: AbstractEnvelopedLayer.IsDisposed
+  fullName: Mars.Components.Layers.AbstractEnvelopedLayer.IsDisposed
+- uid: Mars.Components.Layers.AbstractLayer.Mapping
+  commentId: P:Mars.Components.Layers.AbstractLayer.Mapping
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: Mapping
+  nameWithType: AbstractLayer.Mapping
+  fullName: Mars.Components.Layers.AbstractLayer.Mapping
+- uid: Mars.Components.Layers.AbstractLayer.RegisterAgent
+  commentId: P:Mars.Components.Layers.AbstractLayer.RegisterAgent
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: RegisterAgent
+  nameWithType: AbstractLayer.RegisterAgent
+  fullName: Mars.Components.Layers.AbstractLayer.RegisterAgent
+- uid: Mars.Components.Layers.AbstractLayer.UnregisterAgent
+  commentId: P:Mars.Components.Layers.AbstractLayer.UnregisterAgent
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: UnregisterAgent
+  nameWithType: AbstractLayer.UnregisterAgent
+  fullName: Mars.Components.Layers.AbstractLayer.UnregisterAgent
+- uid: Mars.Components.Layers.AbstractLayer.Context
+  commentId: P:Mars.Components.Layers.AbstractLayer.Context
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: Context
+  nameWithType: AbstractLayer.Context
+  fullName: Mars.Components.Layers.AbstractLayer.Context
+- uid: Mars.Components.Layers.AbstractLayer.Container
+  commentId: P:Mars.Components.Layers.AbstractLayer.Container
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: Container
+  nameWithType: AbstractLayer.Container
+  fullName: Mars.Components.Layers.AbstractLayer.Container
+- uid: Mars.Components.Layers.AbstractLayer.EntityManager
+  commentId: P:Mars.Components.Layers.AbstractLayer.EntityManager
+  parent: Mars.Components.Layers.AbstractLayer
+  isExternal: true
+  name: EntityManager
+  nameWithType: AbstractLayer.EntityManager
+  fullName: Mars.Components.Layers.AbstractLayer.EntityManager
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Mars.Components.Layers
+  commentId: N:Mars.Components.Layers
+  isExternal: true
+  name: Mars.Components.Layers
+  nameWithType: Mars.Components.Layers
+  fullName: Mars.Components.Layers
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Components
+    name: Components
+    isExternal: true
+  - name: .
+  - uid: Mars.Components.Layers
+    name: Layers
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Components
+    name: Components
+    isExternal: true
+  - name: .
+  - uid: Mars.Components.Layers
+    name: Layers
+    isExternal: true
+- uid: Mars.Interfaces.Layers
+  commentId: N:Mars.Interfaces.Layers
+  isExternal: true
+  name: Mars.Interfaces.Layers
+  nameWithType: Mars.Interfaces.Layers
+  fullName: Mars.Interfaces.Layers
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Layers
+    name: Layers
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Layers
+    name: Layers
+    isExternal: true
+- uid: Mars.Interfaces.Data.IRaster`1
+  commentId: T:Mars.Interfaces.Data.IRaster`1
+  isExternal: true
+  name: IRaster<TValue>
+  nameWithType: IRaster<TValue>
+  fullName: Mars.Interfaces.Data.IRaster<TValue>
+  nameWithType.vb: IRaster(Of TValue)
+  fullName.vb: Mars.Interfaces.Data.IRaster(Of TValue)
+  name.vb: IRaster(Of TValue)
+  spec.csharp:
+  - uid: Mars.Interfaces.Data.IRaster`1
+    name: IRaster
+    isExternal: true
+  - name: <
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Data.IRaster`1
+    name: IRaster
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: Mars.Interfaces.Data
+  commentId: N:Mars.Interfaces.Data
+  isExternal: true
+  name: Mars.Interfaces.Data
+  nameWithType: Mars.Interfaces.Data
+  fullName: Mars.Interfaces.Data
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Data
+    name: Data
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Data
+    name: Data
+    isExternal: true
+- uid: Mars.Interfaces.Agents
+  commentId: N:Mars.Interfaces.Agents
+  isExternal: true
+  name: Mars.Interfaces.Agents
+  nameWithType: Mars.Interfaces.Agents
+  fullName: Mars.Interfaces.Agents
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+- uid: Mars.Interfaces
+  commentId: N:Mars.Interfaces
+  isExternal: true
+  name: Mars.Interfaces
+  nameWithType: Mars.Interfaces
+  fullName: Mars.Interfaces
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Visualization*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Visualization
+  name: Visualization
+  nameWithType: PlayerBodyLayer.Visualization
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Visualization
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_VisualizationTimeout
+  name: VisualizationTimeout
+  nameWithType: PlayerBodyLayer.VisualizationTimeout
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.VisualizationTimeout
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Mode*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Mode
+  name: Mode
+  nameWithType: PlayerBodyLayer.Mode
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Mode
+- uid: LaserTagBox.Model.Shared.GameMode
+  commentId: T:LaserTagBox.Model.Shared.GameMode
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.GameMode.html
+  name: GameMode
+  nameWithType: GameMode
+  fullName: LaserTagBox.Model.Shared.GameMode
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Bodies*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Bodies
+  name: Bodies
+  nameWithType: PlayerBodyLayer.Bodies
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Bodies
+- uid: System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Body.PlayerBody}
+  commentId: T:System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Body.PlayerBody}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Guid, PlayerBody>
+  nameWithType: Dictionary<Guid, PlayerBody>
+  fullName: System.Collections.Generic.Dictionary<System.Guid, LaserTagBox.Model.Body.PlayerBody>
+  nameWithType.vb: Dictionary(Of Guid, PlayerBody)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.Guid, LaserTagBox.Model.Body.PlayerBody)
+  name.vb: Dictionary(Of Guid, PlayerBody)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Items*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Items
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Items
+  name: Items
+  nameWithType: PlayerBodyLayer.Items
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Items
+- uid: System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Items.Item}
+  commentId: T:System.Collections.Generic.Dictionary{System.Guid,LaserTagBox.Model.Items.Item}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Guid, Item>
+  nameWithType: Dictionary<Guid, Item>
+  fullName: System.Collections.Generic.Dictionary<System.Guid, LaserTagBox.Model.Items.Item>
+  nameWithType.vb: Dictionary(Of Guid, Item)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.Guid, LaserTagBox.Model.Items.Item)
+  name.vb: Dictionary(Of Guid, Item)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Items.Item
+    name: Item
+    href: LaserTagBox.Model.Items.Item.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Items.Item
+    name: Item
+    href: LaserTagBox.Model.Items.Item.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Score*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Score
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Score
+  name: Score
+  nameWithType: PlayerBodyLayer.Score
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Score
+- uid: System.Collections.Generic.Dictionary{LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.TeamScore}
+  commentId: T:System.Collections.Generic.Dictionary{LaserTagBox.Model.Shared.Color,LaserTagBox.Model.Shared.TeamScore}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Color, TeamScore>
+  nameWithType: Dictionary<Color, TeamScore>
+  fullName: System.Collections.Generic.Dictionary<LaserTagBox.Model.Shared.Color, LaserTagBox.Model.Shared.TeamScore>
+  nameWithType.vb: Dictionary(Of Color, TeamScore)
+  fullName.vb: System.Collections.Generic.Dictionary(Of LaserTagBox.Model.Shared.Color, LaserTagBox.Model.Shared.TeamScore)
+  name.vb: Dictionary(Of Color, TeamScore)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: LaserTagBox.Model.Shared.Color
+    name: Color
+    href: LaserTagBox.Model.Shared.Color.html
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.TeamScore
+    name: TeamScore
+    href: LaserTagBox.Model.Shared.TeamScore.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.Color
+    name: Color
+    href: LaserTagBox.Model.Shared.Color.html
+  - name: ','
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.TeamScore
+    name: TeamScore
+    href: LaserTagBox.Model.Shared.TeamScore.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_FighterEnv
+  name: FighterEnv
+  nameWithType: PlayerBodyLayer.FighterEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.FighterEnv
+- uid: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Body.PlayerBody}
+  commentId: T:Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Body.PlayerBody}
+  parent: Mars.Components.Environments
+  definition: Mars.Components.Environments.SpatialHashEnvironment`1
+  href: LaserTagBox.Model.Body.PlayerBody.html
+  name: SpatialHashEnvironment<PlayerBody>
+  nameWithType: SpatialHashEnvironment<PlayerBody>
+  fullName: Mars.Components.Environments.SpatialHashEnvironment<LaserTagBox.Model.Body.PlayerBody>
+  nameWithType.vb: SpatialHashEnvironment(Of PlayerBody)
+  fullName.vb: Mars.Components.Environments.SpatialHashEnvironment(Of LaserTagBox.Model.Body.PlayerBody)
+  name.vb: SpatialHashEnvironment(Of PlayerBody)
+  spec.csharp:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: )
+- uid: Mars.Components.Environments.SpatialHashEnvironment`1
+  commentId: T:Mars.Components.Environments.SpatialHashEnvironment`1
+  isExternal: true
+  name: SpatialHashEnvironment<TEntity>
+  nameWithType: SpatialHashEnvironment<TEntity>
+  fullName: Mars.Components.Environments.SpatialHashEnvironment<TEntity>
+  nameWithType.vb: SpatialHashEnvironment(Of TEntity)
+  fullName.vb: Mars.Components.Environments.SpatialHashEnvironment(Of TEntity)
+  name.vb: SpatialHashEnvironment(Of TEntity)
+  spec.csharp:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: <
+  - name: TEntity
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEntity
+  - name: )
+- uid: Mars.Components.Environments
+  commentId: N:Mars.Components.Environments
+  isExternal: true
+  name: Mars.Components.Environments
+  nameWithType: Mars.Components.Environments
+  fullName: Mars.Components.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Components
+    name: Components
+    isExternal: true
+  - name: .
+  - uid: Mars.Components.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Components
+    name: Components
+    isExternal: true
+  - name: .
+  - uid: Mars.Components.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_SpotEnv
+  name: SpotEnv
+  nameWithType: PlayerBodyLayer.SpotEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.SpotEnv
+- uid: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Spots.Spot}
+  commentId: T:Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Spots.Spot}
+  parent: Mars.Components.Environments
+  definition: Mars.Components.Environments.SpatialHashEnvironment`1
+  href: LaserTagBox.Model.Spots.Spot.html
+  name: SpatialHashEnvironment<Spot>
+  nameWithType: SpatialHashEnvironment<Spot>
+  fullName: Mars.Components.Environments.SpatialHashEnvironment<LaserTagBox.Model.Spots.Spot>
+  nameWithType.vb: SpatialHashEnvironment(Of Spot)
+  fullName.vb: Mars.Components.Environments.SpatialHashEnvironment(Of LaserTagBox.Model.Spots.Spot)
+  name.vb: SpatialHashEnvironment(Of Spot)
+  spec.csharp:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Spots.Spot
+    name: Spot
+    href: LaserTagBox.Model.Spots.Spot.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Spots.Spot
+    name: Spot
+    href: LaserTagBox.Model.Spots.Spot.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_ItemEnv
+  name: ItemEnv
+  nameWithType: PlayerBodyLayer.ItemEnv
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.ItemEnv
+- uid: Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Items.Item}
+  commentId: T:Mars.Components.Environments.SpatialHashEnvironment{LaserTagBox.Model.Items.Item}
+  parent: Mars.Components.Environments
+  definition: Mars.Components.Environments.SpatialHashEnvironment`1
+  href: LaserTagBox.Model.Items.Item.html
+  name: SpatialHashEnvironment<Item>
+  nameWithType: SpatialHashEnvironment<Item>
+  fullName: Mars.Components.Environments.SpatialHashEnvironment<LaserTagBox.Model.Items.Item>
+  nameWithType.vb: SpatialHashEnvironment(Of Item)
+  fullName.vb: Mars.Components.Environments.SpatialHashEnvironment(Of LaserTagBox.Model.Items.Item)
+  name.vb: SpatialHashEnvironment(Of Item)
+  spec.csharp:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Items.Item
+    name: Item
+    href: LaserTagBox.Model.Items.Item.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Components.Environments.SpatialHashEnvironment`1
+    name: SpatialHashEnvironment
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Items.Item
+    name: Item
+    href: LaserTagBox.Model.Items.Item.html
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_AgentManager
+  name: AgentManager
+  nameWithType: PlayerBodyLayer.AgentManager
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.AgentManager
+- uid: Mars.Core.Data.IAgentManager
+  commentId: T:Mars.Core.Data.IAgentManager
+  parent: Mars.Core.Data
+  isExternal: true
+  name: IAgentManager
+  nameWithType: IAgentManager
+  fullName: Mars.Core.Data.IAgentManager
+- uid: Mars.Core.Data
+  commentId: N:Mars.Core.Data
+  isExternal: true
+  name: Mars.Core.Data
+  nameWithType: Mars.Core.Data
+  fullName: Mars.Core.Data
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Core
+    name: Core
+    isExternal: true
+  - name: .
+  - uid: Mars.Core.Data
+    name: Data
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Core
+    name: Core
+    isExternal: true
+  - name: .
+  - uid: Mars.Core.Data
+    name: Data
+    isExternal: true
+- uid: Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  commentId: M:Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  parent: Mars.Components.Layers.RasterLayer
+  isExternal: true
+  name: InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  nameWithType: RasterLayer.InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  fullName: Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData, Mars.Interfaces.Layers.RegisterAgent, Mars.Interfaces.Layers.UnregisterAgent)
+  spec.csharp:
+  - uid: Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+    name: InitLayer
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Data.LayerInitData
+    name: LayerInitData
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.RegisterAgent
+    name: RegisterAgent
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.UnregisterAgent
+    name: UnregisterAgent
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Components.Layers.RasterLayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+    name: InitLayer
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Data.LayerInitData
+    name: LayerInitData
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.RegisterAgent
+    name: RegisterAgent
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.UnregisterAgent
+    name: UnregisterAgent
+    isExternal: true
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_InitLayer_Mars_Interfaces_Data_LayerInitData_Mars_Interfaces_Layers_RegisterAgent_Mars_Interfaces_Layers_UnregisterAgent_
+  name: InitLayer
+  nameWithType: PlayerBodyLayer.InitLayer
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.InitLayer
+- uid: Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  commentId: M:Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+  parent: Mars.Interfaces.Layers.ILayer
+  isExternal: true
+  name: InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  nameWithType: ILayer.InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)
+  fullName: Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData, Mars.Interfaces.Layers.RegisterAgent, Mars.Interfaces.Layers.UnregisterAgent)
+  spec.csharp:
+  - uid: Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+    name: InitLayer
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Data.LayerInitData
+    name: LayerInitData
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.RegisterAgent
+    name: RegisterAgent
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.UnregisterAgent
+    name: UnregisterAgent
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Layers.ILayer.InitLayer(Mars.Interfaces.Data.LayerInitData,Mars.Interfaces.Layers.RegisterAgent,Mars.Interfaces.Layers.UnregisterAgent)
+    name: InitLayer
+    isExternal: true
+  - name: (
+  - uid: Mars.Interfaces.Data.LayerInitData
+    name: LayerInitData
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.RegisterAgent
+    name: RegisterAgent
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Mars.Interfaces.Layers.UnregisterAgent
+    name: UnregisterAgent
+    isExternal: true
+  - name: )
+- uid: Mars.Interfaces.Data.LayerInitData
+  commentId: T:Mars.Interfaces.Data.LayerInitData
+  parent: Mars.Interfaces.Data
+  isExternal: true
+  name: LayerInitData
+  nameWithType: LayerInitData
+  fullName: Mars.Interfaces.Data.LayerInitData
+- uid: Mars.Interfaces.Layers.RegisterAgent
+  commentId: T:Mars.Interfaces.Layers.RegisterAgent
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: RegisterAgent
+  nameWithType: RegisterAgent
+  fullName: Mars.Interfaces.Layers.RegisterAgent
+- uid: Mars.Interfaces.Layers.UnregisterAgent
+  commentId: T:Mars.Interfaces.Layers.UnregisterAgent
+  parent: Mars.Interfaces.Layers
+  isExternal: true
+  name: UnregisterAgent
+  nameWithType: UnregisterAgent
+  fullName: Mars.Interfaces.Layers.UnregisterAgent
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.Tick*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.Tick
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_Tick
+  name: Tick
+  nameWithType: PlayerBodyLayer.Tick
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.Tick
+- uid: Mars.Interfaces.Agents.ITickClient.Tick
+  commentId: M:Mars.Interfaces.Agents.ITickClient.Tick
+  parent: Mars.Interfaces.Agents.ITickClient
+  isExternal: true
+  name: Tick()
+  nameWithType: ITickClient.Tick()
+  fullName: Mars.Interfaces.Agents.ITickClient.Tick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.PreTick*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.PreTick
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_PreTick
+  name: PreTick
+  nameWithType: PlayerBodyLayer.PreTick
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.PreTick
+- uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick
+  commentId: M:Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick
+  parent: Mars.Interfaces.Layers.ISteppedActiveLayer
+  isExternal: true
+  name: PreTick()
+  nameWithType: ISteppedActiveLayer.PreTick()
+  fullName: Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick
+    name: PreTick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PreTick
+    name: PreTick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.PostTick*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.PostTick
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_PostTick
+  name: PostTick
+  nameWithType: PlayerBodyLayer.PostTick
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.PostTick
+- uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick
+  commentId: M:Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick
+  parent: Mars.Interfaces.Layers.ISteppedActiveLayer
+  isExternal: true
+  name: PostTick()
+  nameWithType: ISteppedActiveLayer.PostTick()
+  fullName: Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick
+    name: PostTick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Layers.ISteppedActiveLayer.PostTick
+    name: PostTick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_NearestDitch_Mars_Interfaces_Environments_Position_
+  name: NearestDitch
+  nameWithType: PlayerBodyLayer.NearestDitch
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestDitch
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: LaserTagBox.Model.Spots.Ditch
+  commentId: T:LaserTagBox.Model.Spots.Ditch
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Ditch.html
+  name: Ditch
+  nameWithType: Ditch
+  fullName: LaserTagBox.Model.Spots.Ditch
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Spots
+  commentId: N:LaserTagBox.Model.Spots
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Spots
+  nameWithType: LaserTagBox.Model.Spots
+  fullName: LaserTagBox.Model.Spots
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Spots
+    name: Spots
+    href: LaserTagBox.Model.Spots.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Spots
+    name: Spots
+    href: LaserTagBox.Model.Spots.html
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_NearestHill_Mars_Interfaces_Environments_Position_
+  name: NearestHill
+  nameWithType: PlayerBodyLayer.NearestHill
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestHill
+- uid: LaserTagBox.Model.Spots.Hill
+  commentId: T:LaserTagBox.Model.Spots.Hill
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Hill.html
+  name: Hill
+  nameWithType: Hill
+  fullName: LaserTagBox.Model.Spots.Hill
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_NearestBarrier_Mars_Interfaces_Environments_Position_
+  name: NearestBarrier
+  nameWithType: PlayerBodyLayer.NearestBarrier
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.NearestBarrier
+- uid: LaserTagBox.Model.Spots.Barrier
+  commentId: T:LaserTagBox.Model.Spots.Barrier
+  parent: LaserTagBox.Model.Spots
+  href: LaserTagBox.Model.Spots.Barrier.html
+  name: Barrier
+  nameWithType: Barrier
+  fullName: LaserTagBox.Model.Spots.Barrier
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_GetIntValue_System_Double_System_Double_
+  name: GetIntValue
+  nameWithType: PlayerBodyLayer.GetIntValue
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetIntValue
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_GetAgentOn_Mars_Interfaces_Environments_Position_
+  name: GetAgentOn
+  nameWithType: PlayerBodyLayer.GetAgentOn
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetAgentOn
+- uid: LaserTagBox.Model.Body.PlayerBody
+  commentId: T:LaserTagBox.Model.Body.PlayerBody
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBody.html
+  name: PlayerBody
+  nameWithType: PlayerBody
+  fullName: LaserTagBox.Model.Body.PlayerBody
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.GetAll*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.GetAll
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_GetAll_LaserTagBox_Model_Shared_Color_
+  name: GetAll
+  nameWithType: PlayerBodyLayer.GetAll
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.GetAll
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Body.PlayerBody}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Body.PlayerBody}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<PlayerBody>
+  nameWithType: List<PlayerBody>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Body.PlayerBody>
+  nameWithType.vb: List(Of PlayerBody)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Body.PlayerBody)
+  name.vb: List(Of PlayerBody)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    href: LaserTagBox.Model.Body.PlayerBody.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline*
+  commentId: Overload:LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html#LaserTagBox_Model_Body_PlayerBodyLayer_HasBeeline_System_Double_System_Double_System_Double_System_Double_
+  name: HasBeeline
+  nameWithType: PlayerBodyLayer.HasBeeline
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer.HasBeeline

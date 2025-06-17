@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Mind.Example9QL.Location
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Location
+  id: Example9QL.Location
+  parent: LaserTagBox.Model.Mind
+  children:
+  - LaserTagBox.Model.Mind.Example9QL.Location.Ditch
+  - LaserTagBox.Model.Mind.Example9QL.Location.Hill
+  - LaserTagBox.Model.Mind.Example9QL.Location.None
+  langs:
+  - csharp
+  - vb
+  name: Example9QL.Location
+  nameWithType: Example9QL.Location
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location
+  type: Enum
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Location
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 28
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: public enum Example9QL.Location
+    content.vb: Public Enum Example9QL.Location
+- uid: LaserTagBox.Model.Mind.Example9QL.Location.None
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Location.None
+  id: None
+  parent: LaserTagBox.Model.Mind.Example9QL.Location
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Example9QL.Location.None
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location.None
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: None
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 30
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: None = 0
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Location
+- uid: LaserTagBox.Model.Mind.Example9QL.Location.Hill
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Location.Hill
+  id: Hill
+  parent: LaserTagBox.Model.Mind.Example9QL.Location
+  langs:
+  - csharp
+  - vb
+  name: Hill
+  nameWithType: Example9QL.Location.Hill
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location.Hill
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Hill
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 31
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: Hill = 1
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Location
+- uid: LaserTagBox.Model.Mind.Example9QL.Location.Ditch
+  commentId: F:LaserTagBox.Model.Mind.Example9QL.Location.Ditch
+  id: Ditch
+  parent: LaserTagBox.Model.Mind.Example9QL.Location
+  langs:
+  - csharp
+  - vb
+  name: Ditch
+  nameWithType: Example9QL.Location.Ditch
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location.Ditch
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/Examples/Example9QL.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Ditch
+    path: ../LaserTagBox/Model/Mind/Examples/Example9QL.cs
+    startLine: 32
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  syntax:
+    content: Ditch = 2
+    return:
+      type: LaserTagBox.Model.Mind.Example9QL.Location
+references:
+- uid: LaserTagBox.Model.Mind
+  commentId: N:LaserTagBox.Model.Mind
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Mind
+  nameWithType: LaserTagBox.Model.Mind
+  fullName: LaserTagBox.Model.Mind
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+- uid: LaserTagBox.Model.Mind.Example9QL.Location
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Location
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL.Location
+  nameWithType: Example9QL.Location
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location
+  spec.csharp:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Location
+    name: Location
+    href: LaserTagBox.Model.Mind.Example9QL.Location.html
+  spec.vb:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Location
+    name: Location
+    href: LaserTagBox.Model.Mind.Example9QL.Location.html

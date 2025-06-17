@@ -1,0 +1,1478 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Shared.IPlayerBody
+  commentId: T:LaserTagBox.Model.Shared.IPlayerBody
+  id: IPlayerBody
+  parent: LaserTagBox.Model.Shared
+  children:
+  - LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  - LaserTagBox.Model.Shared.IPlayerBody.Alive
+  - LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  - LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  - LaserTagBox.Model.Shared.IPlayerBody.Color
+  - LaserTagBox.Model.Shared.IPlayerBody.Energy
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  - LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  - LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  - LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Shared.IPlayerBody.GoTo(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Shared.IPlayerBody.Position
+  - LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  - LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  - LaserTagBox.Model.Shared.IPlayerBody.Stance
+  - LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+  - LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+  - LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  langs:
+  - csharp
+  - vb
+  name: IPlayerBody
+  nameWithType: IPlayerBody
+  fullName: LaserTagBox.Model.Shared.IPlayerBody
+  type: Interface
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: IPlayerBody
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 10
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: >-
+    The <pre><code class="lang-csharp">IPlayerBody</code></pre> is the interface for any mind/AI to the world of agents.
+
+    Use it to explore and interact with the battleground.
+  example: []
+  syntax:
+    content: 'public interface IPlayerBody : IPositionable'
+    content.vb: Public Interface IPlayerBody Inherits IPositionable
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  id: ExploreBarriers1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreBarriers1()
+  nameWithType: IPlayerBody.ExploreBarriers1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreBarriers1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 18
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all <pre><code class="lang-csharp">Barrier</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreBarriers1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of the barriers positions.
+    content.vb: Function ExploreBarriers1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  id: ExploreWater1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreWater1()
+  nameWithType: IPlayerBody.ExploreWater1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreWater1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 24
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all <pre><code class="lang-csharp">Water</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreWater1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Function ExploreWater1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  id: ExploreBarrels1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreBarrels1()
+  nameWithType: IPlayerBody.ExploreBarrels1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreBarrels1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 30
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all <pre><code class="lang-csharp">ExplosiveBarrel</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreBarrels1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Function ExploreBarrels1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  id: ExploreExplosiveBarrels1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreExplosiveBarrels1()
+  nameWithType: IPlayerBody.ExploreExplosiveBarrels1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreExplosiveBarrels1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 36
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all explodable <pre><code class="lang-csharp">ExplosiveBarrel</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreExplosiveBarrels1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: ''
+    content.vb: Function ExploreExplosiveBarrels1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  id: ExploreHills1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreHills1()
+  nameWithType: IPlayerBody.ExploreHills1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreHills1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 42
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all <pre><code class="lang-csharp">Hill</code></pre>s in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreHills1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of the hills positions.
+    content.vb: Function ExploreHills1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  id: ExploreDitches1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreDitches1()
+  nameWithType: IPlayerBody.ExploreDitches1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreDitches1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 48
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all <pre><code class="lang-csharp">Ditch</code></pre>es in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<Position> ExploreDitches1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+      description: A list of the ditches positions.
+    content.vb: Function ExploreDitches1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  id: ExploreEnemies1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreEnemies1()
+  nameWithType: IPlayerBody.ExploreEnemies1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreEnemies1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 54
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores all enemies in sight of the agent. Costs 1 action point.
+  example: []
+  syntax:
+    content: List<EnemySnapshot> ExploreEnemies1()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+      description: A list of the enemies information.
+    content.vb: Function ExploreEnemies1() As List(Of EnemySnapshot)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  id: ExploreEnemyFlagStands1
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreEnemyFlagStands1()
+  nameWithType: IPlayerBody.ExploreEnemyFlagStands1()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreEnemyFlagStands1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 59
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores the enemy flag stands.
+  example: []
+  syntax:
+    content: List<Position> ExploreEnemyFlagStands1()
+    return:
+      type: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+    content.vb: Function ExploreEnemyFlagStands1() As List(Of Position)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  id: ExploreFlags2
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreFlags2()
+  nameWithType: IPlayerBody.ExploreFlags2()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreFlags2
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 65
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores the flags.
+  example: []
+  syntax:
+    content: List<FlagSnapshot> ExploreFlags2()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+      description: ''
+    content.vb: Function ExploreFlags2() As List(Of FlagSnapshot)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  id: ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ChangeStance2(Stance)
+  nameWithType: IPlayerBody.ChangeStance2(Stance)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2(LaserTagBox.Model.Shared.Stance)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ChangeStance2
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 71
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Change the current stance of the agent. Costs 2 action points.
+  example: []
+  syntax:
+    content: void ChangeStance2(Stance newStance)
+    parameters:
+    - id: newStance
+      type: LaserTagBox.Model.Shared.Stance
+      description: The new stance of the agent.
+    content.vb: Sub ChangeStance2(newStance As Stance)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  id: Reload3
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Reload3()
+  nameWithType: IPlayerBody.Reload3()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Reload3()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Reload3
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 76
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Reloads the weapons magazine count to 5 shots. Costs 3 action points.
+  example: []
+  syntax:
+    content: void Reload3()
+    content.vb: Sub Reload3()
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Reload3*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  id: Tag5(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Tag5(Position)
+  nameWithType: IPlayerBody.Tag5(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Tag5(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tag5
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 84
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: >-
+    Tries to tag an enemy at given position. The success depends on the distance, the enemies and own stance
+
+    value and a little luck. Costs 5 action points.
+  example: []
+  syntax:
+    content: bool Tag5(Position aimedPosition)
+    parameters:
+    - id: aimedPosition
+      type: Mars.Interfaces.Environments.Position
+      description: The position that is aimed on.
+    return:
+      type: System.Boolean
+      description: true if an enemy was tagged, false otherwise or if not enough action points are available
+    content.vb: Function Tag5(aimedPosition As Position) As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Tag5*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  id: HasBeeline1(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: HasBeeline1(Position)
+  nameWithType: IPlayerBody.HasBeeline1(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: HasBeeline1
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 92
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: >-
+    Indicates if there is a connecting line between given position and the agents position without any
+
+    obstacle in the way. Costs 1 action points.
+  example: []
+  syntax:
+    content: bool HasBeeline1(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: That is tested.
+    return:
+      type: System.Boolean
+      description: true if a beeline exists, false otherwise
+    content.vb: Function HasBeeline1(position As Position) As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  id: ExploreTeam
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreTeam()
+  nameWithType: IPlayerBody.ExploreTeam()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreTeam
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 100
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides all <pre><code class="lang-csharp">IPlayerBody</code></pre>s of the same team.
+  example: []
+  syntax:
+    content: List<FriendSnapshot> ExploreTeam()
+    return:
+      type: System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+      description: A list of the teams player bodies.
+    content.vb: Function ExploreTeam() As List(Of FriendSnapshot)
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  id: ExploreOwnFlagStand
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ExploreOwnFlagStand()
+  nameWithType: IPlayerBody.ExploreOwnFlagStand()
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ExploreOwnFlagStand
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 106
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Explores the position of the own flag stand.
+  example: []
+  syntax:
+    content: Position ExploreOwnFlagStand()
+    return:
+      type: Mars.Interfaces.Environments.Position
+      description: ''
+    content.vb: Function ExploreOwnFlagStand() As Position
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GoTo(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.GoTo(Mars.Interfaces.Environments.Position)
+  id: GoTo(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: GoTo(Position)
+  nameWithType: IPlayerBody.GoTo(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GoTo(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GoTo
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 115
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: >-
+    Moves towards given position by using a D*-algorithm. The algorithm automatically moves around obstacles.
+
+    Always moves only one cell a tick. Can therefore only called once a tick for an agent.
+
+    If the agent is in another stance the moving delays (lying: 3 ticks/cell, kneeling 2 ticks/cell).
+  example: []
+  syntax:
+    content: bool GoTo(Position goal)
+    parameters:
+    - id: goal
+      type: Mars.Interfaces.Environments.Position
+      description: The position that should be reached.
+    return:
+      type: System.Boolean
+      description: true if the movement was successful, false otherwise.
+    content.vb: Function [GoTo](goal As Position) As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.GoTo*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  id: GetDistance(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: GetDistance(Position)
+  nameWithType: IPlayerBody.GetDistance(Position)
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GetDistance(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GetDistance
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 122
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides the distance between given position and the agents position.
+  example: []
+  syntax:
+    content: int GetDistance(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+      description: That is tested upon.
+    return:
+      type: System.Int32
+      description: The distance in Manhattan calculation.
+    content.vb: Function GetDistance(position As Position) As Integer
+  overload: LaserTagBox.Model.Shared.IPlayerBody.GetDistance*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  id: RemainingShots
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: RemainingShots
+  nameWithType: IPlayerBody.RemainingShots
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: RemainingShots
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 127
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: The magazine count of the weapon. How many more tag-attempts can be made before reloading is required.
+  example: []
+  syntax:
+    content: int RemainingShots { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property RemainingShots As Integer
+  overload: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Stance
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Stance
+  id: Stance
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Stance
+  nameWithType: IPlayerBody.Stance
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Stance
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Stance
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 132
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: The stance has influence on visibility (explorable by others) and visual range (extend of on exploration).
+  example: []
+  syntax:
+    content: Stance Stance { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+    content.vb: ReadOnly Property Stance As Stance
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Stance*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Position
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Position
+  id: Position
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: IPlayerBody.Position
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Position
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Position
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 137
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Current position of the agent on the grid.
+  example: []
+  syntax:
+    content: Position Position { get; }
+    parameters: []
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: ReadOnly Property Position As Position
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Position*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  id: ActionPoints
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: ActionPoints
+  nameWithType: IPlayerBody.ActionPoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ActionPoints
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 142
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Remaining actions points of this agent for the current tick.
+  example: []
+  syntax:
+    content: int ActionPoints { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property ActionPoints As Integer
+  overload: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Energy
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Energy
+  id: Energy
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Energy
+  nameWithType: IPlayerBody.Energy
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Energy
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Energy
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 147
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Remaining energy of the agent.
+  example: []
+  syntax:
+    content: int Energy { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Energy As Integer
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Energy*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  id: GamePoints
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: GamePoints
+  nameWithType: IPlayerBody.GamePoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GamePoints
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 152
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Collected game points of the agent with regard to the game mode.
+  example: []
+  syntax:
+    content: int GamePoints { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property GamePoints As Integer
+  overload: LaserTagBox.Model.Shared.IPlayerBody.GamePoints*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Color
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Color
+  id: Color
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: IPlayerBody.Color
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Color
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Color
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 157
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates to witch team the agent belongs.
+  example: []
+  syntax:
+    content: Color Color { get; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Color
+    content.vb: ReadOnly Property Color As Color
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Color*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+  id: VisualRange
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: VisualRange
+  nameWithType: IPlayerBody.VisualRange
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisualRange
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 162
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides a metric on the distance for exploring.
+  example: []
+  syntax:
+    content: double VisualRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: ReadOnly Property VisualRange As Double
+  overload: LaserTagBox.Model.Shared.IPlayerBody.VisualRange*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+  id: VisibilityRange
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: VisibilityRange
+  nameWithType: IPlayerBody.VisibilityRange
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisibilityRange
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 167
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Provides a metric on how visible the agent is for enemies.
+  example: []
+  syntax:
+    content: double VisibilityRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: ReadOnly Property VisibilityRange As Double
+  overload: LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  id: WasTaggedLastTick
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: WasTaggedLastTick
+  nameWithType: IPlayerBody.WasTaggedLastTick
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: WasTaggedLastTick
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 172
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates if the agent was tagged in the last tick.
+  example: []
+  syntax:
+    content: bool WasTaggedLastTick { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property WasTaggedLastTick As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Alive
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.Alive
+  id: Alive
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: Alive
+  nameWithType: IPlayerBody.Alive
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Alive
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Alive
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 177
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates if the agent is alive and can therefore act.
+  example: []
+  syntax:
+    content: bool Alive { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property Alive As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.Alive*
+- uid: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  commentId: P:LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  id: CarryingFlag
+  parent: LaserTagBox.Model.Shared.IPlayerBody
+  langs:
+  - csharp
+  - vb
+  name: CarryingFlag
+  nameWithType: IPlayerBody.CarryingFlag
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Shared/IPlayerBody.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: CarryingFlag
+    path: ../LaserTagBox/Model/Shared/IPlayerBody.cs
+    startLine: 182
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Shared
+  summary: Indicates if the agent is carrying the flag of opponent.
+  example: []
+  syntax:
+    content: bool CarryingFlag { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property CarryingFlag As Boolean
+  overload: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag*
+references:
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarriers1
+  name: ExploreBarriers1
+  nameWithType: IPlayerBody.ExploreBarriers1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarriers1
+- uid: System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+  commentId: T:System.Collections.Generic.List{Mars.Interfaces.Environments.Position}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Position>
+  nameWithType: List<Position>
+  fullName: System.Collections.Generic.List<Mars.Interfaces.Environments.Position>
+  nameWithType.vb: List(Of Position)
+  fullName.vb: System.Collections.Generic.List(Of Mars.Interfaces.Environments.Position)
+  name.vb: List(Of Position)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Mars.Interfaces.Environments.Position
+    name: Position
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreWater1
+  name: ExploreWater1
+  nameWithType: IPlayerBody.ExploreWater1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreWater1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreBarrels1
+  name: ExploreBarrels1
+  nameWithType: IPlayerBody.ExploreBarrels1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreBarrels1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreExplosiveBarrels1
+  name: ExploreExplosiveBarrels1
+  nameWithType: IPlayerBody.ExploreExplosiveBarrels1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreExplosiveBarrels1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreHills1
+  name: ExploreHills1
+  nameWithType: IPlayerBody.ExploreHills1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreHills1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreDitches1
+  name: ExploreDitches1
+  nameWithType: IPlayerBody.ExploreDitches1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreDitches1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemies1
+  name: ExploreEnemies1
+  nameWithType: IPlayerBody.ExploreEnemies1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemies1
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.EnemySnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EnemySnapshot>
+  nameWithType: List<EnemySnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.EnemySnapshot>
+  nameWithType.vb: List(Of EnemySnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.EnemySnapshot)
+  name.vb: List(Of EnemySnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.EnemySnapshot
+    name: EnemySnapshot
+    href: LaserTagBox.Model.Shared.EnemySnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.EnemySnapshot
+    name: EnemySnapshot
+    href: LaserTagBox.Model.Shared.EnemySnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreEnemyFlagStands1
+  name: ExploreEnemyFlagStands1
+  nameWithType: IPlayerBody.ExploreEnemyFlagStands1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreEnemyFlagStands1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreFlags2
+  name: ExploreFlags2
+  nameWithType: IPlayerBody.ExploreFlags2
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreFlags2
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.FlagSnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<FlagSnapshot>
+  nameWithType: List<FlagSnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.FlagSnapshot>
+  nameWithType.vb: List(Of FlagSnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.FlagSnapshot)
+  name.vb: List(Of FlagSnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.FlagSnapshot
+    name: FlagSnapshot
+    href: LaserTagBox.Model.Shared.FlagSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.FlagSnapshot
+    name: FlagSnapshot
+    href: LaserTagBox.Model.Shared.FlagSnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ChangeStance2_LaserTagBox_Model_Shared_Stance_
+  name: ChangeStance2
+  nameWithType: IPlayerBody.ChangeStance2
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ChangeStance2
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Reload3*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Reload3
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Reload3
+  name: Reload3
+  nameWithType: IPlayerBody.Reload3
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Reload3
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Tag5*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Tag5
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Tag5_Mars_Interfaces_Environments_Position_
+  name: Tag5
+  nameWithType: IPlayerBody.Tag5
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Tag5
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_HasBeeline1_Mars_Interfaces_Environments_Position_
+  name: HasBeeline1
+  nameWithType: IPlayerBody.HasBeeline1
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.HasBeeline1
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreTeam
+  name: ExploreTeam
+  nameWithType: IPlayerBody.ExploreTeam
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreTeam
+- uid: System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+  commentId: T:System.Collections.Generic.List{LaserTagBox.Model.Shared.FriendSnapshot}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<FriendSnapshot>
+  nameWithType: List<FriendSnapshot>
+  fullName: System.Collections.Generic.List<LaserTagBox.Model.Shared.FriendSnapshot>
+  nameWithType.vb: List(Of FriendSnapshot)
+  fullName.vb: System.Collections.Generic.List(Of LaserTagBox.Model.Shared.FriendSnapshot)
+  name.vb: List(Of FriendSnapshot)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: LaserTagBox.Model.Shared.FriendSnapshot
+    name: FriendSnapshot
+    href: LaserTagBox.Model.Shared.FriendSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Shared.FriendSnapshot
+    name: FriendSnapshot
+    href: LaserTagBox.Model.Shared.FriendSnapshot.html
+  - name: )
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ExploreOwnFlagStand
+  name: ExploreOwnFlagStand
+  nameWithType: IPlayerBody.ExploreOwnFlagStand
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ExploreOwnFlagStand
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GoTo*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.GoTo
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GoTo_Mars_Interfaces_Environments_Position_
+  name: GoTo
+  nameWithType: IPlayerBody.GoTo
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GoTo
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GetDistance*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.GetDistance
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GetDistance_Mars_Interfaces_Environments_Position_
+  name: GetDistance
+  nameWithType: IPlayerBody.GetDistance
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GetDistance
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_RemainingShots
+  name: RemainingShots
+  nameWithType: IPlayerBody.RemainingShots
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.RemainingShots
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Stance*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Stance
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Stance
+  name: Stance
+  nameWithType: IPlayerBody.Stance
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Stance
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Position*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Position
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Position
+  name: Position
+  nameWithType: IPlayerBody.Position
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Position
+- uid: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_ActionPoints
+  name: ActionPoints
+  nameWithType: IPlayerBody.ActionPoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.ActionPoints
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Energy*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Energy
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Energy
+  name: Energy
+  nameWithType: IPlayerBody.Energy
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Energy
+- uid: LaserTagBox.Model.Shared.IPlayerBody.GamePoints*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_GamePoints
+  name: GamePoints
+  nameWithType: IPlayerBody.GamePoints
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.GamePoints
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Color*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Color
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Color
+  name: Color
+  nameWithType: IPlayerBody.Color
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Color
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: LaserTagBox.Model.Shared.IPlayerBody.VisualRange*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_VisualRange
+  name: VisualRange
+  nameWithType: IPlayerBody.VisualRange
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.VisualRange
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_VisibilityRange
+  name: VisibilityRange
+  nameWithType: IPlayerBody.VisibilityRange
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.VisibilityRange
+- uid: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_WasTaggedLastTick
+  name: WasTaggedLastTick
+  nameWithType: IPlayerBody.WasTaggedLastTick
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.WasTaggedLastTick
+- uid: LaserTagBox.Model.Shared.IPlayerBody.Alive*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.Alive
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_Alive
+  name: Alive
+  nameWithType: IPlayerBody.Alive
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.Alive
+- uid: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag*
+  commentId: Overload:LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag
+  href: LaserTagBox.Model.Shared.IPlayerBody.html#LaserTagBox_Model_Shared_IPlayerBody_CarryingFlag
+  name: CarryingFlag
+  nameWithType: IPlayerBody.CarryingFlag
+  fullName: LaserTagBox.Model.Shared.IPlayerBody.CarryingFlag

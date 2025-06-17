@@ -1,0 +1,175 @@
+### YamlMime:TableOfContent
+items:
+- uid: LaserTagBox.Model
+  name: LaserTagBox.Model
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Commons
+    name: Commons
+    type: Class
+- uid: LaserTagBox.Model.Body
+  name: LaserTagBox.Model.Body
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Body.DataVisualizationServer
+    name: DataVisualizationServer
+    type: Class
+  - uid: LaserTagBox.Model.Body.MovingAgent
+    name: MovingAgent
+    type: Class
+  - uid: LaserTagBox.Model.Body.PlayerBody
+    name: PlayerBody
+    type: Class
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    type: Class
+- uid: LaserTagBox.Model.Items
+  name: LaserTagBox.Model.Items
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Items.Flag
+    name: Flag
+    type: Class
+  - uid: LaserTagBox.Model.Items.Item
+    name: Item
+    type: Class
+- uid: LaserTagBox.Model.Mind
+  name: LaserTagBox.Model.Mind
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Mind.AbstractPlayerMind
+    name: AbstractPlayerMind
+    type: Class
+  - uid: LaserTagBox.Model.Mind.AgentState
+    name: AgentState
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Example7QL
+    name: Example7QL
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Example8Rule
+    name: Example8Rule
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Example9QL.Action
+    name: Example9QL.Action
+    type: Enum
+  - uid: LaserTagBox.Model.Mind.Example9QL.Location
+    name: Example9QL.Location
+    type: Enum
+  - uid: LaserTagBox.Model.Mind.Example9QL.State
+    name: Example9QL.State
+    type: Class
+  - uid: LaserTagBox.Model.Mind.FlagCollector
+    name: FlagCollector
+    type: Class
+  - uid: LaserTagBox.Model.Mind.IdleAgent
+    name: IdleAgent
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Intel
+    name: Intel
+    type: Class
+  - uid: LaserTagBox.Model.Mind.PlayerMindLayer
+    name: PlayerMindLayer
+    type: Class
+  - uid: LaserTagBox.Model.Mind.QTableManager
+    name: QTableManager
+    type: Class
+  - uid: LaserTagBox.Model.Mind.SecondFlagCollector
+    name: SecondFlagCollector
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Shooter
+    name: Shooter
+    type: Class
+  - uid: LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+    name: YourPlayerMindPleaseRename
+    type: Class
+  - uid: LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy
+    name: YourPlayerMindPleaseRenameCopy
+    type: Class
+- uid: LaserTagBox.Model.Mind.Examples
+  name: LaserTagBox.Model.Mind.Examples
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Mind.Examples.Example1
+    name: Example1
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example10Rule
+    name: Example10Rule
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example2
+    name: Example2
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example3
+    name: Example3
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example4
+    name: Example4
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example5
+    name: Example5
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.Example6
+    name: Example6
+    type: Class
+  - uid: LaserTagBox.Model.Mind.Examples.ShooterCopy
+    name: ShooterCopy
+    type: Class
+- uid: LaserTagBox.Model.Shared
+  name: LaserTagBox.Model.Shared
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Shared.Color
+    name: Color
+    type: Enum
+  - uid: LaserTagBox.Model.Shared.EnemySnapshot
+    name: EnemySnapshot
+    type: Struct
+  - uid: LaserTagBox.Model.Shared.FlagSnapshot
+    name: FlagSnapshot
+    type: Struct
+  - uid: LaserTagBox.Model.Shared.FriendSnapshot
+    name: FriendSnapshot
+    type: Struct
+  - uid: LaserTagBox.Model.Shared.GameMode
+    name: GameMode
+    type: Enum
+  - uid: LaserTagBox.Model.Shared.IPlayerBody
+    name: IPlayerBody
+    type: Interface
+  - uid: LaserTagBox.Model.Shared.Stance
+    name: Stance
+    type: Enum
+  - uid: LaserTagBox.Model.Shared.TeamScore
+    name: TeamScore
+    type: Class
+- uid: LaserTagBox.Model.Spots
+  name: LaserTagBox.Model.Spots
+  type: Namespace
+  items:
+  - uid: LaserTagBox.Model.Spots.Barrier
+    name: Barrier
+    type: Class
+  - uid: LaserTagBox.Model.Spots.Ditch
+    name: Ditch
+    type: Class
+  - uid: LaserTagBox.Model.Spots.ExplosiveBarrel
+    name: ExplosiveBarrel
+    type: Class
+  - uid: LaserTagBox.Model.Spots.FlagStand
+    name: FlagStand
+    type: Class
+  - uid: LaserTagBox.Model.Spots.Hill
+    name: Hill
+    type: Class
+  - uid: LaserTagBox.Model.Spots.OccupiableSpot
+    name: OccupiableSpot
+    type: Class
+  - uid: LaserTagBox.Model.Spots.Spot
+    name: Spot
+    type: Class
+  - uid: LaserTagBox.Model.Spots.Water
+    name: Water
+    type: Class
+memberLayout: SamePage

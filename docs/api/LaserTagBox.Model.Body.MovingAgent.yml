@@ -1,0 +1,1450 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Body.MovingAgent
+  commentId: T:LaserTagBox.Model.Body.MovingAgent
+  id: MovingAgent
+  parent: LaserTagBox.Model.Body
+  children:
+  - LaserTagBox.Model.Body.MovingAgent.Battleground
+  - LaserTagBox.Model.Body.MovingAgent.Color
+  - LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.MovingAgent.HasMoved
+  - LaserTagBox.Model.Body.MovingAgent.ID
+  - LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  - LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  - LaserTagBox.Model.Body.MovingAgent.MemberId
+  - LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  - LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  - LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  - LaserTagBox.Model.Body.MovingAgent.Position
+  - LaserTagBox.Model.Body.MovingAgent.Stance
+  - LaserTagBox.Model.Body.MovingAgent.Tick
+  - LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  - LaserTagBox.Model.Body.MovingAgent.VisualRange
+  - LaserTagBox.Model.Body.MovingAgent.XCor
+  - LaserTagBox.Model.Body.MovingAgent.XSpawn
+  - LaserTagBox.Model.Body.MovingAgent.YCor
+  - LaserTagBox.Model.Body.MovingAgent.YSpawn
+  langs:
+  - csharp
+  - vb
+  name: MovingAgent
+  nameWithType: MovingAgent
+  fullName: LaserTagBox.Model.Body.MovingAgent
+  type: Class
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MovingAgent
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 14
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  summary: Encapsulates the movement properties and capabilities of a LaserTag agent
+  example: []
+  syntax:
+    content: 'public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IAgent, ITickClient, IEntity, IModelObject, IPositionable'
+    content.vb: Public MustInherit Class MovingAgent Implements IAgent(Of PlayerBodyLayer), IAgent, ITickClient, IEntity, IModelObject, IPositionable
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - LaserTagBox.Model.Body.PlayerBody
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  - Mars.Interfaces.Agents.IAgent
+  - Mars.Interfaces.Agents.ITickClient
+  - Mars.Interfaces.Agents.IEntity
+  - Mars.Interfaces.IModelObject
+  - Mars.Interfaces.Environments.IPositionable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LaserTagBox.Model.Body.MovingAgent.ID
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.ID
+  id: ID
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: MovingAgent.ID
+  fullName: LaserTagBox.Model.Body.MovingAgent.ID
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ID
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 25
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property ID As Guid
+  overload: LaserTagBox.Model.Body.MovingAgent.ID*
+  implements:
+  - Mars.Interfaces.Agents.IEntity.ID
+- uid: LaserTagBox.Model.Body.MovingAgent.Battleground
+  commentId: F:LaserTagBox.Model.Body.MovingAgent.Battleground
+  id: Battleground
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Battleground
+  nameWithType: MovingAgent.Battleground
+  fullName: LaserTagBox.Model.Body.MovingAgent.Battleground
+  type: Field
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Battleground
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 27
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected PlayerBodyLayer Battleground
+    return:
+      type: LaserTagBox.Model.Body.PlayerBodyLayer
+    content.vb: Protected Battleground As PlayerBodyLayer
+- uid: LaserTagBox.Model.Body.MovingAgent.MemberId
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MemberId
+  id: MemberId
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: MemberId
+  nameWithType: MovingAgent.MemberId
+  fullName: LaserTagBox.Model.Body.MovingAgent.MemberId
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MemberId
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 31
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: >-
+      [PropertyDescription(Name = "memberId")]
+
+      public int MemberId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <PropertyDescription(Name:="memberId")>
+
+      Public Property MemberId As Integer
+  overload: LaserTagBox.Model.Body.MovingAgent.MemberId*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: memberId
+- uid: LaserTagBox.Model.Body.MovingAgent.XSpawn
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.XSpawn
+  id: XSpawn
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: XSpawn
+  nameWithType: MovingAgent.XSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.XSpawn
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: XSpawn
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 42
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: >-
+      [PropertyDescription(Name = "xSpawn")]
+
+      public int XSpawn { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <PropertyDescription(Name:="xSpawn")>
+
+      Public Property XSpawn As Integer
+  overload: LaserTagBox.Model.Body.MovingAgent.XSpawn*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: xSpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.YSpawn
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.YSpawn
+  id: YSpawn
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: YSpawn
+  nameWithType: MovingAgent.YSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.YSpawn
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: YSpawn
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 53
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: >-
+      [PropertyDescription(Name = "ySpawn")]
+
+      public int YSpawn { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <PropertyDescription(Name:="ySpawn")>
+
+      Public Property YSpawn As Integer
+  overload: LaserTagBox.Model.Body.MovingAgent.YSpawn*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: ySpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.Color
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Color
+  id: Color
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: MovingAgent.Color
+  fullName: LaserTagBox.Model.Body.MovingAgent.Color
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Color
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 64
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: >-
+      [PropertyDescription(Name = "team")]
+
+      public Color Color { get; set; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Color
+    content.vb: >-
+      <PropertyDescription(Name:="team")>
+
+      Public Property Color As Color
+  overload: LaserTagBox.Model.Body.MovingAgent.Color*
+  attributes:
+  - type: Mars.Interfaces.Annotations.PropertyDescription
+    ctor: Mars.Interfaces.Annotations.PropertyDescription.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: team
+- uid: LaserTagBox.Model.Body.MovingAgent.Stance
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Stance
+  id: Stance
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Stance
+  nameWithType: MovingAgent.Stance
+  fullName: LaserTagBox.Model.Body.MovingAgent.Stance
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Stance
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 75
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public Stance Stance { get; protected set; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.Stance
+    content.vb: Public Property Stance As Stance
+  overload: LaserTagBox.Model.Body.MovingAgent.Stance*
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  id: MovementDelayCounter
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: MovementDelayCounter
+  nameWithType: MovingAgent.MovementDelayCounter
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MovementDelayCounter
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 76
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected double MovementDelayCounter { get; set; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Protected Property MovementDelayCounter As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter*
+- uid: LaserTagBox.Model.Body.MovingAgent.HasMoved
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.HasMoved
+  id: HasMoved
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: HasMoved
+  nameWithType: MovingAgent.HasMoved
+  fullName: LaserTagBox.Model.Body.MovingAgent.HasMoved
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: HasMoved
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 77
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected bool HasMoved { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Protected Property HasMoved As Boolean
+  overload: LaserTagBox.Model.Body.MovingAgent.HasMoved*
+- uid: LaserTagBox.Model.Body.MovingAgent.Position
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.Position
+  id: Position
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: MovingAgent.Position
+  fullName: LaserTagBox.Model.Body.MovingAgent.Position
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Position
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 78
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public Position Position { get; set; }
+    parameters: []
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: Public Property Position As Position
+  overload: LaserTagBox.Model.Body.MovingAgent.Position*
+  implements:
+  - Mars.Interfaces.Environments.IPositionable.Position
+- uid: LaserTagBox.Model.Body.MovingAgent.XCor
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.XCor
+  id: XCor
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: XCor
+  nameWithType: MovingAgent.XCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.XCor
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: XCor
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 79
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public double XCor { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property XCor As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.XCor*
+- uid: LaserTagBox.Model.Body.MovingAgent.YCor
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.YCor
+  id: YCor
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: YCor
+  nameWithType: MovingAgent.YCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.YCor
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: YCor
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 80
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public double YCor { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property YCor As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.YCor*
+- uid: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  id: Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Init(PlayerBodyLayer)
+  nameWithType: MovingAgent.Init(PlayerBodyLayer)
+  fullName: LaserTagBox.Model.Body.MovingAgent.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Init
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 84
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public void Init(PlayerBodyLayer layer)
+    parameters:
+    - id: layer
+      type: LaserTagBox.Model.Body.PlayerBodyLayer
+    content.vb: Public Sub Init(layer As PlayerBodyLayer)
+  overload: LaserTagBox.Model.Body.MovingAgent.Init*
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+- uid: LaserTagBox.Model.Body.MovingAgent.Tick
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.Tick
+  id: Tick
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: Tick()
+  nameWithType: MovingAgent.Tick()
+  fullName: LaserTagBox.Model.Body.MovingAgent.Tick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tick
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 98
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  example: []
+  syntax:
+    content: public virtual void Tick()
+    content.vb: Public Overridable Sub Tick()
+  overload: LaserTagBox.Model.Body.MovingAgent.Tick*
+  implements:
+  - Mars.Interfaces.Agents.ITickClient.Tick
+- uid: LaserTagBox.Model.Body.MovingAgent.VisualRange
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.VisualRange
+  id: VisualRange
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: VisualRange
+  nameWithType: MovingAgent.VisualRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisualRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisualRange
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 125
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public double VisualRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property VisualRange As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.VisualRange*
+- uid: LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  id: VisibilityRange
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: VisibilityRange
+  nameWithType: MovingAgent.VisibilityRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: VisibilityRange
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 143
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public double VisibilityRange { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property VisibilityRange As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.VisibilityRange*
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  commentId: P:LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  id: MovementDelayPenalty
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: MovementDelayPenalty
+  nameWithType: MovingAgent.MovementDelayPenalty
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MovementDelayPenalty
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 152
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected double MovementDelayPenalty { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Protected ReadOnly Property MovementDelayPenalty As Double
+  overload: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty*
+- uid: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  id: GoTo(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: GoTo(Position)
+  nameWithType: MovingAgent.GoTo(Position)
+  fullName: LaserTagBox.Model.Body.MovingAgent.GoTo(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: GoTo
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 209
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: public bool GoTo(Position goal)
+    parameters:
+    - id: goal
+      type: Mars.Interfaces.Environments.Position
+    return:
+      type: System.Boolean
+    content.vb: Public Function [GoTo](goal As Position) As Boolean
+  overload: LaserTagBox.Model.Body.MovingAgent.GoTo*
+- uid: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  id: InsertIntoEnv
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: InsertIntoEnv()
+  nameWithType: MovingAgent.InsertIntoEnv()
+  fullName: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: InsertIntoEnv
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 765
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected abstract void InsertIntoEnv()
+    content.vb: Protected MustOverride Sub InsertIntoEnv()
+  overload: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv*
+- uid: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  commentId: M:LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  id: MoveToPosition(Mars.Interfaces.Environments.Position)
+  parent: LaserTagBox.Model.Body.MovingAgent
+  langs:
+  - csharp
+  - vb
+  name: MoveToPosition(Position)
+  nameWithType: MovingAgent.MoveToPosition(Position)
+  fullName: LaserTagBox.Model.Body.MovingAgent.MoveToPosition(Mars.Interfaces.Environments.Position)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Body/MovingAgent.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: MoveToPosition
+    path: ../LaserTagBox/Model/Body/MovingAgent.cs
+    startLine: 766
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Body
+  syntax:
+    content: protected abstract Position MoveToPosition(Position position)
+    parameters:
+    - id: position
+      type: Mars.Interfaces.Environments.Position
+    return:
+      type: Mars.Interfaces.Environments.Position
+    content.vb: Protected MustOverride Function MoveToPosition(position As Position) As Position
+  overload: LaserTagBox.Model.Body.MovingAgent.MoveToPosition*
+references:
+- uid: LaserTagBox.Model.Body
+  commentId: N:LaserTagBox.Model.Body
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Body
+  nameWithType: LaserTagBox.Model.Body
+  fullName: LaserTagBox.Model.Body
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Body
+    name: Body
+    href: LaserTagBox.Model.Body.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  commentId: T:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  parent: Mars.Interfaces.Agents
+  definition: Mars.Interfaces.Agents.IAgent`1
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: IAgent<PlayerBodyLayer>
+  nameWithType: IAgent<PlayerBodyLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Body.PlayerBodyLayer>
+  nameWithType.vb: IAgent(Of PlayerBodyLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Body.PlayerBodyLayer)
+  name.vb: IAgent(Of PlayerBodyLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent
+  commentId: T:Mars.Interfaces.Agents.IAgent
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IAgent
+  nameWithType: IAgent
+  fullName: Mars.Interfaces.Agents.IAgent
+- uid: Mars.Interfaces.Agents.ITickClient
+  commentId: T:Mars.Interfaces.Agents.ITickClient
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: ITickClient
+  nameWithType: ITickClient
+  fullName: Mars.Interfaces.Agents.ITickClient
+- uid: Mars.Interfaces.Agents.IEntity
+  commentId: T:Mars.Interfaces.Agents.IEntity
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IEntity
+  nameWithType: IEntity
+  fullName: Mars.Interfaces.Agents.IEntity
+- uid: Mars.Interfaces.IModelObject
+  commentId: T:Mars.Interfaces.IModelObject
+  parent: Mars.Interfaces
+  isExternal: true
+  name: IModelObject
+  nameWithType: IModelObject
+  fullName: Mars.Interfaces.IModelObject
+- uid: Mars.Interfaces.Environments.IPositionable
+  commentId: T:Mars.Interfaces.Environments.IPositionable
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: IPositionable
+  nameWithType: IPositionable
+  fullName: Mars.Interfaces.Environments.IPositionable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Mars.Interfaces.Agents.IAgent`1
+  commentId: T:Mars.Interfaces.Agents.IAgent`1
+  isExternal: true
+  name: IAgent<TLayer>
+  nameWithType: IAgent<TLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>
+  nameWithType.vb: IAgent(Of TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer)
+  name.vb: IAgent(Of TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - name: TLayer
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLayer
+  - name: )
+- uid: Mars.Interfaces.Agents
+  commentId: N:Mars.Interfaces.Agents
+  isExternal: true
+  name: Mars.Interfaces.Agents
+  nameWithType: Mars.Interfaces.Agents
+  fullName: Mars.Interfaces.Agents
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+- uid: Mars.Interfaces
+  commentId: N:Mars.Interfaces
+  isExternal: true
+  name: Mars.Interfaces
+  nameWithType: Mars.Interfaces
+  fullName: Mars.Interfaces
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+- uid: Mars.Interfaces.Environments
+  commentId: N:Mars.Interfaces.Environments
+  isExternal: true
+  name: Mars.Interfaces.Environments
+  nameWithType: Mars.Interfaces.Environments
+  fullName: Mars.Interfaces.Environments
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Environments
+    name: Environments
+    isExternal: true
+- uid: LaserTagBox.Model.Body.MovingAgent.ID*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.ID
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_ID
+  name: ID
+  nameWithType: MovingAgent.ID
+  fullName: LaserTagBox.Model.Body.MovingAgent.ID
+- uid: Mars.Interfaces.Agents.IEntity.ID
+  commentId: P:Mars.Interfaces.Agents.IEntity.ID
+  parent: Mars.Interfaces.Agents.IEntity
+  isExternal: true
+  name: ID
+  nameWithType: IEntity.ID
+  fullName: Mars.Interfaces.Agents.IEntity.ID
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: LaserTagBox.Model.Body.PlayerBodyLayer
+  commentId: T:LaserTagBox.Model.Body.PlayerBodyLayer
+  parent: LaserTagBox.Model.Body
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: PlayerBodyLayer
+  nameWithType: PlayerBodyLayer
+  fullName: LaserTagBox.Model.Body.PlayerBodyLayer
+- uid: LaserTagBox.Model.Body.MovingAgent.MemberId*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.MemberId
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MemberId
+  name: MemberId
+  nameWithType: MovingAgent.MemberId
+  fullName: LaserTagBox.Model.Body.MovingAgent.MemberId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LaserTagBox.Model.Body.MovingAgent.XSpawn*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.XSpawn
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_XSpawn
+  name: XSpawn
+  nameWithType: MovingAgent.XSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.XSpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.YSpawn*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.YSpawn
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_YSpawn
+  name: YSpawn
+  nameWithType: MovingAgent.YSpawn
+  fullName: LaserTagBox.Model.Body.MovingAgent.YSpawn
+- uid: LaserTagBox.Model.Body.MovingAgent.Color*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.Color
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Color
+  name: Color
+  nameWithType: MovingAgent.Color
+  fullName: LaserTagBox.Model.Body.MovingAgent.Color
+- uid: LaserTagBox.Model.Shared.Color
+  commentId: T:LaserTagBox.Model.Shared.Color
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Color.html
+  name: Color
+  nameWithType: Color
+  fullName: LaserTagBox.Model.Shared.Color
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: LaserTagBox.Model.Body.MovingAgent.Stance*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.Stance
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Stance
+  name: Stance
+  nameWithType: MovingAgent.Stance
+  fullName: LaserTagBox.Model.Body.MovingAgent.Stance
+- uid: LaserTagBox.Model.Shared.Stance
+  commentId: T:LaserTagBox.Model.Shared.Stance
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.Stance.html
+  name: Stance
+  nameWithType: Stance
+  fullName: LaserTagBox.Model.Shared.Stance
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MovementDelayCounter
+  name: MovementDelayCounter
+  nameWithType: MovingAgent.MovementDelayCounter
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayCounter
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: LaserTagBox.Model.Body.MovingAgent.HasMoved*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.HasMoved
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_HasMoved
+  name: HasMoved
+  nameWithType: MovingAgent.HasMoved
+  fullName: LaserTagBox.Model.Body.MovingAgent.HasMoved
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LaserTagBox.Model.Body.MovingAgent.Position*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.Position
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Position
+  name: Position
+  nameWithType: MovingAgent.Position
+  fullName: LaserTagBox.Model.Body.MovingAgent.Position
+- uid: Mars.Interfaces.Environments.IPositionable.Position
+  commentId: P:Mars.Interfaces.Environments.IPositionable.Position
+  parent: Mars.Interfaces.Environments.IPositionable
+  isExternal: true
+  name: Position
+  nameWithType: IPositionable.Position
+  fullName: Mars.Interfaces.Environments.IPositionable.Position
+- uid: Mars.Interfaces.Environments.Position
+  commentId: T:Mars.Interfaces.Environments.Position
+  parent: Mars.Interfaces.Environments
+  isExternal: true
+  name: Position
+  nameWithType: Position
+  fullName: Mars.Interfaces.Environments.Position
+- uid: LaserTagBox.Model.Body.MovingAgent.XCor*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.XCor
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_XCor
+  name: XCor
+  nameWithType: MovingAgent.XCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.XCor
+- uid: LaserTagBox.Model.Body.MovingAgent.YCor*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.YCor
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_YCor
+  name: YCor
+  nameWithType: MovingAgent.YCor
+  fullName: LaserTagBox.Model.Body.MovingAgent.YCor
+- uid: LaserTagBox.Model.Body.MovingAgent.Init*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.Init
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Init_LaserTagBox_Model_Body_PlayerBodyLayer_
+  name: Init
+  nameWithType: MovingAgent.Init
+  fullName: LaserTagBox.Model.Body.MovingAgent.Init
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  commentId: M:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  parent: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}
+  definition: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  name: Init(PlayerBodyLayer)
+  nameWithType: IAgent<PlayerBodyLayer>.Init(PlayerBodyLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Body.PlayerBodyLayer>.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  nameWithType.vb: IAgent(Of PlayerBodyLayer).Init(PlayerBodyLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Body.PlayerBodyLayer).Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Body.PlayerBodyLayer}.Init(LaserTagBox.Model.Body.PlayerBodyLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Body.PlayerBodyLayer
+    name: PlayerBodyLayer
+    href: LaserTagBox.Model.Body.PlayerBodyLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  commentId: M:Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  isExternal: true
+  name: Init(TLayer)
+  nameWithType: IAgent<TLayer>.Init(TLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>.Init(TLayer)
+  nameWithType.vb: IAgent(Of TLayer).Init(TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer).Init(TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+- uid: LaserTagBox.Model.Body.MovingAgent.Tick*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.Tick
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_Tick
+  name: Tick
+  nameWithType: MovingAgent.Tick
+  fullName: LaserTagBox.Model.Body.MovingAgent.Tick
+- uid: Mars.Interfaces.Agents.ITickClient.Tick
+  commentId: M:Mars.Interfaces.Agents.ITickClient.Tick
+  parent: Mars.Interfaces.Agents.ITickClient
+  isExternal: true
+  name: Tick()
+  nameWithType: ITickClient.Tick()
+  fullName: Mars.Interfaces.Agents.ITickClient.Tick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+- uid: LaserTagBox.Model.Body.MovingAgent.VisualRange*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.VisualRange
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_VisualRange
+  name: VisualRange
+  nameWithType: MovingAgent.VisualRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisualRange
+- uid: LaserTagBox.Model.Body.MovingAgent.VisibilityRange*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_VisibilityRange
+  name: VisibilityRange
+  nameWithType: MovingAgent.VisibilityRange
+  fullName: LaserTagBox.Model.Body.MovingAgent.VisibilityRange
+- uid: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MovementDelayPenalty
+  name: MovementDelayPenalty
+  nameWithType: MovingAgent.MovementDelayPenalty
+  fullName: LaserTagBox.Model.Body.MovingAgent.MovementDelayPenalty
+- uid: LaserTagBox.Model.Body.MovingAgent.GoTo*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.GoTo
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_GoTo_Mars_Interfaces_Environments_Position_
+  name: GoTo
+  nameWithType: MovingAgent.GoTo
+  fullName: LaserTagBox.Model.Body.MovingAgent.GoTo
+- uid: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_InsertIntoEnv
+  name: InsertIntoEnv
+  nameWithType: MovingAgent.InsertIntoEnv
+  fullName: LaserTagBox.Model.Body.MovingAgent.InsertIntoEnv
+- uid: LaserTagBox.Model.Body.MovingAgent.MoveToPosition*
+  commentId: Overload:LaserTagBox.Model.Body.MovingAgent.MoveToPosition
+  href: LaserTagBox.Model.Body.MovingAgent.html#LaserTagBox_Model_Body_MovingAgent_MoveToPosition_Mars_Interfaces_Environments_Position_
+  name: MoveToPosition
+  nameWithType: MovingAgent.MoveToPosition
+  fullName: LaserTagBox.Model.Body.MovingAgent.MoveToPosition

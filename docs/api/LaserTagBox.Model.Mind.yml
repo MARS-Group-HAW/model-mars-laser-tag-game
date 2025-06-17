@@ -1,0 +1,222 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Mind
+  commentId: N:LaserTagBox.Model.Mind
+  id: LaserTagBox.Model.Mind
+  children:
+  - LaserTagBox.Model.Mind.AbstractPlayerMind
+  - LaserTagBox.Model.Mind.AgentState
+  - LaserTagBox.Model.Mind.Example7QL
+  - LaserTagBox.Model.Mind.Example8Rule
+  - LaserTagBox.Model.Mind.Example9QL
+  - LaserTagBox.Model.Mind.Example9QL.Action
+  - LaserTagBox.Model.Mind.Example9QL.Location
+  - LaserTagBox.Model.Mind.Example9QL.State
+  - LaserTagBox.Model.Mind.FlagCollector
+  - LaserTagBox.Model.Mind.IdleAgent
+  - LaserTagBox.Model.Mind.Intel
+  - LaserTagBox.Model.Mind.PlayerMindLayer
+  - LaserTagBox.Model.Mind.QTableManager
+  - LaserTagBox.Model.Mind.SecondFlagCollector
+  - LaserTagBox.Model.Mind.Shooter
+  - LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+  - LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Mind
+  nameWithType: LaserTagBox.Model.Mind
+  fullName: LaserTagBox.Model.Mind
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind
+  commentId: T:LaserTagBox.Model.Mind.AbstractPlayerMind
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.AbstractPlayerMind.html
+  name: AbstractPlayerMind
+  nameWithType: AbstractPlayerMind
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind
+- uid: LaserTagBox.Model.Mind.Example7QL
+  commentId: T:LaserTagBox.Model.Mind.Example7QL
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Example7QL.html
+  name: Example7QL
+  nameWithType: Example7QL
+  fullName: LaserTagBox.Model.Mind.Example7QL
+- uid: LaserTagBox.Model.Mind.Intel
+  commentId: T:LaserTagBox.Model.Mind.Intel
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Intel.html
+  name: Intel
+  nameWithType: Intel
+  fullName: LaserTagBox.Model.Mind.Intel
+- uid: LaserTagBox.Model.Mind.AgentState
+  commentId: T:LaserTagBox.Model.Mind.AgentState
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.AgentState.html
+  name: AgentState
+  nameWithType: AgentState
+  fullName: LaserTagBox.Model.Mind.AgentState
+- uid: LaserTagBox.Model.Mind.QTableManager
+  commentId: T:LaserTagBox.Model.Mind.QTableManager
+  href: LaserTagBox.Model.Mind.QTableManager.html
+  name: QTableManager
+  nameWithType: QTableManager
+  fullName: LaserTagBox.Model.Mind.QTableManager
+- uid: LaserTagBox.Model.Mind.Example8Rule
+  commentId: T:LaserTagBox.Model.Mind.Example8Rule
+  href: LaserTagBox.Model.Mind.Example8Rule.html
+  name: Example8Rule
+  nameWithType: Example8Rule
+  fullName: LaserTagBox.Model.Mind.Example8Rule
+- uid: LaserTagBox.Model.Mind.Example9QL
+  commentId: T:LaserTagBox.Model.Mind.Example9QL
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL
+  nameWithType: Example9QL
+  fullName: LaserTagBox.Model.Mind.Example9QL
+- uid: LaserTagBox.Model.Mind.Example9QL.Location
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Location
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL.Location
+  nameWithType: Example9QL.Location
+  fullName: LaserTagBox.Model.Mind.Example9QL.Location
+  spec.csharp:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Location
+    name: Location
+    href: LaserTagBox.Model.Mind.Example9QL.Location.html
+  spec.vb:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Location
+    name: Location
+    href: LaserTagBox.Model.Mind.Example9QL.Location.html
+- uid: LaserTagBox.Model.Mind.Example9QL.Action
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.Action
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL.Action
+  nameWithType: Example9QL.Action
+  fullName: LaserTagBox.Model.Mind.Example9QL.Action
+  spec.csharp:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Action
+    name: Action
+    href: LaserTagBox.Model.Mind.Example9QL.Action.html
+  spec.vb:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.Action
+    name: Action
+    href: LaserTagBox.Model.Mind.Example9QL.Action.html
+- uid: LaserTagBox.Model.Mind.Example9QL.State
+  commentId: T:LaserTagBox.Model.Mind.Example9QL.State
+  href: LaserTagBox.Model.Mind.Example9QL.html
+  name: Example9QL.State
+  nameWithType: Example9QL.State
+  fullName: LaserTagBox.Model.Mind.Example9QL.State
+  spec.csharp:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.State
+    name: State
+    href: LaserTagBox.Model.Mind.Example9QL.State.html
+  spec.vb:
+  - uid: LaserTagBox.Model.Mind.Example9QL
+    name: Example9QL
+    href: LaserTagBox.Model.Mind.Example9QL.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind.Example9QL.State
+    name: State
+    href: LaserTagBox.Model.Mind.Example9QL.State.html
+- uid: LaserTagBox.Model.Mind.FlagCollector
+  commentId: T:LaserTagBox.Model.Mind.FlagCollector
+  href: LaserTagBox.Model.Mind.FlagCollector.html
+  name: FlagCollector
+  nameWithType: FlagCollector
+  fullName: LaserTagBox.Model.Mind.FlagCollector
+- uid: LaserTagBox.Model.Mind.SecondFlagCollector
+  commentId: T:LaserTagBox.Model.Mind.SecondFlagCollector
+  href: LaserTagBox.Model.Mind.SecondFlagCollector.html
+  name: SecondFlagCollector
+  nameWithType: SecondFlagCollector
+  fullName: LaserTagBox.Model.Mind.SecondFlagCollector
+- uid: LaserTagBox.Model.Mind.Shooter
+  commentId: T:LaserTagBox.Model.Mind.Shooter
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.Shooter.html
+  name: Shooter
+  nameWithType: Shooter
+  fullName: LaserTagBox.Model.Mind.Shooter
+- uid: LaserTagBox.Model.Mind.IdleAgent
+  commentId: T:LaserTagBox.Model.Mind.IdleAgent
+  href: LaserTagBox.Model.Mind.IdleAgent.html
+  name: IdleAgent
+  nameWithType: IdleAgent
+  fullName: LaserTagBox.Model.Mind.IdleAgent
+- uid: LaserTagBox.Model.Mind.PlayerMindLayer
+  commentId: T:LaserTagBox.Model.Mind.PlayerMindLayer
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  name: PlayerMindLayer
+  nameWithType: PlayerMindLayer
+  fullName: LaserTagBox.Model.Mind.PlayerMindLayer
+- uid: LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+  commentId: T:LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.YourPlayerMindPleaseRename.html
+  name: YourPlayerMindPleaseRename
+  nameWithType: YourPlayerMindPleaseRename
+  fullName: LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+- uid: LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy
+  commentId: T:LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy
+  href: LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy.html
+  name: YourPlayerMindPleaseRenameCopy
+  nameWithType: YourPlayerMindPleaseRenameCopy
+  fullName: LaserTagBox.Model.Mind.YourPlayerMindPleaseRenameCopy
+- uid: LaserTagBox.Model.Mind
+  commentId: N:LaserTagBox.Model.Mind
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Mind
+  nameWithType: LaserTagBox.Model.Mind
+  fullName: LaserTagBox.Model.Mind
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html

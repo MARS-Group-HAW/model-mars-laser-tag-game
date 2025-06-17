@@ -1,0 +1,750 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind
+  commentId: T:LaserTagBox.Model.Mind.AbstractPlayerMind
+  id: AbstractPlayerMind
+  parent: LaserTagBox.Model.Mind
+  children:
+  - LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+  - LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+  - LaserTagBox.Model.Mind.AbstractPlayerMind.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  - LaserTagBox.Model.Mind.AbstractPlayerMind.Tick
+  langs:
+  - csharp
+  - vb
+  name: AbstractPlayerMind
+  nameWithType: AbstractPlayerMind
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind
+  type: Class
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: AbstractPlayerMind
+    path: ../LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+    startLine: 9
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  summary: Create a subclass of <pre><code class="lang-csharp">AbstractPlayerMind</code></pre> for your own artificial intelligence.
+  example: []
+  syntax:
+    content: 'public abstract class AbstractPlayerMind : IAgent<PlayerMindLayer>, IAgent, ITickClient, IEntity, IModelObject'
+    content.vb: Public MustInherit Class AbstractPlayerMind Implements IAgent(Of PlayerMindLayer), IAgent, ITickClient, IEntity, IModelObject
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - LaserTagBox.Model.Mind.Example7QL
+  - LaserTagBox.Model.Mind.Example8Rule
+  - LaserTagBox.Model.Mind.Example9QL
+  - LaserTagBox.Model.Mind.Examples.Example1
+  - LaserTagBox.Model.Mind.Examples.Example10Rule
+  - LaserTagBox.Model.Mind.Examples.Example2
+  - LaserTagBox.Model.Mind.Examples.Example3
+  - LaserTagBox.Model.Mind.Examples.Example4
+  - LaserTagBox.Model.Mind.Examples.Example5
+  - LaserTagBox.Model.Mind.Examples.Example6
+  - LaserTagBox.Model.Mind.FlagCollector
+  - LaserTagBox.Model.Mind.IdleAgent
+  - LaserTagBox.Model.Mind.SecondFlagCollector
+  - LaserTagBox.Model.Mind.Shooter
+  - LaserTagBox.Model.Mind.YourPlayerMindPleaseRename
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}
+  - Mars.Interfaces.Agents.IAgent
+  - Mars.Interfaces.Agents.ITickClient
+  - Mars.Interfaces.Agents.IEntity
+  - Mars.Interfaces.IModelObject
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+  commentId: P:LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+  id: ID
+  parent: LaserTagBox.Model.Mind.AbstractPlayerMind
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: AbstractPlayerMind.ID
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: ID
+    path: ../LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+    startLine: 14
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  summary: Just a unique identification.
+  example: []
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property ID As Guid
+  overload: LaserTagBox.Model.Mind.AbstractPlayerMind.ID*
+  implements:
+  - Mars.Interfaces.Agents.IEntity.ID
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+  commentId: P:LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+  id: Body
+  parent: LaserTagBox.Model.Mind.AbstractPlayerMind
+  langs:
+  - csharp
+  - vb
+  name: Body
+  nameWithType: AbstractPlayerMind.Body
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+  type: Property
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Body
+    path: ../LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+    startLine: 19
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  summary: The body is the mind's interface to the world for exploration and interaction.
+  example: []
+  syntax:
+    content: public IPlayerBody Body { get; set; }
+    parameters: []
+    return:
+      type: LaserTagBox.Model.Shared.IPlayerBody
+    content.vb: Public Property Body As IPlayerBody
+  overload: LaserTagBox.Model.Mind.AbstractPlayerMind.Body*
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  commentId: M:LaserTagBox.Model.Mind.AbstractPlayerMind.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  id: Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  parent: LaserTagBox.Model.Mind.AbstractPlayerMind
+  langs:
+  - csharp
+  - vb
+  name: Init(PlayerMindLayer)
+  nameWithType: AbstractPlayerMind.Init(PlayerMindLayer)
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Init
+    path: ../LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+    startLine: 25
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  summary: Provides the possibility to initialize the players mind.
+  example: []
+  syntax:
+    content: public abstract void Init(PlayerMindLayer mindLayer)
+    parameters:
+    - id: mindLayer
+      type: LaserTagBox.Model.Mind.PlayerMindLayer
+      description: Can be ignored.
+    content.vb: Public MustOverride Sub Init(mindLayer As PlayerMindLayer)
+  overload: LaserTagBox.Model.Mind.AbstractPlayerMind.Init*
+  implements:
+  - Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Tick
+  commentId: M:LaserTagBox.Model.Mind.AbstractPlayerMind.Tick
+  id: Tick
+  parent: LaserTagBox.Model.Mind.AbstractPlayerMind
+  langs:
+  - csharp
+  - vb
+  name: Tick()
+  nameWithType: AbstractPlayerMind.Tick()
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Tick()
+  type: Method
+  source:
+    remote:
+      path: LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+      branch: master
+      repo: git@github.com:MARS-Group-HAW/model-mars-laser-tag-game.git
+    id: Tick
+    path: ../LaserTagBox/Model/Mind/AbstractPlayerMind.cs
+    startLine: 30
+  assemblies:
+  - LaserTagBox
+  namespace: LaserTagBox.Model.Mind
+  summary: Provides the possibility to act.
+  example: []
+  syntax:
+    content: public abstract void Tick()
+    content.vb: Public MustOverride Sub Tick()
+  overload: LaserTagBox.Model.Mind.AbstractPlayerMind.Tick*
+  implements:
+  - Mars.Interfaces.Agents.ITickClient.Tick
+references:
+- uid: LaserTagBox.Model.Mind
+  commentId: N:LaserTagBox.Model.Mind
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Mind
+  nameWithType: LaserTagBox.Model.Mind
+  fullName: LaserTagBox.Model.Mind
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Mind
+    name: Mind
+    href: LaserTagBox.Model.Mind.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}
+  commentId: T:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}
+  parent: Mars.Interfaces.Agents
+  definition: Mars.Interfaces.Agents.IAgent`1
+  href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  name: IAgent<PlayerMindLayer>
+  nameWithType: IAgent<PlayerMindLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Mind.PlayerMindLayer>
+  nameWithType.vb: IAgent(Of PlayerMindLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Mind.PlayerMindLayer)
+  name.vb: IAgent(Of PlayerMindLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - uid: LaserTagBox.Model.Mind.PlayerMindLayer
+    name: PlayerMindLayer
+    href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LaserTagBox.Model.Mind.PlayerMindLayer
+    name: PlayerMindLayer
+    href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  - name: )
+- uid: Mars.Interfaces.Agents.IAgent
+  commentId: T:Mars.Interfaces.Agents.IAgent
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IAgent
+  nameWithType: IAgent
+  fullName: Mars.Interfaces.Agents.IAgent
+- uid: Mars.Interfaces.Agents.ITickClient
+  commentId: T:Mars.Interfaces.Agents.ITickClient
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: ITickClient
+  nameWithType: ITickClient
+  fullName: Mars.Interfaces.Agents.ITickClient
+- uid: Mars.Interfaces.Agents.IEntity
+  commentId: T:Mars.Interfaces.Agents.IEntity
+  parent: Mars.Interfaces.Agents
+  isExternal: true
+  name: IEntity
+  nameWithType: IEntity
+  fullName: Mars.Interfaces.Agents.IEntity
+- uid: Mars.Interfaces.IModelObject
+  commentId: T:Mars.Interfaces.IModelObject
+  parent: Mars.Interfaces
+  isExternal: true
+  name: IModelObject
+  nameWithType: IModelObject
+  fullName: Mars.Interfaces.IModelObject
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Mars.Interfaces.Agents.IAgent`1
+  commentId: T:Mars.Interfaces.Agents.IAgent`1
+  isExternal: true
+  name: IAgent<TLayer>
+  nameWithType: IAgent<TLayer>
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>
+  nameWithType.vb: IAgent(Of TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer)
+  name.vb: IAgent(Of TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: <
+  - name: TLayer
+  - name: '>'
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1
+    name: IAgent
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLayer
+  - name: )
+- uid: Mars.Interfaces.Agents
+  commentId: N:Mars.Interfaces.Agents
+  isExternal: true
+  name: Mars.Interfaces.Agents
+  nameWithType: Mars.Interfaces.Agents
+  fullName: Mars.Interfaces.Agents
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces.Agents
+    name: Agents
+    isExternal: true
+- uid: Mars.Interfaces
+  commentId: N:Mars.Interfaces
+  isExternal: true
+  name: Mars.Interfaces
+  nameWithType: Mars.Interfaces
+  fullName: Mars.Interfaces
+  spec.csharp:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+  spec.vb:
+  - uid: Mars
+    name: Mars
+    isExternal: true
+  - name: .
+  - uid: Mars.Interfaces
+    name: Interfaces
+    isExternal: true
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.ID*
+  commentId: Overload:LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+  href: LaserTagBox.Model.Mind.AbstractPlayerMind.html#LaserTagBox_Model_Mind_AbstractPlayerMind_ID
+  name: ID
+  nameWithType: AbstractPlayerMind.ID
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.ID
+- uid: Mars.Interfaces.Agents.IEntity.ID
+  commentId: P:Mars.Interfaces.Agents.IEntity.ID
+  parent: Mars.Interfaces.Agents.IEntity
+  isExternal: true
+  name: ID
+  nameWithType: IEntity.ID
+  fullName: Mars.Interfaces.Agents.IEntity.ID
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Body*
+  commentId: Overload:LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+  href: LaserTagBox.Model.Mind.AbstractPlayerMind.html#LaserTagBox_Model_Mind_AbstractPlayerMind_Body
+  name: Body
+  nameWithType: AbstractPlayerMind.Body
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Body
+- uid: LaserTagBox.Model.Shared.IPlayerBody
+  commentId: T:LaserTagBox.Model.Shared.IPlayerBody
+  parent: LaserTagBox.Model.Shared
+  href: LaserTagBox.Model.Shared.IPlayerBody.html
+  name: IPlayerBody
+  nameWithType: IPlayerBody
+  fullName: LaserTagBox.Model.Shared.IPlayerBody
+- uid: LaserTagBox.Model.Shared
+  commentId: N:LaserTagBox.Model.Shared
+  href: LaserTagBox.html
+  name: LaserTagBox.Model.Shared
+  nameWithType: LaserTagBox.Model.Shared
+  fullName: LaserTagBox.Model.Shared
+  spec.csharp:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+  spec.vb:
+  - uid: LaserTagBox
+    name: LaserTagBox
+    href: LaserTagBox.html
+  - name: .
+  - uid: LaserTagBox.Model
+    name: Model
+    href: LaserTagBox.Model.html
+  - name: .
+  - uid: LaserTagBox.Model.Shared
+    name: Shared
+    href: LaserTagBox.Model.Shared.html
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Init*
+  commentId: Overload:LaserTagBox.Model.Mind.AbstractPlayerMind.Init
+  href: LaserTagBox.Model.Mind.AbstractPlayerMind.html#LaserTagBox_Model_Mind_AbstractPlayerMind_Init_LaserTagBox_Model_Mind_PlayerMindLayer_
+  name: Init
+  nameWithType: AbstractPlayerMind.Init
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Init
+- uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  commentId: M:Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  parent: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}
+  definition: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  name: Init(PlayerMindLayer)
+  nameWithType: IAgent<PlayerMindLayer>.Init(PlayerMindLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<LaserTagBox.Model.Mind.PlayerMindLayer>.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  nameWithType.vb: IAgent(Of PlayerMindLayer).Init(PlayerMindLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of LaserTagBox.Model.Mind.PlayerMindLayer).Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Mind.PlayerMindLayer
+    name: PlayerMindLayer
+    href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent{LaserTagBox.Model.Mind.PlayerMindLayer}.Init(LaserTagBox.Model.Mind.PlayerMindLayer)
+    name: Init
+    isExternal: true
+  - name: (
+  - uid: LaserTagBox.Model.Mind.PlayerMindLayer
+    name: PlayerMindLayer
+    href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  - name: )
+- uid: LaserTagBox.Model.Mind.PlayerMindLayer
+  commentId: T:LaserTagBox.Model.Mind.PlayerMindLayer
+  parent: LaserTagBox.Model.Mind
+  href: LaserTagBox.Model.Mind.PlayerMindLayer.html
+  name: PlayerMindLayer
+  nameWithType: PlayerMindLayer
+  fullName: LaserTagBox.Model.Mind.PlayerMindLayer
+- uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  commentId: M:Mars.Interfaces.Agents.IAgent`1.Init(`0)
+  isExternal: true
+  name: Init(TLayer)
+  nameWithType: IAgent<TLayer>.Init(TLayer)
+  fullName: Mars.Interfaces.Agents.IAgent<TLayer>.Init(TLayer)
+  nameWithType.vb: IAgent(Of TLayer).Init(TLayer)
+  fullName.vb: Mars.Interfaces.Agents.IAgent(Of TLayer).Init(TLayer)
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.IAgent`1.Init(`0)
+    name: Init
+    isExternal: true
+  - name: (
+  - name: TLayer
+  - name: )
+- uid: LaserTagBox.Model.Mind.AbstractPlayerMind.Tick*
+  commentId: Overload:LaserTagBox.Model.Mind.AbstractPlayerMind.Tick
+  href: LaserTagBox.Model.Mind.AbstractPlayerMind.html#LaserTagBox_Model_Mind_AbstractPlayerMind_Tick
+  name: Tick
+  nameWithType: AbstractPlayerMind.Tick
+  fullName: LaserTagBox.Model.Mind.AbstractPlayerMind.Tick
+- uid: Mars.Interfaces.Agents.ITickClient.Tick
+  commentId: M:Mars.Interfaces.Agents.ITickClient.Tick
+  parent: Mars.Interfaces.Agents.ITickClient
+  isExternal: true
+  name: Tick()
+  nameWithType: ITickClient.Tick()
+  fullName: Mars.Interfaces.Agents.ITickClient.Tick()
+  spec.csharp:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Mars.Interfaces.Agents.ITickClient.Tick
+    name: Tick
+    isExternal: true
+  - name: (
+  - name: )

@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: LaserTagBox.Model.Mind.Examples
+  commentId: N:LaserTagBox.Model.Mind.Examples
+  id: LaserTagBox.Model.Mind.Examples
+  children:
+  - LaserTagBox.Model.Mind.Examples.Example1
+  - LaserTagBox.Model.Mind.Examples.Example10Rule
+  - LaserTagBox.Model.Mind.Examples.Example2
+  - LaserTagBox.Model.Mind.Examples.Example3
+  - LaserTagBox.Model.Mind.Examples.Example4
+  - LaserTagBox.Model.Mind.Examples.Example5
+  - LaserTagBox.Model.Mind.Examples.Example6
+  - LaserTagBox.Model.Mind.Examples.ShooterCopy
+  langs:
+  - csharp
+  - vb
+  name: LaserTagBox.Model.Mind.Examples
+  nameWithType: LaserTagBox.Model.Mind.Examples
+  fullName: LaserTagBox.Model.Mind.Examples
+  type: Namespace
+  assemblies:
+  - LaserTagBox
+references:
+- uid: LaserTagBox.Model.Mind.Examples.Example1
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example1
+  href: LaserTagBox.Model.Mind.Examples.Example1.html
+  name: Example1
+  nameWithType: Example1
+  fullName: LaserTagBox.Model.Mind.Examples.Example1
+- uid: LaserTagBox.Model.Mind.Examples.Example10Rule
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example10Rule
+  href: LaserTagBox.Model.Mind.Examples.Example10Rule.html
+  name: Example10Rule
+  nameWithType: Example10Rule
+  fullName: LaserTagBox.Model.Mind.Examples.Example10Rule
+- uid: LaserTagBox.Model.Mind.Examples.Example2
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example2
+  href: LaserTagBox.Model.Mind.Examples.Example2.html
+  name: Example2
+  nameWithType: Example2
+  fullName: LaserTagBox.Model.Mind.Examples.Example2
+- uid: LaserTagBox.Model.Mind.Examples.Example3
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example3
+  href: LaserTagBox.Model.Mind.Examples.Example3.html
+  name: Example3
+  nameWithType: Example3
+  fullName: LaserTagBox.Model.Mind.Examples.Example3
+- uid: LaserTagBox.Model.Mind.Examples.Example4
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example4
+  href: LaserTagBox.Model.Mind.Examples.Example4.html
+  name: Example4
+  nameWithType: Example4
+  fullName: LaserTagBox.Model.Mind.Examples.Example4
+- uid: LaserTagBox.Model.Mind.Examples.Example5
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example5
+  href: LaserTagBox.Model.Mind.Examples.Example5.html
+  name: Example5
+  nameWithType: Example5
+  fullName: LaserTagBox.Model.Mind.Examples.Example5
+- uid: LaserTagBox.Model.Mind.Examples.Example6
+  commentId: T:LaserTagBox.Model.Mind.Examples.Example6
+  href: LaserTagBox.Model.Mind.Examples.Example6.html
+  name: Example6
+  nameWithType: Example6
+  fullName: LaserTagBox.Model.Mind.Examples.Example6
+- uid: LaserTagBox.Model.Mind.Examples.ShooterCopy
+  commentId: T:LaserTagBox.Model.Mind.Examples.ShooterCopy
+  href: LaserTagBox.Model.Mind.Examples.ShooterCopy.html
+  name: ShooterCopy
+  nameWithType: ShooterCopy
+  fullName: LaserTagBox.Model.Mind.Examples.ShooterCopy
