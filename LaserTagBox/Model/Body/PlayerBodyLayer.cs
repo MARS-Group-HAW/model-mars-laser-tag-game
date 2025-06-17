@@ -162,8 +162,9 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                     var player = FighterEnv.Explore(flag.Position, 0, -1, body => body.Alive).FirstOrDefault();
                     if (player != null)
                     {
-                        var flagstand = (FlagStand)SpotEnv.Explore(flag.Position, 0, 1, 
-                            spot => spot.GetType() == typeof(FlagStand)).FirstOrDefault();
+                        var flagstand = SpotEnv.Explore(flag.Position, 0, 1)
+                            .OfType<FlagStand>()      
+                            .FirstOrDefault();  
 
                         if (flagstand == null && !flag.PickedUp || flagstand != null && !flag.PickedUp && flagstand.Color != player.Color)
                         {
