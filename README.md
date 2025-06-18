@@ -30,8 +30,9 @@ To visualize the results of a simulation, prebuilt [visualization tools](https:/
    - On Linux: `visualization.sh`.
    - On macOS:  
      ```bash
-     ./visualization_macOS.app/Contents/MacOS/mmvp
+     ./visualization_macOS.app/Contents/MacOS/mars-grid-visualizer
      ```
+
 
 The visualization reads game data produced during a simulation and displays it in a graphical interface.
 
