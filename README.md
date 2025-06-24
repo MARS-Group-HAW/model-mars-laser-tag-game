@@ -1,5 +1,5 @@
 # LaserTag: A Multi-Agent Simulation Game
-**Version 1.0.2** – *Released: June 17, 2025*
+**Version 1.0.3** – *Released: June 24, 2025*
 
 
 LaserTag is an agent-based simulation game designed for developers to implement and test agent behaviors and let agent teams with different strategies compete against each other. The game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html).
