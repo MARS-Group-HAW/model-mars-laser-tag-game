@@ -280,18 +280,18 @@ public class PlayerBody : MovingAgent, IPlayerBody
             barrel.Tagged();
             return true;
         }
-        var enemy = Battleground.GetAgentOn(aimedPosition);
-        if (enemy == null) return false;
-        if (enemy.Color == Color) return false;
+        var target = Battleground.GetAgentOn(aimedPosition);
+        if (target == null) return false;
+        if (Battleground.Mode == GameMode.TeamDeathmatch && target.Color == Color) return false; // no friendly fire in team deathmatch
 
         var fieldType = Battleground.GetIntValue(aimedPosition);
-        var enemySpot = fieldType switch
+        var targetSpot = fieldType switch
         {
             3 => 0, // in ditch
             2 => 2, // on hill
             _ => 1  // on normal ground
         };
-        var enemyStance = enemy.Stance switch
+        var targetStance = target.Stance switch
         {
             Stance.Standing => 2,
             Stance.Kneeling => 1,
@@ -307,11 +307,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        var success = RandomHelper.Random.Next(10) + enemyStance + enemySpot > stanceValue;
+        var success = RandomHelper.Random.Next(10) + targetStance + targetSpot > stanceValue;
         if (success)
         {
             GamePoints += 10;
-            if (enemy.Tagged()) GamePoints += 10; // bonus points
+            if (target.Tagged()) GamePoints += 10; // bonus points
             return true;
         }
 
@@ -356,6 +356,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// <returns>boolean</returns>
     private bool HasBeeline(IPositionable other) =>
         Battleground.HasBeeline(Position.X, Position.Y, other.Position.X, other.Position.Y);
+    
         
     /// <summary>
     ///     Determines whether there exists a direct line of sight between the caller and the given position
