@@ -22,10 +22,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     public string TeamName { get; set; }
         
-    /// <summary>
-    ///     Represents the agent's vital state.
-    /// </summary>
-    public bool Alive { get; private set; } = true;
+    
         
     /// <summary>
     ///     Points that can be spent on actions per tick.
@@ -41,7 +38,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     The agent's point count (for tagging enemy agents, etc.).
     /// </summary>
     public int GamePoints { get; private set; }
-    
+
     /// <summary>
     ///    Determines whether the agent is carrying the flag.
     /// </summary>
@@ -57,6 +54,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     The remaining number of shots (tagging opportunities) of the agent.
     /// </summary>
     public int RemainingShots { get; private set; } = 5;
+    
+    /// <summary>
+    ///     Represents the agent's vital state.
+    /// </summary>
+    public bool Alive { get; set; } = true;
     
     #endregion
 
@@ -75,6 +77,12 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// Stores the number of ticks since the agent has died.
     /// </summary>
     private int _deadTicks = 0;
+    
+    /// <summary>
+    /// lock object for pathfinding to prevent concurrent access issues
+    /// </summary>
+    private readonly object _pathfindingLock = new();
+    
     #endregion
 
     #region Tick
@@ -93,8 +101,6 @@ public class PlayerBody : MovingAgent, IPlayerBody
                 return;
             }
             _deadTicks++;
-            // Workaround: Sometimes the agent does not move to the spawn point due to a bug, so we reset the position here.
-            Position = Position.CreatePosition(XSpawn, YSpawn); 
             if (_deadTicks >= 60)
             {
                 Respawn();
@@ -169,7 +175,21 @@ public class PlayerBody : MovingAgent, IPlayerBody
             .Select(e => e.Position)
             .ToList();
     }
-    
+
+    /// <summary>
+    ///    Moves the agent to the given position.
+    /// </summary>
+    /// <param name="goal"></param>
+    /// <returns></returns>
+    public bool GoTo(Position goal)
+    {
+        if (!Alive) return false;
+        lock (_pathfindingLock)
+        {
+            return TryMoveTo(goal);
+        }
+    }
+
     /// <summary>
     ///    Explores the flags.
     /// </summary>
@@ -190,7 +210,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     public List<FriendSnapshot> ExploreTeam()
     {
         return new List<FriendSnapshot>(Battleground.FighterEnv
-            .Entities.Where(body => body.Color == Color && body != this).Select(b =>
+            .Entities.Where(body => body.Color == Color && body != this && body.Alive).Select(b =>
                 new FriendSnapshot(b.ID, b.MemberId, b.Color, b.Stance, b.Position, b.Energy, b.VisualRange, b.VisibilityRange))
             .ToList());
     }
@@ -205,7 +225,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
         ActionPoints -= 1;
         return Battleground.FighterEnv
             .Explore(Position, VisualRange, -1,
-                player => IsEnemy(player) && HasBeeline(player) && IsVisible(player))
+                player => IsEnemy(player) && player.Alive && HasBeeline(player) && IsVisible(player))
             .Select(player => new EnemySnapshot(player.ID, player.MemberId, player.Color, player.Stance, player.Position))
             .ToList();
     }
@@ -418,12 +438,12 @@ public class PlayerBody : MovingAgent, IPlayerBody
                 CarryingFlag = false;
             }
         }
-        Position = Position.CreatePosition(XSpawn, YSpawn);
-        Battleground.FighterEnv.PosAt(this, [XSpawn, YSpawn]);
+        lock (_pathfindingLock)
+        {
+            MoveMe(XSpawn, YSpawn);
+        }
         Battleground.FighterEnv.Remove(this);
-            
         ActionPoints = 0;
-
     }
 
     /// <summary>
@@ -451,16 +471,18 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// <summary>
     ///     Respawns the agent at its flag stand.
     /// </summary>
-    public void Respawn()
+    private void Respawn()
     {
-        
-        Alive = true;
-        ActionPoints = 10;
-        Energy = 100;
-        RemainingShots = 5;
-        Position = Position.CreatePosition(XSpawn, YSpawn);
-        Battleground.FighterEnv.Insert(this);
-        Battleground.FighterEnv.PosAt(this, [XSpawn, YSpawn]);
+        lock (_pathfindingLock)
+        {
+            Alive = true;
+            ActionPoints = 10;
+            Energy = 100;
+            RemainingShots = 5;
+            Battleground.FighterEnv.Insert(this);
+            ResetPathfinding();
+            MoveMe(XSpawn, YSpawn);
+        }
     }
     #endregion
 }

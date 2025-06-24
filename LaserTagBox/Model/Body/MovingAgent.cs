@@ -207,7 +207,7 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
     // xGoal: x-coordinate of grid cell Guest wants to move to
     // yGoal: y-coordinate of grid cell Guest wants to move to
     // return: boolean states if step was successfully taken
-    public bool GoTo(Position goal) //TODO return type provides information about result
+    protected bool TryMoveTo(Position goal) //TODO return type provides information about result
     {
         var xGoal = Math.Floor(goal.X);
         var yGoal = Math.Floor(goal.Y);
@@ -749,7 +749,7 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
     }
 
     // moves agent, if possible, onto the grid cell with coordinates (x, y)
-    private void MoveMe(double x, double y)
+    protected void MoveMe(double x, double y)
     {
         if (CurrentSpot != null)
             CurrentSpot.Free = true;
@@ -762,6 +762,20 @@ public abstract class MovingAgent : IAgent<PlayerBodyLayer>, IPositionable
 
         HasMoved = true;
     }
+    
+    /// <summary>
+    ///    Resets the pathfinding state of the agent, clearing all relevant data structures.
+    /// </summary>
+    protected void ResetPathfinding()
+    {
+        _sStart = null;
+        _sLast = null;
+        _routeList.Clear();
+        _expandQueue.Clear();
+        _pathCalculated = false;
+        _km = 0.0;
+    }
+
 
     protected abstract void InsertIntoEnv();
     protected abstract Position MoveToPosition(Position position);
