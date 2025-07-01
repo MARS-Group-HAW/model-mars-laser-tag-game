@@ -104,7 +104,8 @@ public static class DataVisualizationServer
                 team = b.TeamName,
                 visualRange = b.VisualRange,
                 gotShot = b.WasTaggedLastTick,
-                stance = b.Stance
+                stance = b.Stance,
+                taggerID = b.TaggerID,
             }),
             items = items.Select<Item, object>(i =>
             {

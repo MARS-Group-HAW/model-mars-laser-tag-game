@@ -60,6 +60,11 @@ public class PlayerBody : MovingAgent, IPlayerBody
     /// </summary>
     public bool Alive { get; set; } = true;
     
+    /// <summary>
+    ///    The ID of the agent that tagged this agent.
+    /// </summary>
+    public Guid TaggerID { get; set; } = Guid.Empty;
+    
     #endregion
 
     #region Fields
@@ -311,7 +316,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
         if (success)
         {
             GamePoints += 10;
-            if (target.Tagged()) GamePoints += 10; // bonus points
+            if (target.Tagged(ID)) GamePoints += 10; // bonus points
             return true;
         }
 
@@ -400,8 +405,9 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///     Handles a successful tag of the agent.
     /// </summary>
     /// <returns>true if the agent's energy is negative, otherwise false</returns>
-    private bool Tagged()
+    private bool Tagged(Guid taggerID)
     {
+        TaggerID = taggerID;
         _tickWhenLastTagged = _currentTick;
         Energy -= 10;
         if (Energy >= 0) return false;
