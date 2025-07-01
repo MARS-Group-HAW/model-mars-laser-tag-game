@@ -51,7 +51,7 @@ public class ExplosiveBarrel : Spot
             spot => spot.GetType() == typeof(ExplosiveBarrel)).ToList();
         foreach (var agent in agents)
         {
-            agent.TakeExplosionDamage(_damage);
+            agent.TakeExplosionDamage(_damage, ID);
         }
 
         foreach (var barrel in barrels)

@@ -419,7 +419,7 @@ public class PlayerBody : MovingAgent, IPlayerBody
     ///    Handles the agent's explosion damage.
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeExplosionDamage(int damage)
+    public void TakeExplosionDamage(int damage, Guid BarrelID)
     {
         _tickWhenLastTagged = _currentTick;
         Energy -= damage;
