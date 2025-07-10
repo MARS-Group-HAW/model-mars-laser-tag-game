@@ -13,74 +13,6 @@ LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application
 
 **Note:** The MARS Framework integrates into LaserTag via a [nuget](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the nuget package manager of your IDE to search for and install the nuget package `Mars.Life.Simulations`.
 
-## Visualization
-
-To visualize the results of a simulation, prebuilt [visualization tools](https://github.com/MARS-Group-HAW/mars-grid-visualizer/releases) are provided for Linux, macOS, and Windows.
-
-### How to Use
-
-1. Go to the directory `Visualization/`.
-2. Choose the release corresponding to your operating system:
-   - `visualization_windows.zip` for Windows
-   - `visualization_macOS.app.tar.xz` for macOS
-   - `visualization_linux.zip` for Linux
-3. Extract the archive in the directory.
-4. Run the extracted application 
-   - On Windows: `visualization.exe`
-   - On Linux: `visualization.sh`.
-   - On macOS:  
-     ```bash
-     ./visualization_macOS.app/Contents/MacOS/mars-grid-visualizer
-     ```
-
-
-The visualization reads game data produced during a simulation and displays it in a graphical interface.
-
-
-
-### Note
-
-The visualization was created using the [Godot Engine](https://godotengine.org/). No installation is required – the exported version runs as a standalone application.
-
-### macOS Gatekeeper Warning
-
-macOS may block the visualization app when it's downloaded from the internet.  
-If you encounter a warning that the app is from an "unidentified developer", you can allow it manually:
-
-- Right-click the application and select “Open”.
-- Confirm the dialog when prompted.
-
-This will add an exception and allow future starts.
-
-### Alternative: Use Analysis Tool
-
-If the graphical visualization does not work on your system, you can alternatively use the analysis tool described in the [**Analysis**](#analysis) section below. It provides a timeline-based playback of agent movements and interactions using the logged data from the simulation.
-
-
-
-### Disabling Visualization
-If you do not want to use the visualization, you can disable it in the simulation configuration.
-
-Open your JSON configuration file `config.json` Set the "Visualization" mapping parameter to false like this:
-```json
-...
-"layers": [
-  {
-    "name": "PlayerBodyLayer",
-    "file": "Resources/ctf_Battleground.csv",
-    "dimensionx": 51,
-    "dimensiony": 51,
-    "mapping": [
-      {
-        "parameter": "Visualization",
-        "value": false
-      }
-    ]
-  }
-]
-...
-```
-
 ## Game Setup
 
 To set up a LaserTag game, follow these steps:
@@ -133,10 +65,84 @@ To set up a LaserTag game, follow these steps:
    - 8 = `FlagStand (yellow)` (accessible)
 
 5. Run `Program.cs`.
-6. If you have enabled the visualization in your configuration file (i.e., `"Visualization": true`), run the corresponding executable as described in the [Visualization](#visualization) section after the simulation starts.
+6. If you have enabled the visualization in your            
+   configuration file (i.e., `"Visualization": true`), wait until the simulation outputs the message
 
+   `Waiting for live visualization to run.`
+
+   in the console. Once you see this message, start the corresponding executable as described in the [Visualization](#visualization) section. 
    This will allow you to observe the simulation in real time.
 
+
+## Visualization
+
+To visualize the results of a simulation, prebuilt [visualization tools](https://github.com/MARS-Group-HAW/mars-grid-visualizer/releases) are provided for Linux, macOS, and Windows.
+
+### How to Use
+
+1. Download the [release](https://github.com/MARS-Group-HAW/mars-grid-visualizer/releases) that matches your operating system.  
+     
+   - For **Windows**: `visualization_windows.zip`
+   - For **macOS**: `visualization_macOS.app.tar.xz`
+   - For **Linux**: `visualization_linux.zip`
+2. Place the downloaded archive file into the `Visualization/` directory and extract it there.
+3. Run the extracted application:
+   - On **Windows**: Double-click `visualization.exe`.
+   - On **Linux**: Run `visualization.sh`.
+   - On **macOS**: Open a Terminal **in the `Visualization/` directory**, and then run:  
+     ```bash
+     ./visualization_macOS.app/Contents/MacOS/mars-grid-visualizer
+     ```
+
+
+
+
+The visualization reads game data produced during a simulation and displays it in a graphical interface.
+
+
+
+### Note
+
+The visualization was created using the [Godot Engine](https://godotengine.org/). No installation is required – the exported version runs as a standalone application.
+
+### macOS Gatekeeper Warning
+
+macOS may block the visualization app when it's downloaded from the internet.  
+If you encounter a warning that the app is from an "unidentified developer", you can allow it manually:
+
+- Right-click the application and select “Open”.
+- Confirm the dialog when prompted.
+
+This will add an exception and allow future starts.
+
+### Alternative: Use Analysis Tool
+
+If the graphical visualization does not work on your system, you can alternatively use the analysis tool described in the [**Analysis**](#analysis) section below. It provides a timeline-based playback of agent movements and interactions using the logged data from the simulation.
+
+
+
+### Disabling Visualization
+If you do not want to use the visualization, you can disable it in the simulation configuration.
+
+Open your JSON configuration file `config.json` Set the "Visualization" mapping parameter to false like this:
+```json
+...
+"layers": [
+  {
+    "name": "PlayerBodyLayer",
+    "file": "Resources/ctf_Battleground.csv",
+    "dimensionx": 51,
+    "dimensiony": 51,
+    "mapping": [
+      {
+        "parameter": "Visualization",
+        "value": false
+      }
+    ]
+  }
+]
+...
+```
 
 ## Analysis
 
