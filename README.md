@@ -82,9 +82,9 @@ To visualize the results of a simulation, prebuilt [visualization tools](https:/
 
 1. Download the [release](https://github.com/MARS-Group-HAW/mars-grid-visualizer/releases) that matches your operating system.  
      
-   - For **Windows**: `visualization_windows.zip`
-   - For **macOS**: `visualization_macOS.app.tar.xz`
-   - For **Linux**: `visualization_linux.zip`
+   - For **Windows**: `Windows.Desktop.zip`
+   - For **macOS**: `macOS.zip`
+   - For **Linux**: `Linux.zip`
 2. Place the downloaded archive file into the `Visualization/` directory and extract it there.
 3. Run the extracted application:
    - On **Windows**: Double-click `visualization.exe`.
