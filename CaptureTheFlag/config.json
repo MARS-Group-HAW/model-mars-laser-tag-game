@@ -1,0 +1,44 @@
+{
+  "globals": {
+    "steps": 1000,
+    "output": "csv",
+    "options": {
+      "delimiter": ";",
+      "numberFormat": "G",
+      "culture": "en-EN"
+    }
+  },
+  "layers": [
+    {
+      "name": "PlayerBodyLayer",
+      "file": "Resources/ctf_Battleground.csv",
+      "dimensionx": 51,
+      "dimensiony": 51,
+      "mapping": [
+        {
+          "parameter": "Visualization",
+          "value": false
+        },
+        {
+          "parameter": "VisualizationTimeout",
+          "value": 180
+        },
+        {
+          "parameter": "Mode",
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "name": "PlayerBody",
+      "count": 6,
+      "file": "Resources/player_positions_2.csv"
+    },
+    {
+      "name": "Barrier",
+      "outputFrequency": -1
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "globals": {
+    "steps": 1000,
+    "output": "csv",
+    "options": {
+      "delimiter": ";",
+      "numberFormat": "G",
+      "culture": "en-EN"
+    }
+  },
+  "layers": [
+    {
+      "name": "PlayerBodyLayer",
+      "file": "Resources/map_3_close.csv",
+      "dimensionx": 51,
+      "dimensiony": 51,
+      "mapping": [
+        {
+          "parameter": "Visualization",
+          "value": true
+        },
+        {
+          "parameter": "VisualizationTimeout",
+          "value": 180
+        },
+        {
+          "parameter": "Mode",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "name": "PlayerBody",
+      "count": 6,
+      "file": "Resources/player_positions_3.csv"
+    },
+    {
+      "name": "Barrier",
+      "outputFrequency": -1
+    }
+  ]
+}

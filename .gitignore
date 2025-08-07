@@ -7,8 +7,8 @@ lasertag/src-gen/obj
 .DS_store
 *.xml
 *.iml
-LaserTagBox/bin
-LaserTagBox/obj
+**/bin/
+**/obj/
 .metadata
 .idea
 .Rhistory
