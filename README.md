@@ -1,25 +1,34 @@
 # LaserTag: A Multi-Agent Simulation Game
-**Version 1.0.3** – *Released: June 24, 2025*
-
+**Version 1.1.0** – *Released: August 7, 2025*
 
 LaserTag is an agent-based simulation game designed for developers to implement and test agent behaviors and let agent teams with different strategies compete against each other. The game runs on the multi-agent simulation framework [MARS (Multi-Agent Research and Simulation)](https://mars-group-haw.github.io/index.html).
 
 For game rules, agent interfaces, and further details, refer to the website [Mars Laser Tag Game](https://www.mars-group.org/model-mars-laser-tag-game/).
 
+## Game Modes
+
+LaserTag provides two gameplay modes as separate executable projects:
+
+- **CaptureTheFlag**: Teams attempt to capture each other’s flags and return them to their own base.
+- **TeamDeathmatch**: Teams earn points by tagging enemy agents.
+
+Each mode is implemented in its own project directory and shares common simulation logic via a shared core module (`LaserTag.Core`).
 
 ## Usage
 
-LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application. To work with it, open the directory `LaserTagBox/` with a .NET IDE of your choice (e.g., [Visual Studio](https://visualstudio.microsoft.com/), [JetBrains Rider](https://www.jetbrains.com/rider/), or [VS Code](https://code.visualstudio.com/)).
+LaserTag is a [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) application. To work with it, open the `LaserTag/` directory with a .NET IDE of your choice (e.g., [Visual Studio](https://visualstudio.microsoft.com/), [JetBrains Rider](https://www.jetbrains.com/rider/), or [VS Code](https://code.visualstudio.com/)).
 
-**Note:** The MARS Framework integrates into LaserTag via a [nuget](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the nuget package manager of your IDE to search for and install the nuget package `Mars.Life.Simulations`.
+**Note:** The MARS Framework integrates into LaserTag via a [nuget](https://www.nuget.org/) package. If the MARS dependencies of LaserTag are not resolved properly, use the NuGet package manager of your IDE to search for and install the package `Mars.Life.Simulations`.
 
 ## Game Setup
 
-To set up a LaserTag game, follow these steps:
+To set up and run a game mode:
 
-1. Add your agents' implementation files to the directory `LaserTagBox/Model/Mind/`.
+1. Open either the `CaptureTheFlag/` or `TeamDeathmatch/` directory depending on the mode you want to run.
 
-2. In the file `LaserTagBox/Program.cs`, add the following line per agent type:
+2. Add your agents' implementation files to the directory `<Mode>/Mind/`.
+
+3. In the file `<Mode>/Program.cs`, add the following line per agent type:
 
    ```csharp
    description.AddAgent<MyAgentType, PlayerMindLayer>();
@@ -27,19 +36,17 @@ To set up a LaserTag game, follow these steps:
 
    **Note:** `MyAgentType` is the name of the main class of your agent type.
 
-3. In the file `LaserTagBox/Program.cs`, specify a JSON configuration file for the simulation.
+4. In the file `<Mode>/Program.cs`, specify a JSON configuration file for the simulation.
 
    ```csharp
-   var file = File.ReadAllText("my_config_file.json");
+   var file = File.ReadAllText("config.json");
    ```
 
-   **Note:** `my_config_file` is the name of the JSON file that contains the game configuration.
+   **Note:** `config` is the name of the JSON file that contains the game configuration.
 
    **Note:** The game is designed to be played by two, three of four teams. If fewer teams are specified in the file `Program.cs`, the remaining teams are placed in the game as "empty" agents without behavioral logic.
 
-   **Note:** The default configuration files for three-player and four-player games (`config_3.json` and `config_4.json`, respectively) can be found in the directory `LaserTagBox/`.
-
-4. In the configuration file, specify the map for the game.
+5. In the configuration file, specify the map for the game.
 
    ```json
    ...
@@ -53,7 +60,7 @@ To set up a LaserTag game, follow these steps:
 
    **Note:** `my_map` is the name of the CSV file that contains the map encoding.
 
-   In the directory `LaserTagBox/Resources/`, there are some default maps. You can generate your own maps using the following encoding:
+   In the directory `<Mode>/Resources/`, there are some default maps. You can generate your own maps using the following encoding:
 
    - 0 = empty cell (accessible)
    - 1 = `Barrier` (inaccessible)
@@ -64,8 +71,8 @@ To set up a LaserTag game, follow these steps:
    - 7 = `FlagStand (red)` (accessible)
    - 8 = `FlagStand (yellow)` (accessible)
 
-5. Run `Program.cs`.
-6. If you have enabled the visualization in your            
+6. Run `Program.cs`.
+7. If you have enabled the visualization in your            
    configuration file (i.e., `"Visualization": true`), wait until the simulation outputs the message
 
    `Waiting for live visualization to run.`
