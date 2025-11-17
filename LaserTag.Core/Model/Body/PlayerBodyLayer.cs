@@ -31,7 +31,12 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
     ///   The scoring strategy used to calculate the scores of the teams.
     /// </summary>
     private ScoringStrategy _scoringStrategy;
-    
+
+    /// <summary>
+    ///    Path to the current used map.
+    /// </summary>
+    private string _mapPath;
+
     /// <summary>
     ///    Determines whether the layer should be visualized in a separate window.
     /// </summary>
@@ -99,21 +104,23 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
         UnregisterAgent unregisterAgentHandle = null)
     {
         base.InitLayer(layerInitData, registerAgentHandle, unregisterAgentHandle);
-        
+
         if (Visualization) DataVisualizationServer.RunInBackground();
-        
-        FighterEnv = new SpatialHashEnvironment<PlayerBody>(Width - 1, Height - 1) {CheckBoundaries = true};
-        SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) {CheckBoundaries = true};
-        ItemEnv = new SpatialHashEnvironment<Item>(Width - 1, Height - 1) {CheckBoundaries = true};
+
+        _mapPath = layerInitData.LayerInitConfig.File;
+
+        FighterEnv = new SpatialHashEnvironment<PlayerBody>(Width - 1, Height - 1) { CheckBoundaries = true };
+        SpotEnv = new SpatialHashEnvironment<Spot>(Width - 1, Height - 1) { CheckBoundaries = true };
+        ItemEnv = new SpatialHashEnvironment<Item>(Width - 1, Height - 1) { CheckBoundaries = true };
         AgentManager = layerInitData.Container.Resolve<IAgentManager>();
-        
+
         Bodies = AgentManager.Spawn<PlayerBody, PlayerBodyLayer>().ToDictionary(body => body.ID);
-        
+
         Items = new Dictionary<Guid, Item>();
-        
+
         Score = new Dictionary<Color, TeamScore>();
         SetScoringStrategy();
-        
+
         for (var x = 0; x < Width; x++)
         {
             for (var y = 0; y < Height; y++)
@@ -124,6 +131,7 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                 SpotEnv.Insert(spot);
             }
         }
+
         return true;
     }
     #endregion
@@ -162,8 +170,9 @@ public class PlayerBodyLayer : RasterLayer, ISteppedActiveLayer
                 Thread.Sleep(1000);
                 Console.WriteLine("Waiting for live visualization to run.");
             }
-            
-            DataVisualizationServer.SendData(Bodies.Values, Items.Values, Score, SpotEnv.Entities.OfType<ExplosiveBarrel>());
+
+            DataVisualizationServer.SendData(_mapPath, Mode, Bodies.Values, Items.Values, Score,
+                SpotEnv.Entities.OfType<ExplosiveBarrel>());
             while (DataVisualizationServer.CurrentTick != Context.CurrentTick + 1)
             {
                 Thread.Sleep(VisualizationTimeout);
