@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Mars.Interfaces.Agents;
 using System.Text.Json;
 using Fleck;
 using System.Threading;
 using System.Threading.Tasks;
 using LaserTag.Core.Model.Body;
 using LaserTag.Core.Model.Items;
-using LaserTag.Core.Model.Shared;
 using LaserTag.Core.Model.Spots;
-using Mars.Interfaces.Environments;
 
 namespace LaserTag.Core.Model.Shared;
 public static class DataVisualizationServer
@@ -89,12 +85,15 @@ public static class DataVisualizationServer
         _server = null;
         _client = null;
     }
-        
-    public static void SendData(IEnumerable<PlayerBody> bodies, IEnumerable<Item> items, Dictionary<Color, TeamScore> scores, IEnumerable<ExplosiveBarrel> explosiveBarrels)
+
+    public static void SendData(string mapPath, GameMode gameMode, IEnumerable<PlayerBody> bodies,
+        IEnumerable<Item> items, Dictionary<Color, TeamScore> scores, IEnumerable<ExplosiveBarrel> explosiveBarrels)
     {
         var payload = new
         {
             expectingTick = CurrentTick + 1,
+            mapPath,
+            gameMode,
             agents = bodies.Select(b => new
             {
                 id = b.ID,

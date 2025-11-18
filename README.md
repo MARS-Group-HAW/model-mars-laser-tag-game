@@ -48,14 +48,14 @@ To set up and run a game mode:
 
 5. In the configuration file, specify the map for the game.
 
-   ```json
-   ...
+   ```jsonc
+   // ...
    "layers": [{
-     ...
-     "file": my_map.csv,
-     ...
+     // ...
+     "file": "my_map.csv",
+     // ...
    }],
-   ...
+   // ...
    ```
 
    **Note:** `my_map` is the name of the CSV file that contains the map encoding.
@@ -132,8 +132,8 @@ If the graphical visualization does not work on your system, you can alternative
 If you do not want to use the visualization, you can disable it in the simulation configuration.
 
 Open your JSON configuration file `config.json` Set the "Visualization" mapping parameter to false like this:
-```json
-...
+```jsonc
+// ...
 "layers": [
   {
     "name": "PlayerBodyLayer",
@@ -148,7 +148,7 @@ Open your JSON configuration file `config.json` Set the "Visualization" mapping 
     ]
   }
 ]
-...
+// ...
 ```
 
 ## Analysis
